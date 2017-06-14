@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-feed-edit></app-feed-edit>
+    <hr>
+    <ul class="list-group">
+      <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
+    </ul>
+  </div>
+</div>
