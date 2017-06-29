@@ -17,7 +17,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   influxString = '';
   influxConfigs: any = [];
   private sub: any;
-
+  invCounts: any; 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute) {
     this.loading = true;
@@ -35,6 +35,9 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
       this.influxString = this.showConfigsAsString(this.influxConfigs);
       this.influxLoading = false;
     });
+    this.accountService.getInvCounts(this.accountId).subscribe(counts=>{
+       this.invCounts = counts; 
+    })
   }
   getDnaLink() {
     return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;

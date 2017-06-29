@@ -1,19 +1,4 @@
-<div class="nav clearfix">
-<div style="background: transparent; margin-bottom: 200px;" class="col-md-6" *ngFor="let count of invCounts">
-    <div class="heading">
-      <h3 style="margin: 5px 0;"> {{count.type}} </h3>
-    </div>
-    <hr>
-    <div class="clearfix">
-      <a class="btn btn-primary col-md-2" *ngFor="let class of count.data">
-        <div (click)="loadCorrectVehicles(class.type,class.classification)"> <span style="text-align: left;">{{class.className}}</span> <span style="text-align: right;"> ({{class.count}}) </span>          </div>
-      </a>
-      <a class="col-md-2 btn btn-primary">
-        <div (click)="loadCorrectVehicles(class.type,class.class)"> Total {{count.type}} - ({{count.total}}) </div>
-      </a>
-    </div>
-</div>
-</div>
+
 <div class="vehicle-list clearfix" *ngIf="!loading">
   <div class="vehicle" *ngFor="let item of items">
     <app-vehicle-item [item]="item" [account]="account"></app-vehicle-item>
