@@ -9,3 +9,16 @@
      font-size: 1.1em;
      color: #ccc;
 }
+
+.panel-subheading{
+   padding-left: 10px;
+}
+
+.panel-subheading span {
+    background: #337ab7; 
+    color: #fff;
+    margin: 5px; 
+    padding: 5px; 
+    border-radius: 5px;
+    font-size: 12px;
+}

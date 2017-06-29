@@ -26,8 +26,13 @@ export class AccountService {
     }
 
     getInfluxConfigs(accountId: string) {
-        return this.http.post(this.API_URL + '/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
+        return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
             (response: Response) => response.json());
+    }
+
+    getDNAInflux(accountId: string){
+        return this.http.post('https://dna.dealer.com/views/blocks/influxconfigs/view-influxconfigs', { blockId: "influxconfigs", accountId: accountId, ownerId: accountId }).map(
+            (response: Response) => response); 
     }
 
 }
