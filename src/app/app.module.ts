@@ -10,19 +10,22 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccountComponent } from './_components/account/account.component';
 import { routing } from './app.routing';
 import { AccountSingleComponent } from './_components/account/account-single.component';
-import {AccountService} from './_services/account.service';
-import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent  } from './_components/vehicles/index';
+import { AccountService } from './_services/account.service';
+import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
+import { QuicklinksComponent } from './quicklinks/quicklinks.component';
+import { DropdownModule } from "ngx-dropdown";
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HeaderComponent, FeedsComponent, FeedEditComponent, SidebarComponent, AccountComponent, AccountSingleComponent, VehicleListComponent, VehicleItemComponent, VehicleSingleComponent
+    AppComponent,
+    HeaderComponent, FeedsComponent, FeedEditComponent, SidebarComponent, AccountComponent, AccountSingleComponent, VehicleListComponent, VehicleItemComponent, VehicleSingleComponent, QuicklinksComponent
   ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    DropdownModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
