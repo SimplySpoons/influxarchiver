@@ -42,3 +42,7 @@
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
+.card.navPanelItem .card-header .accordion-toggle span,.dashboardLink.panel-title:not(i) {
+    float:none;
+    margin-left:5px;
+}
