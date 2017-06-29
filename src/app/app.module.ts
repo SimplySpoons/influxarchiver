@@ -14,18 +14,33 @@ import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
+import { FilterPipe } from './_pipes/filter.pipe';
+import { NgSpinKitModule } from 'ng-spin-kit';
+import { ScrollerDirective } from './scroll.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent, FeedsComponent, FeedEditComponent, SidebarComponent, AccountComponent, AccountSingleComponent, VehicleListComponent, VehicleItemComponent, VehicleSingleComponent, QuicklinksComponent
+    HeaderComponent, 
+    FeedsComponent, 
+    FeedEditComponent, 
+    SidebarComponent, 
+    AccountComponent, 
+    AccountSingleComponent, 
+    VehicleListComponent, 
+    VehicleItemComponent, 
+    VehicleSingleComponent, 
+    QuicklinksComponent,
+    FilterPipe,
+    ScrollerDirective
   ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
     JsonpModule,
-    DropdownModule
+    DropdownModule,
+    NgSpinKitModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

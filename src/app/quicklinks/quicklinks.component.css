@@ -1,5 +1,4 @@
 .quicklinks .btn-group {
-    position: absolute;
-    right: 130px;
-    top: 7px;
+    margin-top: 7px;
+    margin-right: 5%;
 }

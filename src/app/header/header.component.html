@@ -11,6 +11,17 @@
         <li><a href="#">Other Stuff</a></li>
         <li><a href="#">Need a Sidebar</a></li>
       </ul>
+      <div *ngIf="!allLoading" class="searchBar" style="width: 30%;">
+        <input type="text" class="form-control">
+      </div>
+      <!--<div class="col-md-6 search-bar-top" (clickOutside)='hideResults($event)'>-->
+      <!--<div class="col-md-6 search-bar-top">
+                <!(blur)="restoreUserList(value)"  -->
+      <!--<input id="searchBarTop" type="text" class="form-control" (keypress)="searchTerm$.next($event.target.value); updateLoading(value)"
+                    placeholder="Search for people, posts, etc .." [(ngModel)]="value">
+                <img *ngIf="loadingInit" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+      </div>-->
       <app-quicklinks></app-quicklinks>
       <!--<ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

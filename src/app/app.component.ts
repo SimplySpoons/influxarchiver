@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Influx Archiver 2.0';
+  // loading = true;
 }
