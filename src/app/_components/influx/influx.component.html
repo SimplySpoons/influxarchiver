@@ -6,7 +6,7 @@
     </div>
     <div class="panel-subheading">
       <a class="btn btn-primary" *ngFor="let type of config.inventory_types">
-          <div (click)="routeToVehicles(type.type,type.classification)"> {{type.name}} </div>
+          <div (click)="routeToVehicles(type.type,type.classification)"> {{type.name}} ({{type.count}}) </div>
         </a>
     </div>
     <hr>
