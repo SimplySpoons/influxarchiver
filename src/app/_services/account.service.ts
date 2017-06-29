@@ -33,7 +33,8 @@ export class AccountService {
     }
 
     getInvCounts(accountId: string){
-        return this.http.post('http://localhost:6969/influx.php', { request: "getInvCounts", accountId: accountId }).map(
+            console.log('hitting service');
+        return this.http.post('http://localhost:6969/vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }
 

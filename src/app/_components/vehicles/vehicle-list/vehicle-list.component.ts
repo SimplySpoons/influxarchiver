@@ -46,6 +46,7 @@ export class VehicleListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadCorrectVehicles(this.type,this.classification);
+    console.log('hitting');
     this.accountService.getInvCounts(this.accountId).subscribe(counts => {
       this.invCounts = counts;
       console.log('invCounts', counts);
