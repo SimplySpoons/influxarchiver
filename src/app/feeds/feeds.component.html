@@ -25,5 +25,18 @@
         <button class="btn btn-success showFeed" (click)="showFeedEdit()">Show Component</button>
       </div>
     </div>
+    <div class="loadingIndicatorShower">
+      <div *ngIf="!loadingHidden">
+        <button class="btn btn-danger hideLoading" (click)="hideLoading()">Hide Loading Indicator</button>
+      </div>
+      <div *ngIf="loadingHidden">
+        <button class="btn btn-success showLoading" (click)="showLoading()">Show Loading Indicator</button>
+      </div>
+    </div>
+    <div *ngIf="!loadingHidden" class="loadingIndicator">
+      <div class="row" style="clear: both;">
+        <sk-folding-cube></sk-folding-cube>
+      </div>
+    </div>
   </div>
 </div>

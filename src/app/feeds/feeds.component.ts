@@ -14,12 +14,15 @@ export class FeedsComponent implements OnInit {
   ];
   feedEditHidden = false;
   feedListHidden = false;
-  
+  componentLoading = false;
+  loadingHidden = true;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  /* There is a much cleaner way of doing this with a single function, but for the sake of time this will do */
   hideFeed() {
     this.feedEditHidden = !this.feedEditHidden;
   }
@@ -31,6 +34,12 @@ export class FeedsComponent implements OnInit {
   }
   showFeedEdit() {
     this.feedListHidden = !this.feedListHidden;
+  }
+  hideLoading() {
+    this.loadingHidden = !this.loadingHidden;
+  }
+  showLoading() {
+    this.loadingHidden = !this.loadingHidden;
   }
 
 }
