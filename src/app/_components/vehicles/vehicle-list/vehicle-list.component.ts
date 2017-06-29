@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { AccountService } from '../../../_services/account.service'; 
-import { Item } from '../../../_models/item'; 
-import { Account } from '../../../_models/account'; 
+import { AccountService } from '../../../_services/account.service';
+import { Item } from '../../../_models/item';
+import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,18 +11,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VehicleListComponent implements OnInit, OnDestroy {
 
-  account: Account; 
-  accountId: string; 
-  sub: any; 
+  account: Account;
+  accountId: string;
+  sub: any;
   items: Array<Item> = [];
 
-  type: string; 
+  type: string;
   classification: string;
 
-  routersub: any;  
+  routersub: any;
+  invCounts: any;
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute) { 
-      this.sub = this.route.parent.params.subscribe(params => {
+  loading: boolean = false; 
+
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
+    this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
       this.account = this.accountService.getCurrentAccount();
       console.log(this.accountId);
@@ -33,14 +36,23 @@ export class VehicleListComponent implements OnInit, OnDestroy {
     });
   }
 
+  loadCorrectVehicles(type: any, classification: any) {
+    this.loading=true; 
+    this.accountService.getAccountVehicles(this.accountId, type, classification).subscribe(items => {
+      this.items = items;
+      this.loading=false; 
+    });
+  }
+
   ngOnInit() {
-      this.accountService.getAccountVehicles(this.accountId,this.type,this.classification).subscribe(items => {
-          this.items = items; 
-          console.log('account vehicles', items);
-      });
+    this.loadCorrectVehicles(this.type,this.classification);
+    this.accountService.getInvCounts(this.accountId).subscribe(counts => {
+      this.invCounts = counts;
+      console.log('invCounts', counts);
+    });
   }
   ngOnDestroy() {
-    this.sub.unsubscribe(); 
+    this.sub.unsubscribe();
     this.routersub.unsubscribe();
   }
 }
