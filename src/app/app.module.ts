@@ -19,9 +19,9 @@ import { FilterPipe } from './_pipes/filter.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { ScrollerDirective } from './scroll.directive';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { AccordionModule } from 'ngx-bootstrap';
+import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import {AppConfig} from './app.config'; 
+import { AppConfig } from './app.config';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -31,15 +31,15 @@ export function initializeCurrentUser(config: AppConfig) {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent, 
-    FeedsComponent, 
-    FeedEditComponent, 
-    SidebarComponent, 
-    AccountComponent, 
-    AccountSingleComponent, 
-    VehicleListComponent, 
-    VehicleItemComponent, 
-    VehicleSingleComponent, 
+    HeaderComponent,
+    FeedsComponent,
+    FeedEditComponent,
+    SidebarComponent,
+    AccountComponent,
+    AccountSingleComponent,
+    VehicleListComponent,
+    VehicleItemComponent,
+    VehicleSingleComponent,
     QuicklinksComponent,
     FilterPipe,
     ScrollerDirective
@@ -57,7 +57,7 @@ export function initializeCurrentUser(config: AppConfig) {
     BsDropdownModule.forRoot()
   ],
   exports: [FilterPipe],
-  providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
+  providers: [AccountService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
