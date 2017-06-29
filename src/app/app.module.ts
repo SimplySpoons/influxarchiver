@@ -23,6 +23,7 @@ import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppConfig } from './app.config';
 import { InfluxComponent } from './_components/influx/influx.component';
+import { SearchComponent } from './search/search.component';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -44,7 +45,8 @@ export function initializeCurrentUser(config: AppConfig) {
     QuicklinksComponent,
     FilterPipe,
     ScrollerDirective,
-    InfluxComponent
+    InfluxComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

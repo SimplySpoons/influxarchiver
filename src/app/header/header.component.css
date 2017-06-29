@@ -7,7 +7,11 @@
     border-color:#23282e;
     border-radius:0;
 }
+.nav.navbar-nav.navbar-right {
+    margin-right:0;
+}
 
+/*
 .btn-group.headerButtons {
     margin-left: 285px;
-}
+}*/
