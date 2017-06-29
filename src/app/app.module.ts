@@ -3,6 +3,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FeedsComponent } from './feeds/feeds.component';
 import { FeedEditComponent } from './feeds/feed-edit/feed-edit.component';
@@ -41,8 +42,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpModule,
     JsonpModule,
     DropdownModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgSpinKitModule
   ],
+  exports: [FilterPipe],
   providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
