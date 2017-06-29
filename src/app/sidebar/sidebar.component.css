@@ -178,7 +178,6 @@ body {
 .nav-side-menu .panel  {
     background-color:#2e353d;
 }
-
 .card.navPanelItem,
 .card.navPanelItem .card-header,
 .panel.navPanelItem {
@@ -205,4 +204,12 @@ body {
 .nav-side-menu .brand a.dashTitle:hover {
     text-decoration: none;
     opacity:.8;
+}
+
+.nav-side-menu .brand {
+    line-height:47px;
+}
+
+.nav-side-menu {
+    z-index: 999999999;
 }

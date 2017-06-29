@@ -1,101 +1,42 @@
 <div class="row">
   <div class="col-xs-10">
-    <app-feed-edit></app-feed-edit>
+    <div *ngIf="!feedEditHidden">
+      <app-feed-edit></app-feed-edit>
+    </div>
+    <div class="feedHidingButtons">
+      <div *ngIf="!feedEditHidden">
+        <button class="btn btn-danger hideFeed" (click)="hideFeed()">Hide Component</button>
+      </div>
+      <div *ngIf="feedEditHidden">
+        <button class="btn btn-success showFeed" (click)="showFeed()">Show Component</button>
+      </div>
+    </div>
     <hr>
-    <ul class="list-group">
-      <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
-    </ul>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-lg-3 col-md-6">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i class="fa fa-comments fa-5x"></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">26</div>
-            <div>New Comments!</div>
-          </div>
-        </div>
-      </div>
-      <a href="#">
-        <div class="panel-footer">
-          <span class="pull-left">View Details</span>
-          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-          <div class="clearfix"></div>
-        </div>
-      </a>
+    <div *ngIf="!feedListHidden">
+      <ul class="list-group">
+        <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
+      </ul>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6">
-    <div class="panel panel-green">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i class="fa fa-tasks fa-5x"></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">12</div>
-            <div>New Tasks!</div>
-          </div>
-        </div>
+    <div class="feedHidingButtons">
+      <div *ngIf="!feedListHidden">
+        <button class="btn btn-danger hideFeed" (click)="hideFeedEdit()">Hide Component</button>
       </div>
-      <a href="#">
-        <div class="panel-footer">
-          <span class="pull-left">View Details</span>
-          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-          <div class="clearfix"></div>
-        </div>
-      </a>
+      <div *ngIf="feedListHidden">
+        <button class="btn btn-success showFeed" (click)="showFeedEdit()">Show Component</button>
+      </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6">
-    <div class="panel panel-yellow">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i class="fa fa-shopping-cart fa-5x"></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">124</div>
-            <div>New Orders!</div>
-          </div>
-        </div>
+    <div class="loadingIndicatorShower">
+      <div *ngIf="!loadingHidden">
+        <button class="btn btn-danger hideLoading" (click)="hideLoading()">Hide Loading Indicator</button>
       </div>
-      <a href="#">
-        <div class="panel-footer">
-          <span class="pull-left">View Details</span>
-          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-          <div class="clearfix"></div>
-        </div>
-      </a>
+      <div *ngIf="loadingHidden">
+        <button class="btn btn-success showLoading" (click)="showLoading()">Show Loading Indicator</button>
+      </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6">
-    <div class="panel panel-red">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i class="fa fa-support fa-5x"></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">13</div>
-            <div>Support Tickets!</div>
-          </div>
-        </div>
+    <div *ngIf="!loadingHidden" class="loadingIndicator">
+      <div class="row" style="clear: both;">
+        <sk-folding-cube></sk-folding-cube>
       </div>
-      <a href="#">
-        <div class="panel-footer">
-          <span class="pull-left">View Details</span>
-          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-          <div class="clearfix"></div>
-        </div>
-      </a>
     </div>
   </div>
 </div>
