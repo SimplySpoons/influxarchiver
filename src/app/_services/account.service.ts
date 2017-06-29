@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -12,6 +12,7 @@ export class AccountService {
   
   API_URL: string;
   account: Account; 
+  sendAccountChange = new EventEmitter<any>();
   constructor(private conf: AppConfig, private http: Http) { 
       this.API_URL = this.conf.API_CONFIG(); 
   }
@@ -38,6 +39,7 @@ export class AccountService {
 
     setCurrentAccount(account: any){
          this.account = account; 
+         this.sendAccountChange.emit(this.account); 
     }
 
     getCurrentAccount(){
