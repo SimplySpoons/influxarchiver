@@ -13,6 +13,8 @@ export class FeedsComponent implements OnInit {
     new Feed('SomethingElse', 18)
   ];
   feedEditHidden = false;
+  feedListHidden = false;
+  
   constructor() { }
 
   ngOnInit() {
@@ -23,6 +25,12 @@ export class FeedsComponent implements OnInit {
   }
   showFeed() {
     this.feedEditHidden = !this.feedEditHidden;
+  }
+  hideFeedEdit() {
+    this.feedListHidden = !this.feedListHidden;
+  }
+  showFeedEdit() {
+    this.feedListHidden = !this.feedListHidden;
   }
 
 }

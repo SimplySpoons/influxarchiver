@@ -12,8 +12,18 @@
       </div>
     </div>
     <hr>
-    <ul class="list-group">
-      <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
-    </ul>
+    <div *ngIf="!feedListHidden">
+      <ul class="list-group">
+        <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
+      </ul>
+    </div>
+    <div class="feedHidingButtons">
+      <div *ngIf="!feedListHidden">
+        <button class="btn btn-danger hideFeed" (click)="hideFeedEdit()">Hide Component</button>
+      </div>
+      <div *ngIf="feedListHidden">
+        <button class="btn btn-success showFeed" (click)="showFeedEdit()">Show Component</button>
+      </div>
+    </div>
   </div>
 </div>
