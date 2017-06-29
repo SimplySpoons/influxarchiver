@@ -214,3 +214,14 @@ body {
 .nav-side-menu {
     z-index: 999999999;
 }
+
+.sdevcredit { 
+  position: absolute;
+  bottom: 0;
+  right: 105px;
+}
+
+/* Hide SDEV logo when the sidebar collapses to top */
+@media (max-width: 767px) {
+  .sdevcredit { display: none; }
+}
