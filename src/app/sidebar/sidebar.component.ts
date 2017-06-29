@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router'; 
+import {Router, ActivatedRoute} from '@angular/router';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
-import {AccountService} from '../_services/account.service'; 
+import {AccountService} from '../_services/account.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,16 +12,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   element: Element;
   sidebar_width: number;
-  invCounts: any; 
-  sub: any; 
-  account: any; 
+  invCounts: any;
+  sub: any;
+  account: any;
 
   constructor() {
-    
+
    }
 
    getAccountChange(data){
-     console.log(data); 
+     console.log(data);
    }
 
    public status: any = {
@@ -30,11 +30,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
   };
   public customClass: string = 'customClass';
 
+  isIn = false;   // store state
+    toggleState() { // click handler
+        let bool = this.isIn;
+        this.isIn = bool === false ? true : false;
+    }
+
   ngOnInit() {
   }
 
-  ngOnDestroy(){ 
-    this.sub.unsubscribe(); 
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 
 }
