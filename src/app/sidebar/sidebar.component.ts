@@ -10,13 +10,13 @@ import {AccountService} from '../_services/account.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
-  element: Element; 
+  element: Element;
   sidebar_width: number;
   invCounts: any; 
   sub: any; 
   account: any; 
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute) {
+  constructor() {
     
    }
 

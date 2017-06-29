@@ -1,4 +1,7 @@
 .quicklinks .btn-group {
     margin-top: 7px;
-    margin-right: 5%;
+    margin-right: 10%;
 }
+/*.quicklinks .btn-group .btn-primary {
+    background-color:#5bc0de;
+}*/
