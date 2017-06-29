@@ -217,9 +217,9 @@ body {
 
 .sdevcredit { 
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   right: 105px;
-}
+} 
 
 /* Hide SDEV logo when the sidebar collapses to top */
 @media (max-width: 767px) {
