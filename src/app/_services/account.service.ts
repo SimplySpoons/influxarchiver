@@ -26,4 +26,9 @@ export class AccountService {
             (response: Response) => response.json());
     }
 
+    getDNAInflux(accountId: string){
+        return this.http.post('https://dna.dealer.com/views/blocks/influxconfigs/view-influxconfigs', { blockId: "influxconfigs", accountId: accountId, ownerId: accountId }).map(
+            (response: Response) => response); 
+    }
+
 }

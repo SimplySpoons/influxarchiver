@@ -34,9 +34,18 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
         this.influxLoading = false; 
     }); 
   }
+  getDnaLink(){
+    return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;
+  }
 
   showConfigsAsString(data: any){ 
       return JSON.stringify(this.influxConfigs);
+  }
+
+  getDNAConfigs(){
+    this.accountService.getDNAInflux(this.accountId).subscribe(response =>{
+        console.log(response); 
+    })
   }
 
   ngOnInit() {

@@ -24,8 +24,16 @@
           <br> {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
         </div>
         <div class="influx_info col-md-9" *ngIf="!influxLoading">
-          Influx shit will go here
-          <div class="configs"> {{influxString}} </div>
+          <div class="configs clearfix" style="border: 1px solid #eee; padding: 10px; margin-bottom: 15px;" *ngFor="let config of influxConfigs">
+            <h4 style="margin: 0;"> {{config.provider}} </h4><a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a><a class="btn btn-primary pull-right" (click)="getDNAConfigs()" target="_blank"> View Config </a>
+             <div *ngFor="let type of config.inventory_types"> 
+                <b> {{type}} </b>
+             </div>
+             <hr>
+             <div class="feedWins" *ngFor="let wins of config.feedWins"> 
+                <small class="col-md-2" [class.active]="wins.value">{{wins.key}} </small>
+             </div>
+          </div>
         </div>
       </div>
     </div>
