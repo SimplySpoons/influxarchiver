@@ -24,7 +24,8 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     });
     this.loading = true; 
     this.accountService.getAccountData(this.accountId).subscribe(account => {
-        this.account = account; 
+        this.account = account;
+        this.accountService.setCurrentAccount(account);  
         this.loading = false; 
     }); 
     this.influxLoading = true; 
