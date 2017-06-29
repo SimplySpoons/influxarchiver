@@ -2,7 +2,7 @@
   <div class="btn-group pull-right">
     <div class="col-md-6">
       <div class="dropdown" dropdown>
-        <button class="btn btn-info" dropdown-open>OEM Pages <span class="caret"></span></button>
+        <button class="btn btn-primary" dropdown-open>OEM Pages <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li *ngFor="let oemlink of oemlinks">
             <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-6">
       <div class="dropdown" dropdown>
-        <button class="btn btn-success" dropdown-open>Quick Links <span class="caret"></span></button>
+        <button class="btn btn-primary" dropdown-open>Quick Links <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li *ngFor="let link of links">
             <a href="{{link.href}}" target="_blank" class="{{link.name}}">{{link.name}}</a>

@@ -1,4 +1,4 @@
-.navbar-nav > li {
+/*.navbar-nav > li {
     background-color: #2e353d;
     border-radius: 4px;
     margin-right: 5px;
@@ -14,20 +14,6 @@
     color: #E55A29;
 }
 
-
-/* Pop hover transition effect */
-@-webkit-keyframes hvr-pop {
-  50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-  }
-}
-@keyframes hvr-pop {
-  50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-  }
-}
 .navbar-default .navbar-nav > li > a {
   display: inline-block;
   vertical-align: middle;
@@ -45,4 +31,10 @@
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
 }
-/* End Pop hover transition effect */
+ End Pop hover transition effect */
+
+
+.headerButtons .btn {
+    margin-left:5px;
+    margin-top:7px;
+}
