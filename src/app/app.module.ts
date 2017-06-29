@@ -22,6 +22,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppConfig } from './app.config';
+import { InfluxComponent } from './_components/influx/influx.component';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -42,7 +43,8 @@ export function initializeCurrentUser(config: AppConfig) {
     VehicleSingleComponent,
     QuicklinksComponent,
     FilterPipe,
-    ScrollerDirective
+    ScrollerDirective,
+    InfluxComponent
   ],
   imports: [
     BrowserModule,

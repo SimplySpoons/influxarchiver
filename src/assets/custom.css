@@ -1,1 +1,26 @@
 img {max-width: 100%; height: auto;}
+
+.feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
+    color: green; 
+    font-weight: bold; 
+    font-size: 1.1em;
+}
+
+.feedWins .col-md-2,
+.scrubAtts .col-md-2  {
+     font-size: 1.1em;
+     color: #ccc;
+}
+
+.panel-subheading{
+   padding-left: 10px;
+}
+
+.panel-subheading a {
+
+    margin: 5px; 
+   
+}
+.panel-subheading span a {
+    color: #fff;
+}
