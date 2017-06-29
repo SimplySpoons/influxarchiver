@@ -5,9 +5,9 @@
       <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
     </div>
     <div class="panel-subheading">
-      <span *ngFor="let type of config.inventory_types">
-          {{type.name}} 
-        </span>
+      <a class="btn btn-primary" *ngFor="let type of config.inventory_types">
+          <div (click)="routeToVehicles(type.type,type.classification)"> {{type.name}} </div>
+        </a>
     </div>
     <hr>
     <div class="panel-body">

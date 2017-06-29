@@ -185,3 +185,16 @@ body {
 .nav-side-menu .panel  {
     background-color:#2e353d;
 }
+
+.card.navPanelItem,
+.card.navPanelItem .card-header,
+.panel.navPanelItem {
+  background-color: #5bc0de;
+  color: #fff;
+}
+.panel.navPanelItem .panel-body {
+  background-color: #337aa7;
+}
+.panel-title .navTitle {
+    margin-left:20px;
+}

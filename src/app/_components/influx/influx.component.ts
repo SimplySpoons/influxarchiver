@@ -18,17 +18,13 @@ export class InfluxComponent implements OnInit, OnDestroy {
   influxConfigs: any = []; 
   private sub: any;
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute) {
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
       console.log(this.accountId);
     });
     this.loading = true; 
-    this.accountService.getAccountData(this.accountId).subscribe(account => {
-        this.account = account; 
-        this.loading = false; 
-    }); 
-    this.influxLoading = true; 
+    this.account = this.accountService.getCurrentAccount();
     this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
         this.influxConfigs = configs;
         this.influxString = this.showConfigsAsString(this.influxConfigs);  
@@ -41,6 +37,10 @@ export class InfluxComponent implements OnInit, OnDestroy {
 
   showConfigsAsString(data: any){ 
       return JSON.stringify(this.influxConfigs);
+  }
+
+  routeToVehicles(type: any, classification: any) {
+      this.router.navigate(['vehicles'], { relativeTo: this.route.parent });
   }
 
 
