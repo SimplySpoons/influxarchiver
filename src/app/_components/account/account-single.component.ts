@@ -42,11 +42,6 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
       return JSON.stringify(this.influxConfigs);
   }
 
-  getDNAConfigs(){
-    this.accountService.getDNAInflux(this.accountId).subscribe(response =>{
-        console.log(response); 
-    })
-  }
 
   ngOnInit() {
   
