@@ -215,3 +215,7 @@ body {
 .nav-side-menu .brand {
     line-height:47px;
 }
+
+.nav-side-menu {
+    z-index: 999999999;
+}
