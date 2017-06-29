@@ -1,63 +1,69 @@
 <div class="nav-side-menu">
-  <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn, 'out': !isIn }">
 
-    <div class="brand">
-        <a class="dashTitle" href="/">Influx Archiver 2.0</a>
-    </div>
-    <button type="button"
-                            class="navbar-toggle collapsed fa fa-bars fa-2x toggle-btn"
-                            (click)="toggleState()">
-                    <span class="sr-only">Toggle navigation</span>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn, 'out': !isIn }">
+        <div class="brand">
+            <a class="dashTitle" href="/">Influx Archiver 2.0</a>
+        </div>
+        <button type="button" class="navbar-toggle collapsed fa fa-bars fa-2x toggle-btn" (click)="toggleState()">
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="menu-list">
+            <accordion>
+                <a panelClass="navPanelItem" href="#">
+                    <div class="dashboardLink panel-title">
+                        <i class="fa fa-dashboard fa-lg"></i>
+                        <span clas="navTitle">Dashboard</span>
+                    </div>
+                </a>
+                <accordion-group panelClass="navPanelItem" #group2>
+                    <div accordion-heading>
+                        <i class="fa fa-car fa-lg"></i> <span clas="navTitle">Feeds</span>
+                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group2?.isOpen, 'glyphicon-chevron-right': !group2?.isOpen}"></i>
+                    </div>
+                    <ul class="accordianUnderText">
+                        <li><a class="accordionLink" href="#">Influx</a></li>
+                        <li><a class="accordionLink" href="#">Exports</a></li>
+                        <li><a class="accordionLink" href="#">Raw Files</a></li>
+                        <li><a class="accordionLink" href="#">Configs</a></li>
+                    </ul>
+                </accordion-group>
+                <accordion-group panelClass="navPanelItem" #group3>
+                    <div accordion-heading>
+                        <i class="fa fa-user fa-lg"></i> <span clas="navTitle">Dealers</span>
+                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group3?.isOpen, 'glyphicon-chevron-right': !group3?.isOpen}"></i>
+                    </div>
+                    <ul class="accordianUnderText">
+                        <li><a class="accordionLink" href="#">Influx</a></li>
+                        <li><a class="accordionLink" href="#">Exports</a></li>
+                        <li><a class="accordionLink" href="#">Raw Files</a></li>
+                        <li><a class="accordionLink" href="#">Configs</a></li>
+                    </ul>
+                </accordion-group>
+                <accordion-group panelClass="navPanelItem" #group4>
+                    <div class="collapsed" accordion-heading>
+                        <i class="fa fa-users fa-lg"></i> <span clas="navTitle">Users</span>
+                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group4?.isOpen, 'glyphicon-chevron-right': !group4?.isOpen}"></i>
+                    </div>
+                    <ul class="accordianUnderText">
+                        <li><a class="accordionLink" href="#">Influx</a></li>
+                        <li><a class="accordionLink" href="#">Exports</a></li>
+                        <li><a class="accordionLink" href="#">Raw Files</a></li>
+                        <li><a class="accordionLink" href="#">Configs</a></li>
+                    </ul>
+                </accordion-group>
+            </accordion>
+            <div>
+                <li><a class="invLink" href="#/account/volvooflislevcna/vehicles">Test Inventory</a></li>
+            </div>
+        </div>
 
-                </button>    <div class="menu-list">
-        <accordion>
-           <a panelClass="navPanelItem" href="#">
-                <div class="dashboardLink panel-title">
-                    <i class="fa fa-dashboard fa-lg"></i>
-                    <span clas="navTitle">Dashboard</span>
-                </div>
-            </a>
-            <accordion-group panelClass="navPanelItem" #group2>
-                <div accordion-heading>
-                    <i class="fa fa-car fa-lg"></i> <span clas="navTitle">Feeds</span>
-                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group2?.isOpen, 'glyphicon-chevron-right': !group2?.isOpen}"></i>
-                </div>
-                <ul class="accordianUnderText">
-                    <li><a class="accordionLink" href="#">Influx</a></li>
-                    <li><a class="accordionLink" href="#">Exports</a></li>
-                    <li><a class="accordionLink" href="#">Raw Files</a></li>
-                    <li><a class="accordionLink" href="#">Configs</a></li>
-                </ul>
-            </accordion-group>
-            <accordion-group panelClass="navPanelItem" #group3>
-                <div accordion-heading>
-                    <i class="fa fa-user fa-lg"></i> <span clas="navTitle">Dealers</span>
-                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group3?.isOpen, 'glyphicon-chevron-right': !group3?.isOpen}"></i>
-                </div>
-                 <ul class="accordianUnderText">
-                    <li><a class="accordionLink" href="#">Influx</a></li>
-                    <li><a class="accordionLink" href="#">Exports</a></li>
-                    <li><a class="accordionLink" href="#">Raw Files</a></li>
-                    <li><a class="accordionLink" href="#">Configs</a></li>
-                </ul>
-            </accordion-group>
-            <accordion-group panelClass="navPanelItem" #group4>
-                <div class="collapsed" accordion-heading>
-                    <i class="fa fa-users fa-lg"></i> <span clas="navTitle">Users</span>
-                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group4?.isOpen, 'glyphicon-chevron-right': !group4?.isOpen}"></i>
-                </div>
-                 <ul class="accordianUnderText">
-                    <li><a class="accordionLink" href="#">Influx</a></li>
-                    <li><a class="accordionLink" href="#">Exports</a></li>
-                    <li><a class="accordionLink" href="#">Raw Files</a></li>
-                    <li><a class="accordionLink" href="#">Configs</a></li>
-                </ul>
-            </accordion-group>
-        </accordion>
-    </div>
-  </div>
 
-  <div class="sdevcredit">
-        <img src="http://i.imgur.com/9U9dbFV.png" />
+        <div class="sdevcredit">
+            <img src="http://i.imgur.com/9U9dbFV.png" />
+        </div>
+
+        <div class="istcredit">
+            <img src="http://i.imgur.com/keRkPEB.png" />
+        </div>
     </div>
 </div>
