@@ -8,9 +8,10 @@ import { AccountService } from '../_services/account.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
   animations: [
-    trigger('slideInOut', [
+    trigger('toggleState', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)'
+        transform: 'translate3d(0, 0, 0)',
+        
       })),
       state('out', style({
         transform: 'translate3d(100%, 0, 0)'
