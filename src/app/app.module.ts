@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,12 @@ import { ScrollerDirective } from './scroll.directive';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AccordionModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import {AppConfig} from './app.config'; 
+
+export function initializeCurrentUser(config: AppConfig) {
+  return () => config.getUserData();
+}
+
 
 @NgModule({
   declarations: [
@@ -51,7 +57,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BsDropdownModule.forRoot()
   ],
   exports: [FilterPipe],
-  providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

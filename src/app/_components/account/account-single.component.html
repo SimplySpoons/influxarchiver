@@ -20,19 +20,29 @@
       <hr>
       <div class="panel-body">
         <div class="accountInfo col-md-3">
-         {{account.accountId}} <br> {{account.publicUrl}} <br> {{account.internalUrl}} <br> {{account.address1}}
+          {{account.accountId}} <br> {{account.publicUrl}} <br> {{account.internalUrl}} <br> {{account.address1}}
           <br> {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
         </div>
         <div class="influx_info col-md-9" *ngIf="!influxLoading">
           <div class="configs clearfix" style="border: 1px solid #eee; padding: 10px; margin-bottom: 15px;" *ngFor="let config of influxConfigs">
-            <h4 style="margin: 0;"> {{config.provider}} </h4><a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a><a class="btn btn-primary pull-right" (click)="getDNAConfigs()" target="_blank"> View Config </a>
-             <div *ngFor="let type of config.inventory_types"> 
+            <h4 style="margin: 0;"> {{config.provider}} </h4><a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
+            <a
+              class="btn btn-primary pull-right" (click)="getDNAConfigs()" target="_blank"> View Config </a>
+              <div *ngFor="let type of config.inventory_types">
                 <b> {{type}} </b>
-             </div>
-             <hr>
-             <div class="feedWins" *ngFor="let wins of config.feedWins"> 
-                <small class="col-md-2" [class.active]="wins.value">{{wins.key}} </small>
-             </div>
+              </div>
+              <hr>
+              <div class="feedWins clearfix">
+                <div class="feedWins-item" *ngFor="let wins of config.feedWins">
+                  <small class="col-md-2" [class.active]="wins.value">{{wins.key}} </small>
+                </div>
+              </div>
+              <hr>
+              <div class="scrubAtts clearfix">
+                <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
+                  <small class="col-md-2" [class.active]="atts.value">{{atts.key}} </small>
+                </div>
+              </div>
           </div>
         </div>
       </div>

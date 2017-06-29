@@ -1,10 +1,11 @@
-.feedWins .col-md-2.active {
+.feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
     color: green; 
     font-weight: bold; 
     font-size: 1.1em;
 }
 
-.feedWins .col-md-2 {
+.feedWins .col-md-2,
+.scrubAtts .col-md-2  {
      font-size: 1.1em;
      color: #ccc;
 }
