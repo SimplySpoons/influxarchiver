@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  element: Element; 
+  sidebar_width: number; 
+  constructor(private elm: ElementRef) {
+    this.element = elm.nativeElement; 
+    console.log(this.element);
+
+   }
 
   ngOnInit() {
   }

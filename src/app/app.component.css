@@ -1,6 +1,16 @@
 @media (min-width: 1200px){
 .container {
-    width: 100%;
-    padding: 0 50px;
+    width: 95%;
+    padding: 0;
+}
+}
+@media (min-width: 767px) {
+.main-panel {
+  background: rgba(203, 203, 210, 0.15);
+  position: relative;
+  z-index: 2;
+  float: right;
+  width: calc(100% - 300px);
+  min-height: 100%;
 }
 }
