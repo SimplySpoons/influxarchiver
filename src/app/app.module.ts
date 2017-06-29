@@ -17,6 +17,7 @@ import { DropdownModule } from "ngx-dropdown";
 import { FilterPipe } from './_pipes/filter.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { ScrollerDirective } from './scroll.directive';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ScrollerDirective } from './scroll.directive';
     DropdownModule,
     NgSpinKitModule
   ],
-  providers: [AccountService],
+  providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
