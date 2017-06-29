@@ -40,7 +40,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   }
 
   routeToVehicles(type: any, classification: any) {
-      this.router.navigate(['vehicles'], { relativeTo: this.route.parent });
+      this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
   }
 
 
