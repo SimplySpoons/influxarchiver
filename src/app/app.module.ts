@@ -19,6 +19,8 @@ import { FilterPipe } from './_pipes/filter.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { ScrollerDirective } from './scroll.directive';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AccordionModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSpinKitModule
+    NgSpinKitModule,
+    AccordionModule,
+    BsDropdownModule.forRoot()
   ],
   exports: [FilterPipe],
   providers: [AccountService, { provide: LocationStrategy, useClass: HashLocationStrategy }],

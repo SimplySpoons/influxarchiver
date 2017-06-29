@@ -25,11 +25,12 @@
     "@angular/platform-browser-dynamic": "4.2.4",
     "@angular/platform-server": "4.2.4",
     "@angular/router": "4.2.4",
-    "ng2-filter-pipe": "^0.1.6",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "ng-spin-kit": "^5.1.1",
+    "ng2-filter-pipe": "^0.1.6",
+    "ngx-bootstrap": "^1.7.1",
     "ngx-dropdown": "0.0.22",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
