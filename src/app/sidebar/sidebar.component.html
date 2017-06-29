@@ -1,17 +1,19 @@
 <div class="nav-side-menu">
-    <div class="brand">Influx Archiver 2.0</div>
+    <div class="brand">
+        <a class="dashTitle" href="/">Influx Archiver 2.0</a>
+    </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
         <accordion>
            <a panelClass="navPanelItem" href="#">
                 <div class="dashboardLink panel-title">
                     <i class="fa fa-dashboard fa-lg"></i>
-                    Dashboard
+                    <span clas="navTitle">Dashboard</span>
                 </div>
             </a>
             <accordion-group panelClass="navPanelItem" #group2>
                 <div accordion-heading>
-                    <i class="fa fa-car fa-lg"></i> Feeds
+                    <i class="fa fa-car fa-lg"></i> <span clas="navTitle">Feeds</span>
                     <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group2?.isOpen, 'glyphicon-chevron-right': !group2?.isOpen}"></i>
                 </div>
                 <ul class="accordianUnderText">
@@ -23,7 +25,7 @@
             </accordion-group>
             <accordion-group panelClass="navPanelItem" #group3>
                 <div accordion-heading>
-                    <i class="fa fa-user fa-lg"></i> Dealers
+                    <i class="fa fa-user fa-lg"></i> <span clas="navTitle">Dealers</span>
                     <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group3?.isOpen, 'glyphicon-chevron-right': !group3?.isOpen}"></i>
                 </div>
                  <ul class="accordianUnderText">
@@ -35,7 +37,7 @@
             </accordion-group>
             <accordion-group panelClass="navPanelItem" #group4>
                 <div class="collapsed" accordion-heading>
-                    <i class="fa fa-users fa-lg"></i> Users
+                    <i class="fa fa-users fa-lg"></i> <span clas="navTitle">Users</span>
                     <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group4?.isOpen, 'glyphicon-chevron-right': !group4?.isOpen}"></i>
                 </div>
                  <ul class="accordianUnderText">

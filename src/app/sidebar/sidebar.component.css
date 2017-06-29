@@ -50,7 +50,6 @@
   padding-right: 10px;
   vertical-align: middle;
   float: right;
-  color:red;
 }
 .nav-side-menu ul .active,
 .nav-side-menu li .active {
@@ -196,6 +195,21 @@ body {
 .panel.navPanelItem .panel-body {
   background-color: #337aa7;
 }
-.panel-title {
-    color:#FFF;
+.panel-title .navTitle {
+    margin-left:20px;
+}
+/*.nav-side-menu .brand {
+    font-size:26px;
+}*/
+/*.nav-side-menu .brand {
+    border-bottom: 2px solid #DE795B;
+    border-top: 2px solid #DE795B;
+}*/
+.nav-side-menu .brand a.dashTitle {
+    font-size:26px;
+    color:#5bc0de;
+}
+.nav-side-menu .brand a.dashTitle:hover {
+    text-decoration: none;
+    opacity:.8;
 }
