@@ -73,7 +73,8 @@
             <img [src]="getImageSrc(item.image[0],item.accountId)"/> 
         </div>
         <div class="col-md-8 vehicle-info">
-            {{item.vin}} | {{item.stockNumber}}
+            <li><span class="vin">VIN:</span> {{item.vin}}</li>
+            <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
         </div>
         <div class ="col-md-2 vehicle-pricing">
              retailValue: {{item.retailValue}} <br> 
