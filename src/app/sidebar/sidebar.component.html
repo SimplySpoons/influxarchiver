@@ -2,55 +2,36 @@
     <div class="brand">Influx Archiver 2.0</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
-        <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="#">
+        <accordion>
+            <accordion-group #group1>
+                <div accordion-heading>
                     <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
-            </li>
-            <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs &amp; Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
-            </ul>
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="service">
-                <li>New Service 1</li>
-                <li>New Service 2</li>
-                <li>New Service 3</li>
-            </ul>
+                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group1?.isOpen, 'glyphicon-chevron-right': !group1?.isOpen}"></i>
 
-
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="new">
-                <li>New New 1</li>
-                <li>New New 2</li>
-                <li>New New 3</li>
-            </ul>
-            <li>
-                <a href="#">
-                    <i class="fa fa-user fa-lg"></i> Profile
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-users fa-lg"></i> Users
-                </a>
-            </li>
-        </ul>
+                </div>
+                <span class="accordianUnderText">This is just some content to illustrate fancy headings.</span>
+            </accordion-group>
+            <accordion-group #group2>
+                <div accordion-heading>
+                    <i class="fa fa-car fa-lg"></i> Feeds
+                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group2?.isOpen, 'glyphicon-chevron-right': !group2?.isOpen}"></i>
+                </div>
+                <span class="accordianUnderText">This is just some content to illustrate fancy headings.</span>
+            </accordion-group>
+            <accordion-group #group3>
+                <div accordion-heading>
+                    <i class="fa fa-user fa-lg"></i> Dealers
+                    <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group3?.isOpen, 'glyphicon-chevron-right': !group3?.isOpen}"></i>
+                </div>
+                <span class="accordianUnderText">This is just some content to illustrate fancy headings.</span>
+            </accordion-group>
+            <accordion-group #group4>
+                <div class="collapsed" accordion-heading>
+                            <i class="fa fa-users fa-lg"></i> Users
+                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group4?.isOpen, 'glyphicon-chevron-right': !group4?.isOpen}"></i>
+                </div>
+                <span class="accordianUnderText">This is just some content to illustrate fancy headings.</span>
+            </accordion-group>
+        </accordion>
     </div>
 </div>
