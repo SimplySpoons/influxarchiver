@@ -10,15 +10,23 @@
   height: 100%;
   color: #e1ffff;
 }
+
 .nav-side-menu .brand {
-  background-color: #23282e;
   line-height: 50px;
-  display: block;
+  display: inline-block;
   text-align: center;
   font-size: 14px;
 }
-.nav-side-menu .toggle-btn {
-  display: none;
+.navbar-collapse.collapse { display:block !important;}
+
+.nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {display: none;}
+
+
+.navbar-toggle {
+    display: inline-block !important;
+    margin: 0 auto;
+    float: right;
+    padding: 10px;
 }
 .nav-side-menu ul,
 .nav-side-menu li {
@@ -27,19 +35,7 @@
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*    
-    .collapsed{
-       .arrow:before{
-                 font-family: FontAwesome;
-                 content: "\f053";
-                 display: inline-block;
-                 padding-left:10px;
-                 padding-right: 10px;
-                 vertical-align: middle;
-                 float:right;
-            }
-     }
-*/
+
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
@@ -86,7 +82,7 @@
 }
 .nav-side-menu li {
   padding-left: 0px;
-  
+
 }
 /*.nav-side-menu li a {
   text-decoration: none;
@@ -127,13 +123,10 @@
   .nav-side-menu .toggle-btn {
     display: block;
     cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    float:right;
     z-index: 10 !important;
     padding: 3px;
-    background-color: #ffffff;
-    color: #000;
+    margin: 5px;
     width: 40px;
     text-align: center;
   }
@@ -206,7 +199,7 @@ body {
     border-top: 2px solid #DE795B;
 }*/
 .nav-side-menu .brand a.dashTitle {
-    font-size:26px;
+    font-size:16px;
     color:#5bc0de;
 }
 .nav-side-menu .brand a.dashTitle:hover {

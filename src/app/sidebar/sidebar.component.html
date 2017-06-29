@@ -1,9 +1,15 @@
 <div class="nav-side-menu">
+  <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn }">
+
     <div class="brand">
         <a class="dashTitle" href="/">Influx Archiver 2.0</a>
     </div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-    <div class="menu-list">
+    <button type="button"
+                            class="navbar-toggle collapsed fa fa-bars fa-2x toggle-btn"
+                            (click)="toggleState()">
+                    <span class="sr-only">Toggle navigation</span>
+
+                </button>    <div class="menu-list">
         <accordion>
            <a panelClass="navPanelItem" href="#">
                 <div class="dashboardLink panel-title">
@@ -49,4 +55,5 @@
             </accordion-group>
         </accordion>
     </div>
+  </div>
 </div>

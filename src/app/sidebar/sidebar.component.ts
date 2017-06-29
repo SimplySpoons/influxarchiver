@@ -8,11 +8,11 @@ import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 })
 export class SidebarComponent implements OnInit {
 
-  element: Element; 
+  element: Element;
   sidebar_width: number;
 
   constructor(private elm: ElementRef) {
-    this.element = elm.nativeElement; 
+    this.element = elm.nativeElement;
     console.log(this.element);
 
    }
@@ -25,5 +25,11 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  isIn = false;   // store state
+    toggleState() { // click handler
+        let bool = this.isIn;
+        this.isIn = bool === false ? true : false;
+    }
 
 }
