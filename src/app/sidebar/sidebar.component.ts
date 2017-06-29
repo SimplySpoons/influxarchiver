@@ -10,7 +10,7 @@ export class SidebarComponent implements OnInit {
 
   element: Element; 
   sidebar_width: number;
-  
+
   constructor(private elm: ElementRef) {
     this.element = elm.nativeElement; 
     console.log(this.element);
@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
     isFirstOpen: true,
     isFirstDisabled: false
   };
+  public customClass: string = 'customClass';
 
   ngOnInit() {
   }
