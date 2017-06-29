@@ -18,7 +18,7 @@
           | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
   </div>
 </div>
-<div class="nav clearfix">
+<div class="nav clearfix" *ngIf="invCounts.length > 0">
 <div style="background: transparent;" class="col-md-6" *ngFor="let count of invCounts">
     <div class="heading">
       <h3 style="margin: 5px 0;"> {{count.type}} </h3>
@@ -26,10 +26,10 @@
     <hr>
     <div class="clearfix">
       <a class="btn btn-primary col-md-2" *ngFor="let class of count.data">
-        <div (click)="loadCorrectVehicles(class.type,class.classification)"> <span style="text-align: left;">{{class.className}}</span> <span style="text-align: right;"> ({{class.count}}) </span>          </div>
+        <div [routerLink]="[loadCorrectVehicles(class.type,class.classification)]"> <span style="text-align: left;">{{class.className}}</span> <span style="text-align: right;"> ({{class.count}}) </span>          </div>
       </a>
       <a class="col-md-2 btn btn-primary">
-        <div (click)="loadCorrectVehicles(class.type,class.class)"> Total {{count.type}} - ({{count.total}}) </div>
+        <div [routerLink]="[loadCorrectVehicles(count.type,count.class)]"> Total {{count.type}} - ({{count.total}}) </div>
       </a>
     </div>
 </div>
