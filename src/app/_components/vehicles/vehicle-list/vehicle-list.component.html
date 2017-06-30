@@ -31,16 +31,15 @@
         </div>
       </div>
     </div>
-  </div> --> 
+  </div> -->
 <div class="search" style="margin-bottom: 20px;">
-<input type="text" class="form-control" [(ngModel)]="value" (keypress)="itemSearchTerm$.next($event.target.value);">
+  <input type="text" class="form-control" [(ngModel)]="value" (keypress)="itemSearchTerm$.next($event.target.value);">
 </div>
 <app-vehicle-single *ngIf="selected" [item]="selectedItem" [account]="account"></app-vehicle-single>
 <div (callbackReady)="initScroller($event)" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
-    class="vehicle-list clearfix">
-    <div class="vehicle" *ngFor="let item of items | search: value">
-      <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
-    </div>
+  class="vehicle-list clearfix">
+  <div class="vehicle" *ngFor="let item of items | search: value">
+    <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
   </div>
 </div>
 <div *ngIf="loading" class="loadingIndicator">
