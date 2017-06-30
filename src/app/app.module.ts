@@ -29,6 +29,7 @@ import { ModalService } from './_services/modal.service';
 import { TextEditorComponent } from './_components/wysiwyg.component';
 import { ModalComponent } from './_components/modal.component';
 import { InfiniteScroller } from './_directives/infinitescroller.directive';
+import {ScrollerDirective} from './scroll.directive';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -55,7 +56,8 @@ export function initializeCurrentUser(config: AppConfig) {
     SubmitbugComponent,
     TextEditorComponent,
     ModalComponent,
-    InfiniteScroller
+    InfiniteScroller,
+    ScrollerDirective
   ],
   imports: [
     BrowserModule,

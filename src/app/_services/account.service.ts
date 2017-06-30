@@ -30,7 +30,7 @@ export class AccountService {
     }
 
     getInfluxConfigs(accountId: string) {
-        return this.http.post('http://localhost:6969/hotdog/php/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
+        return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
             (response: Response) => response.json());
     }
 

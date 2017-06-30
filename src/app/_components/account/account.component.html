@@ -1,4 +1,6 @@
 <div class="row">
+  <h2> Search For Dealer By Account ID or Dealership Name </h2>
+  <hr> 
   <input type="text" class="form-control" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
 <div class="accountList" style="margin: 20px 0;" *ngIf="!loading">
@@ -33,10 +35,11 @@
         {{account.accountId}}
       </div>
       <div class="col-md-1">
-        <a [href]="account.publicUrl" target="_blank"> Public Url </a>
+        <a *ngIf="account.publicUrl != 'http://'" [href]="account.publicUrl" target="_blank"> <b> Public Url </b> </a>
+        <span *ngIf="account.publicUrl == 'http://'" style="color: red;"> Public Url </span>
       </div>
       <div class="col-md-1">
-        <a [href]="account.publicUrl" target="_blank"> Internal Url </a>
+        <a [href]="account.internalUrl" target="_blank"> <b> Internal Url </b> </a>
       </div>
       <div class="col-md-4">
         {{account.address1}} | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}

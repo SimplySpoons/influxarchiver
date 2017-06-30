@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from '../../../_models/item'; 
 import { Account } from '../../../_models/account'; 
 
@@ -11,6 +11,7 @@ export class VehicleItemComponent implements OnInit {
 
   @Input() item: Item; 
   @Input() account: Account; 
+  @Output() sendItem = new EventEmitter(); 
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class VehicleItemComponent implements OnInit {
     let firstLetter = accountId.charAt(0); 
     let url = 'https://pictures.dealer.com/ddc/resize/320x/quality/70/sharpen/1/ddc/' + firstLetter + '/' + accountId + '/' + data; 
     return url; 
+  }
+
+  openVehicleSingle(item: any) {
+      this.sendItem.emit(item); 
   }
   
   getVdpLink(uuid: string, type: string) {

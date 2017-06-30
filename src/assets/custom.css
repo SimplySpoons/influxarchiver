@@ -8,8 +8,8 @@ img {max-width: 100%; height: auto;}
 
 .feedWins .col-md-2,
 .scrubAtts .col-md-2  {
-     font-size: 1.1em;
      color: #ccc;
+     font-size: 1.1em;
 }
 
 .panel-subheading{
@@ -29,4 +29,13 @@ img {max-width: 100%; height: auto;}
     overflow: auto;
     max-height: 100%;
     height: 100%;
+}
+
+.nav a.btn.New {
+    background-color:#5bc0de;
+    border-color:#5bc0de;
+}
+.nav a.btn.New:hover {
+    background-color:#3F869B;
+    border-color:#3F869B;
 }

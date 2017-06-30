@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Item} from '../../../_models/item'
 
 @Component({
   selector: 'app-vehicle-single',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vehicle-single.component.css']
 })
 export class VehicleSingleComponent implements OnInit {
-
+  @Input() item: Item; 
+  @Input() account: any; 
   constructor() { }
 
   ngOnInit() {

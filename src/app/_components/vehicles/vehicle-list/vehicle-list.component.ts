@@ -31,12 +31,15 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
 
   tmpData: any; 
 
+  selectedItem: Item;
+  selected = false; 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
   }
-  getCallback(data: any){ 
-    console.log('data', data);
+  getItem(data: any){ 
+    this.selectedItem = data; 
+    this.selected = true; 
   }
   loadCorrectVehicles(type: any, classification: any) {
     this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
@@ -46,6 +49,10 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
       this.items = items.json();
       this.loading=false; 
     }); 
+  }
+
+  getScrollAction(data) {
+    console.log('data',data);
   }
 
   loadVehicles() {
