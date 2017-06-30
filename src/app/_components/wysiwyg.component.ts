@@ -43,7 +43,6 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
     @Input() elementId: String;
     @Input() currentValue: string; 
     @Output() onEditorKeyup = new EventEmitter<any>();
-    @Output() sendAttachments = new EventEmitter<any>();
     loading: boolean = false;
     currentPage: number = 0;
     attachments: any;
@@ -76,7 +75,6 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
         this.id = this.id.concat(this.attachments.id);
         this.htmlString = '<img src="' + this.img_src + '" id="' + this.id + '"/>';
         this.editor.insertContent(this.htmlString);
-        this.sendAttachments.emit(this.attachment);
         this.modalService.close('custom-modal-2');
     }
 
@@ -89,7 +87,6 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
             this.id = this.id.concat(this.attachment.id);
             this.htmlString = '<img src="' + this.img_src + '" id="' + this.id + '"/>';
             this.editor.insertContent(this.htmlString);
-            this.sendAttachments.emit(this.attachment);
         }
         this.modalService.close('custom-modal-3');
     }

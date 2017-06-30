@@ -7,11 +7,13 @@ import { FeedsComponent } from './feeds/feeds.component';
 import { VehicleListComponent } from './_components/vehicles/index';
 import { InfluxComponent } from './_components/influx/influx.component';
 import { SubmitbugComponent } from './bugs/submitbug.component';
+import { IssuetrackerComponent } from './bugs/issuetracker.component';
 
 export const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'feeds', pathMatch: 'full' },
     { path: 'account', component: AccountComponent },
     { path: 'submitbug', component: SubmitbugComponent },
+    { path: 'issuetracker', component: IssuetrackerComponent },
     {
         path: 'account/:id', component: AccountSingleComponent,
         children: [
