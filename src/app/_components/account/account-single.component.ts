@@ -59,6 +59,9 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   getSolrLink() {
     return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/solrRefresh/index';
   }
+  getComposerLink() {
+    return '//' + this.account.accountId + '.composer.dealer.com/website/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/composer/index#website';
+  }
 
   ngOnInit() {
 

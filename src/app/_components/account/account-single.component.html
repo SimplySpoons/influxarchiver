@@ -19,8 +19,10 @@
   </div>
 </div>
 <div class="row cc-btns"  *ngIf="!loading">
-  <p>Control Center Links:</p>
-  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">View in Inventory Manager</a>
+  <p>Quick Links for {{account.name}}:</p>
+  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">Inventory Manager</a>
+  <a [href]="getComposerLink()" class="btn btn-success" target="_blank">Composer</a>
+  <a [href]="getDnaLink()" class="btn btn-success" target="_blank">DNA</a>
   <a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
   <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
   <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>  

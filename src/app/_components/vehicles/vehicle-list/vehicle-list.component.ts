@@ -15,22 +15,17 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   accountId: string;
   sub: any;
   items: Array<Item> = [];
-
   type: string = '';
   classification: string;
-
   routersub: any;
   invCounts: any;
   offset: number = 0;
   immediateCallback = false;
   scrollCallback;
-
   loading: boolean = false;
-
   loadDone = false; 
-
-  tmpData: any; 
-
+  tmpData: any;
+  @Output() sendAccountId = new EventEmitter<string>();
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
@@ -38,6 +33,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   getCallback(data: any){ 
     console.log('data', data);
   }
+
   loadCorrectVehicles(type: any, classification: any) {
     this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
     this.loading=true; 
@@ -79,9 +75,10 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   }
 
   ngOnInit() {
-       this.loading = true;
+      this.loading = true;
       this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
+      this.sendAccountId.emit(this.accountId);
       this.account = this.accountService.getCurrentAccount();
       this.accountService.getInvCounts(this.accountId).subscribe(counts => {
           this.invCounts = counts;

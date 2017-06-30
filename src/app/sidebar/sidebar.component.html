@@ -37,24 +37,32 @@
                 </accordion-group>
                 <accordion-group panelClass="navPanelItem" #group3>
                     <div accordion-heading [ngClass]="{'hvr-icon-bob': group3?.isOpen, 'hvr-icon-hang': !group3?.isOpen}">
-                        <i class="fa fa-dashboard fa-lg"></i> <span class="navTitle navTitle3">Dealers</span>
+                        <i class="fa fa-dashboard fa-lg"></i> <span class="navTitle navTitle3">Quick Links</span>
                     </div>
                     <ul class="accordianUnderText">
-                        <li><a class="accordionLink" href="#">Influx</a></li>
-                        <li><a class="accordionLink" href="#">Exports</a></li>
-                        <li><a class="accordionLink" href="#">Raw Files</a></li>
-                        <li><a class="accordionLink" href="#">Configs</a></li>
+                        <li *ngFor="let link of links">
+                            <a href="{{link.href}}" target="_blank" class="{{link.name}}">{{link.name}}</a>
+                        </li>
                     </ul>
                 </accordion-group>
                 <accordion-group panelClass="navPanelItem" #group4>
                     <div [ngClass]="{'hvr-icon-bob': group4?.isOpen, 'hvr-icon-hang': !group4?.isOpen}" accordion-heading>
-                        <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">Users</span>
+                        <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">OEM Pages</span>
                     </div>
                     <ul class="accordianUnderText">
-                        <li><a class="accordionLink" href="#">Influx</a></li>
-                        <li><a class="accordionLink" href="#">Exports</a></li>
-                        <li><a class="accordionLink" href="#">Raw Files</a></li>
-                        <li><a class="accordionLink" href="#">Configs</a></li>
+                        <li *ngFor="let oemlink of oemlinks">
+                            <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
+                        </li>
+                    </ul>
+                </accordion-group>
+                <accordion-group panelClass="navPanelItem" #group5>
+                    <div [ngClass]="{'hvr-icon-bob': group5?.isOpen, 'hvr-icon-hang': !group5?.isOpen}" accordion-heading>
+                        <i class="fa fa-dashboard fa-lg"></i> <span class="navTitle navTitle4">Control Center</span>
+                    </div>
+                    <ul class="accordianUnderText">
+                        <li *ngFor="let oemlink of oemlinks">
+                            <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
+                        </li>
                     </ul>
                 </accordion-group>
             </accordion>
