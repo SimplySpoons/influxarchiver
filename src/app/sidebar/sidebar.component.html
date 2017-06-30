@@ -3,9 +3,11 @@
         <div class="brand hvr-underline-reveal">
             <a class="dashTitle" href="/">Influx Archiver 2.0</a>
         </div>
-        <button type="button" class="navbar-toggle collapsed fa fa-bars fa-2x toggle-btn" (click)="toggleState()">
-            <span class="sr-only">Toggle navigation</span>
-        </button>
+        <div id="nav-icon1" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="menu-list">
             <accordion>
                 <a panelClass="navPanelItem" href="#">
