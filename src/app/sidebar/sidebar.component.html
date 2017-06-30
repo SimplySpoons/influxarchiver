@@ -20,8 +20,8 @@
             <accordion>
                 <a panelClass="navPanelItem" href="/">
                     <div class="dashboardLink panel-title">
-                        <i class="fa fa-dashboard fa-lg"></i>
-                        <span class="navTitle navTitle1">Dashboard</span>
+                        <i class="fa fa-user fa-lg"></i>
+                        <span class="navTitle navTitle1">Dealers</span>
                     </div>
                 </a>
                 <accordion-group panelClass="navPanelItem" #group2>
@@ -37,7 +37,7 @@
                 </accordion-group>
                 <accordion-group panelClass="navPanelItem" #group3>
                     <div accordion-heading [ngClass]="{'hvr-icon-bob': group3?.isOpen, 'hvr-icon-hang': !group3?.isOpen}">
-                        <i class="fa fa-user fa-lg"></i> <span class="navTitle navTitle3">Dealers</span>
+                        <i class="fa fa-dashboard fa-lg"></i> <span class="navTitle navTitle3">Dealers</span>
                     </div>
                     <ul class="accordianUnderText">
                         <li><a class="accordionLink" href="#">Influx</a></li>
@@ -65,7 +65,7 @@
                 </div>
             </a>
             <a panelClass="navPanelItem" [routerLink]="['/issuetracker']">
-                <div class="dashboardLink panel-title">
+                <div class="issueTracker panel-title">
                     <i class="fa fa-list-alt fa-lg"></i>
                     <span class="navTitle navTitle1">Issue Tracker</span>
                 </div>

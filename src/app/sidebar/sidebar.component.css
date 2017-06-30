@@ -160,17 +160,7 @@ body {
 .panel .panel-body {
     padding:0;
 }
-.dashboardLink {
-    color: #333;
-    background-color:#2e353d;
-    border-color: #ddd;
-        padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    color:#FFF;
-}
-.bugSubmitLink {
+.bugSubmitLink,.issueTracker,.dashboardLink {
     color: #333;
     background-color:#2e353d;
     border-color: #ddd;
@@ -181,7 +171,7 @@ body {
     color:#FFF;
 }
 
-.dashboardLink:hover,.nav-side-menu .panel:hover,.bugSubmitLink:hover {
+.dashboardLink:hover,.nav-side-menu .panel:hover,.bugSubmitLink:hover,.issueTracker:hover {
     background-color:#31708f;
     -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
@@ -446,28 +436,24 @@ body {
     position:relative;
 }
 .nav-side-menu .dashboardLink .navTitle {
-    left:10px;
+    left:16px;
 }
 .nav-side-menu .navTitle2 {
     left:26px;
 }
 .nav-side-menu .navTitle3 {
-    left:35px;
+    left:28px;
 }
 .nav-side-menu .navTitle4 {
     left:28px;
 }
-.fa.fa-user.fa-lg {
-    position:relative;
-    left:4px;
-}
-.fa.fa-users.fa-lg {
+.fa.fa-user.fa-lg,.fa.fa-users.fa-lg {
     position:relative;
     left:1px;
 }
 .fa.fa-dashboard.fa-lg {
     position:relative;
-    right:1px;
+    left:2px;
 }
 .nav-side-menu .panel:hover, .card.navPanelItem .card-header:hover {
     cursor:pointer;
@@ -475,4 +461,15 @@ body {
 .bugSubmitLink .navTitle {
     position:relative;
     left:16px;
+}
+.fa.fa-bug.fa-lg,.fa.fa-list-alt.fa-lg {
+    position:relative;
+    left:3px;
+}
+.navTitle.navTitle1 {
+    position:relative;
+    left:14px;
+}
+.collapse.navbar-collapse.out .menu-list .panel.card.navPanelItem {
+    border:none;
 }
