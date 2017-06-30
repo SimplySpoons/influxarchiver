@@ -24,7 +24,7 @@ newBug: Bug = new Bug();
 
   constructor(private user: AppConfig, private userService: UserService, private modalService: ModalService) {
     // this.profile = this.user.getCurrentUser();
-    this.newBug.submittedBy = this.profile.email;
+    // this.newBug.submittedBy = this.profile.email;
   }
 
   keyupHandlerFunction(data: any) {
