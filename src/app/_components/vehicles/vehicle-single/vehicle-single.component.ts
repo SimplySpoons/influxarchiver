@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {Item} from '../../../_models/item'
 
 @Component({
@@ -9,9 +9,14 @@ import {Item} from '../../../_models/item'
 export class VehicleSingleComponent implements OnInit {
   @Input() item: Item;
   @Input() account: any;
+  @Output() closeBox = new EventEmitter(); 
   constructor() { }
 
 
+  closeVehicleInfo() { 
+    console.log('hitting');
+    this.closeBox.emit(false); 
+  }
 
   ngOnInit() {
   }

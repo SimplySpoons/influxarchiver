@@ -38,6 +38,12 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     this.selected = true; 
   }
 
+  closeSingle(data: any) {
+    console.log(data);
+    this.selectedItem = null; 
+    this.selected = false; 
+  }
+
   searchForVehicle() {
         this.loading=true; 
         this.accountService.searchVehicle(this.itemSearchTerm$, this.accountId).subscribe(items => {
