@@ -55,7 +55,7 @@ export class AccountService {
     }
 
     searchForAccount(name) {
-        return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name.toLowerCase() }).map(
+        return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
             (response: Response) => response.json());
     }
 }

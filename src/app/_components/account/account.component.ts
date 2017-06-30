@@ -13,16 +13,22 @@ import { Account } from '../../_models/account'
 export class AccountComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   accounts: Array<Account> = [];
+  loading =false; 
   constructor(private accountService: AccountService) {
-      
+      this.searchForUser();
    }
 
   ngOnInit() {
   }
 
+  loadingInit(){
+    this.loading = true; 
+  }
+
    searchForUser() {
         this.accountService.search(this.searchTerm$).subscribe(name => {
-            this.accounts = this.accounts.concat(name);
+            this.accounts = name;
+            this.loading=false; 
         });
     }
 

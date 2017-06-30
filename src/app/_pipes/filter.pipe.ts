@@ -7,11 +7,36 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Injectable()
 export class FilterPipe implements PipeTransform {
-  transform(analysts: any, value: any): any {
-    if (value === undefined) return analysts;
-    return analysts.filter(function (analyst) {
-      return analyst.fullName.toLowerCase().includes(value.toLowerCase());
-    })
+  results: any; 
+  returnNewAccountArray(startsWith: any, contains: any) {
+    let results = [];
+    for(var i = 0; i < startsWith.length; i ++){
+      results.push(startsWith[i]);
+    }
+    for(var j = 0; j < contains.length; j ++){
+      results.push(contains[j]);
+    }
+    return results; 
+  }
+  transform(accounts: any, value: any): any {
+    if (value === undefined) return accounts;
+    let resultStart = accounts.filter(function (account) {
+      if(account.accountId.toLowerCase().startsWith(value.toLowerCase())){
+          return account.accountId.toLowerCase().startsWith(value.toLowerCase());
+      }
+      else if(account.name.toLowerCase().startsWith(value.toLowerCase()) &&
+      !account.accountId.toLowerCase().startsWith(value.toLowerCase())){
+        return account.name.toLowerCase().startsWith(value.toLowerCase()); 
+      }
+    });
+    let resultEnd = accounts.filter(function (account) {
+      if(!account.name.toLowerCase().startsWith(value.toLowerCase()) &&
+      !account.accountId.toLowerCase().startsWith(value.toLowerCase())){
+        return account.name.toLowerCase().includes(value.toLowerCase());
+      }
+    });
+    let results = this.returnNewAccountArray(resultStart,resultEnd); 
+    return results; 
   }
 }
 
