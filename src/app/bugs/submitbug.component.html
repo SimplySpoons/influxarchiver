@@ -26,7 +26,7 @@
             <label for="exampleInputEmail1">More Info (required)</label>
             <textarea style="display: none;" class="form-control" name="content" [(ngModel)]="newBug.content" value="newBug.content"
               rows="8" required></textarea>
-            <tr-text-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)" (sendAttachments)="getAttachments($event)">
+            <tr-text-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)">
             </tr-text-editor>
           </div>
         </div>

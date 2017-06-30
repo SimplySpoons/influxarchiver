@@ -15,15 +15,12 @@ declare var tinymce: any;
 @Component({
     selector: 'tr-text-editor',
     template: ` <div class="text_editor">
-        <ul class="nav nav-pills selector-buttons upload_buttons">
-        <li class="active"><a (click)="openModal('custom-modal-2')">Upload Image</a></li>
-        <li class="active"><a (click)="openModal('custom-modal-3')"> Media Gallery</a> </li> 
-        </ul>
-        <textarea id="{{elementId}}"></textarea>
+       <textarea id="{{elementId}}"></textarea>
         <modal id="custom-modal-2">
             <div class="modal">
                 <div class="modal-body">
                     <div class="row">
+                    
                     </div>
                     </div>
                 </div>
@@ -33,7 +30,7 @@ declare var tinymce: any;
             <div class="modal">
                 <div class="modal-body">
                     <div class="row">
-                        
+                       
                     </div>
                     </div>
                 </div>
@@ -44,14 +41,14 @@ declare var tinymce: any;
 })
 export class TextEditorComponent implements AfterViewInit, OnDestroy {
     @Input() elementId: String;
-    @Input() currentValue: string;
+    @Input() currentValue: string; 
     @Output() onEditorKeyup = new EventEmitter<any>();
     @Output() sendAttachments = new EventEmitter<any>();
     loading: boolean = false;
     currentPage: number = 0;
     attachments: any;
     constructor(private modalService: ModalService) {
-
+           
     }
 
     img_src: string;
@@ -60,14 +57,16 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
     editor;
     showlib: boolean = false;
     attachment: any;
-    featured: any;
+    featured: any; 
     postAttachment: string = "postAttachment";
 
     insertContent() {
-        if (this.currentValue != '') {
+        if(this.currentValue != '') {
             console.log(this.currentValue);
-            this.editor.insertContent(this.currentValue);
-        }
+            this.editor.insertContent(this.currentValue); 
+         } else {
+             console.log('this.currentValue is undefined, yo');
+         }
     }
 
     getAttachments(data: any) {
@@ -110,7 +109,7 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
         tinymce.init({
             selector: '#' + this.elementId,
             branding: false,
-            height: 500,
+            height: 300,
             menu: [],
             plugins: ['link', 'paste', 'table', 'codesample', 'code'],
             codesample_languages: [
