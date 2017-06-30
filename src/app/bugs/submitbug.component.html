@@ -24,23 +24,19 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="exampleInputEmail1">More Info (required)</label>
-            <textarea  class="form-control" name="content" [(ngModel)]="newBug.content" value="newBug.content"
-              rows="8" required></textarea>
-              <!--I can't get the tiny-mce thing to work, not sure why-->
+            <textarea class="form-control" name="content" [(ngModel)]="newBug.content" value="newBug.content" rows="8" required></textarea>
+            <!--I can't get the tiny-mce thing to work, not sure why-->
             <!--<tr-text-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)">
             </tr-text-editor>-->
           </div>
         </div>
         <div class="col-md-12">
-          <!--<div class="form-group">
-            <label>Subitted By: </label>
-            <input type="text" class="form-control" name="submittedBy" [(ngModel)]="newBug.submittedBy" [disabled]="true">
-          </div>-->
-        </div>       
+
+        </div>
       </div>
       <div class="pull-left">
         <div *ngIf="!bugSubmitted">
-        <button type="submit" [disabled]="!heroForm.form.valid" class="btn btn-info btn-fill profileButton">Submit</button>
+          <button type="submit" [disabled]="!heroForm.form.valid" class="btn btn-info btn-fill profileButton">Submit</button>
         </div>
         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
         />
@@ -52,6 +48,24 @@
         <button class="btn btn-default" (click)="addAnotherBug()">Add Another</button>
       </div>
       <div class="clearfix"></div>
+      <div class="col-md-12">
+        <div *ngIf="(newBug.type || newBug.title || newBug.content != null)" class="ticketPreview">
+          <h4>Preview:</h4>
+          <div class="form-group">
+            <div class="bugDetail">
+              <div class="panel-heading card">
+                <h4>{{newBug.title}}</h4>
+                <h6>{{newBug.type}}</h6>
+              </div>
+              <div class="panel-body">
+                <div class="panel-content">
+                  <p>{{newBug.content}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </form>

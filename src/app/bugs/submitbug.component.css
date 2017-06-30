@@ -4,3 +4,14 @@
 h3.title {
     margin-top:0;
 }
+.ticketPreview .panel-heading {
+    background-color: #d12040;
+    color:#FFF;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.ticketPreview .form-group {
+    border:2px solid #ccc;
+    border-radius:4px;
+    background-color:#FFF;
+}
