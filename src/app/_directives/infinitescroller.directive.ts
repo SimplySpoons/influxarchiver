@@ -35,7 +35,7 @@ export class InfiniteScroller implements AfterViewInit {
   scrollCallback;
 
   @Input()
-  immediateCallback;
+  immediateCallback = false;
 
   @Input()
   scrollPercent = 80;
