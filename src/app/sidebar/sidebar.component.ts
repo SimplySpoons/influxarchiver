@@ -67,7 +67,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   account: any;
 
   constructor() {
-
+    
   }
 
   getAccountChange(data) {
