@@ -14,3 +14,15 @@ h3.usedNew {
     background-color:#01646b;
     border-color:#01646b;
 }
+
+.row.invbuttons p {
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.row.invbuttons {
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+.invdropdown li { cursor: pointer; }
