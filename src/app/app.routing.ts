@@ -10,7 +10,7 @@ import { SubmitbugComponent } from './bugs/submitbug.component';
 import { IssuetrackerComponent } from './bugs/issuetracker.component';
 
 export const APP_ROUTES: Routes = [
-    { path: '', redirectTo: 'feeds', pathMatch: 'full' },
+    { path: '', redirectTo: 'account', pathMatch: 'full' },
     { path: 'account', component: AccountComponent },
     { path: 'submitbug', component: SubmitbugComponent },
     { path: 'issuetracker', component: IssuetrackerComponent },

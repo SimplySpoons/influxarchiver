@@ -2,7 +2,7 @@
     width: 95%;
     padding: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .main-panel {
         background: rgba(203, 203, 210, 0.15);
         position: relative;
