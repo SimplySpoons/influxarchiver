@@ -170,8 +170,18 @@ body {
     border-top-right-radius: 3px;
     color:#FFF;
 }
+.bugSubmitLink {
+    color: #333;
+    background-color:#2e353d;
+    border-color: #ddd;
+        padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color:#FFF;
+}
 
-.dashboardLink:hover,.nav-side-menu .panel:hover {
+.dashboardLink:hover,.nav-side-menu .panel:hover,.bugSubmitLink:hover {
     background-color:#31708f;
     -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
@@ -434,7 +444,7 @@ body {
     position:relative;
 }
 .nav-side-menu .dashboardLink .navTitle {
-    left:8px;
+    left:10px;
 }
 .nav-side-menu .navTitle2 {
     left:26px;
@@ -459,4 +469,8 @@ body {
 }
 .nav-side-menu .panel:hover, .card.navPanelItem .card-header:hover {
     cursor:pointer;
+}
+.bugSubmitLink .navTitle {
+    position:relative;
+    left:16px;
 }
