@@ -58,4 +58,15 @@ export class AccountService {
         return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
             (response: Response) => response.json());
     }
+
+    searchVehicle(term: Observable<string>) {
+        return term.debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap(term => this.searchForAccount(term));
+    }
+
+    searchForItem(term) {
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "searchForItem", search: term }).map(
+            (response: Response) => response.json());
+    }
 }

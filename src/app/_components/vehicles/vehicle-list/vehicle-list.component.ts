@@ -3,6 +3,7 @@ import { AccountService } from '../../../_services/account.service';
 import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
-
+  searchTerm$ = new Subject<string>();
   account: Account = new Account();
   accountId: string;
   sub: any;
@@ -36,11 +37,19 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
+       this.searchForVehicle(); 
   }
   getItem(data: any){ 
     this.selectedItem = data; 
     this.selected = true; 
   }
+  searchForVehicle() {
+        this.loading=true; 
+        this.accountService.searchVehicle(this.searchTerm$).subscribe(items => {
+            this.items = this.items.concat(items);
+            this.loading=false; 
+        });
+    }
   loadCorrectVehicles(type: any, classification: any) {
     this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
     this.loading=true; 
