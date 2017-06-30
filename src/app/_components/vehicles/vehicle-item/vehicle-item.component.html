@@ -58,7 +58,8 @@
     cab: string;
     bed: string;
     googlebaseid: string;
-    autodata_id: string; 
+    autodata_id: string;
+    className: string;
 -->
 <!-- END -->  
 
@@ -75,6 +76,8 @@
         <div class="col-md-8 vehicle-info">
             <li><span class="vin">VIN:</span> {{item.vin}}</li>
             <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
+            <li><span class="stock">Type:</span> {{item.type}}</li>
+            <li><span class="stock">Classification:</span> {{item.className}}</li>
         </div>
         <div class ="col-md-2 vehicle-pricing">
              retailValue: {{item.retailValue}} <br> 
