@@ -58,4 +58,5 @@ export class Item {
     bed: string;
     googlebaseid: string;
     autodata_id: string;
+    className: string;
 }

@@ -1,6 +1,5 @@
 .quicklinks .btn-group {
     margin-top: 7px;
-    margin-right:25px;
 }
 /* Dropdown transition */
 .dropdown .dropdown-menu {
@@ -19,4 +18,8 @@
     opacity: 1;
     margin-right:-10px;
 }
+
+#oemPagesNavBarButtonContainer,
+#quickLinksNavBarButtonContainer { float:left; padding-right:0; }
+
 /* End dropdown transition */

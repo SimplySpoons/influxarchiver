@@ -16,7 +16,7 @@
   text-align: center;
   font-size: 14px;
 }
-.navbar-collapse.collapse { 
+.navbar-collapse.collapse {
     display:block !important;
 }
 
@@ -115,7 +115,7 @@
 .nav-side-menu li a:hover {
     text-decoration:none;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-side-menu {
     position: relative;
     width: 100%;
@@ -138,7 +138,7 @@
     line-height: 50px !important;
   }
 }
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
@@ -170,8 +170,18 @@ body {
     border-top-right-radius: 3px;
     color:#FFF;
 }
+.bugSubmitLink {
+    color: #333;
+    background-color:#2e353d;
+    border-color: #ddd;
+        padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color:#FFF;
+}
 
-.dashboardLink:hover,.nav-side-menu .panel:hover {
+.dashboardLink:hover,.nav-side-menu .panel:hover,.bugSubmitLink:hover {
     background-color:#31708f;
     -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
@@ -219,12 +229,12 @@ body {
     z-index: 999999999;
 }
 
-.istcredit { 
+.istcredit {
   position: absolute;
   bottom: 115px;
   right: 1px;
   width: 100%;
-} 
+}
 
 .sdevcredit {
   position: absolute;
@@ -233,9 +243,10 @@ body {
 }
 [class^="hvr-icon"] { display:block;height:100%; }
 /* Hide SDEV and IST logos when the sidebar collapses to top */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
   .sdevcredit, .istcredit { display: none; }
+  .navbar-collapse.in {overflow-y: hidden;}
 }
 #nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
   width: 60px;
@@ -421,11 +432,12 @@ body {
     right:5px;
     top:10px;
     width:40px;
-     
+
 }
 .in #nav-icon2 {
-    top:15px;
+    top: 10px;
     width:40px;
+    float:right;
 }
 #nav-icon2:hover span {
     background:#5bc0de;
@@ -434,7 +446,7 @@ body {
     position:relative;
 }
 .nav-side-menu .dashboardLink .navTitle {
-    left:8px;
+    left:10px;
 }
 .nav-side-menu .navTitle2 {
     left:26px;
@@ -456,4 +468,11 @@ body {
 .fa.fa-dashboard.fa-lg {
     position:relative;
     right:1px;
+}
+.nav-side-menu .panel:hover, .card.navPanelItem .card-header:hover {
+    cursor:pointer;
+}
+.bugSubmitLink .navTitle {
+    position:relative;
+    left:16px;
 }

@@ -1,10 +1,8 @@
-@media (min-width: 1200px) {
-    .container {
-        width: 95%;
-        padding: 0;
-    }
+.container {
+    width: 95%;
+    padding: 0;
 }
-@media (min-width: 767px) {
+@media (min-width: 768px) {
     .main-panel {
         background: rgba(203, 203, 210, 0.15);
         position: relative;
@@ -12,7 +10,10 @@
         float: right;
         width: calc(100% - 300px);
         min-height: 100%;
+        #main-container { padding-top:10px;}
     }
     .main-panel.in { width: calc(100% - 70px); }
+
+    #main-container { padding-top:100px;}
 
 }

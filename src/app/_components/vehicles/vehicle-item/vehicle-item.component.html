@@ -58,37 +58,48 @@
     cab: string;
     bed: string;
     googlebaseid: string;
-    autodata_id: string; 
+    autodata_id: string;
+    className: string;
 -->
-<!-- END -->  
+<!-- END -->
 
 <div class="card">
-  <div class="panel">
-    <div class="panel-heading">
-      <h4 style="margin:15px 0 -10px;">{{item.title}}</h4>
-    </div>
-    <hr>
-    <div class="panel-body clearfix"> 
-        <div class="col-md-2 vehicle-image">
-            <img [src]="getImageSrc(item.image[0],item.accountId)"/> 
+    <div class="panel">
+        <div class="panel-heading">
+            <h4 style="margin:15px 0 -10px;">{{item.title}}</h4>
         </div>
-        <div class="col-md-8 vehicle-info">
-            <li><span class="vin">VIN:</span> {{item.vin}}</li>
-            <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
-        </div>
-        <div class ="col-md-2 vehicle-pricing">
-             retailValue: {{item.retailValue}} <br> 
-             invoicePrice: {{item.invoicePrice}} <br> 
-             askingPrice: {{item.askingPrice}} <br> 
-             wholesalePrice: {{item.wholesalePrice}} <br> 
-             internetPrice: {{item.internetPrice}} <br> 
-             msrp: {{item.msrp}} <br> 
-             salePrice: {{item.salePrice}} 
+        <hr>
+        <div class="panel-body clearfix">
+            <div class="col-md-2 vehicle-image">
+                <img [src]="getImageSrc(item.image[0],item.accountId)" />
+            </div>
+            <div class="col-md-8 vehicle-info">
+                <li><span class="vin">VIN:</span> {{item.vin}}</li>
+                <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
+                <li><span class="stock">Type:</span> {{item.type}}</li>
+                <li><span class="stock">Classification:</span> {{item.className}}</li>
+                <div *ngIf="item.certified>0">
+                    <li><span class="stock">Certified:</span> Yes</li>
+                </div>
+                <li><span class="stock">Year:</span> {{item.year}}</li>
+                <li><span class="stock">Make:</span> {{item.make}}</li>
+                <li><span class="stock">Model:</span> {{item.model}}</li>
+                <li><span class="stock">Trim:</span> {{item.trim}}</li>
+            </div>
+
+            <div class="col-md-2 vehicle-pricing">
+                <div class="vehicle-pricing-heading">
+                    <h5>Pricing Data</h5>
+                </div>
+                retailValue: {{item.retailValue}} <br> invoicePrice: {{item.invoicePrice}} <br> askingPrice: {{item.askingPrice}}
+                <br> wholesalePrice: {{item.wholesalePrice}} <br> internetPrice: {{item.internetPrice}} <br> msrp: {{item.msrp}}
+                <br> salePrice: {{item.salePrice}}
+            </div>
         </div>
     </div>
     <div class="panel-footer">
-       <a [href]="getVdpLink(item.uuid,item.type)" class="btn btn-primary" target="_blank"> VDP Link </a> 
-        <a [href]="getVlpLink(item.vin,item.type)" class="btn btn-primary" target="_blank"> VLP Link </a> 
+        <a [href]="getVdpLink(item.uuid,item.type)" class="btn btn-primary" target="_blank"> VDP Link </a>
+        <a [href]="getVlpLink(item.vin,item.type)" class="btn btn-primary" target="_blank"> VLP Link </a>
+        <a [href]="getAuditTrail(item.vin)" class="btn btn-success" target="_blank"> Audit Trail </a>
     </div>
-  </div>
 </div>

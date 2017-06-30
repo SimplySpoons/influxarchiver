@@ -10,7 +10,16 @@
 .nav.navbar-nav.navbar-right {
     margin-right:0;
 }
-
+@media (max-width: 768px) {
+  .navbar-default.navbar-fixed-top {
+    display:none;
+  }
+}
+#navbarSarchBarContainer,
+#navBarButtonsContainer {
+  float:left;
+}
+#navbarSarchBarContainer { padding-right: 0;}
 /*
 .btn-group.headerButtons {
     margin-left: 285px;

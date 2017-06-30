@@ -1,11 +1,10 @@
-
 <div class="vehicle-list clearfix" *ngIf="!loading">
   <div class="vehicle" *ngFor="let item of items">
     <app-vehicle-item [item]="item" [account]="account"></app-vehicle-item>
   </div>
 </div>
-  <div *ngIf="loading" class="loadingIndicator">
-      <div class="row" style="clear: both;">
-        <sk-folding-cube></sk-folding-cube>
-      </div>
-    </div>
+<div *ngIf="loading" class="loadingIndicator">
+  <div class="row" style="clear: both;">
+    <sk-folding-cube></sk-folding-cube>
+  </div>
+</div>

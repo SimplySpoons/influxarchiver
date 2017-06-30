@@ -30,6 +30,11 @@ export class VehicleItemComponent implements OnInit {
       return vlp_link;
   }
 
+  getAuditTrail(vin: string) {
+    let audit_link = '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
+    return audit_link;
+  }
+
 
   ngOnInit() {
   }
