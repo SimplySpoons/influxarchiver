@@ -68,7 +68,7 @@ export class AccountService {
     searchForItem(term, accountId) {
         if (term.includes('http')) {
             let uuid = term.match(/.*([0-9a-f]{32})\.htm$/);
-            if (uuid[1] !== undefined) {
+            if (uuid) {
                 term = uuid[1];
             }
         }
