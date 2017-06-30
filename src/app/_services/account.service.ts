@@ -14,8 +14,8 @@ export class AccountService {
   account: Account; 
   sendAccountChange = new EventEmitter<any>();
   constructor(private conf: AppConfig, private http: Http) { 
-//this.API_URL = this.conf.API_CONFIG(); 
-     this.API_URL = 'http://localhost:6969/hotdog/php/';
+    this.API_URL = this.conf.API_CONFIG(); 
+     //this.API_URL = 'http://localhost:6969/hotdog/php/';
   }
 
    getAccountData(accountId: string) {
@@ -46,5 +46,16 @@ export class AccountService {
 
     getCurrentAccount(){
         return this.account; 
+    }
+
+     search(names: Observable<string>) {
+        return names.debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap(name => this.searchForAccount(name));
+    }
+
+    searchForAccount(name) {
+        return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name.toLowerCase() }).map(
+            (response: Response) => response.json());
     }
 }
