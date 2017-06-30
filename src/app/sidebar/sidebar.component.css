@@ -307,7 +307,7 @@ body {
   height: 4px;
   width: 50%;
   background: #fff;
-  opacity: 1;
+  opacity: .5;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -316,6 +316,9 @@ body {
   -moz-transition: .25s ease-in-out;
   -o-transition: .25s ease-in-out;
   transition: .25s ease-in-out;
+}
+.out #nav-icon2 span {
+    width:33%;
 }
 
 #nav-icon2 span:nth-child(even) {
@@ -328,7 +331,7 @@ body {
   border-radius: 9px 0 0 9px;
 }
 
-#nav-icon2 span:nth-child(1), #nav-icon2 span:nth-child(2) {
+#nav-icon2 span:nth-child(1), #nav-icon2 span:nth-child(2) { 
   top: 0px;
 }
 
@@ -390,12 +393,20 @@ body {
     float:right;
 }
 .navbar-collapse #nav-icon2 {
-    top: 15px;
+    top: 12px;
     width:40px;
     float:right;
 }
 #nav-icon2:hover span {
     background:#5bc0de;
+    opacity:1;
+}
+.navbar-collapse.out #nav-icon2 {
+    top:10px;
+    left:10px;
+}
+.navbar-collapse:not(.out) #nav-icon2 {
+    top:15px;
 }
 .nav-side-menu .navTitle {
     position:relative;
