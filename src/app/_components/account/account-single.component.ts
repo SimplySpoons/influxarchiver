@@ -17,7 +17,8 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   influxString = '';
   influxConfigs: any = [];
   private sub: any;
-  invCounts: any = []; 
+  invCounts: any = [];
+
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.loading = true;
@@ -27,24 +28,19 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
         this.account = account;
         this.accountService.setCurrentAccount(account);
         this.loading = false;
+        this.accountService.getInvCounts(this.accountId).subscribe(counts => {
+          this.invCounts = counts;
+        })
       });
     });
-    this.influxLoading = true;
-    this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
-      this.influxConfigs = configs;
-      this.influxString = this.showConfigsAsString(this.influxConfigs);
-      this.influxLoading = false;
-    });
-    this.accountService.getInvCounts(this.accountId).subscribe(counts=>{
-       this.invCounts = counts; 
-    })
+
   }
   getDnaLink() {
     return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;
   }
 
   loadCorrectVehicles(type: any, classification: any) {
-      return '/account/' + this.accountId + '/vehicles/' + type + '/' + classification;
+    return '/account/' + this.accountId + '/vehicles/' + type + '/' + classification;
   }
 
 

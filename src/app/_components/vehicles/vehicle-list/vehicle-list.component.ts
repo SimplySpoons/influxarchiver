@@ -47,10 +47,6 @@ export class VehicleListComponent implements OnInit, OnDestroy {
       this.classification = params['classification'];
       this.loadVehicles(this.type,this.classification);
     });
-    this.accountService.getInvCounts(this.accountId).subscribe(counts => {
-      this.invCounts = counts;
-      console.log('invCounts', counts);
-    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

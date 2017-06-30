@@ -18,21 +18,29 @@
           | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
   </div>
 </div>
-<div class="nav clearfix" *ngIf="invCounts.length > 0">
-<div style="background: transparent;" class="col-md-6" *ngFor="let count of invCounts">
-    <div class="heading">
-      <h3 style="margin: 5px 0;"> {{count.type}} </h3>
+<div class="row">
+  <div class="nav clearfix" *ngIf="invCounts.length > 0">
+    <div style="background: transparent; padding: 0" class="col-md-6" *ngFor="let count of invCounts">
+      <div class="heading">
+        <h3 style="margin: 5px 0;"> {{count.type}} </h3>
+      </div>
+      <hr>
+      <div class="clearfix">
+        <div class="col-md-2" style="padding:3px;" *ngFor="let class of count.data">
+          <a class="btn btn-primary col-md-12" style="display: block; padding: 5px;" [routerLink]="[loadCorrectVehicles(class.type,class.classification)]"> 
+            <span style="text-align: left;">{{class.className}}</span> 
+            <span style="text-align: right;"> ({{class.count}}) </span>
+          </a>
+        </div>
+        <div class="col-md-2" style="padding:3px;">
+          <a class="btn btn-primary col-md-12" style="display: block; padding: 5px;" [routerLink]="[loadCorrectVehicles(count.data[0].type,0)]"> 
+            <span style="text-align: left;">{{count.type}}</span> 
+            <span style="text-align: right;"> ({{count.total}}) </span>
+          </a>
+        </div>
+      </div>
     </div>
-    <hr>
-    <div class="clearfix">
-      <a class="btn btn-primary col-md-2" *ngFor="let class of count.data">
-        <div [routerLink]="[loadCorrectVehicles(class.type,class.classification)]"> <span style="text-align: left;">{{class.className}}</span> <span style="text-align: right;"> ({{class.count}}) </span>          </div>
-      </a>
-      <a class="col-md-2 btn btn-primary">
-        <div [routerLink]="[loadCorrectVehicles(count.data[0].type,count.class)]"> Total {{count.type}} - ({{count.total}}) </div>
-      </a>
-    </div>
-</div>
+  </div>
 </div>
 <div class="row">
   <div *ngIf="!loading" class="vehicleSection">
