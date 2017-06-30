@@ -7,10 +7,10 @@ h3.usedNew {
     top:10px;
 }
 .nav a.btn.New {
-    background-color:#5bc0de;
-    border-color:#5bc0de;
+    background-color:#008992;
+    border-color:#008992;
 }
 .nav a.btn.New:hover {
-    background-color:#3F869B;
-    border-color:#3F869B;
+    background-color:#01646b;
+    border-color:#01646b;
 }
