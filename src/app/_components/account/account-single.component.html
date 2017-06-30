@@ -29,7 +29,7 @@
         <div [routerLink]="[loadCorrectVehicles(class.type,class.classification)]"> <span style="text-align: left;">{{class.className}}</span> <span style="text-align: right;"> ({{class.count}}) </span>          </div>
       </a>
       <a class="col-md-2 btn btn-primary">
-        <div [routerLink]="[loadCorrectVehicles(count.type,count.class)]"> Total {{count.type}} - ({{count.total}}) </div>
+        <div [routerLink]="[loadCorrectVehicles(count.data[0].type,count.class)]"> Total {{count.type}} - ({{count.total}}) </div>
       </a>
     </div>
 </div>
