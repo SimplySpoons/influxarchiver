@@ -216,12 +216,19 @@ body {
 
 .sdevcredit { 
   position: absolute;
-  bottom: 15px;
-  right: 105px;
+  bottom: 18px;
+  right: 180px;
 } 
 
-/* Hide SDEV logo when the sidebar collapses to top */
-@media (max-width: 767px) {
-  .sdevcredit { display: none; }
+.istcredit {
+  position: absolute;
+  bottom: 0px;
+  width: 60%;
+  right: 10px;
 }
 [class^="hvr-icon"] { display:block;height:100%; }
+/* Hide SDEV and IST logos when the sidebar collapses to top */
+@media (max-width: 767px) {
+
+  .sdevcredit, .istcredit { display: none; }
+}

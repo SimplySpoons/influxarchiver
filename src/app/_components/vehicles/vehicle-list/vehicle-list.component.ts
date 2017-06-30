@@ -25,18 +25,10 @@ export class VehicleListComponent implements OnInit, OnDestroy {
   loading: boolean = false; 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
-    this.sub = this.route.parent.params.subscribe(params => {
-      this.accountId = params['id'];
-      this.account = this.accountService.getCurrentAccount();
-      console.log(this.accountId);
-    });
-    this.routersub = this.route.params.subscribe(params => {
-      this.type = params['type'];
-      this.classification = params['classification'];
-    });
+  
   }
 
-  loadCorrectVehicles(type: any, classification: any) {
+  loadVehicles(type: any, classification: any) {
     this.loading=true; 
     this.accountService.getAccountVehicles(this.accountId, type, classification).subscribe(items => {
       this.items = items;
@@ -45,8 +37,16 @@ export class VehicleListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadCorrectVehicles(this.type,this.classification);
-    console.log('hitting');
+    this.sub = this.route.parent.params.subscribe(params => {
+      this.accountId = params['id'];
+      this.account = this.accountService.getCurrentAccount();
+      console.log(this.accountId);
+    });
+    this.routersub = this.route.params.subscribe(params => {
+      this.type = params['type'];
+      this.classification = params['classification'];
+      this.loadVehicles(this.type,this.classification);
+    });
     this.accountService.getInvCounts(this.accountId).subscribe(counts => {
       this.invCounts = counts;
       console.log('invCounts', counts);
