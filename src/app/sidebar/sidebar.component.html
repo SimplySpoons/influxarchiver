@@ -3,20 +3,30 @@
         <div class="brand hvr-underline-reveal">
             <a class="dashTitle" href="/">Influx Archiver 2.0</a>
         </div>
-        <button type="button" class="navbar-toggle collapsed fa fa-bars fa-2x toggle-btn" (click)="toggleState()">
-            <span class="sr-only">Toggle navigation</span>
-        </button>
+        <!--<div id="nav-icon1" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>-->
+        <div id="nav-icon2" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="menu-list">
             <accordion>
                 <a panelClass="navPanelItem" href="#">
                     <div class="dashboardLink panel-title">
                         <i class="fa fa-dashboard fa-lg"></i>
-                        <span clas="navTitle">Dashboard</span>
+                        <span class="navTitle navTitle1">Dashboard</span>
                     </div>
                 </a>
                 <accordion-group panelClass="navPanelItem" #group2>
                     <div accordion-heading [ngClass]="{'hvr-icon-bob': group2?.isOpen, 'hvr-icon-hang': !group2?.isOpen}">
-                        <i class="fa fa-car fa-lg"></i> <span clas="navTitle">Feeds</span>
+                        <i class="fa fa-car fa-lg"></i> <span class="navTitle navTitle2">Feeds</span>
                     </div>
                     <ul class="accordianUnderText">
                         <li><a class="accordionLink" href="#">Influx</a></li>
@@ -26,9 +36,8 @@
                     </ul>
                 </accordion-group>
                 <accordion-group panelClass="navPanelItem" #group3>
-                    <div accordion-heading [ngClass]="{'hvr-icon-bob': group3?.isOpen, 'hvr-icon-hang': !group2?.isOpen}">
-                        <i class="fa fa-user fa-lg"></i> <span clas="navTitle">Dealers</span>
-                    
+                    <div accordion-heading [ngClass]="{'hvr-icon-bob': group3?.isOpen, 'hvr-icon-hang': !group3?.isOpen}">
+                        <i class="fa fa-user fa-lg"></i> <span class="navTitle navTitle3">Dealers</span>
                     </div>
                     <ul class="accordianUnderText">
                         <li><a class="accordionLink" href="#">Influx</a></li>
@@ -39,7 +48,7 @@
                 </accordion-group>
                 <accordion-group panelClass="navPanelItem" #group4>
                     <div [ngClass]="{'hvr-icon-bob': group4?.isOpen, 'hvr-icon-hang': !group4?.isOpen}" accordion-heading>
-                        <i class="fa fa-users fa-lg"></i> <span clas="navTitle">Users</span>
+                        <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">Users</span>
                     </div>
                     <ul class="accordianUnderText">
                         <li><a class="accordionLink" href="#">Influx</a></li>
@@ -54,13 +63,14 @@
             </div>
         </div>
 
+        <div *ngIf="isIn">
+            <div class="sdevcredit">
+                <img src="http://i.imgur.com/9U9dbFV.png" />
+            </div>
 
-        <div class="sdevcredit">
-            <img src="http://i.imgur.com/9U9dbFV.png" />
-        </div>
-
-        <div class="istcredit">
-            <img src="http://i.imgur.com/keRkPEB.png" />
+            <div class="istcredit">
+                <img src="http://i.imgur.com/keRkPEB.png" />
+            </div>
         </div>
     </div>
 </div>
