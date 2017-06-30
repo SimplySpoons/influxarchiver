@@ -6,6 +6,7 @@
     <img [src]="getImageSrc(image,item.accountId)" />
   </div>
 </div>
+<div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
 
 <div id="vehiclePricingContainer">
   <div class="single-vehicle-vehicle-pricing">
@@ -37,4 +38,3 @@
       <li><span class="comments">Comments:</span> {{item.comments}}</li>
   </div>
 </div>
-<div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Info </div>
