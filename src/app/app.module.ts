@@ -24,6 +24,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppConfig } from './app.config';
 import { InfluxComponent } from './_components/influx/influx.component';
 import { SearchComponent } from './search/search.component';
+import { UserService } from './_services/user.service';
+import { SubmitbugComponent, IssuetrackerComponent } from './bugs/index';
+import { ModalService } from './_services/modal.service';
+import { TextEditorComponent } from './_components/wysiwyg.component';
+import { ModalComponent } from './_components/modal.component';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -46,7 +51,11 @@ export function initializeCurrentUser(config: AppConfig) {
     FilterPipe,
     ScrollerDirective,
     InfluxComponent,
-    SearchComponent
+    SearchComponent,
+    IssuetrackerComponent,
+    SubmitbugComponent,
+    TextEditorComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +70,7 @@ export function initializeCurrentUser(config: AppConfig) {
     BsDropdownModule.forRoot()
   ],
   exports: [FilterPipe],
-  providers: [AccountService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
+  providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
