@@ -1,5 +1,5 @@
 .nav-side-menu {
-  overflow: auto;
+  overflow: hidden;
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
@@ -16,7 +16,9 @@
   text-align: center;
   font-size: 14px;
 }
-.navbar-collapse.collapse { display:block !important;}
+.navbar-collapse.collapse { 
+    display:block !important;
+}
 
 .nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {display: none;}
 .nav-side-menu .navbar-collapse.collapse.in { width:auto;}
@@ -199,8 +201,10 @@ body {
     border-top: 2px solid #DE795B;
 }*/
 .nav-side-menu .brand a.dashTitle {
-    font-size:22px;
+    font-size:24px;
     color:#5bc0de;
+    position: relative;
+    top: 2px;
 }
 .nav-side-menu .brand a.dashTitle:hover {
     text-decoration: none;
