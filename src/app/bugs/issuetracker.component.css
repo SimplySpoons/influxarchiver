@@ -1,28 +1,35 @@
 .bugDetail .panel-heading.bug-1 {
-    background-color:lightcoral;
+    background-color:#d12040;
 }
 .bugButton {
-    background-color:lightcoral;
+    background-color:#d12040;
     color:#FFF;
     font-weight:bold;
-    border-color:lightcoral;
+    border-color:#d12040;
+}
+.closedBugs {
+    color:#FFF;
+    font-weight:bold;
 }
 .bugDetail .panel-heading.bug-2 {
-    background-color:lightblue;
+    background-color:#2098d1;
+}
+.panel .panel-heading {
+    color:white;
 }
 .featureButton {
-    background-color:lightblue;
+    background-color:#2098d1;
     color:#FFF;
-    border-color:lightblue;
+    border-color:#2098d1;
     font-weight:bold;
 }
 .bugDetail .panel-heading.bug-3 {
-    background-color:lightgreen;
+    background-color:#2098d1;
 }
 .questionButton {
-    background-color:lightgreen;
+    background-color:#d1b220;
     color:#FFF;
-    border-color:lightgreen;
+    border-color:#d1b220;
     font-weight:bold;
 }
 .legendButtons {

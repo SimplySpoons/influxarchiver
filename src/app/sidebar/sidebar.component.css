@@ -457,3 +457,6 @@ body {
     position:relative;
     right:1px;
 }
+.nav-side-menu .panel:hover, .card.navPanelItem .card-header:hover {
+    cursor:pointer;
+}

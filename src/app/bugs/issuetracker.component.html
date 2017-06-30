@@ -1,10 +1,10 @@
 <h3 class="title">Bug Tracker</h3>
 <p><span class="openIssues">{{bugs?.length}}</span> {{status}} issues</p>
 <div class="btn-group legendButtons" role="group" aria-label="Button group with nested dropdown">
-  <button type="button" class="btn btn-secondary bugButton" (click)="toggleBugs(0)">Open Bugs</button>
-  <button type="button" class="btn btn-secondary featureButton">Feature Requests</button>
-  <button type="button" class="btn btn-secondary questionButton">General Questions</button>
-  <button type="button" class="btn btn-secondary questionButton" (click)="toggleBugs(1)">Closed Bugs</button>
+  <button type="button" class="btn btn-secondary bugButton hvr-float-shadow" (click)="toggleBugs(0)">Open Bugs</button>
+  <button type="button" class="btn btn-secondary featureButton hvr-float-shadow">Feature Requests</button>
+  <button type="button" class="btn btn-secondary questionButton hvr-float-shadow">General Questions</button>
+  <button type="button" class="btn btn-secondary closedBugs hvr-float-shadow" (click)="toggleBugs(1)">Closed Bugs</button>
 </div>
 <div *ngIf="!bugsLoading">
   <div class="panel panel-default" *ngFor="let bug of bugs">
@@ -33,5 +33,5 @@
   </div>
 </div>
 <div *ngIf="bugsLoading" class="loadingIndicator">
-  <sk-wandering-cubes></sk-wandering-cubes>
+  <sk-folding-cube></sk-folding-cube>
 </div>
