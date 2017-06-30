@@ -19,4 +19,8 @@
     opacity: 1;
     margin-right:-10px;
 }
+
+#oemPagesNavBarButtonContainer,
+#quickLinksNavBarButton { float:left; }
+
 /* End dropdown transition */

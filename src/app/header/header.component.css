@@ -11,6 +11,9 @@
     margin-right:0;
 }
 
+#navbarSarchBarContainer,
+#navBarButtonsContainer { float:left; }
+
 /*
 .btn-group.headerButtons {
     margin-left: 285px;
