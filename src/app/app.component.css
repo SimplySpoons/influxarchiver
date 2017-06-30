@@ -13,4 +13,6 @@
         width: calc(100% - 300px);
         min-height: 100%;
     }
+    .main-panel.in { width: calc(100% - 90px); }
+
 }
