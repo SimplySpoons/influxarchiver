@@ -34,7 +34,7 @@ export class AccountService {
 
     getInvCounts(accountId: string){
             console.log('hitting service');
-        return this.http.post('http://localhost:6969/vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
+        return this.http.post(this.API_URL + '/vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }
 
