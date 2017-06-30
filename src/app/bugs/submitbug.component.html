@@ -1,0 +1,69 @@
+<form name="form" (ngSubmit)="submitBug()" #heroForm="ngForm">
+  <div class="card custom_contain">
+    <div class="header">
+      <h4 class="title">Add Bug/Feature Request</h4>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Type (required)</label>
+            <div class="form-group">
+              <select name="type" class="form-control" [(ngModel)]="newBug.type" required>
+                <option *ngFor="let type of types" value="Bug" [value]="type.value">{{type.display}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Title (required)</label>
+            <input type="text" class="form-control" name="title" [(ngModel)]="newBug.title" required>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="exampleInputEmail1">More Info (required)</label>
+            <textarea style="display: none;" class="form-control" name="content" [(ngModel)]="newBug.content" value="newBug.content"
+              rows="8" required></textarea>
+            <tr-text-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)" (sendAttachments)="getAttachments($event)">
+            </tr-text-editor>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Subitted By: </label>
+            <input type="text" class="form-control" name="submittedBy" [(ngModel)]="newBug.submittedBy" [disabled]="true">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Attachments </label>
+            <input type="text" class="form-control" name="attachments" [(ngModel)]="newBug.attachments" [disabled]="true">
+          </div>
+        </div>
+
+        <!--
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email (required)</label>
+            <textarea class="form-control" disabled name="email" [(ngModel)]="newBug.email" rows="8" value="profileData.email" required>{{profileData.email}}</textarea>
+          </div>
+        </div>
+        -->
+      </div>
+      <div class="pull-left">
+        <button type="submit" [disabled]="!heroForm.form.valid" class="btn btn-info btn-fill profileButton">Submit</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+      </div>
+      <div *ngIf="bugSubmitted">
+        <div class="alert alert-success">
+          <strong>Success!</strong> We will take a look at this as soon as possible.
+        </div>
+        <button class="btn btn-default" (click)="addAnotherBug()">Add Another</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</form>

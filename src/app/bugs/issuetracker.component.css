@@ -1,0 +1,42 @@
+.bugDetail .panel-heading.bug-1 {
+    background-color:lightcoral;
+}
+.bugButton {
+    background-color:lightcoral;
+    color:#FFF;
+    font-weight:bold;
+    border-color:lightcoral;
+}
+.bugDetail .panel-heading.bug-2 {
+    background-color:lightblue;
+}
+.featureButton {
+    background-color:lightblue;
+    color:#FFF;
+    border-color:lightblue;
+    font-weight:bold;
+}
+.bugDetail .panel-heading.bug-3 {
+    background-color:lightgreen;
+}
+.questionButton {
+    background-color:lightgreen;
+    color:#FFF;
+    border-color:lightgreen;
+    font-weight:bold;
+}
+.legendButtons {
+    margin-bottom:10px;
+}
+.legendButtons button {
+    margin-right:5px;
+}
+h3.title {
+    margin-top:10px;
+}
+.openIssues {
+    font-weight:bold;
+}
+.bugDetail button {
+    margin-left:5px;
+}

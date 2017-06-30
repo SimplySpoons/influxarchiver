@@ -1,0 +1,37 @@
+<h3 class="title">Bug Tracker</h3>
+<p><span class="openIssues">{{bugs?.length}}</span> {{status}} issues</p>
+<div class="btn-group legendButtons" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-secondary bugButton" (click)="toggleBugs(0)">Open Bugs</button>
+  <button type="button" class="btn btn-secondary featureButton">Feature Requests</button>
+  <button type="button" class="btn btn-secondary questionButton">General Questions</button>
+  <button type="button" class="btn btn-secondary questionButton" (click)="toggleBugs(1)">Closed Bugs</button>
+</div>
+<div *ngIf="!bugsLoading">
+  <div class="panel panel-default" *ngFor="let bug of bugs">
+    <!--This ngIf sets the bug to only display if it's status is NOT closed-->
+    <div class="bugDetail" [ngStyle]="checkBugType(bug)">
+      <div class="panel-heading bug-{{this.bugType}}">
+        <p style="font-weight:bold;">
+          {{bug.title}}
+        </p>
+        <span style="font-style:italic; color:white;font-weight:bold;">
+          <span *ngIf="bug.status == 0">
+            {{bug.type}}, opened: {{bug.dateSubmitted}}
+          </span>
+        <span *ngIf="bug.status == 1">
+            {{bug.type}}, closed: {{bug.dateClosed}}
+          </span>
+        </span>
+      </div>
+      <div class="panel-body">
+        <div class="panel-content" [innerHTML]="bug.content">
+        </div>
+        <button class="btn btn-danger pull-right" (click)="closeBug(bug)">Close Issue</button>
+        <button class="btn btn-danger pull-right" (click)="deleteBug(bug)">Delete Issue</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="bugsLoading" class="loadingIndicator">
+  <sk-wandering-cubes></sk-wandering-cubes>
+</div>
