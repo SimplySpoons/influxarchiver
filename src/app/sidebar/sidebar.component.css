@@ -492,3 +492,7 @@ body {
   	float: right;
   }
 }
+.fa.fa-link.fa-lg {
+    position:relative;
+    left:2px;
+}

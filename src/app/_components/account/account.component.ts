@@ -9,7 +9,6 @@ import { Account } from '../../_models/account'
   styleUrls: ['./account.component.css']
 })
 
-
 export class AccountComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   accounts: Array<Account> = [];
@@ -31,5 +30,4 @@ export class AccountComponent implements OnInit {
             this.loading=false; 
         });
     }
-
 }
