@@ -18,7 +18,6 @@ export class AppComponent {
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
-    console.log("TEST " + bool)
   }
 
 }
