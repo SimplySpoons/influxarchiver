@@ -216,9 +216,9 @@ body {
 
 .istcredit { 
   position: absolute;
-  bottom: 0px;
-  right: 115px;
-  width: 60%;
+  bottom: 115px;
+  right: 1px;
+  width: 100%;
 } 
 
 .sdevcredit {
