@@ -51,7 +51,15 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   getInventoryManagerLink() {
     return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index';
   }
-
+  getExportViewLink() {
+    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/market/inventoryexports';
+  }
+  getInboundFeedsLink() {
+    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/publishRules/index';
+  }
+  getSolrLink() {
+    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/solrRefresh/index';
+  }
 
   ngOnInit() {
 

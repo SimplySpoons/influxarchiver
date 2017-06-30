@@ -11,15 +11,19 @@
     zip: string; 
     country: string;
 -->
-<div class="row name">
-  <h3 style="margin: 0 0 5px"> {{account.name}} </h3>
+<div class="row name accountName">
+  <h2 style="margin: 0 0 5px"> {{account.name}} </h2>
   <div class="panel-sub" style="margin-bottom: 25px;">
     <small> {{account.accountId}} | <a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
           | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
   </div>
 </div>
-<div class="row">
-  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">View in Inventory Manager</a> 
+<div class="row cc-btns">
+  <p>Control Center Links:</p>
+  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">View in Inventory Manager</a>
+  <a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
+  <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
+  <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>  
 </div>
 <div class="row">
   <div class="nav clearfix goodBad" *ngIf="invCounts.length > 0">
