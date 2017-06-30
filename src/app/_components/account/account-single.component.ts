@@ -48,6 +48,10 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     return JSON.stringify(this.influxConfigs);
   }
 
+  getInventoryManagerLink() {
+    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index';
+  }
+
 
   ngOnInit() {
 

@@ -25,3 +25,18 @@
 
 .nav .type.heading h3 { font-weight: bold; }
 .row.name h3 { font-style: italic; }
+
+.nav a.btn.New {
+    background-color:#5bc0de;
+    border-color:#5bc0de;
+}
+.nav a.btn.New:hover {
+    background-color:#3F869B;
+    border-color:#3F869B;
+}
+.panel-sub small {
+    font-size:100%;
+}
+.goodBad {
+    margin-top:15px;
+}
