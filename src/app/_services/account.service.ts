@@ -30,7 +30,7 @@ export class AccountService {
     }
 
     getInfluxConfigs(accountId: string) {
-        return this.http.post('http://localhost:6969/hotdog/php/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
+        return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
             (response: Response) => response.json());
     }
 
@@ -56,6 +56,17 @@ export class AccountService {
 
     searchForAccount(name) {
         return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
+            (response: Response) => response.json());
+    }
+
+    searchVehicle(term: Observable<string>) {
+        return term.debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap(term => this.searchForAccount(term));
+    }
+
+    searchForItem(term) {
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "searchForItem", search: term }).map(
             (response: Response) => response.json());
     }
 }

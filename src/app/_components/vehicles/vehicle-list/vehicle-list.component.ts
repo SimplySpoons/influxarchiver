@@ -3,6 +3,7 @@ import { AccountService } from '../../../_services/account.service';
 import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
-
+  searchTerm$ = new Subject<string>();
   account: Account = new Account();
   accountId: string;
   sub: any;
@@ -24,15 +25,26 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   scrollCallback;
   loading: boolean = false;
   loadDone = false; 
-  tmpData: any;
-  @Output() sendAccountId = new EventEmitter<string>();
+  tmpData: any; 
+  selectedItem: Item;
+  selected = false; 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
+       this.searchForVehicle(); 
   }
-  getCallback(data: any){ 
-    console.log('data', data);
+  getItem(data: any){ 
+    this.selectedItem = data; 
+    this.selected = true; 
   }
+
+  searchForVehicle() {
+        this.loading=true; 
+        this.accountService.searchVehicle(this.searchTerm$).subscribe(items => {
+            this.items = this.items.concat(items);
+            this.loading=false; 
+        });
+    }
 
   loadCorrectVehicles(type: any, classification: any) {
     this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
@@ -42,6 +54,10 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
       this.items = items.json();
       this.loading=false; 
     }); 
+  }
+
+  getScrollAction(data) {
+    console.log('data',data);
   }
 
   loadVehicles() {
@@ -78,7 +94,6 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
       this.loading = true;
       this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
-      this.sendAccountId.emit(this.accountId);
       this.account = this.accountService.getCurrentAccount();
       this.accountService.getInvCounts(this.accountId).subscribe(counts => {
           this.invCounts = counts;

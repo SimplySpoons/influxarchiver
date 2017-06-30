@@ -1,18 +1,14 @@
-<div class="nav clearfix goodBad">
+<div class="nav clearfix goodBad" style="margin-top: 40px; margin-bottom: 20px;" >
     <div style="background: transparent; padding: 0" class="col-md-6" *ngFor="let count of invCounts">
-      <div class="type heading">
-        <h3 class="usedNew" style="margin: 5px 0;"> {{count.type}} </h3>
-      </div>
-      <hr class="usedNew">
       <div class="clearfix">
         <div class="col-md-2" style="padding:3px;" *ngFor="let class of count.data">
-          <a class="btn btn-primary col-md-12 {{count.type}}" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(class.type,class.classification)"> 
+          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': class.count==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(class.type,class.classification)"> 
             <span style="text-align: left;">{{class.className}}</span> 
             <span style="text-align: right;"> ({{class.count}}) </span>
           </a>
         </div>
         <div class="col-md-2" style="padding:3px;">
-          <a class="btn btn-primary col-md-12 {{count.type}}" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(count.data[0].type,0)"> 
+          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': count.total==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(count.data[0].type,0)"> 
             <span style="text-align: left;">{{count.type}}</span> 
             <span style="text-align: right;"> ({{count.total}}) </span>
           </a>
@@ -20,10 +16,11 @@
       </div>
     </div>
   </div>
+<app-vehicle-single *ngIf="selected" [item]="selectedItem" [account]="account"></app-vehicle-single>
 <div (callbackReady)="initScroller($event)" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
     class="vehicle-list clearfix">
     <div class="vehicle" *ngFor="let item of items">
-      <app-vehicle-item [item]="item" [account]="account"></app-vehicle-item>
+      <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
     </div>
   </div>
 <div *ngIf="loading" class="loadingIndicator">
