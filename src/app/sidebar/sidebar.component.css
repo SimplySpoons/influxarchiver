@@ -420,8 +420,12 @@ body {
     right:5px;
     top:10px;
     width:40px;
+     
 }
 .in #nav-icon2 {
     top:15px;
     width:40px;
+}
+#nav-icon2:hover span {
+    background:#FFF;
 }
