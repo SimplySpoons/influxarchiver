@@ -170,6 +170,7 @@ body {
     border-top-right-radius: 3px;
     color:#FFF;
 }
+
 .dashboardLink:hover,.nav-side-menu .panel:hover {
     background-color:#31708f;
     -webkit-transition: all 1s ease;
@@ -428,4 +429,31 @@ body {
 }
 #nav-icon2:hover span {
     background:#FFF;
+}
+.nav-side-menu .navTitle {
+    position:relative;
+}
+.nav-side-menu .dashboardLink .navTitle {
+    left:8px;
+}
+.nav-side-menu .navTitle2 {
+    left:26px;
+}
+.nav-side-menu .navTitle3 {
+    left:35px;
+}
+.nav-side-menu .navTitle4 {
+    left:28px;
+}
+.fa.fa-user.fa-lg {
+    position:relative;
+    left:4px;
+}
+.fa.fa-users.fa-lg {
+    position:relative;
+    left:1px;
+}
+.fa.fa-dashboard.fa-lg {
+    position:relative;
+    right:1px;
 }
