@@ -14,30 +14,31 @@ export class AccountService {
   account: Account; 
   sendAccountChange = new EventEmitter<any>();
   constructor(private conf: AppConfig, private http: Http) { 
-      this.API_URL = this.conf.API_CONFIG(); 
+//this.API_URL = this.conf.API_CONFIG(); 
+     this.API_URL = 'http://localhost:6969/hotdog/php/';
   }
 
    getAccountData(accountId: string) {
-        return this.http.post(this.API_URL + '/account.php', { request: "getAccountData", accountId: accountId }).map(
+        return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
             (response: Response) => response.json()); 
     }
 
     getAccountVehicles(accountId: string, type: any, classification: any) {
-        return this.http.post(this.API_URL + '/vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification }).map(
+        console.log(accountId);
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification }).map(
             (response: Response) => response.json());
     }
 
     getInfluxConfigs(accountId: string) {
-        return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
+        return this.http.post('http://localhost:6969/hotdog/php/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
             (response: Response) => response.json());
     }
 
     getInvCounts(accountId: string){
             console.log('hitting service');
-        return this.http.post('http://localhost:6969/vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }
-
     setCurrentAccount(account: any){
          this.account = account; 
          this.sendAccountChange.emit(this.account); 
