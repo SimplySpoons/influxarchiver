@@ -11,7 +11,7 @@
     zip: string; 
     country: string;
 -->
-<div class="row">
+<div class="row name">
   <h3 style="margin: 0 0 5px"> {{account.name}} </h3>
   <div class="panel-sub" style="margin-bottom: 25px;">
     <small> {{account.accountId}} | <a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
@@ -21,7 +21,7 @@
 <div class="row">
   <div class="nav clearfix" *ngIf="invCounts.length > 0">
     <div style="background: transparent; padding: 0" class="col-md-6" *ngFor="let count of invCounts">
-      <div class="heading">
+      <div class="type heading">
         <h3 style="margin: 5px 0;"> {{count.type}} </h3>
       </div>
       <hr>
