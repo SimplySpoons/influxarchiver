@@ -435,8 +435,9 @@ body {
 
 }
 .in #nav-icon2 {
-    top:15px;
+    top: 10px;
     width:40px;
+    float:right;
 }
 #nav-icon2:hover span {
     background:#5bc0de;
