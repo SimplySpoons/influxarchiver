@@ -1,0 +1,16 @@
+h3.usedNew {
+    margin-bottom:0;
+    margin-top:0;
+}
+.type.heading .usedNew {
+    position:relative;
+    top:10px;
+}
+.nav a.btn.New {
+    background-color:#5bc0de;
+    border-color:#5bc0de;
+}
+.nav a.btn.New:hover {
+    background-color:#3F869B;
+    border-color:#3F869B;
+}
