@@ -4,6 +4,7 @@ import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { DropdownModule } from "ngx-dropdown";
 
 @Component({
   selector: 'app-vehicle-list',

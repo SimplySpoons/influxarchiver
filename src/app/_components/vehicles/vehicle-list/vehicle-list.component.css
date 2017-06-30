@@ -14,3 +14,33 @@ h3.usedNew {
     background-color:#01646b;
     border-color:#01646b;
 }
+
+.row.invbuttons p {
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.row.invbuttons {
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+.invdropdown li { cursor: pointer; }
+
+/* Dropdown transition */
+.dropdown .dropdown-menu {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+}
+.dropdown.open .dropdown-menu {
+    max-height: 200px;
+    opacity: 1;
+    margin-right:-10px;
+}
