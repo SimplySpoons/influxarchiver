@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, ElementRef, EventEmitter, Output, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { AccountService } from '../_services/account.service';
@@ -11,7 +11,7 @@ import { AccountService } from '../_services/account.service';
     trigger('toggleState', [
       state('in', style({
         transform: 'translate3d(0, 0, 0)',
-        
+
       })),
       state('out', style({
         transform: 'translate3d(100%, 0, 0)'
@@ -43,10 +43,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
   };
   public customClass: string = 'customClass';
 
+  @Output()
+  public collapseSideBar = new EventEmitter();
+
   isIn = false;   // store state
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
+    this.collapseSideBar.emit(bool)
   }
 
   ngOnInit() {
