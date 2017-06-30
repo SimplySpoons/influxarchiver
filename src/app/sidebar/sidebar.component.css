@@ -214,17 +214,17 @@ body {
     z-index: 999999999;
 }
 
-.sdevcredit { 
-  position: absolute;
-  bottom: 18px;
-  right: 180px;
-} 
-
-.istcredit {
+.istcredit { 
   position: absolute;
   bottom: 0px;
+  right: 115px;
   width: 60%;
-  right: 10px;
+} 
+
+.sdevcredit {
+  position: absolute;
+  bottom: 18px;
+  right: 0px;
 }
 [class^="hvr-icon"] { display:block;height:100%; }
 /* Hide SDEV and IST logos when the sidebar collapses to top */
