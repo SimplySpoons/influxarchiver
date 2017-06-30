@@ -4,7 +4,7 @@
       <h5>Vehicle Images</h5>
   </div>
   <div class="vehicle-image" *ngFor="let image of item.image">
-    <img [src]="getImageSrc(image,item.accountId)" />
+    <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
   </div>
 </div>
 <div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
