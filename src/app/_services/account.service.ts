@@ -5,27 +5,27 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-import { AppConfig } from '../app.config'; 
-import { Account } from '../_models/account'; 
+import { AppConfig } from '../app.config';
+import { Account } from '../_models/account';
 @Injectable()
 export class AccountService {
-  
-  API_URL: string;
-  account: Account; 
-  sendAccountChange = new EventEmitter<any>();
-  constructor(private conf: AppConfig, private http: Http) { 
-    this.API_URL = this.conf.API_CONFIG(); 
-     //this.API_URL = 'http://localhost:6969/hotdog/php/';
-  }
 
-   getAccountData(accountId: string) {
+    API_URL: string;
+    account: Account;
+    sendAccountChange = new EventEmitter<any>();
+    constructor(private conf: AppConfig, private http: Http) {
+        this.API_URL = this.conf.API_CONFIG();
+        //this.API_URL = 'http://localhost:6969/hotdog/php/';
+    }
+
+    getAccountData(accountId: string) {
         return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
-            (response: Response) => response.json()); 
+            (response: Response) => response.json());
     }
 
     getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
         console.log('hitting');
-        return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset}).map(
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset }).map(
             (response: Response) => response);
     }
 
@@ -34,25 +34,25 @@ export class AccountService {
             (response: Response) => response.json());
     }
 
-    getInvCounts(accountId: string){
-            console.log('hitting service');
+    getInvCounts(accountId: string) {
+        console.log('hitting service');
         return this.http.post(this.API_URL + 'vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }
-    setCurrentAccount(account: any){
-         this.account = account; 
-         this.sendAccountChange.emit(this.account); 
+    setCurrentAccount(account: any) {
+        this.account = account;
+        this.sendAccountChange.emit(this.account);
     }
 
-    getCurrentAccount(){
-        return this.account; 
+    getCurrentAccount() {
+        return this.account;
     }
 
-     search(names: Observable<string>) {
+    search(names: Observable<string>) {
         return names.debounceTime(400)
             .distinctUntilChanged()
             .switchMap(name => this.searchForAccount(name));
-    }''
+    } ''
 
     searchForAccount(name) {
         return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
@@ -62,10 +62,16 @@ export class AccountService {
     searchVehicle(term: Observable<string>, accountId: any) {
         return term.debounceTime(400)
             .distinctUntilChanged()
-            .switchMap(term => this.searchForItem(term,accountId));
+            .switchMap(term => this.searchForItem(term, accountId));
     }
 
-    searchForItem(term,accountId) {
+    searchForItem(term, accountId) {
+        if (term.includes('http')) {
+            let uuid = term.match(/.*([0-9a-f]{32})\.htm$/);
+            if (uuid[1] !== undefined) {
+                term = uuid[1];
+            }
+        }
         return this.http.post(this.API_URL + 'vehicle.php', { request: "searchForItem", search: term, accountId: accountId }).map(
             (response: Response) => response.json());
     }

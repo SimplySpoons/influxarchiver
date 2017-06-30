@@ -49,7 +49,7 @@ export class SearchPipe implements PipeTransform {
   transform(items: any, value: any): any {
     if (value === undefined) return items;
     return items.filter(function (item) {
-      return item.title.toLowerCase().includes(value.toLowerCase());
+      return item.title.toLowerCase().includes(value.toLowerCase()) || value.includes(item.uuid);
     })
   }
 }

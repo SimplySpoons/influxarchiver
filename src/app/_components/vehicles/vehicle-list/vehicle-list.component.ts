@@ -29,6 +29,8 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   tmpData: any; 
   selectedItem: Item;
   selected = false; 
+  pasted = false;  
+  value: string = ''; 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
@@ -43,9 +45,20 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     this.selectedItem = null; 
     this.selected = false; 
   }
+  
+  onValueChange(data: any){ 
+    if(this.pasted === true) {
+      this.itemSearchTerm$.next(data);
+    }
+  }
+
+  formatRequest(data: any) {
+    this.pasted=true; 
+  }
 
   searchForVehicle() {
         this.loading=true; 
+        console.log('hitting file');
         this.accountService.searchVehicle(this.itemSearchTerm$, this.accountId).subscribe(items => {
             this.items = this.items.concat(items);
             this.loading=false; 

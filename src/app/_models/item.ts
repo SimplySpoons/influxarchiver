@@ -59,4 +59,5 @@ export class Item {
     googlebaseid: string;
     autodata_id: string;
     className: string;
+    showPanel: boolean;
 }

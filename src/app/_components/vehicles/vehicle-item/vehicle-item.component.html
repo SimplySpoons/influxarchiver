@@ -69,7 +69,7 @@
             <h4 style="margin:15px 0 -10px;">{{item.title}}</h4>
         </div>
         <hr>
-        <div class="panel-body clearfix">
+        <div class="panel-body clearfix" *ngIf="item.showPanel == true">
             <div class="col-md-2 vehicle-image">
                 <img [src]="getImageSrc(item.image[0],item.accountId)" />
             </div>
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-    <div class="panel-footer">
+    <div class="panel-footer" *ngIf="item.showPanel == true">
         <a [href]="getVdpLink(item.uuid,item.type)" class="btn btn-primary" target="_blank"> VDP Link </a>
         <a [href]="getVlpLink(item.vin,item.type)" class="btn btn-primary" target="_blank"> VLP Link </a>
         <a [href]="getAuditTrail(item.vin)" class="btn btn-success" target="_blank"> Audit Trail </a>
