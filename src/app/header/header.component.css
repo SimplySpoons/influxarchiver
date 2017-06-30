@@ -10,6 +10,11 @@
 .nav.navbar-nav.navbar-right {
     margin-right:0;
 }
+@media (max-width: 768px) {
+  .navbar-default.navbar-fixed-top {
+    display:none;
+  }
+}
 #navbarSarchBarContainer,
 #navBarButtonsContainer {
   float:left;

@@ -16,7 +16,7 @@
   text-align: center;
   font-size: 14px;
 }
-.navbar-collapse.collapse { 
+.navbar-collapse.collapse {
     display:block !important;
 }
 
@@ -115,7 +115,7 @@
 .nav-side-menu li a:hover {
     text-decoration:none;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-side-menu {
     position: relative;
     width: 100%;
@@ -138,7 +138,7 @@
     line-height: 50px !important;
   }
 }
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
@@ -229,12 +229,12 @@ body {
     z-index: 999999999;
 }
 
-.istcredit { 
+.istcredit {
   position: absolute;
   bottom: 115px;
   right: 1px;
   width: 100%;
-} 
+}
 
 .sdevcredit {
   position: absolute;
@@ -243,9 +243,10 @@ body {
 }
 [class^="hvr-icon"] { display:block;height:100%; }
 /* Hide SDEV and IST logos when the sidebar collapses to top */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
   .sdevcredit, .istcredit { display: none; }
+  .navbar-collapse.in {overflow-y: hidden;}
 }
 #nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
   width: 60px;
@@ -431,7 +432,7 @@ body {
     right:5px;
     top:10px;
     width:40px;
-     
+
 }
 .in #nav-icon2 {
     top:15px;
