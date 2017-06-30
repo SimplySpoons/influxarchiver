@@ -5,7 +5,7 @@
     <div class="dropdown col-md-6" dropdown *ngFor="let count of invCounts">
       <button dropdownToggle type="button" id="invbutton" class="btn btn-primary" dropdown-open>{{count.type}} ({{count.total}}) <span class="caret"></span></button>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li roll="menuitem" *ngFor="let class of count.data">
+        <li roll="menuitem" [ngClass]="{ 'disabled': class.count==0 }" *ngFor="let class of count.data">
           <a class="dropdown-item" (click)="loadCorrectVehicles(class.type,class.classification)">{{class.className}} <span style="text-align: right;"> ({{class.count}}) </span></a>
         </li>
       </ul>
