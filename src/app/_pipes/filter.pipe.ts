@@ -39,6 +39,20 @@ export class FilterPipe implements PipeTransform {
     return results; 
   }
 }
+@Pipe({
+  name: 'search',
+  pure: false
+})
+
+@Injectable()
+export class SearchPipe implements PipeTransform {
+  transform(items: any, value: any): any {
+    if (value === undefined) return items;
+    return items.filter(function (item) {
+      return item.title.toLowerCase().includes(value.toLowerCase());
+    })
+  }
+}
 
 @Pipe({
   name: 'dupfilter',
@@ -74,4 +88,5 @@ export class DuplicatePipe implements PipeTransform {
     }
     return resultArray;
   }
+  
 }

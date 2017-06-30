@@ -15,7 +15,7 @@ import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
-import { FilterPipe } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe } from './_pipes/filter.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
@@ -50,6 +50,7 @@ export function initializeCurrentUser(config: AppConfig) {
     VehicleSingleComponent,
     QuicklinksComponent,
     FilterPipe,
+    SearchPipe,
     InfluxComponent,
     SearchComponent,
     IssuetrackerComponent,
@@ -71,7 +72,7 @@ export function initializeCurrentUser(config: AppConfig) {
     AccordionModule,
     BsDropdownModule.forRoot()
   ],
-  exports: [FilterPipe],
+  exports: [FilterPipe, SearchPipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })

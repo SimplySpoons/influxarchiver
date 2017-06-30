@@ -52,21 +52,21 @@ export class AccountService {
         return names.debounceTime(400)
             .distinctUntilChanged()
             .switchMap(name => this.searchForAccount(name));
-    }
+    }''
 
     searchForAccount(name) {
         return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
             (response: Response) => response.json());
     }
 
-    searchVehicle(term: Observable<string>) {
+    searchVehicle(term: Observable<string>, accountId: any) {
         return term.debounceTime(400)
             .distinctUntilChanged()
-            .switchMap(term => this.searchForAccount(term));
+            .switchMap(term => this.searchForItem(term,accountId));
     }
 
-    searchForItem(term) {
-        return this.http.post(this.API_URL + 'vehicle.php', { request: "searchForItem", search: term }).map(
+    searchForItem(term,accountId) {
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "searchForItem", search: term, accountId: accountId }).map(
             (response: Response) => response.json());
     }
 }

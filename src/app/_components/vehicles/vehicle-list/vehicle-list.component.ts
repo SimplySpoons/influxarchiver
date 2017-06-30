@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
-  searchTerm$ = new Subject<string>();
+  itemSearchTerm$ = new Subject<string>();
   account: Account = new Account();
   accountId: string;
   sub: any;
@@ -37,7 +37,6 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
        this.scrollCallback = this.loadVehicles.bind(this);
-       this.searchForVehicle(); 
   }
   getItem(data: any){ 
     this.selectedItem = data; 
@@ -45,7 +44,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   }
   searchForVehicle() {
         this.loading=true; 
-        this.accountService.searchVehicle(this.searchTerm$).subscribe(items => {
+        this.accountService.searchVehicle(this.itemSearchTerm$, this.accountId).subscribe(items => {
             this.items = this.items.concat(items);
             this.loading=false; 
         });
@@ -98,6 +97,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
        this.loading = true;
       this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
+       this.searchForVehicle(); 
       this.account = this.accountService.getCurrentAccount();
       this.accountService.getInvCounts(this.accountId).subscribe(counts => {
           this.invCounts = counts;
