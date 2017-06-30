@@ -55,16 +55,6 @@
                         </li>
                     </ul>
                 </accordion-group>
-                <accordion-group panelClass="navPanelItem" #group5>
-                    <div [ngClass]="{'hvr-icon-bob': group5?.isOpen, 'hvr-icon-hang': !group5?.isOpen}" accordion-heading>
-                        <i class="fa fa-dashboard fa-lg"></i> <span class="navTitle navTitle4">Control Center</span>
-                    </div>
-                    <ul class="accordianUnderText">
-                        <li *ngFor="let oemlink of oemlinks">
-                            <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
-                        </li>
-                    </ul>
-                </accordion-group>
             </accordion>
             <a panelClass="navPanelItem" [routerLink]="['/submitbug']">
                 <div class="bugSubmitLink panel-title">
