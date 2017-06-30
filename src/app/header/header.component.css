@@ -8,9 +8,9 @@
     border-radius:0;
 }
 .nav.navbar-nav.navbar-right {
-    margin-right:0;
+    margin-right:10px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-default.navbar-fixed-top {
     display:none;
   }

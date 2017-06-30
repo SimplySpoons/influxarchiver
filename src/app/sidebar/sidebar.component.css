@@ -115,40 +115,7 @@
 .nav-side-menu li a:hover {
     text-decoration:none;
 }
-@media (max-width: 768px) {
-  .nav-side-menu {
-    position: relative;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .nav-side-menu .toggle-btn {
-    display: block;
-    cursor: pointer;
-    float:right;
-    z-index: 10 !important;
-    padding: 3px;
-    margin: 5px;
-    width: 40px;
-    text-align: center;
-  }
-  .brand {
-    text-align: left !important;
-    font-size: 22px;
-    padding-left: 20px;
-    line-height: 50px !important;
-  }
-}
-@media (min-width: 768px) {
-  .nav-side-menu .menu-list .menu-content {
-    display: block;
-  }
-  .nav-side-menu .navbar-collapse.collapse { width:300px;}
 
-  #main {
-  	width:calc(100% - 300px);
-  	float: right;
-  }
-}
 
 body {
   margin: 0px;
@@ -233,7 +200,7 @@ body {
 }
 [class^="hvr-icon"] { display:block;height:100%; }
 /* Hide SDEV and IST logos when the sidebar collapses to top */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
   .sdevcredit, .istcredit { display: none; }
   .navbar-collapse.in {overflow-y: hidden;}
@@ -418,13 +385,11 @@ body {
 }
 .out #nav-icon2.open {
     margin:0;
-    position:absolute;
-    right:5px;
-    top:10px;
+    position:relative;
     width:40px;
-
+    float:right;
 }
-.in #nav-icon2 {
+.navbar-collapse #nav-icon2 {
     top: 10px;
     width:40px;
     float:right;
@@ -472,4 +437,47 @@ body {
 }
 .collapse.navbar-collapse.out .menu-list .panel.card.navPanelItem {
     border:none;
+}
+
+@media (max-width: 767px) {
+  .nav-side-menu {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .navbar-collapse #nav-icon2 {
+    top:15px;
+  }
+  .nav-side-menu .toggle-btn {
+    display: block;
+    cursor: pointer;
+    float:right;
+    z-index: 10 !important;
+    padding: 3px;
+    margin: 5px;
+    width: 40px;
+
+    text-align: center;
+  }
+  .nav-side-menu .navbar-collapse.collapse.in {
+    padding-right:10px;
+  }
+  .nav-side-menu .navbar-collapse.collapse.in .brand {
+    display: inline-block;
+    text-align: left !important;
+    font-size: 22px;
+    padding-left: 0;
+    line-height: 50px !important;
+  }
+}
+@media (min-width: 767px) {
+  .nav-side-menu .menu-list .menu-content {
+    display: block;
+  }
+  .nav-side-menu .navbar-collapse.collapse { width:300px;}
+
+  #main {
+  	width:calc(100% - 300px);
+  	float: right;
+  }
 }
