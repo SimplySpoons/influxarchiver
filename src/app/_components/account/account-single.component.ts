@@ -19,6 +19,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   private sub: any;
   invCounts: any = [];
 
+  @Output() callbackReady: EventEmitter<any> = new EventEmitter();
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.loading = true;
@@ -28,9 +29,6 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
         this.account = account;
         this.accountService.setCurrentAccount(account);
         this.loading = false;
-        this.accountService.getInvCounts(this.accountId).subscribe(counts => {
-          this.invCounts = counts;
-        })
       });
     });
 
@@ -40,6 +38,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   }
 
   loadCorrectVehicles(type: any, classification: any) {
+    this.callbackReady.emit({type: type, classification: classification});
     return '/account/' + this.accountId + '/vehicles/' + type + '/' + classification;
   }
 

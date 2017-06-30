@@ -23,10 +23,10 @@ export class AccountService {
             (response: Response) => response.json()); 
     }
 
-    getAccountVehicles(accountId: string, type: any, classification: any) {
-        console.log(accountId);
-        return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification }).map(
-            (response: Response) => response.json());
+    getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
+        console.log('hitting');
+        return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset}).map(
+            (response: Response) => response);
     }
 
     getInfluxConfigs(accountId: string) {

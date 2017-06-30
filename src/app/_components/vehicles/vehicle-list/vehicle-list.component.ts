@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, EventEmitter, Output, OnChanges, AfterViewInit } from '@angular/core';
 import { AccountService } from '../../../_services/account.service';
 import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
@@ -9,43 +9,88 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.css']
 })
-export class VehicleListComponent implements OnInit, OnDestroy {
+export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
-  account: Account;
+  account: Account = new Account();
   accountId: string;
   sub: any;
   items: Array<Item> = [];
 
-  type: string;
+  type: string = '';
   classification: string;
 
   routersub: any;
   invCounts: any;
+  offset: number = 0;
+  immediateCallback = false;
+  scrollCallback;
 
-  loading: boolean = false; 
+  loading: boolean = false;
+
+  loadDone = false; 
+
+  tmpData: any; 
+
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
-  
+       this.scrollCallback = this.loadVehicles.bind(this);
+  }
+  getCallback(data: any){ 
+    console.log('data', data);
+  }
+  loadCorrectVehicles(type: any, classification: any) {
+    this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
+    this.loading=true; 
+    this.items=[];
+    this.accountService.getAccountVehicles(this.accountId, type, classification, 0).subscribe(items => {
+      this.items = items.json();
+      this.loading=false; 
+    }); 
   }
 
-  loadVehicles(type: any, classification: any) {
-    this.loading=true; 
-    this.accountService.getAccountVehicles(this.accountId, type, classification).subscribe(items => {
-      this.items = items;
-      this.loading=false; 
-    });
+  loadVehicles() {
+    this.loading = true; 
+    if(this.loadDone == false){
+      this.offset = this.items.length;
+        return this.accountService.getAccountVehicles(this.accountId, this.type, this.classification, this.offset).do(this.processData);
+    }
+    else {
+      this.loading = false;
+    }
+  }
+
+  ngAfterViewInit(){ 
+    console.log('afterViewInit');
+  }
+
+  private processData = (vehicles) => {
+    this.tmpData = vehicles.json(); 
+    console.log(this.tmpData.length);
+    if(this.tmpData.length < 20){
+      this.loadDone = true; 
+    }
+    this.items = this.items.concat(this.tmpData);
+    this.offset = this.items.length;
+    this.loading = false;
+  }
+
+  ngOnChanges(){ 
+    console.log('change occurred'); 
   }
 
   ngOnInit() {
-    this.sub = this.route.parent.params.subscribe(params => {
+       this.loading = true;
+      this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
       this.account = this.accountService.getCurrentAccount();
+      this.accountService.getInvCounts(this.accountId).subscribe(counts => {
+          this.invCounts = counts;
+        })
       console.log(this.accountId);
     });
     this.routersub = this.route.params.subscribe(params => {
       this.type = params['type'];
       this.classification = params['classification'];
-      this.loadVehicles(this.type,this.classification);
     });
   }
   ngOnDestroy() {

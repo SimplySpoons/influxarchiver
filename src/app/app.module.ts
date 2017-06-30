@@ -17,7 +17,6 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
 import { FilterPipe } from './_pipes/filter.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
-import { ScrollerDirective } from './scroll.directive';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -29,6 +28,7 @@ import { SubmitbugComponent, IssuetrackerComponent } from './bugs/index';
 import { ModalService } from './_services/modal.service';
 import { TextEditorComponent } from './_components/wysiwyg.component';
 import { ModalComponent } from './_components/modal.component';
+import { InfiniteScroller } from './_directives/infinitescroller.directive';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -49,13 +49,13 @@ export function initializeCurrentUser(config: AppConfig) {
     VehicleSingleComponent,
     QuicklinksComponent,
     FilterPipe,
-    ScrollerDirective,
     InfluxComponent,
     SearchComponent,
     IssuetrackerComponent,
     SubmitbugComponent,
     TextEditorComponent,
-    ModalComponent
+    ModalComponent,
+    InfiniteScroller
   ],
   imports: [
     BrowserModule,
