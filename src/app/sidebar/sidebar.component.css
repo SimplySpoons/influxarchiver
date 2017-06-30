@@ -338,7 +338,7 @@ body {
   position: absolute;
   height: 4px;
   width: 50%;
-  background: #5bc0de;
+  background: #fff;
   opacity: 1;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -428,7 +428,7 @@ body {
     width:40px;
 }
 #nav-icon2:hover span {
-    background:#FFF;
+    background:#5bc0de;
 }
 .nav-side-menu .navTitle {
     position:relative;
