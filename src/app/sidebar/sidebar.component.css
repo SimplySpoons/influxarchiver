@@ -1,5 +1,6 @@
 .nav-side-menu {
-  overflow: hidden;
+  overflow: auto;
+  overflow-x: hidden;
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
@@ -491,4 +492,14 @@ body {
   	width:calc(100% - 300px);
   	float: right;
   }
+}
+.fa.fa-link.fa-lg {
+    position:relative;
+    left:2px;
+}
+.nav-side-menu li a {
+    display:block;
+}
+.nav-side-menu .panel-title .accordion-toggle .accordion-heading {
+    display:block;
 }

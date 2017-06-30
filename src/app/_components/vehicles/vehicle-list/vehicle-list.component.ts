@@ -4,6 +4,7 @@ import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { DropdownModule } from "ngx-dropdown";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -16,22 +17,16 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   accountId: string;
   sub: any;
   items: Array<Item> = [];
-
   type: string = '';
   classification: string;
-
   routersub: any;
   invCounts: any;
   offset: number = 0;
   immediateCallback = false;
   scrollCallback;
-
   loading: boolean = false;
-
   loadDone = false; 
-
   tmpData: any; 
-
   selectedItem: Item;
   selected = false; 
 
@@ -42,6 +37,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     this.selectedItem = data; 
     this.selected = true; 
   }
+
   searchForVehicle() {
         this.loading=true; 
         this.accountService.searchVehicle(this.itemSearchTerm$, this.accountId).subscribe(items => {
@@ -49,6 +45,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
             this.loading=false; 
         });
     }
+
   loadCorrectVehicles(type: any, classification: any) {
     this.router.navigate(['vehicles', type, classification], { relativeTo: this.route.parent });
     this.loading=true; 
@@ -94,7 +91,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   }
 
   ngOnInit() {
-       this.loading = true;
+      this.loading = true;
       this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
        this.searchForVehicle(); 
