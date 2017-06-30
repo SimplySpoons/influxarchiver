@@ -1,4 +1,6 @@
 <div class="row">
+  <h3>Dealer Search</h3>
+  <h4>Start typing the name of a dealer or a dealer ID...</h4>
   <input type="text" class="form-control" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
 <div class="accountList" style="margin: 20px 0;" *ngIf="!loading">

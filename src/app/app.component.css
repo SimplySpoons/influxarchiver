@@ -14,6 +14,6 @@
     }
     .main-panel.in { width: calc(100% - 70px); }
 
-    #main-container { padding-top:100px;}
+    #main-container { padding-top:70px;}
 
 }
