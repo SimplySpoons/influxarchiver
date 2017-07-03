@@ -1,7 +1,7 @@
-<div class="row">
-  <h2> Search For Dealer By Account ID or Dealership Name </h2>
+<div class="row dealersearch">
+  <h2> Search for Dealer by Account ID or Dealership Name </h2>
   <hr>
-  <input type="text" class="form-control" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
+  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
 <div class="accountList" style="margin: 20px 0;" *ngIf="value != undefined">
   <div class="panel">
