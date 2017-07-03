@@ -9,10 +9,32 @@ import { Account } from '../_models/account';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
-  constructor() { }
+  searchTerm$ = new Subject<string>();
+  accounts: Array<Account> = [];
+  loading = false;
+  value = '';
+  showList;
+  
+  constructor(private accountService: AccountService) {
+    this.searchForUser();
+  }
 
   ngOnInit() {
   }
 
+  loadingInit() {
+    this.loading = true;
+  }
+
+  searchForUser() {
+    this.accountService.search(this.searchTerm$).subscribe(name => {
+      this.accounts = name;
+      this.loading = false;
+      console.log(this.accounts);
+    });
+  }
+
+  clearSearchTerm() {
+    this.value = '';
+  }
 }
