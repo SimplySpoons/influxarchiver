@@ -1,5 +1,6 @@
 <div class="row dealersearch">
   <h2> Search for Dealer by Account ID or Dealership Name </h2>
+  <h2 class="searchtip">Example: "roimotors" or "ROI Motors"</h2>
   <hr>
   <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
