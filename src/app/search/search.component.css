@@ -2,4 +2,4 @@
   margin: 7px 0;
   padding-right:0;
 }
-.userListHolder {position: absolute; max-height: 400px; overflow-y: scroll; z-index: 99999; background: #fff; padding: 20px;right:0;width:1000px; }
+.userListHolder {position: absolute; max-height: 400px; overflow-y: scroll; z-index: 9; background: #fff; padding: 20px;right:0;width:1000px; }

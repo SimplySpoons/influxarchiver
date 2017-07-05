@@ -184,7 +184,7 @@ body {
 }
 
 .nav-side-menu {
-    z-index: 999999999;
+    z-index: 10;
 }
 
 .istcredit {
@@ -332,7 +332,7 @@ body {
   border-radius: 9px 0 0 9px;
 }
 
-#nav-icon2 span:nth-child(1), #nav-icon2 span:nth-child(2) { 
+#nav-icon2 span:nth-child(1), #nav-icon2 span:nth-child(2) {
   top: 0px;
 }
 

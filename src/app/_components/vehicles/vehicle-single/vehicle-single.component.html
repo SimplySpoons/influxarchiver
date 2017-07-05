@@ -1,41 +1,54 @@
- <a (click)="closeVehicleInfo()" class="btn btn-primary btn-danger pull-right"> Close </a>
-<div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()">
-  <div class="single-vehicle-images-heading">
-      <h5>Vehicle Images</h5>
-  </div>
-  <div class="vehicle-image" *ngFor="let image of item.image">
-    <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
-  </div>
-</div>
-<div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
-
-<div id="vehiclePricingContainer">
-  <div class="single-vehicle-vehicle-pricing">
-    <div class="single-vehicle-pricing-heading">
-        <h5>Pricing Data</h5>
-    </div>
-    <span class ="pricing">retailValue:</span> {{item.retailValue}} <br> <span class="pricing">invoicePrice:</span> {{item.invoicePrice}} <br> <span class="pricing">askingPrice:</span> {{item.askingPrice}}
-    <br> <span class="pricing">wholesalePrice:</span> {{item.wholesalePrice}} <br> <span class="pricing">internetPrice:</span> {{item.internetPrice}} <br> <span class="pricing">msrp:</span> {{item.msrp}}
-    <br> salePrice: {{item.salePrice}}
-</div>
-</div>
-<div id="vehicleOverviewContainer"></div>
-  <div id="vehicleDetailsContainer">
-    <div class="single-vehicle-details-heading">
-        <h5>Vehicle Details</h5>
-    </div>
-    <div class="single-vehicle-info">
-      <li><span class="vin">VIN:</span> {{item.vin}}</li>
-      <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
-      <li><span class="stock">Type:</span> {{item.type}}</li>
-      <li><span class="stock">Classification:</span> {{item.className}}</li>
-      <div *ngIf="item.certified>0">
-          <li><span class="stock">Certified:</span> Yes</li>
+<div [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal custom-fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Auto shown modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <li><span class="stock">Year:</span> {{item.year}}</li>
-      <li><span class="stock">Make:</span> {{item.make}}</li>
-      <li><span class="stock">Model:</span> {{item.model}}</li>
-      <li><span class="stock">Trim:</span> {{item.trim}}</li>
-      <li><span class="comments">Comments:</span> {{item.comments}}</li>
+      <div class="modal-body">
+        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()">
+          <div class="single-vehicle-images-heading">
+            <h5>Vehicle Images</h5>
+          </div>
+          <div class="vehicle-image" *ngFor="let image of item.image">
+            <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
+          </div>
+        </div>
+        <div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
+
+        <div id="vehiclePricingContainer">
+          <div class="single-vehicle-vehicle-pricing">
+            <div class="single-vehicle-pricing-heading">
+              <h5>Pricing Data</h5>
+            </div>
+            <span class="pricing">retailValue:</span> {{item.retailValue}} <br> <span class="pricing">invoicePrice:</span> {{item.invoicePrice}} <br> <span class="pricing">askingPrice:</span> {{item.askingPrice}}
+            <br> <span class="pricing">wholesalePrice:</span> {{item.wholesalePrice}} <br> <span class="pricing">internetPrice:</span> {{item.internetPrice}} <br> <span class="pricing">msrp:</span> {{item.msrp}}
+            <br> salePrice: {{item.salePrice}}
+          </div>
+        </div>
+        <div id="vehicleOverviewContainer"></div>
+        <div id="vehicleDetailsContainer">
+          <div class="single-vehicle-details-heading">
+            <h5>Vehicle Details</h5>
+          </div>
+          <div class="single-vehicle-info">
+            <li><span class="vin">VIN:</span> {{item.vin}}</li>
+            <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
+            <li><span class="stock">Type:</span> {{item.type}}</li>
+            <li><span class="stock">Classification:</span> {{item.className}}</li>
+            <div *ngIf="item.certified>0">
+              <li><span class="stock">Certified:</span> Yes</li>
+            </div>
+            <li><span class="stock">Year:</span> {{item.year}}</li>
+            <li><span class="stock">Make:</span> {{item.make}}</li>
+            <li><span class="stock">Model:</span> {{item.model}}</li>
+            <li><span class="stock">Trim:</span> {{item.trim}}</li>
+            <li><span class="comments">Comments:</span> {{item.comments}}</li>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

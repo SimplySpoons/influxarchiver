@@ -31,6 +31,7 @@ import { ModalComponent } from './_components/modal.component';
 import { InfiniteScroller } from './_directives/infinitescroller.directive';
 import { ScrollerDirective } from './scroll.directive';
 import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -72,7 +73,8 @@ export function initializeCurrentUser(config: AppConfig) {
     ReactiveFormsModule,
     NgSpinKitModule,
     AccordionModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   exports: [FilterPipe, SearchPipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
