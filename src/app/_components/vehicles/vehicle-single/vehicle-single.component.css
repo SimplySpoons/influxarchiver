@@ -4,6 +4,12 @@
 #vehicleDetailsContainer li { list-style: none;}
 #vehicleDetailsContainer,
 #vehicleMediaContainer,
-#vehiclePricingContainer { border:1px solid #000; margin-bottom: 10px; }
+#vehiclePricingContainer { border:1px solid #000; margin-bottom: 10px; border-radius: 10px; }
 #single-vehicle-expand { cursor: pointer; text-align:center; font-weight:bold; font-size:14px;}
 #vehicleMediaContainer .vehicle-image img { width:200px; margin:5px;}
+.single-vehicle-info, .single-vehicle-vehicle-pricing, .single-vehicle-details-heading { margin-left: 5px; }
+.single-vehicle-info, .single-vehicle-vehicle-pricing { margin-bottom: 7px; }
+.single-vehicle-details-heading, .single-vehicle-pricing-heading, .single-vehicle-images-heading h5 { text-decoration: underline; }
+.vin, .stock, .comments, .pricing { font-style: italic; }
+.btn-danger { margin-bottom: 10px; }
+#single-vehicle-expand { margin-bottom: 10px; }

@@ -34,7 +34,7 @@
     (ngModelChange)="onValueChange($event)" (paste)="formatContent($event)"
   </div> -->
 <div class="search" style="margin-bottom: 20px;">
-  <input type="text" class="form-control" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
+  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
 </div>
 <app-vehicle-single *ngIf="selected" (closeBox)="closeSingle($event)"  [item]="selectedItem" [account]="account"></app-vehicle-single>
 <div (callbackReady)="initScroller($event)" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"

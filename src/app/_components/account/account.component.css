@@ -1,0 +1,4 @@
+.row.dealersearch { border: 1px solid; height: 190px; border-radius: 5px; box-shadow: 10px 10px 5px #888888; }
+.form-control { width: 95%; margin: 0 auto; }
+.row.dealersearch h2 { position: relative; left: 38px; }
+.searchtip { font-size: 15px; font-style: italic; font-weight: 300; }
