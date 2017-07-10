@@ -22,17 +22,17 @@ export class FilterPipe implements PipeTransform {
     if (value === undefined) return accounts;
     let resultStart = accounts.filter(function (account) {
       if(account.accountId.toLowerCase().startsWith(value.toLowerCase())){
-          return account.accountId.toLowerCase().startsWith(value.toLowerCase());
+          return account.accountId.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
       }
       else if(account.name.toLowerCase().startsWith(value.toLowerCase()) &&
       !account.accountId.toLowerCase().startsWith(value.toLowerCase())){
-        return account.name.toLowerCase().startsWith(value.toLowerCase()); 
+        return account.name.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
       }
     });
     let resultEnd = accounts.filter(function (account) {
       if(!account.name.toLowerCase().startsWith(value.toLowerCase()) &&
       !account.accountId.toLowerCase().startsWith(value.toLowerCase())){
-        return account.name.toLowerCase().includes(value.toLowerCase());
+        return account.name.toLowerCase().includes( value.toLowerCase() ) || account.accountId == 'no results found';
       }
     });
     let results = this.returnNewAccountArray(resultStart,resultEnd); 
