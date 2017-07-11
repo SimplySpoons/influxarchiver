@@ -503,6 +503,6 @@ body {
 .nav-side-menu .panel-title .accordion-toggle .accordion-heading {
     display:block;
 }
-.hvr-icon-hang {
+.hvr-icon-hang, .hvr-icon-bob {
     display: block;
 }
