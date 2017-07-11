@@ -1,3 +1,5 @@
 .vin, .stock { font-style: italic; }
 
 .panel { box-shadow: 0 7px 10px rgba(0, 0, 0, 0.23); }
+
+.panel-body { cursor: pointer; }
