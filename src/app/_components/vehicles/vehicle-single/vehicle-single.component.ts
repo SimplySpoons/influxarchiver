@@ -5,7 +5,22 @@ import { trigger,state,style,animate,transition } from '@angular/animations';
 @Component({
   selector: 'app-vehicle-single',
   templateUrl: './vehicle-single.component.html',
-  styleUrls: ['./vehicle-single.component.css']
+  styleUrls: ['./vehicle-single.component.css'],
+  animations: [
+    trigger('dialog', [
+      state('void', style({
+        transform: 'translateX(100%)',
+        opacict: '0'
+      })),
+      state('*',   style({
+        transform: 'translateX(0)',
+        opacity: '1'
+      })),
+      transition('void => *', animate('100ms ease-in-out')),
+      transition('* => void', animate('100ms ease-out-in'))
+    ])
+
+  ]
 })
 export class VehicleSingleComponent implements OnInit {
   @Input() item: Item;
