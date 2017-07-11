@@ -1,4 +1,2 @@
 .vin, .stock { font-style: italic; }
-.panel-body.clearfix {
-    background-color:#FFF;
-}
+.panel-body { cursor: pointer; }
