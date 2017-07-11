@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {Item} from '../../../_models/item';
+import { trigger,state,style,animate,transition } from '@angular/animations';
 
 @Component({
   selector: 'app-vehicle-single',
@@ -24,10 +25,10 @@ export class VehicleSingleComponent implements OnInit {
     return url;
   }
 
-  isExpanded = false;   // store state
+  isImageContainerExpanded = false;   // store state
   toggleState() { // click handler
-    let bool = this.isExpanded;
-    this.isExpanded = bool === false ? true : false;
+    let bool = this.isImageContainerExpanded;
+    this.isImageContainerExpanded = bool === false ? true : false;
   }
 
   ngOnInit() {
