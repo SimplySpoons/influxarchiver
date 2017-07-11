@@ -1,3 +1,5 @@
 .vin, .stock { font-style: italic; }
 .panel { cursor: pointer; }
 .panel:hover { background-color:#eee; }
+.panel-heading h4 { font-weight: bold; }
+.vehicle-pricing-heading h5 { text-decoration: underline; }
