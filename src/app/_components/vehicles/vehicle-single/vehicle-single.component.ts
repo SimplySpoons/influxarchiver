@@ -1,10 +1,24 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {Item} from '../../../_models/item';
+import { trigger,state,style,animate,transition } from '@angular/animations';
 
 @Component({
   selector: 'app-vehicle-single',
   templateUrl: './vehicle-single.component.html',
-  styleUrls: ['./vehicle-single.component.css']
+  styleUrls: ['./vehicle-single.component.css'],
+  animations: [
+    trigger('dialog', [
+      state('void', style({
+        transform: 'translateX(100%)'
+      })),
+      state('*',   style({
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', animate('100ms ease-in-out')),
+      transition('* => void', animate('100ms ease-out-in'))
+    ])
+
+  ]
 })
 export class VehicleSingleComponent implements OnInit {
   @Input() item: Item;
@@ -24,10 +38,10 @@ export class VehicleSingleComponent implements OnInit {
     return url;
   }
 
-  isExpanded = false;   // store state
+  isImageContainerExpanded = false;   // store state
   toggleState() { // click handler
-    let bool = this.isExpanded;
-    this.isExpanded = bool === false ? true : false;
+    let bool = this.isImageContainerExpanded;
+    this.isImageContainerExpanded = bool === false ? true : false;
   }
 
   ngOnInit() {

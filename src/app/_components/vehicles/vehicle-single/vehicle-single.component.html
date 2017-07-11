@@ -1,14 +1,14 @@
-<div [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal custom-fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div [config]="{ show: true, backdrop: false }" [@dialog] (onHidden)="closeVehicleInfo()" bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left vehicleDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Auto shown modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeVehicleInfo()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()">
+        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" (click)="toggleState()">
           <div class="single-vehicle-images-heading">
             <h5>Vehicle Images</h5>
           </div>
@@ -16,7 +16,7 @@
             <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
           </div>
         </div>
-        <div id="single-vehicle-expand" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
+        <div id="single-vehicle-expand" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
 
         <div id="vehiclePricingContainer">
           <div class="single-vehicle-vehicle-pricing">
