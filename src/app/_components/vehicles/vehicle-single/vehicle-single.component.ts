@@ -9,12 +9,10 @@ import { trigger,state,style,animate,transition } from '@angular/animations';
   animations: [
     trigger('dialog', [
       state('void', style({
-        transform: 'translateX(100%)',
-        opacict: '0'
+        transform: 'translateX(100%)'
       })),
       state('*',   style({
-        transform: 'translateX(0)',
-        opacity: '1'
+        transform: 'translateX(0)'
       })),
       transition('void => *', animate('100ms ease-in-out')),
       transition('* => void', animate('100ms ease-out-in'))

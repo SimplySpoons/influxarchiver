@@ -8,7 +8,7 @@
 #single-vehicle-expand { cursor: pointer; text-align:center; font-weight:bold; font-size:14px;}
 #vehicleMediaContainer .vehicle-image img { width:200px; margin:5px;}
 #single-vehicle-expand { margin-bottom: 10px; }
-.vehicleDetailsModal { position:fixed; right:0; left:auto; width:40%; min-width:700px;}
+.vehicleDetailsModal { position:fixed; right:0; left:auto; width:45%; }
 .vehicleDetailsModal .modal-dialog { width:auto; padding-left:20px; height:100%; margin-bottom:0; margin-top:0;}
 .vehicleDetailsModal .modal-dialog .modal-content { height:100%; overflow-y:scroll; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing, .single-vehicle-details-heading { margin-left: 5px; }
