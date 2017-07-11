@@ -32,6 +32,7 @@ import { InfiniteScroller } from './_directives/infinitescroller.directive';
 import { ScrollerDirective } from './scroll.directive';
 import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -73,6 +74,7 @@ export function initializeCurrentUser(config: AppConfig) {
     ReactiveFormsModule,
     NgSpinKitModule,
     AccordionModule,
+    BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot()
   ],
