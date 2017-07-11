@@ -1,2 +1,3 @@
 .vin, .stock { font-style: italic; }
-.panel-body { cursor: pointer; }
+.panel { cursor: pointer; }
+.panel:hover { background-color:#eee; }
