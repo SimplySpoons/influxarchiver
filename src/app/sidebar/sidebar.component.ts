@@ -15,7 +15,7 @@ import { AccountService } from '../_services/account.service';
       state('in',   style({
         transform: 'translateX(-120px) scaleX(0.3)'
       })),
-      transition('in <=> out', animate(200))
+      transition('in <=> out', animate(250))
     ])
   ]
 })

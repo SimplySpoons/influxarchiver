@@ -47,3 +47,6 @@
     margin-left:5px;
 }
 html, body, .wrapper { height:100%; }
+.main-panel.out .brand.hvr-underline-reveal a.headerTitle {
+    display:none;
+}

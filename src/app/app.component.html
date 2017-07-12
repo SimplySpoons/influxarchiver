@@ -1,8 +1,8 @@
 <div class="sidebar">
   <app-sidebar (sendAccountChange)="getAccountChange($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
 </div>
-<div class="main-panel" id="main-container" [ngClass]="{ 'in': isIn, 'out': !isIn }">
-    <app-header></app-header>
+<div class="main-panel" [@mainSlide]="state" id="main-container" [ngClass]="{ 'in': isIn, 'out': !isIn }">
+    <app-header (collapseSideBar)="toggleState($event)"></app-header>
     <div class="container">
       <router-outlet></router-outlet>
     </div>

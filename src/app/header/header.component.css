@@ -1,7 +1,4 @@
-.headerButtons .btn {
-    margin-left:5px;
-    margin-top:7px;
-}
+
 .navbar.navbar-default {
     background-color:#2e353d;
     border-color:#2e353d;
@@ -15,16 +12,20 @@
     display:none;
   }
 }
-#navbarSarchBarContainer,
-#navBarButtonsContainer {
-  float:left;
-}
-#navbarSarchBarContainer { padding-right: 0;}
-/*
-.btn-group.headerButtons {
-    margin-left: 285px;
-}*/
 
 .navbar-default.navbar-fixed-top {
     z-index:2;
+}
+
+.brand.hvr-underline-reveal {
+    position: relative;
+    top: 5px;
+}
+.brand.hvr-underline-reveal .headerTitle {
+    text-decoration: none;
+    font-size: 24px;
+    color: #5bc0de;
+    position: relative;
+    top: 2px;
+    font-family:verdana;
 }
