@@ -44,3 +44,6 @@ h3.usedNew {
     opacity: 1;
     margin-right:-10px;
 }
+.panel-body.clearfix {
+    background-color:#FFF;
+}

@@ -11,22 +11,18 @@ import { trigger,state,style,animate,transition } from '@angular/animations';
       state('void', style({
         transform: 'translateX(100%)'
       })),
-      state('*',   style({
-        transform: 'translateX(0)'
-      })),
-      transition('void => *', animate('100ms ease-in-out')),
-      transition('* => void', animate('100ms ease-out-in'))
+      transition('void <=> *', animate(150))
     ])
-
   ]
 })
 export class VehicleSingleComponent implements OnInit {
   @Input() item: Item;
   @Input() account: any;
   @Output() closeBox = new EventEmitter();
+
   constructor() { }
-
-
+  state = open;
+  
   closeVehicleInfo() {
     console.log('hitting');
     this.closeBox.emit(false);

@@ -8,17 +8,17 @@ import { AccountService } from '../_services/account.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
   animations: [
-    trigger('toggleState', [
+    trigger('navSlide', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)',
+        transform: 'translateX(100%)'
+      })),
+      state('*',   style({
+        transform: 'translateX(0)'
+      })),
+      transition('in => *', animate('100ms ease-in-out')),
+      transition('* => in', animate('100ms ease-out-in'))
+    ])
 
-      })),
-      state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
-      })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
-    ]),
   ]
 })
 export class SidebarComponent implements OnInit, OnDestroy {

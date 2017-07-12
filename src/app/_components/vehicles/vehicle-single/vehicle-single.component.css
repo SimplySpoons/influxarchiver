@@ -16,3 +16,4 @@
 .single-vehicle-details-heading, .single-vehicle-pricing-heading, .single-vehicle-images-heading h5 { text-decoration: underline; }
 .vin, .stock, .comments, .pricing { font-style: italic; }
 .btn-danger { margin-bottom: 10px; }
+.modal-title { font-weight: bold; }
