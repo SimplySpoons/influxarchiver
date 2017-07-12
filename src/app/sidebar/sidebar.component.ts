@@ -9,16 +9,14 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./sidebar.component.css'],
   animations: [
     trigger('navSlide', [
-      state('in', style({
-        transform: 'translateX(100%)'
+      state('out', style({
+        transform: 'scale(1)'
       })),
-      state('*',   style({
-        transform: 'translateX(0)'
+      state('in',   style({
+        transform: 'translateX(-120px) scaleX(0.3)'
       })),
-      transition('in => *', animate('100ms ease-in-out')),
-      transition('* => in', animate('100ms ease-out-in'))
+      transition('in <=> out', animate(200))
     ])
-
   ]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
@@ -65,6 +63,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   invCounts: any;
   sub: any;
   account: any;
+  state = 'out';
+  animationOver = false;
 
   constructor() {
     
@@ -87,7 +87,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
-    this.collapseSideBar.emit(bool)
+    this.collapseSideBar.emit(bool);
+    this.state == 'out' ? this.state = 'in' : this.state = 'out';
+  }
+
+  animationStarted(event) {
+    this.animationOver = false;
+  }
+
+  animationEnded(event) {
+    console.log(event);
+   this.animationOver = true;
   }
 
   ngOnInit() {

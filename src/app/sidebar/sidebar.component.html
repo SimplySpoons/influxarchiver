@@ -1,4 +1,4 @@
-<div class="nav-side-menu" [@navSlide]>
+<div class="nav-side-menu" [@navSlide]="state" (@navSlide.start)="animationStarted($event)" (@navSlide.done)="animationEnded($event)">
     <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn, 'out': !isIn }">
         <div class="brand hvr-underline-reveal">
             <a class="dashTitle" href="/">Influx Archiver 2.0</a>
@@ -16,7 +16,7 @@
             <span></span>
             <span></span>
         </div>
-        <div class="menu-list">
+        <div *ngIf="!isIn" class="menu-list">
             <accordion>
                 <a panelClass="navPanelItem" href="/">
                     <div class="dashboardLink panel-title">
@@ -69,8 +69,7 @@
                 <li><a class="invLink" href="#/account/volvooflislevcna/vehicles/2/4">Test Inventory</a></li>
             </div>-->
         </div>
-
-        <div *ngIf="isIn">
+        <!--<div *ngIf="isIn">
             <div class="sdevcredit">
                 <img src="http://i.imgur.com/9U9dbFV.png" />
             </div>
@@ -78,6 +77,6 @@
             <div class="istcredit">
                 <img src="http://i.imgur.com/keRkPEB.png" />
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

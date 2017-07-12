@@ -37,7 +37,7 @@ export class VehicleSingleComponent implements OnInit {
 
   constructor() { }
 
-  closeVehicleInfo() {
+  closeVehicleInfo(item) {
     console.log('hitting');
     this.closeBox.emit(false);
   }

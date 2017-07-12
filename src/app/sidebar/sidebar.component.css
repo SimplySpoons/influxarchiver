@@ -22,7 +22,7 @@
 }
 
 .nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {display: none;}
-.nav-side-menu .navbar-collapse.collapse.in { width:auto;}
+/*.nav-side-menu .navbar-collapse.collapse.in { width:auto;}*/
 
 .navbar-toggle {
     display: inline-block !important;
@@ -132,7 +132,7 @@ body {
     color: #333;
     background-color:#2e353d;
     border-color: #ddd;
-        padding: 10px 15px;
+    padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -142,10 +142,10 @@ body {
 .dashboardLink:hover,.nav-side-menu .panel:hover,.bugSubmitLink:hover,.issueTracker:hover {
     background-color:#31708f;
     -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
 }
 .nav-side-menu .panel  {
     background-color:#2e353d;
@@ -215,10 +215,10 @@ body {
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: .2s ease-in-out;
+  -moz-transition: .2s ease-in-out;
+  -o-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
   cursor: pointer;
 }
 /*.in #nav-icon1 {
@@ -313,10 +313,10 @@ body {
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+  transition: .20s ease-in-out;
 }
 .out #nav-icon2 span {
     width:33%;
@@ -389,14 +389,12 @@ body {
 }
 .out #nav-icon2.open {
     margin:0;
-    position:relative;
+    position:absolute;
     width:40px;
-    float:right;
 }
 .navbar-collapse #nav-icon2 {
     top: 12px;
-    width:40px;
-    float:right;
+    width:140px;
 }
 #nav-icon2:hover span {
     background:#5bc0de;
@@ -404,10 +402,11 @@ body {
 }
 .navbar-collapse.out #nav-icon2 {
     top:10px;
-    left:10px;
+    left:256px;
 }
 .navbar-collapse:not(.out) #nav-icon2 {
     top:15px;
+    left:22px;
 }
 .nav-side-menu .navTitle {
     position:relative;
