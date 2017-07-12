@@ -3,9 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">{{item.year}} {{item.make}} {{item.model}} {{item.trim}}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="closeVehicleInfo()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button class="btn btn-danger pull-right" (click)="closeVehicleInfo()">Close</button>
       </div>
       <div class="modal-body">
         <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" (click)="toggleState()">
