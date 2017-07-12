@@ -12,7 +12,7 @@ import { AccountService } from '../_services/account.service';
       state('out', style({
         transform: 'scale(1)'
       })),
-      state('in',   style({
+      state('in', style({
         transform: 'translateX(-120px) scaleX(0.3)'
       })),
       transition('in <=> out', animate(250))
@@ -67,7 +67,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   animationOver = false;
 
   constructor() {
-    
+
   }
 
   getAccountChange(data) {
@@ -97,7 +97,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   animationEnded(event) {
     console.log(event);
-   this.animationOver = true;
+    this.animationOver = true;
   }
 
   ngOnInit() {

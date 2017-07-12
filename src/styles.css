@@ -50,3 +50,6 @@ html, body, .wrapper { height:100%; }
 .main-panel.out .brand.hvr-underline-reveal a.headerTitle {
     display:none;
 }
+body {
+    background-color:#F7F7F8;
+}
