@@ -13,12 +13,24 @@ export class AccountComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   accounts: Array<Account> = [];
   loading =false; 
+  pasted=false;
   constructor(private accountService: AccountService) {
       this.searchForUser();
    }
 
   ngOnInit() {
   }
+
+  onValueChange(data: any){ 
+    if(this.pasted === true) {
+      this.searchTerm$.next(data);
+    }
+  }
+
+  formatRequest(data: any) {
+    this.pasted=true; 
+  }
+
 
   loadingInit(){
     this.loading = true; 
