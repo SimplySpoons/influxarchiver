@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import {Item} from '../../../_models/item';
-import { trigger,state,style,animate,transition } from '@angular/animations';
+import { Item } from '../../../_models/item';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-vehicle-single',
@@ -8,22 +8,36 @@ import { trigger,state,style,animate,transition } from '@angular/animations';
   styleUrls: ['./vehicle-single.component.css'],
   animations: [
     trigger('dialog', [
-      state('void', style({
-        transform: 'translateX(100%)'
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
       })),
-      transition('void <=> *', animate(150))
-    ])
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(500px)'
+        }),
+        animate(150)
+      ]),
+      transition('* => void', [
+        animate(150, style({
+          transform: 'translateX(500px)',
+          opacity: 0
+        }))
+      ])
+    ]),
   ]
 })
+
 export class VehicleSingleComponent implements OnInit {
   @Input() item: Item;
   @Input() account: any;
   @Output() closeBox = new EventEmitter();
+  state: any;
 
   constructor() { }
-  state = open;
-  
-  closeVehicleInfo() {
+
+  closeVehicleInfo(item) {
     console.log('hitting');
     this.closeBox.emit(false);
   }
