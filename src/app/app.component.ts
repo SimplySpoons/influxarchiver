@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,19 +6,29 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
   styleUrls: ['./app.component.css'],
   animations: [
     trigger('mainSlide', [
-      state('out', style({
-        transform: 'translateX(0)'
+      state('menuOut', style({
+        width: '300px'
       })),
-      state('in',   style({
-        transform: 'translateX(0px)'
+      state('menuIn', style({
+        width: '70px'
       })),
-      transition('in <=> out', animate(200))
-    ])
+      transition('menuIn <=> menuOut', animate(250))
+    ]),
+    trigger('otherSlide', [
+      state('mainOut', style({
+        paddingLeft: '300px'
+      })),
+      state('mainIn', style({
+        paddingLeft: '70px'
+      })),
+      transition('mainOut <=> mainIn', animate(250))
+    ]),
   ]
 })
 export class AppComponent {
   title = 'Influx Archiver 2.0';
-  state = 'out';
+  mainSlide = 'menuOut';
+  otherSlide = 'mainOut';
   // loading = true;
 
   public status: any = {
@@ -30,7 +40,8 @@ export class AppComponent {
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
-    this.state == 'out' ? this.state = 'in' : this.state = 'out';
+    this.mainSlide == 'menuOut' ? this.mainSlide = 'menuIn' : this.mainSlide = 'menuOut';
+    this.otherSlide == 'mainOut' ? this.otherSlide = 'mainIn' : this.otherSlide = 'mainOut';
   }
 
 }

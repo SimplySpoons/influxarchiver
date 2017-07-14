@@ -63,8 +63,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   invCounts: any;
   sub: any;
   account: any;
-  state = 'out';
-  animationOver = false;
+  state = 'menuOut';
+  block = true;
 
   constructor() {
 
@@ -88,17 +88,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
     this.collapseSideBar.emit(bool);
-    this.state == 'out' ? this.state = 'in' : this.state = 'out';
+    if (!this.isIn) {
+      setTimeout(() => {
+        this.block = true;
+      }, 250);
+    } else {
+      setTimeout(() => {
+        this.block = false;
+      }, 250);
+    }
   }
 
-  animationStarted(event) {
-    this.animationOver = false;
-  }
-
-  animationEnded(event) {
-    console.log(event);
-    this.animationOver = true;
-  }
 
   ngOnInit() {
     console.log(this.account + 'this is from the sidebar');

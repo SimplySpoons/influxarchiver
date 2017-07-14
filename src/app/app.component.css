@@ -9,11 +9,13 @@
         float: right;
         width: calc(100% - 300px);
         min-height: 100%;
-        #main-container { padding-top:10px;}
+    
     }
-    .main-panel.in { width: calc(100% - 70px); }
 
     #main-container { padding-top:70px;}
 
 }
 
+.main-panel#main-container {
+    width:100%;
+}

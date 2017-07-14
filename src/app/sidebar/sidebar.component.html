@@ -1,5 +1,5 @@
-<div class="nav-side-menu" [@navSlide]="state" (@navSlide.start)="animationStarted($event)" (@navSlide.done)="animationEnded($event)">
-    <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn, 'out': !isIn }">
+<div class="menuContainer navbar-collapse nav-side-menu" [ngClass]="{ 'in': isIn, 'out': !isIn }">
+    <div class="collapse navbar itemContainer" [ngClass]="{ 'block': block, 'notBlock': !block }">
         <div class="brand hvr-underline-reveal">
             <a class="dashTitle" href="/">Influx Archiver 2.0</a>
         </div>
@@ -16,7 +16,7 @@
             <span></span>
             <span></span>
         </div>
-        <div *ngIf="!isIn" class="menu-list">
+        <div *ngIf="block" class="menu-list">
             <accordion>
                 <a panelClass="navPanelItem" href="/">
                     <div class="dashboardLink panel-title">
@@ -47,7 +47,7 @@
                         <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">OEM Pages</span>
                     </div>
                     <ul class="accordianUnderText">
-                        <li  *ngFor="let oemlink of oemlinks">
+                        <li *ngFor="let oemlink of oemlinks">
                             <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
                         </li>
                     </ul>
