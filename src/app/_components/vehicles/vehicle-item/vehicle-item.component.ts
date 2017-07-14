@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
+import {AccountService} from '../../../_services/account.service';
 
 @Component({
   selector: 'app-vehicle-item',
@@ -13,7 +14,11 @@ export class VehicleItemComponent implements OnInit {
   @Input() account: Account; 
   @Output() sendItem = new EventEmitter();
 
-  constructor() { }
+  loading = false; 
+
+  constructor() { 
+   
+  }
 
   getImageSrc(data: any, accountId: string) {
     let firstLetter = accountId.charAt(0);
@@ -25,18 +30,18 @@ export class VehicleItemComponent implements OnInit {
       this.sendItem.emit(item);
   }
 
-  getVdpLink(uuid: string, type: string) {
-      let vdp_link = this.account.internalUrl + '/' + type + '/' + uuid + '.htm';
+  getVdpLink(item: any) {
+      let vdp_link = 'http://' + item.accountId + '.cms.dealer.com/' + item.type + '/' + item.uuid + '.htm';
       return vdp_link;
   }
 
-  getVlpLink(vin: string, type: string) {
-      let vlp_link = this.account.internalUrl + '/' + type + '-inventory/index.htm?search=' + vin;
+  getVlpLink(item: any) {
+      let vlp_link = 'http://' + this.item.accountId + '.cms.dealer.com/' + item.type + '-inventory/index.htm?search=' + item.vin;
       return vlp_link;
   }
 
   getAuditTrail(vin: string) {
-    let audit_link = '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
+    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
     return audit_link;
   }
 

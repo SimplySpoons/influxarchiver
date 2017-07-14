@@ -1,59 +1,70 @@
-<div class="input-group topSearch">
-  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
+<div id="navbarSarchBarContainer" style="position: fixed;">
+<div class="topSearch">
+  <input style="width: 100%; display: block;" type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term"
+    [(ngModel)]="value" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
-
-<div class="accountList userListHolder" *ngIf="value != undefined && value != '' && showList && !loading">
-  <div class="panel">
-    <div class="panel-body clearfix">
-      <div class="col-md-2">
-        <b> Account Name </b>
-      </div>
-      <div class="col-md-2">
-        <b> Account Id </b>
-      </div>
-      <div class="col-md-1">
-        <b> Public Url </b>
-      </div>
-      <div class="col-md-1">
-        <b>Internal Url</b>
-      </div>
-      <div class="col-md-4">
-        <b>Address</b>
-      </div>
-      <div class="col-md-2">
-        <b>Links</b>
-      </div>
-    </div>
-  </div>
-  <div class="account-item panel" *ngFor="let account of accounts | filter:value">
-    <div class="panel-body clearfix">
-      <div class="col-md-2">
-        {{account.name}}
-      </div>
-      <div class="col-md-2">
-        {{account.accountId}}
-      </div>
-      <div class="col-md-1">
-        <a *ngIf="account.publicUrl != 'http://'" [href]="account.publicUrl" target="_blank"> <b> Public Url </b> </a>
-        <span *ngIf="account.publicUrl == 'http://'" style="color: red;"> Public Url </span>
-      </div>
-      <div class="col-md-1">
-        <a [href]="account.internalUrl" target="_blank"> <b> Internal Url </b> </a>
-      </div>
-      <div class="col-md-4">
-        {{account.address1}} | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
-      </div>
-      <div class="col-md-2">
-        <div class="col-md-6" style="padding: 3px;">
-          <a class="btn btn-small btn-primary" (click)="clearSearchTerm()" style="padding: 3px; font-size: 12px; display: block; width: 100%;" [routerLink]="[account.accountId]"> Influx Configs </a>
+</div>
+<div class="dialog" *ngIf="accounts.length > 0 || vehicles.length > 0">
+  <a class="btn btn-danger" style="position: fixed; top: 12px; right: 40px;" (click)="onRemoveSearch();"><i class="fa fa-close fa-lg"></i>Close Search</a>
+  <div class="accountList" *ngIf="accounts.length > 0" style="margin: 20px 0;">
+    <div class="panel">
+      <div class="panel-body clearfix">
+        <div class="col-md-2">
+          <b> Account Name </b>
         </div>
-        <div class="col-md-6" style="padding: 3px">
-          <a class="btn btn-small btn-primary" (click)="clearSearchTerm()" style="padding: 3px; font-size: 12px; display: block; width: 100%" [routerLink]="'/account/' + [account.accountId + '/vehicles/0/0']"> Vehicles </a>
+        <div class="col-md-2">
+          <b> Account Id </b>
+        </div>
+        <div class="col-md-1">
+          <b> Public Url </b>
+        </div>
+        <div class="col-md-1">
+          <b>Internal Url</b>
+        </div>
+        <div class="col-md-4">
+          <b>Address</b>
+        </div>
+        <div class="col-md-2">
+          <b>Links</b>
         </div>
       </div>
     </div>
+    <div class="account-item panel" *ngFor="let account of accounts | filter:value">
+      <div class="panel-body clearfix">
+        <div class="col-md-2">
+          {{account.name}}
+        </div>
+        <div class="col-md-2">
+          {{account.accountId}}
+        </div>
+        <div class="col-md-1">
+          <a *ngIf="account.publicUrl != 'http://'" [href]="account.publicUrl" target="_blank"> <b> Public Url </b> </a>
+          <span *ngIf="account.publicUrl == 'http://'" style="color: red;"> Public Url </span>
+        </div>
+        <div class="col-md-1">
+          <a [href]="account.internalUrl" target="_blank"> <b> Internal Url </b> </a>
+        </div>
+        <div class="col-md-4">
+          {{account.address1}} | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
+        </div>
+        <div class="col-md-2">
+          <div class="col-md-6" style="padding: 3px;">
+            <a class="btn btn-small btn-primary" style="padding: 3px; font-size: 12px; display: block; width: 100%;" [routerLink]="['account',account.accountId]"> Influx Configs </a>
+          </div>
+          <div class="col-md-6" style="padding: 3px">
+            <a class="btn btn-small btn-primary" style="padding: 3px; font-size: 12px; display: block; width: 100%" [routerLink]="['account', account.accountId , 'vehicles', 0, 0]"> Vehicles </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div *ngIf="loading" class="loadingIndicator clearfix">
-  <sk-folding-cube></sk-folding-cube>
+  <hr>
+  <div class="vehicleList" *ngIf="vehicles.length > 0">
+    <div class="vehicle" *ngFor="let item of vehicles | search: value">
+      <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
+    </div>
+  </div>
+  <div *ngIf="loading" class="loadingIndicator clearfix">
+    <sk-folding-cube></sk-folding-cube>
+  </div>
 </div>

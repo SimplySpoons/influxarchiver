@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="item.uuid.length == 32">
     <div class="panel" (click)="openVehicleSingle(item)">
         <div class="panel-heading">
             <h4 style="margin:15px 0 -10px;">{{item.title}}</h4>
@@ -8,6 +8,7 @@
                 <img [src]="getImageSrc(item.image[0],item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
             </div>
             <div class="col-md-8 vehicle-info">
+                <li><span class="accountId">Account Id: {{item.accountId}}</span></li>
                 <li><span class="vin">VIN:</span> {{item.vin}}</li>
                 <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
                 <li><span class="stock">Type:</span> <span class="type">{{item.type}}</span></li>
@@ -30,9 +31,10 @@
                 <br> salePrice: {{item.salePrice}}
             </div>
             <div class="buttonSection" *ngIf="item.showPanel == true">
-                <a [href]="getVdpLink(item.uuid,item.type)" class="btn btn-primary" target="_blank"> VDP Link </a>
-                <a [href]="getVlpLink(item.vin,item.type)" class="btn btn-primary" target="_blank"> VLP Link </a>
-                <a [href]="getAuditTrail(item.vin)" class="btn btn-success" target="_blank"> Audit Trail </a>
+                <a [href]="getVdpLink(item)" class="btn btn-primary" target="_blank"> VDP Link </a>
+                <a [href]="getVlpLink(item)" class="btn btn-primary" target="_blank"> VLP Link </a>
+                <a [href]="getAuditTrail(item)" class="btn btn-success" target="_blank"> Audit Trail </a>
+                <a [routerLink]="['/account', item.accountId]" class="btn btn-success"> Influx Feeds </a>
             </div>
         </div>
     </div>

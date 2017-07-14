@@ -16,6 +16,11 @@
   <div class="panel-sub" style="margin-bottom: 25px;">
     <small> {{account.accountId}} | <a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
           | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
+    <br>
+    <div class="api"> 
+      <small *ngIf="apis.type==1"> vAuto API: <b> Yes </b></small>
+      <small *ngIf="apis.type==0"> vAuto API: <b> No </b></small>
+    </div>
   </div>
 </div>
 <div class="row cc-btns"  *ngIf="!loading">

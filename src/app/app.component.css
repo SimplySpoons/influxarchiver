@@ -12,7 +12,7 @@
     
     }
 
-    #main-container { padding-top:70px;}
+    #main-container {z-index: 9; padding-top: 20px;}
 
 }
 

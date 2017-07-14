@@ -39,3 +39,25 @@ img {max-width: 100%; height: auto;}
     background-color:#3F869B;
     border-color:#3F869B;
 }
+
+.api {background: #eee; padding: 5px; border: 1px solid #ccc; margin: 5px 0; font-style: normal; 
+font-size: 1.1em;}
+
+
+#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0; 
+padding: 5px 30px; padding-left: 320px; overflow-x: hidden; background: #2E353D; }
+
+#main-container > .container {padding-top: 60px;}
+
+.navbar-default.navbar-fixed-top {background: #2E353D !important; border: 0 !important; position: fixed !important; min-height: 60px;}
+
+
+.dialog {
+    position: absolute;
+    width: 100%;
+    padding: 20px 30px 20px 30px;
+    left: 0;
+    z-index: 999;
+    top:58px;
+    background: rgba(66,66,66,.66); 
+}
