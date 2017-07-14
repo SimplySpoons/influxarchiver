@@ -26,6 +26,11 @@ export class AppComponent {
     isFirstDisabled: false
   };
 
+  removeSearchResults(data: any){ 
+    console.log('called from search', data);
+  }
+
+
   isIn = false;   // store state
   toggleState() { // click handler
     let bool = this.isIn;

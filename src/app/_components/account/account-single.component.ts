@@ -19,6 +19,8 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   private sub: any;
   invCounts: any = [];
 
+  apis: any; 
+
   @Output() callbackReady: EventEmitter<any> = new EventEmitter();
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
@@ -28,7 +30,10 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
       this.accountService.getAccountData(this.accountId).subscribe(account => {
         this.account = account;
         this.accountService.setCurrentAccount(account);
-        this.loading = false;
+        this.accountService.getApiConfigs(this.accountId).subscribe(apiConfig => { 
+            this.apis = apiConfig
+        }); 
+        this.loading = false; 
       });
     });
 

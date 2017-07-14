@@ -11,9 +11,9 @@
         min-height: 100%;
         #main-container { padding-top:10px;}
     }
-    .main-panel.in { width: calc(100% - 70px); }
+    .main-panel.in,.navbar-default.navbar-fixed-top { width: calc(100% - 70px); }
 
-    #main-container { padding-top:70px;}
+    #main-container {z-index: 9; padding-top: 20px;}
 
 }
 
