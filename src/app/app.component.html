@@ -1,9 +1,11 @@
-<div class="sidebar nav-side-menu" [@mainSlide]="mainSlide">
+<div class="nav-side-menu" [@mainSlide]="mainSlide">
   <app-sidebar (sendAccountChange)="getAccountChange($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
 </div>
 <div class="main-panel" id="main-container" [@otherSlide]="otherSlide">
+  <div class="header-container">
     <app-header></app-header>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

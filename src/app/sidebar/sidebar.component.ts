@@ -8,14 +8,14 @@ import { AccountService } from '../_services/account.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
   animations: [
-    trigger('navSlide', [
+    trigger('hamburgerSlide', [
       state('out', style({
-        transform: 'scale(1)'
+        left: '197px'
       })),
       state('in', style({
-        transform: 'translateX(-120px) scaleX(0.3)'
+        left: '0px'
       })),
-      transition('in <=> out', animate(250))
+      transition('out <=> in', animate(250))
     ])
   ]
 })
@@ -65,6 +65,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   account: any;
   state = 'menuOut';
   block = true;
+  hamburgerSlide = 'out';
 
   constructor() {
 
@@ -88,13 +89,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
     this.collapseSideBar.emit(bool);
+    this.hamburgerSlide == 'out' ? this.hamburgerSlide = 'in' : this.hamburgerSlide = 'out';
+    console.log(this.hamburgerSlide);
+
+    /* this is to delay setting menu items to display:block to allow the sliding animation to work */
     if (!this.isIn) {
       setTimeout(() => {
         this.block = true;
+        console.log(this.block + " < block status");
       }, 250);
     } else {
       setTimeout(() => {
         this.block = false;
+        console.log(this.block + " < block status");
       }, 250);
     }
   }

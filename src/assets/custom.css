@@ -44,8 +44,7 @@ img {max-width: 100%; height: auto;}
 font-size: 1.1em;}
 
 
-#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0; 
-padding: 5px 30px; padding-left: 320px; overflow-x: hidden; background: #2E353D; }
+
 
 #main-container > .container {padding-top: 60px;}
 

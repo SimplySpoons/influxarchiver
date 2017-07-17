@@ -29,3 +29,12 @@
     top: 2px;
     font-family:verdana;
 }
+
+#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0; 
+padding: 5px 30px; padding-left: 320px; overflow-x: hidden;  }
+
+.header {
+    display:block;
+    background: #2E353D;
+    position:static;
+}

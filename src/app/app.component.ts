@@ -7,7 +7,7 @@ import { Component, trigger, state, style, transition, animate, keyframes } from
   animations: [
     trigger('mainSlide', [
       state('menuOut', style({
-        width: '300px'
+        width: '255px'
       })),
       state('menuIn', style({
         width: '70px'
@@ -16,7 +16,7 @@ import { Component, trigger, state, style, transition, animate, keyframes } from
     ]),
     trigger('otherSlide', [
       state('mainOut', style({
-        paddingLeft: '300px'
+        paddingLeft: '255px'
       })),
       state('mainIn', style({
         paddingLeft: '70px'

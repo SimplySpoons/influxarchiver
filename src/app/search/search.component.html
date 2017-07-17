@@ -1,9 +1,13 @@
-<div id="navbarSarchBarContainer" style="position: fixed;">
-<div class="topSearch">
-  <input style="width: 100%; display: block;" type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term"
-    [(ngModel)]="value" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
+
+<div class="col-md-12">
+  <div id="navbarSarchBarContainer">
+    <div class="topSearch">
+      <input style="width: 100%; display: block;" type="text" class="form-control input-md" placeholder="Search..." name="srch-term"
+        id="srch-term" [(ngModel)]="value" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
+    </div>
+  </div>
 </div>
-</div>
+
 <div class="dialog" *ngIf="accounts.length > 0 || vehicles.length > 0">
   <a class="btn btn-danger" style="position: fixed; top: 12px; right: 40px;" (click)="onRemoveSearch();"><i class="fa fa-close fa-lg"></i>Close Search</a>
   <div class="accountList" *ngIf="accounts.length > 0" style="margin: 20px 0;">
