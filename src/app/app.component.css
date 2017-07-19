@@ -17,6 +17,7 @@
 
 .main-panel#main-container {
     width:100%;
+    overflow-x: hidden;
 }
 .nav-side-menu {
   overflow: auto;

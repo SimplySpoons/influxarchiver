@@ -687,3 +687,9 @@ body {
 .menuContainer.out .nav.menu-list {
     width:100%;
 }
+.menuContainer.navbar-collapse.nav-side-menu.in {
+    overflow-y: hidden;
+}
+.hvr-icon-hang:before,.hvr-icon-bob:before {
+    right:-.5em;
+}
