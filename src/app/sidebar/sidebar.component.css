@@ -592,3 +592,7 @@ body {
 .hvr-icon-hang:before,.hvr-icon-bob:before {
     right:-.5em;
 }
+
+.navTitle.navTitle4 {
+    margin-left: 2px !important;
+}
