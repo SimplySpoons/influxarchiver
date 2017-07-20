@@ -41,7 +41,7 @@ export class VehicleItemComponent implements OnInit {
   }
 
   getAuditTrail(vin: string) {
-    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
+    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + this.item.vin + '&history&quickFilter=all';
     return audit_link;
   }
 
