@@ -10,6 +10,7 @@
 .closedBugs {
     color:#FFF;
     font-weight:bold;
+    background-color: green;
 }
 .bugDetail .panel-heading.bug-2 {
     background-color:#2098d1;
