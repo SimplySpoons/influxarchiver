@@ -5,3 +5,4 @@
 .vehicle-pricing-heading h5 { text-decoration: underline; }
 .buttonSection .btn { margin-top: 10px; }
 .vehicle-info .type { text-transform: capitalize; }
+.vehicle-pricing { margin-bottom: 10px; }

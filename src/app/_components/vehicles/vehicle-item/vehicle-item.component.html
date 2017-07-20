@@ -31,10 +31,10 @@
                 <br> salePrice: {{item.salePrice}}
             </div>
             <div class="buttonSection" *ngIf="item.showPanel == true">
-                <a [href]="getVdpLink(item)" class="btn btn-primary" target="_blank"> VDP Link </a>
-                <a [href]="getVlpLink(item)" class="btn btn-primary" target="_blank"> VLP Link </a>
-                <a [href]="getAuditTrail(item)" class="btn btn-success" target="_blank"> Audit Trail </a>
-                <a [routerLink]="['/account', item.accountId]" class="btn btn-success"> Influx Feeds </a>
+                <a [href]="getVdpLink(item)" class="btn btn-primary vdp" target="_blank"> VDP Link </a>
+                <a [href]="getVlpLink(item)" class="btn btn-primary vlp" target="_blank"> VLP Link </a>
+                <a [href]="getAuditTrail(item)" class="btn btn-success audit" target="_blank"> Audit Trail </a>
+                <a [routerLink]="['/account', item.accountId]" class="btn btn-success influx"> Influx Feeds </a>
             </div>
         </div>
     </div>
