@@ -210,9 +210,9 @@ body {
 
 .istcredit img {
     max-width: 200%;
-    width: 200%;
+    width: 170%;
     position: relative;
-    right: 20px;
+    right: 15px;
 }
 
 .sdevcredit {
@@ -222,10 +222,10 @@ body {
 }
 
 .sdevcredit img {
-    width: 200%;
-    max-width: 200%;
+    width: 170%;
+    max-width: 170%;
     position: relative;
-    right: 20px;
+    right: 15px;
 }
 
 
@@ -595,4 +595,8 @@ body {
 
 .navTitle.navTitle4 {
     margin-left: 2px !important;
+}
+
+.menu-list .panel-group {
+    margin-bottom:0;
 }
