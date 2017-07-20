@@ -24,3 +24,4 @@
 .vin, .stock, .comments, .pricing, .type { font-style: italic; }
 .modal-title { font-weight: bold; }
 .single-vehicle-info .type { text-transform: capitalize; font-style: normal; }
+.single-vehicle-info .value, .single-vehicle-info .type { font-weight: normal; }
