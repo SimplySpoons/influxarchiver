@@ -1,22 +1,27 @@
-<div [config]="{ show: true, backdrop: false }" [@dialog]="state" (onHidden)="closeVehicleInfo()" bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left vehicleDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="vehicleDetailsModal" [config]="{ show: true, backdrop: false }" [@dialog]="state" (onHidden)="closeVehicleInfo()" bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-container">
+      <button type="button" class="btn-danger modal-close-btn close" (click)="closeVehicleInfo()" aria-label="Close">
+        <span class="icon modal-close-icon ">&times;</span>
+        <span class="modal-close-text">Close</span>
+      </button>
       <div class="modal-header">
         <h4 class="modal-title pull-left">{{item.year}} {{item.make}} {{item.model}} {{item.trim}}</h4>
-        <button class="btn btn-danger pull-right" (click)="closeVehicleInfo()">Close</button>
       </div>
       <div class="modal-body">
-        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" (click)="toggleState()">
+
+        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" class="modal-section" (click)="toggleState()">
           <div class="single-vehicle-images-heading">
             <h5>Vehicle Images</h5>
           </div>
-          <div class="vehicle-image" *ngFor="let image of item.image">
-            <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
+          <div class="vehicle-images">
+            <div class="vehicle-image" *ngFor="let image of item.image">
+              <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
+            </div>
           </div>
         </div>
-        <div id="single-vehicle-expand" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" (click)="toggleState()"> Expand/Collapse Vehicle Images </div>
 
-        <div id="vehiclePricingContainer">
+        <div id="vehiclePricingContainer" class="modal-section">
           <div class="single-vehicle-vehicle-pricing">
             <div class="single-vehicle-pricing-heading">
               <h5>Pricing Data</h5>
@@ -26,8 +31,8 @@
             <br> salePrice: {{item.salePrice}}
           </div>
         </div>
-        <div id="vehicleOverviewContainer"></div>
-        <div id="vehicleDetailsContainer">
+        <div id="vehicleOverviewContainer" class="modal-section"></div>
+        <div id="vehicleDetailsContainer" class="modal-section">
           <div class="single-vehicle-details-heading">
             <h5>Vehicle Details</h5>
           </div>
