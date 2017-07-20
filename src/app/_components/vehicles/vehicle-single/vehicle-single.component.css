@@ -24,7 +24,8 @@
 #vehicleDetailsModal .modal-section .vehicle-overview-value { display:inline-block; width:50%; text-align:right;}
 #vehicleDetailsModal .modal-section .comments .vehicle-overview-value { width:100%; text-align:left; }
 #vehicleDetailsModal .modal-title { font-size: 21px; }
-#vehicleDetailsModal .modal-section-header  { border-bottom: 1px solid #e5e5e5; margin-bottom:10px; }
+#vehicleDetailsModal .modal-section-header  { border-bottom: 1px solid #e5e5e5; margin-bottom:10px;  }
+#vehicleDetailsModal .modal-section-header  h4 { font-weight:normal; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing, .single-vehicle-details-heading { margin-left: 5px; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing { margin-bottom: 7px; }
 .vin, .stock, .comments, .pricing, .type { font-style: italic; }
