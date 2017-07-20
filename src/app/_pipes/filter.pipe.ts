@@ -24,7 +24,7 @@ export class FilterPipe implements PipeTransform {
       if (account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
         if (account.accountId == 'no results found') {
           account.name = "No results found"
-          account.address = "No results found"
+          account.address1 = "No results found"
         }
         return account.accountId.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
       }
@@ -32,7 +32,7 @@ export class FilterPipe implements PipeTransform {
         !account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
         if (account.accountId == 'no results found') {
           account.name = "No results found"
-          account.address = "No results found"
+          account.address1 = "No results found"
         }
         return account.name.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
       }
@@ -42,7 +42,7 @@ export class FilterPipe implements PipeTransform {
         !account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
         if (account.accountId == 'no results found') {
           account.name = "No results found"
-          account.address = "No results found"
+          account.address1 = "No results found"
         }
         return account.name.toLowerCase().includes(value.toLowerCase()) || account.accountId == 'no results found';
       }
