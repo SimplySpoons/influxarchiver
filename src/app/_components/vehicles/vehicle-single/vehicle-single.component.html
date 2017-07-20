@@ -11,7 +11,7 @@
       <div class="modal-body">
 
         <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" class="modal-section" (click)="toggleState()">
-          <div class="single-vehicle-images-heading">
+          <div class="modal-section-header single-vehicle-images-heading">
             <h4>Vehicle Images</h4>
           </div>
           <div class="vehicle-images">
@@ -23,7 +23,7 @@
 
         <div id="vehiclePricingContainer" class="modal-section">
           <div class="single-vehicle-vehicle-pricing">
-            <div class="single-vehicle-pricing-heading">
+            <div class="modal-section-header single-vehicle-pricing-heading">
               <h4>Pricing Data</h4>
             </div>
             <div>
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div id="vehicleOverviewContainer" class="modal-section">
-          <div class="single-vehicle-details-heading">
+          <div class="modal-section-header single-vehicle-details-heading">
             <h4>Vehicle Overview</h4>
           </div>
           <div class="single-vehicle-overview">
@@ -50,14 +50,12 @@
               <li><span class="vehicle-overview-label">Status:</span><span class="vehicle-overview-value">{{item.status}}</span></li>
               <li><span class="vehicle-overview-label">Classification:</span><span class="vehicle-overview-value">{{item.className}}</span></li>
               <li><span class="vehicle-overview-label">Condition:</span><span class="vehicle-overview-value">{{item.type}}</span></li>
-              <li *ngIf="item.certified>0">
-                <span class="vehicle-overview-label">Certified:</span><span class="vehicle-overview-value">Yes</span></li>
-              <li><span class="stock">Type:</span> <span class="type">{{item.type}}</span></li>
+              <li *ngIf="item.certified>0"><span class="vehicle-overview-label">Certified:</span><span class="vehicle-overview-value">Yes</span></li>
             </ul>
           </div>
         </div>
         <div id="vehicleDetailsContainer" class="modal-section">
-          <div class="single-vehicle-details-heading">
+          <div class="modal-section-header single-vehicle-details-heading">
             <h4>Vehicle Details</h4>
           </div>
           <div class="single-vehicle-info">
@@ -79,7 +77,7 @@
           </div>
         </div>
         <div id="vehicleCommentsContainer" class="modal-section">
-          <div class="single-vehicle-details-heading">
+          <div class="modal-section-header single-vehicle-details-heading">
             <h4>Comments</h4>
           </div>
           <div class="comments"><span class="vehicle-overview-value"> {{item.comments}}</span></div>

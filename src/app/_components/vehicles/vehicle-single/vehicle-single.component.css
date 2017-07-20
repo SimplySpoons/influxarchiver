@@ -19,13 +19,14 @@
 #vehicleDetailsModal .modal-close-btn .modal-close-icon { font-size:30px; position: relative; text-shadow: 0 1px 0 #ff7979; color: #a70000; }
 #vehicleDetailsModal .modal-close-btn .modal-close-text { display:none; font-size:16px; color:#fff; text-shadow: 0 1px 0 #000;}
 #vehicleDetailsModal .modal-close-btn:hover .modal-close-text { display: inline; }
-#vehicleDetailsModal .single-vehicle-info .vehicle-overview-value, #vehicleDetailsModal .single-vehicle-info .vehicle-overview-label { font-weight: normal; }
-#vehicleDetailsModal .modal-section .vehicle-overview-label { display:inline-block; width:50%; }
+#vehicleDetailsModal .single-vehicle-info .vehicle-overview-value{ font-weight: normal; }
+#vehicleDetailsModal .modal-section .vehicle-overview-label { display:inline-block; width:50%; font-weight: bold;}
 #vehicleDetailsModal .modal-section .vehicle-overview-value { display:inline-block; width:50%; text-align:right;}
 #vehicleDetailsModal .modal-section .comments .vehicle-overview-value { width:100%; text-align:left; }
+#vehicleDetailsModal .modal-title { font-size: 21px; }
+#vehicleDetailsModal .modal-section-header  { border-bottom: 1px solid #e5e5e5; margin-bottom:10px; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing, .single-vehicle-details-heading { margin-left: 5px; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing { margin-bottom: 7px; }
-.single-vehicle-details-heading, .single-vehicle-pricing-heading, .single-vehicle-images-heading h5 { text-decoration: underline; }
 .vin, .stock, .comments, .pricing, .type { font-style: italic; }
-.modal-title { font-weight: bold; }
+
 .single-vehicle-info .type { text-transform: capitalize; font-style: normal; }
