@@ -65,7 +65,7 @@
   <hr>
   <div class="vehicleList" *ngIf="vehicles.length > 0">
     <div class="vehicle" *ngFor="let item of vehicles | search: value">
-      <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
+      <app-vehicle-item (sendItem)="getItem($event)"[item]="item" [account]="account"></app-vehicle-item>
     </div>
   </div>
   <div *ngIf="loading" class="loadingIndicator clearfix">
