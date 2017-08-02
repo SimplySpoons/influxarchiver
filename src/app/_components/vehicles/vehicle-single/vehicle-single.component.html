@@ -1,10 +1,12 @@
 <div id="vehicleDetailsModal" [config]="{ show: true, backdrop: false }" [@dialog]="state" (onHidden)="closeVehicleInfo()" bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-container">
+      <div class="closeModalContainer">
       <button type="button" class="btn-danger modal-close-btn close" (click)="closeVehicleInfo()" aria-label="Close">
         <span class="icon modal-close-icon ">&times;</span>
         <span class="modal-close-text">Close</span>
       </button>
+    </div>
       <div class="modal-header">
         <h3 class="modal-title pull-left">{{item.year}} {{item.make}} {{item.model}} {{item.trim}}</h3>
       </div>
