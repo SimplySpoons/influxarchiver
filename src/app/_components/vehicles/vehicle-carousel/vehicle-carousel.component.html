@@ -8,7 +8,7 @@
   </div>
   <div class="carouselVehicleThumbnailsContainer">
     <span class="col-xs-2 vehicleThumbnail" *ngFor="let image of vehicleImages; let thumbnailIndex = index">
-       <img (click)="imgIndex=thumbnailIndex" ng-class="{ 'active': $index == $imgIndex }" [src]="getImageSrc(image,account)" style="width:100%">
+       <img (click)="imgIndex=thumbnailIndex" ng-class="{ 'active': $thumbnailIndex == $imgIndex }" [src]="getImageSrc(image,account)" style="width:100%">
     </span>
   </div>
 </div>
