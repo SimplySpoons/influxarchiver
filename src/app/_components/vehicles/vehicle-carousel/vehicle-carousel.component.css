@@ -1,0 +1,3 @@
+.vehicle-image { text-align:center; }
+.carouselVehicleThumbnailsContainer { margin-top:5px; width:100%; overflow-x:scroll; overflow-y:hidden; white-space:nowrap;}
+.vehicleThumbnail { display:inline-block; float:none; padding:0 5px;}

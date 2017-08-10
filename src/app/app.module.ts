@@ -33,6 +33,8 @@ import { ScrollerDirective } from './scroll.directive';
 import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -62,7 +64,8 @@ export function initializeCurrentUser(config: AppConfig) {
     ModalComponent,
     InfiniteScroller,
     ScrollerDirective,
-    CurrentfeedsComponent
+    CurrentfeedsComponent,
+    VehicleCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ export function initializeCurrentUser(config: AppConfig) {
     AccordionModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   exports: [FilterPipe, SearchPipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],

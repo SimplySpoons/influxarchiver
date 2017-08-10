@@ -12,15 +12,15 @@
       </div>
       <div class="modal-body">
 
-        <div id="vehicleMediaContainer" [ngClass]="{ 'expanded': isImageContainerExpanded, 'collapsed': !isImageContainerExpanded }" class="modal-section" (click)="toggleState()">
+        <div id="vehicleMediaContainer">
           <div class="modal-section-header single-vehicle-images-heading">
             <h4>Vehicle Images</h4>
           </div>
           <div class="vehicle-images">
-            <div class="vehicle-image" *ngFor="let image of item.image">
-              <img [src]="getImageSrc(image,item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
-            </div>
+            <app-vehicle-carousel [vehicleImages]="item.image" [account]="item.accountId" ></app-vehicle-carousel>
+
           </div>
+
         </div>
 
         <div id="vehiclePricingContainer" class="modal-section">

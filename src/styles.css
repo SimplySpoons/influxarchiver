@@ -53,3 +53,5 @@ html, body, .wrapper { height:100%; }
 body {
     background-color:#F7F7F8;
 }
+
+#vehicleDetailsModal .carousel-indicators { display: none; }
