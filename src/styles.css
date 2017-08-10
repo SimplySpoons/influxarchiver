@@ -53,5 +53,8 @@ html, body, .wrapper { height:100%; }
 body {
     background-color:#F7F7F8;
 }
-
+#vehicleDetailsModal .carousel-control .icon-next, .carousel-control .icon-prev { text-shadow:0; top:35%; width:80px; height:80px; font-size:80px; color:#2e353d; }
 #vehicleDetailsModal .carousel-indicators { display: none; }
+#vehicleDetailsModal .carousel-control.right, #vehicleDetailsModal .carousel-control.left { background-image:none; }
+#vehicleDetailsModal .carousel-control .icon-next { right:0;}
+#vehicleDetailsModal .carousel-control .icon-prev { left:0; }
