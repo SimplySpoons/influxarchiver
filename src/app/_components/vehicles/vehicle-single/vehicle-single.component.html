@@ -51,7 +51,7 @@
               <li><span class="vehicle-overview-label">Stock #:</span><span class="vehicle-overview-value">{{item.stockNumber}}</span></li>
               <li><span class="vehicle-overview-label">Status:</span><span class="vehicle-overview-value">{{item.status}}</span></li>
               <li><span class="vehicle-overview-label">Classification:</span><span class="vehicle-overview-value">{{item.className}}</span></li>
-              <li><span class="vehicle-overview-label">Condition:</span><span class="vehicle-overview-value">{{item.type}}</span></li>
+              <li><span class="vehicle-overview-label">Condition:</span><span class="vehicle-overview-value condition">{{item.type}}</span></li>
               <li *ngIf="item.certified>0"><span class="vehicle-overview-label">Certified:</span><span class="vehicle-overview-value">Yes</span></li>
             </ul>
           </div>

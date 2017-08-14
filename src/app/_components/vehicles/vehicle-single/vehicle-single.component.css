@@ -28,7 +28,6 @@
 .single-vehicle-info, .single-vehicle-vehicle-pricing, .single-vehicle-details-heading { margin-left: 5px; }
 .single-vehicle-info, .single-vehicle-vehicle-pricing { margin-bottom: 7px; }
 .vin, .stock, .comments, .pricing, .type { font-style: italic; }
-
 .single-vehicle-info .type { text-transform: capitalize; font-style: normal; }
-
 .vehicle-images.outer { background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; padding: 15px; border-width: 1px 1px 2px; border-bottom-color: #2e353d; }
+.vehicle-overview-value.condition { text-transform: capitalize; }
