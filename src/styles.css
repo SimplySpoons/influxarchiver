@@ -55,7 +55,9 @@ body {
 }
 #vehicleDetailsModal .carousel-control .icon-next, .carousel-control .icon-prev { text-shadow:0;  top:35%; width:80px; height:80px; font-size:80px; color:#2e353d; }
 #vehicleDetailsModal .carousel-indicators { display: none; }
-#vehicleDetailsModal .carousel-control.right, #vehicleDetailsModal .carousel-control.left { background-image:none; }
+#vehicleDetailsModal .carousel-control { background-image:none;  }
+#vehicleDetailsModal .carouselVehicleImageContainer .carousel-control span { visibility:hidden; }
+#vehicleDetailsModal .carouselVehicleImageContainer:hover .carousel-control span { visibility:visible; }
 #vehicleDetailsModal .carousel-control .icon-next { right:0;}
 #vehicleDetailsModal .carousel-control .icon-prev { left:0; }
 .vehicle-image .item.active img { border: 1px solid #a1a1a1; }

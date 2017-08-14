@@ -1,3 +1,4 @@
+<div #myInput class="vehicleCarouselContainer">
 <div class="vehicle-images">
   <div class="carouselVehicleImageContainer">
     <carousel [(activeSlide)]="imgIndex" [interval]="false">
@@ -11,4 +12,5 @@
        <img (click)="imgIndex=thumbnailIndex" [src]="getImageSrc(image,account)" style="width:100%">
     </span>
   </div>
+</div>
 </div>
