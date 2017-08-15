@@ -1,4 +1,4 @@
-<div #myInput class="vehicleCarouselContainer">
+<div class="vehicleCarouselContainer">
 <div class="vehicle-images">
   <div class="carouselVehicleImageContainer">
     <carousel [(activeSlide)]="imgIndex" [interval]="false">
@@ -8,8 +8,8 @@
     </carousel>
   </div>
   <div class="carouselVehicleThumbnailsContainer">
-    <span class="col-xs-2 vehicleThumbnail" *ngFor="let image of vehicleImages; let thumbnailIndex = index" [ngClass]="{ 'active': thumbnailIndex == imgIndex }">
-       <img (click)="imgIndex=thumbnailIndex" [src]="getImageSrc(image,account)" style="width:100%">
+    <span class="col-xs-2 vehicleThumbnail" *ngFor="let image of vehicleImages; let thumbnailIndex = index" [ngClass]="{ 'active': thumbnailIndex == this.imgIndex }">
+       <img (click)="this.imgIndex=thumbnailIndex" [src]="getImageSrc(image,account)" style="width:100%">
     </span>
   </div>
 </div>
