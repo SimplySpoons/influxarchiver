@@ -22,7 +22,7 @@ export class VehicleCarouselComponent implements OnInit {
        var wrap = this.elRef.nativeElement.querySelector('.carouselVehicleThumbnailsContainer');
        var thumbWidth = wrap.querySelector('.vehicleThumbnail').offsetWidth;
        var currentThumbLeft = this.imgIndex * thumbWidth;
-       var bumpFactor = 2;
+       var bumpFactor = 5;
        console.log("imgIndex " + this.imgIndex + " currentThumbLeft: " + currentThumbLeft + " wrap width " + wrap.clientWidth + " thumb width " + thumbWidth + " bumpFactor " + bumpFactor + " wrap scroll left: " + wrap.scrollLeft)
        console.log("if check: " + currentThumbLeft + " > " + (wrap.clientWidth - (thumbWidth * bumpFactor))  + wrap.scrollLeft );
        console.log("else if check " + currentThumbLeft + " < " + thumbWidth + wrap.scrollLeft);
