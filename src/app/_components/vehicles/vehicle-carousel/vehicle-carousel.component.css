@@ -1,7 +1,5 @@
-.vehicle-image { text-align:center;  }
+.vehicle-image { text-align:center; padding:5px; border:1px solid #ddd; border-radius:4px; }
 .carouselVehicleThumbnailsContainer { height:75px; margin-top:5px; width:100%; overflow-x:scroll; overflow-y:hidden; white-space:nowrap;}
 .vehicleThumbnail { display:inline-block; float:none; width: 60px; height: 48px; padding:5px; border:1px solid #ddd; margin-right:4px; border-radius:4px; }
 .vehicleThumbnail.active { border-color: #56BBFF; background-color: #C5E7FF; }
 .vehicleThumbnail img { border: 1px solid #a1a1a1; }
-
-.vehicle-image .item.active { border: 1px solid #a1a1a1; }

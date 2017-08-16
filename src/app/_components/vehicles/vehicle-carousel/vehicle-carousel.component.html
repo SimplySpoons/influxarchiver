@@ -1,10 +1,18 @@
 <div class="vehicleCarouselContainer">
 <div class="vehicle-images">
   <div class="carouselVehicleImageContainer">
-    <carousel [(activeSlide)]="imgIndex" [interval]="false">
-      <slide class="vehicle-image" *ngFor="let image of vehicleImages">
-        <img [src]="getImageSrc(image,account)" onerror='this.src="../assets/no_image.jpg"' />
+    <carousel [interval]="false">
+      <slide class="vehicle-image">
+        <img ng-src="getImageSrc(vehicleImages[imgIndex],account)" [src]="getImageSrc(vehicleImages[imgIndex],account)" onerror='this.src="../assets/no_image.jpg"' />
       </slide>
+      <a class="left carousel-control carousel-control-prev" *ngIf="imgIndex > 0" (click)="this.imgIndex=this.imgIndex-1">
+        <span aria-hidden="true" class="icon-prev carousel-control-prev-icon"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control carousel-control-next" *ngIf="imgIndex < vehicleImages.length-1" (click)="this.imgIndex=this.imgIndex+1">
+        <span aria-hidden="true" class="icon-next carousel-control-next-icon"></span>
+        <span class="sr-only">Previous</span>
+      </a>
     </carousel>
   </div>
   <div class="carouselVehicleThumbnailsContainer">
