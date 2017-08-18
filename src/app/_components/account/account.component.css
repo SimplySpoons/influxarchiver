@@ -3,3 +3,4 @@
 .searchtip { font-size: 15px; font-style: italic; font-weight: 300; }
 .row.dealersearch { border: 1px solid; border-radius: 6px; height: 190px; }
 .noaddresspipe, .noaddresscomma { display: none; }
+.noAccountFound { padding: 5px; font-weight: bold;}
