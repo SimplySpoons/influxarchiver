@@ -12,7 +12,7 @@ import { Account } from '../../_models/account'
 export class AccountComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   accounts: Array<Account> = [];
-  loading =false; 
+  loading =false;
   pasted=false;
   constructor(private accountService: AccountService) {
       this.searchForUser();
@@ -21,25 +21,26 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  onValueChange(data: any){ 
+  onValueChange(data: any){
     if(this.pasted === true) {
       this.searchTerm$.next(data);
     }
   }
 
   formatRequest(data: any) {
-    this.pasted=true; 
+    this.pasted=true;
   }
 
 
   loadingInit(){
-    this.loading = true; 
+    this.accounts = [];
+    this.loading = true;
   }
 
    searchForUser() {
         this.accountService.search(this.searchTerm$).subscribe(name => {
             this.accounts = name;
-            this.loading=false; 
+            this.loading=false;
         });
     }
 }
