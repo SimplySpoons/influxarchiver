@@ -610,11 +610,7 @@ body {
 .nothotdog.closed img, .nothotdog.closed span { 
 position: relative;
 right: 42px;
--webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-  transition: .20s ease-in-out;
-  pointer-events: all;
+pointer-events: all;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
@@ -624,11 +620,14 @@ right: 42px;
 .nothotdog.open img, .nothotdog.closed span { 
 position: relative;
 right: 8px;
--webkit-transition: .20s ease-in-out;
+  pointer-events: all;
+ }
+
+ .nothotdog.open img, .nothotdog.closed span, .nothotdog.closed img, .nothotdog.closed span {
+     -webkit-transition: .20s ease-in-out;
   -moz-transition: .20s ease-in-out;
   -o-transition: .20s ease-in-out;
   transition: .20s ease-in-out;
-  pointer-events: all;
  }
 
  .nothotdog span, .nothotdog.closed span, .nothotdog.open span {
