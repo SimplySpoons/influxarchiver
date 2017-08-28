@@ -19,6 +19,12 @@ import { AccountService } from '../_services/account.service';
     ])
   ]
 })
+
+@Component({
+  selector: 'nothotdog',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css'],
+})
 export class SidebarComponent implements OnInit, OnDestroy {
   links: any[] = [
     { name: 'Feed Queuer', href: 'http://influxtools.dealer.com/feed-queuer/index.html' },
@@ -66,6 +72,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   state = 'menuOut';
   block = true;
   hamburgerSlide = 'out';
+  NotHotDogSlide ='in';
 
   constructor() {
 
@@ -83,8 +90,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   @Output()
   public collapseSideBar = new EventEmitter();
+  public NotHotDog = new EventEmitter();
 
+
+  // Slider menu
   isIn = false;   // store state
+  isNotHotDogIn = true;   // store state
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
@@ -104,6 +115,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
         console.log(this.block + " < block status");
       }, 250);
     }
+  }
+
+  // NotHotDog slider
+  notHotDogToggle() { // click handler
+    let booley = this.isNotHotDogIn;
+    this.isNotHotDogIn = booley === false ? true : false;
+    this.NotHotDog.emit(booley);
+    this.NotHotDogSlide == 'out' ? this.NotHotDogSlide = 'in' : this.NotHotDogSlide = 'out';
+    console.log(this.NotHotDogSlide);
   }
 
 

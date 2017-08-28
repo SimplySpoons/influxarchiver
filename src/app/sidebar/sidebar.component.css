@@ -235,7 +235,7 @@ body {
 /* Hide SDEV and IST logos when the sidebar collapses to top */
 @media (max-width: 767px) {
 
-  .sdevcredit, .istcredit { display: none; }
+  .sdevcredit, .istcredit, .nothotdog { display: none; }
   .navbar-collapse.in {overflow-y: hidden;}
 }
 #nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
@@ -599,4 +599,58 @@ body {
 
 .menu-list .panel-group {
     margin-bottom:0;
+}
+
+.nothotdog { 
+    position: absolute;
+    bottom: 120px;
+    pointer-events: none;
+    width: 135%; }
+
+.nothotdog.closed img, .nothotdog.closed span { 
+position: relative;
+right: 42px;
+-webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+  transition: .20s ease-in-out;
+  pointer-events: all;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+ }
+
+.nothotdog.open img, .nothotdog.closed span { 
+position: relative;
+right: 8px;
+-webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+  transition: .20s ease-in-out;
+  pointer-events: all;
+ }
+
+ .nothotdog span, .nothotdog.closed span, .nothotdog.open span {
+    position: absolute;
+    top: -16px;
+    right: 3px;
+    opacity: 0;
+    display: inline-block;
+    padding: 1px;
+    border-radius: 5px;
+    background: #f5fbef;
+    color: #1C2431;
+    font-size: 11px;
+    transition: .8s all;
+    width: 63px;
+    font-weight: bold;
+}
+
+.nothotdog.closed span { 
+    opacity: 0;
+}
+
+.nothotdog.open span {
+    opacity: 1;
 }

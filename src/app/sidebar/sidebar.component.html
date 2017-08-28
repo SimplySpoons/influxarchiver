@@ -77,6 +77,14 @@
             <div class="istcredit">
                 <img src="http://i.imgur.com/keRkPEB.png" />
             </div>
+
+            <div class="nothotdog" [ngClass]="{ 'closed': isNotHotDogIn, 'open': !isNotHotDogIn }" (click)="notHotDogToggle()">
+                <img src="http://i.imgur.com/6FY4EQ2.png" />
+                <span>Not Hotdog</span>
+                <div [hidden]="!visible">
+                    <ng-content></ng-content>
+                </div>
+            </div>
         </div>
     </div>
 </div>
