@@ -119,9 +119,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   // NotHotDog slider
   notHotDogToggle() { // click handler
-    let booley = this.isNotHotDogIn;
-    this.isNotHotDogIn = booley === false ? true : false;
-    this.NotHotDog.emit(booley);
+    let nothotdogbool = this.isNotHotDogIn;
+    this.isNotHotDogIn = nothotdogbool === false ? true : false;
+    this.NotHotDog.emit(nothotdogbool);
     this.NotHotDogSlide == 'out' ? this.NotHotDogSlide = 'in' : this.NotHotDogSlide = 'out';
     console.log(this.NotHotDogSlide);
   }
