@@ -607,14 +607,21 @@ body {
     pointer-events: none;
     width: 135%; }
 
-.nothotdog.closed img, .nothotdog.closed span { 
+.nothotdog.closed img { 
 position: relative;
 right: 42px;
 pointer-events: all;
-  -webkit-transform: rotate(90deg);
+  -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
+ }
+
+ .nothotdog.closed span {
+    -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
  }
 
 .nothotdog.open img, .nothotdog.closed span { 
