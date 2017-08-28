@@ -624,10 +624,10 @@ right: 8px;
  }
 
  .nothotdog.open img, .nothotdog.closed span, .nothotdog.closed img, .nothotdog.closed span {
-     -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-  transition: .20s ease-in-out;
+     -webkit-transition: .50s ease-in-out;
+  -moz-transition: .50s ease-in-out;
+  -o-transition: .50s ease-in-out;
+  transition: .50s ease-in-out;
  }
 
  .nothotdog span, .nothotdog.closed span, .nothotdog.open span {
