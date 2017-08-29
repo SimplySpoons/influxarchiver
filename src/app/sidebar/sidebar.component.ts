@@ -95,7 +95,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   // Slider menu
   isIn = false;   // store state
-  isNotHotDogIn = true;   // store state
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
@@ -118,6 +117,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   // NotHotDog slider
+  isNotHotDogIn = true;   // store state
   notHotDogToggle() { // click handler
     let nothotdogbool = this.isNotHotDogIn;
     this.isNotHotDogIn = nothotdogbool === false ? true : false;
