@@ -1,0 +1,18 @@
+<p>
+  influxfeed works!
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th *ngFor="let column of influxHeaders">{{column}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of influxVehicles">
+      <td *ngFor="let col of influxHeaders">
+        <span [innerHTML]="getColumnData(vehicle,col)">{{col}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

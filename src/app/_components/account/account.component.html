@@ -5,7 +5,7 @@
   <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
 
-<div class="accountList" style="margin: 20px 0;" *ngIf="value != undefined">
+<div class="accountList" style="margin: 20px 0;" *ngIf="value">
   <div class="panel" *ngIf="accounts[0].name != 'No results found'">
     <div class="panel-body clearfix">
       <div class="col-md-2">

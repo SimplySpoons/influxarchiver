@@ -9,6 +9,7 @@ import { InfluxComponent } from './_components/influx/influx.component';
 import { SubmitbugComponent } from './bugs/submitbug.component';
 import { IssuetrackerComponent } from './bugs/issuetracker.component';
 import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
+import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 
 export const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'account', pathMatch: 'full' },
@@ -23,7 +24,11 @@ export const APP_ROUTES: Routes = [
             { path: 'vehicles', component: VehicleListComponent },
             { path: 'vehicles/:type', component: VehicleListComponent },
             { path: 'vehicles/:type/:classification', component: VehicleListComponent },
-            { path: 'influx', component: InfluxComponent }
+            { path: 'influx', component: InfluxComponent, },
+            { path: 'influx/:provider', component: InfluxfeedComponent }
+            // children: [
+            //     { path: ':provider', component: InfluxfeedComponent }
+            // ] }
         ],
     },
     { path: 'feeds', component: FeedsComponent }

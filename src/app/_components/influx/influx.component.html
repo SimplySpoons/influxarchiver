@@ -1,38 +1,4 @@
 <hr>
-<div *ngIf="feedLoading" class="feedLoadingIndicator">
-  <div class="row" style="clear: both;">
-    <sk-folding-cube></sk-folding-cube>
-  </div>
-</div>
-<div *ngIf="showFeed">
-  <!-- <ul class="influxFeed">
-      <li *ngFor="let column of influxHeaders">
-        {{column}}
-      </li>
-    </ul>
-    <ul class="influxFeed">
-        <li *ngFor="let vehicle of influxVehicles">
-          <span *ngFor="let col of vehicle">
-              {{col}}
-          </span>}
-        </li>
-      </ul> -->
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th *ngFor="let column of influxHeaders">{{column}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vehicle of influxVehicles"> 
-        <td *ngFor="let col of influxHeaders">
-          <span [innerHTML]="getColumnData(vehicle,col)">{{col}}</span>
-        </td> 
-      </tr>
-    </tbody>
-  </table>
-</div>
 <div class="panel clearfix" *ngFor="let config of influxConfigs">
   <div class="card">
     <div class="panel-heading clearfix">
@@ -70,7 +36,7 @@
       <hr>
       <div class="influxFeed">
         <a class="btn btn-info" (click)="showArchivedFile(config.provider);">Get Influx Feed</a>
-
+        <a class="btn btn-info" [routerLink]="[config.provider]">Get Influx Feed (new)</a>
       </div>
       <hr>
       <div class="alert alert-warning" *ngIf="config.hasFilter">

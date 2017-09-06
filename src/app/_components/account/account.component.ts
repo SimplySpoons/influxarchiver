@@ -12,35 +12,34 @@ import { Account } from '../../_models/account';
 export class AccountComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   accounts: Array<Account> = [];
-  loading =false;
-  pasted=false;
+  loading = false;
+  pasted = false;
   constructor(private accountService: AccountService) {
-      this.searchForUser();
-   }
+    this.searchForUser();
+  }
 
   ngOnInit() {
   }
 
-  onValueChange(data: any){
-    if(this.pasted === true) {
+  onValueChange(data: any) {
+    if (this.pasted === true) {
       this.searchTerm$.next(data);
     }
   }
 
   formatRequest(data: any) {
-    this.pasted=true;
+    this.pasted = true;
   }
 
-
-  loadingInit(){
+  loadingInit() {
     this.accounts = [];
     this.loading = true;
   }
 
-   searchForUser() {
-        this.accountService.search(this.searchTerm$).subscribe(name => {
-            this.accounts = name;
-            this.loading=false;
-        });
-    }
+  searchForUser() {
+    this.accountService.search(this.searchTerm$).subscribe(name => {
+      this.accounts = name;
+      this.loading = false;
+    });
+  }
 }

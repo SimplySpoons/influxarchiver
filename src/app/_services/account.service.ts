@@ -54,6 +54,10 @@ export class AccountService {
         return this.account;
     }
 
+    // getCurrentProvider() {
+    //     return this.provider;
+    // }
+
     search(names: Observable<string>) {
         return names.debounceTime(400)
             .distinctUntilChanged()

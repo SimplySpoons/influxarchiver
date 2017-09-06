@@ -16,6 +16,7 @@ import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } fr
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
 import { FilterPipe, SearchPipe } from './_pipes/filter.pipe';
+import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
@@ -35,6 +36,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -65,7 +67,9 @@ export function initializeCurrentUser(config: AppConfig) {
     InfiniteScroller,
     ScrollerDirective,
     CurrentfeedsComponent,
-    VehicleCarouselComponent
+    VehicleCarouselComponent,
+    InfluxfeedComponent,
+    feedSearch
   ],
   imports: [
     BrowserModule,
