@@ -46,7 +46,7 @@ export class ScrollerDirective implements AfterViewInit {
   }
 
   private registerScrollEvent() {
-    this.scrollEvent$ = Observable.fromEvent(this.element,this.elm.nativeElement, 'scroll');
+    this.scrollEvent$ = Observable.fromEvent(this.element,this.elm.nativeElement, scroll);
   }
 
   private streamScrollEvents() {

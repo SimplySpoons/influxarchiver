@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, EventEmitter, Output, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
+import { AccordionModule, AccordionConfig } from 'ngx-bootstrap'; 
 import { AccountService } from '../_services/account.service';
 
 @Component({

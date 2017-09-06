@@ -34,9 +34,15 @@ export class AccountService {
             (response: Response) => response.json());
     }
 
+    getInfluxFeed(accountId: string, parser: string) {
+        return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxFeed", accountId: accountId, parser: parser }
+        ).map(
+            (response: Response) => response.json());
+    }
+
     getInvCounts(accountId: string) {
         console.log('hitting service');
-        return this.http.post(this.API_URL + 'vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
+        return this.http.post(this.API_URL + 'http://localhost:6969/vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }
     setCurrentAccount(account: any) {
@@ -52,7 +58,7 @@ export class AccountService {
         return names.debounceTime(400)
             .distinctUntilChanged()
             .switchMap(name => this.searchForAccount(name));
-    } ''
+    }
 
     searchForAccount(name) {
         return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
@@ -76,7 +82,7 @@ export class AccountService {
             (response: Response) => response.json());
     }
 
-    searchByVin ( term: any ) {
+    searchByVin(term: any) {
         return this.http.post(this.API_URL + 'vehicle.php', { request: "searchByVin", search: term }).map(
             (response: Response) => response.json());
     }

@@ -21,24 +21,24 @@ export class VehicleCarouselComponent implements OnInit {
 
     var wrap = this.elRef.nativeElement.querySelector('.carouselVehicleThumbnailsContainer');
     if (this.imgIndex !== 0) {
-       var thumbWidth = wrap.querySelector('.vehicleThumbnail').offsetWidth;
-       var currentThumbLeft = this.imgIndex * thumbWidth;
-       var bumpFactor = 5;
+      var thumbWidth = wrap.querySelector('.vehicleThumbnail').offsetWidth;
+      var currentThumbLeft = this.imgIndex * thumbWidth;
+      var bumpFactor = 5;
 
-       if (currentThumbLeft > ((wrap.clientWidth - (thumbWidth * bumpFactor)) + wrap.scrollLeft)) {
-           // We should scroll right a bit
-           wrap.scrollLeft = currentThumbLeft - wrap.clientWidth + (thumbWidth * bumpFactor);
-       } else if (currentThumbLeft < (thumbWidth + wrap.scrollLeft)) {
-           // We should scroll left a bit
-           // Left position of thumb : scope.imgIndex * thumbWidth
-           wrap.scrollLeft = currentThumbLeft - thumbWidth;
-       }
-     } else {
-       wrap.scrollLeft = 0;
-     }
+      if (currentThumbLeft > ((wrap.clientWidth - (thumbWidth * bumpFactor)) + wrap.scrollLeft)) {
+        // We should scroll right a bit
+        wrap.scrollLeft = currentThumbLeft - wrap.clientWidth + (thumbWidth * bumpFactor);
+      } else if (currentThumbLeft < (thumbWidth + wrap.scrollLeft)) {
+        // We should scroll left a bit
+        // Left position of thumb : scope.imgIndex * thumbWidth
+        wrap.scrollLeft = currentThumbLeft - thumbWidth;
+      }
+    } else {
+      wrap.scrollLeft = 0;
+    }
   }
 
-  constructor(private elRef:ElementRef) { }
+  constructor(private elRef: ElementRef) { }
 
   ngOnInit() { }
 
