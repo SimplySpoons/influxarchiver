@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class InfluxComponent implements OnInit, OnDestroy {
   account: Account;
-  @Output() accountId: string = '';
+  accountId: string = '';
   loading: boolean = false;
   influxLoading = false;
   influxString = '';

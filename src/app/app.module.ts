@@ -37,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
+import { DataTablesModule } from 'angular-datatables';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -84,7 +85,8 @@ export function initializeCurrentUser(config: AppConfig) {
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    DataTablesModule
   ],
   exports: [FilterPipe, SearchPipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],

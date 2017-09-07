@@ -24,13 +24,10 @@ export const APP_ROUTES: Routes = [
             { path: 'vehicles', component: VehicleListComponent },
             { path: 'vehicles/:type', component: VehicleListComponent },
             { path: 'vehicles/:type/:classification', component: VehicleListComponent },
-            { path: 'influx', component: InfluxComponent, },
-            { path: 'influx/:provider', component: InfluxfeedComponent }
-            // children: [
-            //     { path: ':provider', component: InfluxfeedComponent }
-            // ] }
+            { path: 'influx', component: InfluxComponent, }
         ],
     },
+    { path: 'account/:id/influx/:provider', component: InfluxfeedComponent },
     { path: 'feeds', component: FeedsComponent }
 ];
 

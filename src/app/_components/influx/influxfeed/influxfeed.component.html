@@ -1,8 +1,88 @@
-<p>
-  influxfeed works!
-</p>
+<div class="card">
+  <h4>Account: <span class="accountName">{{this.accountId}}</span></h4>
+  <h4>Feed: <span class="feedName">{{this.provider}}</span></h4>
+</div>
 
-<table class="table table-striped">
+<div *ngIf="feedLoading" class="loadingIndicator">
+  <div class="row" style="clear: both;">
+    <sk-folding-cube></sk-folding-cube>
+  </div>
+</div>
+
+<!-- <table datatable class="row-border hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Foo</td>
+        <td>Bar</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Someone</td>
+        <td>Youknow</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Iamout</td>
+        <td>Ofinspiration</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Yoda</td>
+        <td>Skywalker</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Patrick</td>
+        <td>Dupont</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Barack</td>
+        <td>Obama</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>François</td>
+        <td>Holland</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Michel</td>
+        <td>Popo</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Chuck</td>
+        <td>Norris</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Simon</td>
+        <td>Robin</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Louis</td>
+        <td>Lin</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Zelda</td>
+        <td>Link</td>
+      </tr>
+    </tbody>
+  </table> -->
+
+
+<table datatable id="dt" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
     <tr>
       <th *ngFor="let column of influxHeaders">{{column}}</th>
@@ -10,9 +90,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let vehicle of influxVehicles">
-      <td *ngFor="let col of influxHeaders">
-        <span [innerHTML]="getColumnData(vehicle,col)">{{col}}</span>
-      </td>
+      <td *ngFor="let col of influxHeaders" [innerHTML]="getColumnData(vehicle,col)">{{col}}</td>
     </tr>
   </tbody>
 </table>
