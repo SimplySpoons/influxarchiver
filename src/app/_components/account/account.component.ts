@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   accounts: Array<Account> = [];
   loading = false;
   pasted = false;
+  
   constructor(private accountService: AccountService) {
     this.searchForUser();
   }
@@ -42,4 +43,5 @@ export class AccountComponent implements OnInit {
       this.loading = false;
     });
   }
+  
 }

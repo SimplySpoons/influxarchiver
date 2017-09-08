@@ -21,27 +21,25 @@ export class InfluxfeedComponent implements OnInit {
   private sub: any;
   account: Account;
   accountId: string;
-
+  showTable: boolean = false;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     // this.feedLoading = true;
-
     this.sub = this.route.params.subscribe(params => {
+      console.log(params);
       this.accountId = params['id'];
       this.provider = params['provider'];
-
       this.accountService.getInfluxFeed(this.accountId, this.provider).subscribe(feed => {
+        console.log(feed);
         this.influxHeaders = feed.headers;
         this.influxVehicles = feed.vehicles;
-        
         this.feedLoading = false;
-        $(function () {
-          $('#dt').DataTable();
-        });
-        
+
+        if (this.influxHeaders != null) {
+          this.makeTheTable();
+        }
       }),
         err => {
           // Log errors if any
@@ -54,20 +52,19 @@ export class InfluxfeedComponent implements OnInit {
     return vehicle[column];
   }
 
+  makeTheTable() {
+    $(function () {
+      $('#dt').DataTable({
+        pagingType: 'simple_numbers',
+        pageLength: 100,
+        responsive: true
+      });
+    });
+    this.showTable = true;
+  }
+
   ngOnInit(): void {
-   
-      this.dtOptions = {
-        pagingType: 'full_numbers'
-      };
-
-
-      // Calling the DT trigger to manually render the table
-      this.dtTrigger.next();
-    };
-
-
-  // private extractData(res: Response) {
-  //   const body = res.json();
-  //   return body.data || {};
-  // }
+    // Calling the DT trigger to manually render the table
+    this.dtTrigger.next();
+  };
 }

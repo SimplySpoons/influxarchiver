@@ -100,7 +100,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.isIn = bool === false ? true : false;
     this.collapseSideBar.emit(bool);
     this.hamburgerSlide == 'out' ? this.hamburgerSlide = 'in' : this.hamburgerSlide = 'out';
-    console.log(this.hamburgerSlide);
 
     /* this is to delay setting menu items to display:block to allow the sliding animation to work */
     if (!this.isIn) {
@@ -123,13 +122,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.isNotHotDogIn = nothotdogbool === false ? true : false;
     this.NotHotDog.emit(nothotdogbool);
     this.NotHotDogSlide == 'out' ? this.NotHotDogSlide = 'in' : this.NotHotDogSlide = 'out';
-    console.log(this.NotHotDogSlide);
   }
 
 
-  ngOnInit() {
-    console.log(this.account + 'this is from the sidebar');
-  }
+  ngOnInit() {  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
