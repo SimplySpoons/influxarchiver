@@ -56,8 +56,11 @@ export class InfluxfeedComponent implements OnInit {
     $(function () {
       $('#dt').DataTable({
         pagingType: 'simple_numbers',
-        pageLength: 100,
-        responsive: true
+        pageLength: 250,
+        responsive: true,
+        scrollY: 1000,
+        deferRender: true,
+        scroller: true
       });
     });
     this.showTable = true;
