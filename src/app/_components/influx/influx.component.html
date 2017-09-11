@@ -35,8 +35,7 @@
       </div>
       <hr>
       <div class="influxFeed">
-        <a class="btn btn-info" (click)="showArchivedFile(config.provider);">Get Influx Feed</a>
-        <a class="btn btn-info" [routerLink]="[config.provider]">Get Influx Feed (new)</a>
+        <a class="btn btn-info" [routerLink]="[config.provider]">Show Feed</a>
       </div>
       <hr>
       <div class="alert alert-warning" *ngIf="config.hasFilter">
