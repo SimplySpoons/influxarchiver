@@ -69,7 +69,7 @@ export class AppConfig {
     }
 
     public API_CONFIG() {
-        return '//supporttoolbox.dealerdotcom.corp/staging/hotdog/php/';
+        return 'https://supporttoolbox.dealerdotcom.corp/staging/hotdog/php/';
     }
 
 }
