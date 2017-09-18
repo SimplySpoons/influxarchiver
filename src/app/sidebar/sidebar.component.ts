@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, EventEmitter, Output, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AccordionModule, AccordionConfig } from 'ngx-bootstrap'; 
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { AccountService } from '../_services/account.service';
+import { Account } from '../_models/account';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,8 @@ import { AccountService } from '../_services/account.service';
       state('in', style({
         left: '0px'
       })),
-      transition('out <=> in', animate(250))
+      transition('in => out', animate('200ms ease-in')),
+      transition('out => in', animate('100ms ease-out'))
     ])
   ]
 })
@@ -72,12 +74,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
   state = 'menuOut';
   block = true;
   hamburgerSlide = 'out';
-  NotHotDogSlide ='in';
+  NotHotDogSlide = 'in';
+  accountId: string;
+  provider: string;
+  currentRoute: any;
 
-  constructor() {
-
+  constructor(router: Router) { 
+    router.events.subscribe((url:any) => {
+      this.currentRoute = url.url;
+      if(this.currentRoute.includes('/influx/')) {
+        this.toggleState();
+      }
+    })       
   }
-
+  
   getAccountChange(data) {
     console.log(data);
   }
@@ -125,7 +135,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
 
-  ngOnInit() {  }
+  ngOnInit() {
+
+
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

@@ -1,9 +1,11 @@
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { fadeInAnimation } from './_animations/index';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  host: { '[@fadeInAnimation]': '' },
   animations: [
     trigger('mainSlide', [
       state('menuOut', style({
@@ -23,6 +25,7 @@ import { Component, trigger, state, style, transition, animate, keyframes } from
       })),
       transition('mainOut <=> mainIn', animate(250))
     ]),
+    fadeInAnimation
   ]
 })
 export class AppComponent {
@@ -36,7 +39,7 @@ export class AppComponent {
     isFirstDisabled: false
   };
 
-  removeSearchResults(data: any){ 
+  removeSearchResults(data: any) {
     console.log('called from search', data);
   }
 

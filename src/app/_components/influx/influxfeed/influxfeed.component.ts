@@ -3,7 +3,7 @@ import { AccountService } from '../../../_services/account.service';
 import { Account } from '../../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response } from '@angular/http';
-import { Subject } from 'rxjs/Rx';
+import { Subject, Observable, Subscription } from 'rxjs/Rx';
 declare var $;
 
 import 'rxjs/add/operator/map';
@@ -24,9 +24,18 @@ export class InfluxfeedComponent implements OnInit {
   showTable: boolean = false;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  showStyle: false;
+  
+  // loadTime: any = "0";
+  // subs: Subscription;
+  // ticks = 0;
+  // minutesDisplay: number = 0;
+  // hoursDisplay: number = 0;
+  // secondsDisplay: number = 0;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     // this.feedLoading = true;
+    
     this.sub = this.route.params.subscribe(params => {
       console.log(params);
       this.accountId = params['id'];
@@ -60,14 +69,48 @@ export class InfluxfeedComponent implements OnInit {
         responsive: true,
         scrollY: 1000,
         deferRender: true,
-        scroller: true
+        scroller: true,
+        "initComplete": function(settings, json) {
+          // alert( 'DataTables has finished its initialisation.' );
+          console.log('init complete!');
+        }
       });
     });
     this.showTable = true;
   }
 
+  // private startTimer() {
+  //   let timer = Observable.timer(1, 1000);
+  //   this.subs = timer.subscribe(
+  //     t => {
+  //       this.ticks = t;
+  //       this.secondsDisplay = this.getSeconds(this.ticks);
+  //       this.minutesDisplay = this.getMinutes(this.ticks);
+  //       this.hoursDisplay = this.getHours(this.ticks);
+  //     }
+  //   );
+  // }
+
+  // private getSeconds(ticks: number) {
+  //   return this.pad(ticks % 60);
+  // }
+
+  // private getMinutes(ticks: number) {
+  //   return this.pad((Math.floor(ticks / 60)) % 60);
+  // }
+
+  // private getHours(ticks: number) {
+  //   return this.pad(Math.floor((ticks / 60) / 60));
+  // }
+
+  // private pad(digit: any) {
+  //   return digit <= 9 ? '0' + digit : digit;
+  // }
+
   ngOnInit(): void {
+    // this.startTimer();
     // Calling the DT trigger to manually render the table
     this.dtTrigger.next();
   };
+
 }

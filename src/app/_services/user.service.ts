@@ -14,22 +14,22 @@ export class UserService {
     }
 
     getAllBugs(status: number) {
-        return this.http.post('https://sf.hankshacks.com/userdata.php', { request: "getAllBugs", status: status }).map(
+        return this.http.post('http://localhost:6969/userdata.php', { request: "getAllBugs", status: status }).map(
             (response: Response) => response.json());
     }
 
     addBugNow(newBug: any) {
-        return this.http.post('https://sf.hankshacks.com/userdata.php', { request: "addBug", newBug: newBug }).map(
+        return this.http.post('http://localhost:6969/userdata.php', { request: "addBug", newBug: newBug }).map(
             (response: Response) => response.json());
     }
 
     markBugComplete(id: string) {
-        return this.http.post('https://sf.hankshacks.com/userdata.php', { request: "markBugComplete", id: id }).map(
+        return this.http.post('http://localhost:6969/userdata.php', { request: "markBugComplete", id: id }).map(
             (response: Response) => response.json());
     }
 
     deleteBug(id: string) {
-        return this.http.post('https://sf.hankshacks.com/userdata.php', { request: "deleteBug", id: id }).map(
+        return this.http.post('http://localhost:6969/userdata.php', { request: "deleteBug", id: id }).map(
             (response: Response) => response.json());
     }
 
