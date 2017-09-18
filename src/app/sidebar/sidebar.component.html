@@ -1,13 +1,8 @@
 <div class="menuContainer navbar-collapse nav-side-menu" [ngClass]="{ 'in': isIn, 'out': !isIn }">
     <div class="collapse navbar itemContainer" [ngClass]="{ 'block': block, 'notBlock': !block }">
         <div *ngIf="block" class="brand hvr-underline-reveal">
-            <a [@enterAnimation] class="dashTitle" href="/">Influx Archiver 2.0</a>
+            <a [@enterAnimation] class="dashTitle" href="/">Influx Archiver</a>
         </div>
-        <!--<div id="nav-icon1" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>-->
         <div id="nav-icon2" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
             <span></span>
             <span></span>
@@ -72,6 +67,10 @@
 
         <div *ngIf="(!block && !hideVerticalText)" [@enterAnimation]>
             <span class="verticalText">I<br>n<br>f<br>l<br>u<br>x<br><br> A<br>r<br>c<br>h<br>i<br>v<br>e<br>r<br><br> 2<br>.<br>0<br></span>
+        </div>
+
+        <div *ngIf="(block && hideVerticalText)" [@enterAnimation]>
+            <span class="versionNumber2">2.0</span>
         </div>
     </div>
 </div>

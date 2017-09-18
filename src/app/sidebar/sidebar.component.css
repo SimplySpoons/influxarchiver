@@ -140,6 +140,11 @@ body {
 }
 .accordianUnderText a.accordionLink {
     color:#000;
+    font-family: "Droid Sans Mono";
+}
+.accordianUnderText li a {
+    font-size:12px;
+
 }
 .panel .panel-body {
     padding:0;
@@ -187,7 +192,7 @@ body {
     border-top: 2px solid #DE795B;
 }*/
 .nav-side-menu .brand a.dashTitle {
-    font-size:16px;
+    font-size:20px;
     color:#5bc0de;
     position: relative;
     top: 2px;
@@ -325,7 +330,7 @@ body {
     opacity:1;
 }
 .navbar-collapse.out #nav-icon2 {
-    top: 11px;
+    top: 13px;
     right: -27px;
 }
 .navbar-collapse:not(.out) #nav-icon2 {
@@ -336,19 +341,19 @@ body {
     position:relative;
 }
 .nav-side-menu .dashboardLink .navTitle {
-    left:16px;
+    left:0px;
     font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle2 {
-    left:26px;
+    left:8px;
     font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle3 {
-    left:28px;
+    left:12px;
     font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle4 {
-    left:28px;
+    left:12px;
     font-family: "Droid Sans Mono";
 }
 .fa.fa-user.fa-lg,.fa.fa-users.fa-lg {
@@ -364,7 +369,7 @@ body {
 }
 .bugSubmitLink .navTitle {
     position:relative;
-    left:16px;
+    left:0px;
 }
 .fa.fa-bug.fa-lg,.fa.fa-list-alt.fa-lg {
     position:relative;
@@ -372,7 +377,7 @@ body {
 }
 .navTitle.navTitle1 {
     position:relative;
-    left:14px;
+    left:0px;
 }
 .collapse.navbar-collapse.out .menu-list .panel.card.navPanelItem {
     border:none;
@@ -581,8 +586,20 @@ body {
 .verticalText {
     color:#5bc0de;
     font-size:16px;
+    font-weight:bold;
     position: absolute;
     top:20%;
-    left:39%;
+    left:33%;
     font-family: "Droid Sans Mono";
+}
+
+.versionNumber2 {
+    display: block;
+    position: absolute;
+    bottom:5%;
+    color:#5bc0de;
+    font-weight:bold;
+    left: 44%;
+    font-family: "Droid Sans Mono";
+    font-size:22px;
 }

@@ -24,10 +24,11 @@ import { Account } from '../_models/account';
         style({ opacity: 0 }),
         animate(400, style({ opacity: 1 }))
       ]),
-      transition(':leave', [   // :leave is alias to '* => void'
-        animate(1, style({ opacity: 0 }))
-      ])
     ])
+      // ]),
+      // transition(':leave', [   // :leave is alias to '* => void'
+      //   animate(1, style({ opacity: 0 }))
+      // ])
   ]
 })
 
@@ -87,7 +88,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   accountId: string;
   provider: string;
   currentRoute: any;
-  hideVerticalText: boolean = false;
+  hideVerticalText: boolean = true;
 
   constructor(router: Router) {
     router.events.subscribe((url: any) => {
