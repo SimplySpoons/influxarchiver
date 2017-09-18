@@ -19,17 +19,17 @@
                         <span class="navTitle navTitle1">Dealer Search</span>
                     </div>
                 </a>
-                <accordion-group panelClass="navPanelItem" #group2>
-                    <div accordion-heading [ngClass]="{'hvr-icon-bob': group2?.isOpen, 'hvr-icon-hang': !group2?.isOpen}">
+                <accordion-group panelClass="navPanelItem feeds" #group2>
+                    <div accordion-heading [ngClass]="{'hvr-icon-bob feeds': group2?.isOpen, 'hvr-icon-hang feeds': !group2?.isOpen}">
                         <i class="fa fa-car fa-lg"></i> <span class="navTitle navTitle2">Feeds</span>
                     </div>
                     <ul class="accordianUnderText">
                         <li><a class="accordionLink" [routerLink]="['/currentfeeds']">Currently Running</a></li>
                     </ul>
                 </accordion-group>
-                <accordion-group panelClass="navPanelItem" #group3>
-                    <div accordion-heading [ngClass]="{'hvr-icon-bob': group3?.isOpen, 'hvr-icon-hang': !group3?.isOpen}">
-                        <i class="fa fa-link fa-lg"></i> <span class="navTitle navTitle3">Quick Links</span>
+                <accordion-group panelClass="navPanelItem quickLinks" #group3>
+                    <div accordion-heading [ngClass]="{'hvr-icon-bob quickLinks': group3?.isOpen, 'hvr-icon-hang quickLinks': !group3?.isOpen}">
+                        <i class="fa fa-link fa-lg"></i> <span class="navTitle navTitle3">Quick Links </span>
                     </div>
                     <ul class="accordianUnderText">
                         <li *ngFor="let link of links">
@@ -37,9 +37,9 @@
                         </li>
                     </ul>
                 </accordion-group>
-                <accordion-group panelClass="navPanelItem" #group4>
-                    <div [ngClass]="{'hvr-icon-bob': group4?.isOpen, 'hvr-icon-hang': !group4?.isOpen}" accordion-heading>
-                        <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">OEM Pages</span>
+                <accordion-group panelClass="navPanelItem oemPages" #group4>
+                    <div [ngClass]="{'hvr-icon-bob oemPages': group4?.isOpen, 'hvr-icon-hang oemPages': !group4?.isOpen}" accordion-heading>
+                        <i class="fa fa-users fa-lg"></i> <span class="navTitle navTitle4">OEM Pages </span>
                     </div>
                     <ul class="accordianUnderText">
                         <li *ngFor="let oemlink of oemlinks">
@@ -69,8 +69,8 @@
             <span class="verticalText">I<br>n<br>f<br>l<br>u<br>x<br><br> A<br>r<br>c<br>h<br>i<br>v<br>e<br>r<br><br> 2<br>.<br>0<br></span>
         </div>
 
-        <div *ngIf="(block && hideVerticalText)" [@enterAnimation]>
+        <!-- <div *ngIf="(block && hideVerticalText)" [@enterAnimation]>
             <span class="versionNumber2">2.0</span>
-        </div>
+        </div> -->
     </div>
 </div>
