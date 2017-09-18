@@ -38,7 +38,6 @@ import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carouse
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 import { DataTablesModule } from 'angular-datatables';
-import { TimerComponent } from './_components/timer/timer.component';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -71,8 +70,7 @@ export function initializeCurrentUser(config: AppConfig) {
     CurrentfeedsComponent,
     VehicleCarouselComponent,
     InfluxfeedComponent,
-    feedSearch,
-    TimerComponent
+    feedSearch
   ],
   imports: [
     BrowserModule,

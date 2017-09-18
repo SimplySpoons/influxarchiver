@@ -25,7 +25,7 @@ import { Account } from '../_models/account';
         animate(400, style({ opacity: 1 }))
       ]),
       transition(':leave', [   // :leave is alias to '* => void'
-        animate(400, style({ opacity: 0 }))
+        animate(1, style({ opacity: 0 }))
       ])
     ])
   ]
@@ -87,6 +87,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   accountId: string;
   provider: string;
   currentRoute: any;
+  hideVerticalText: boolean = false;
 
   constructor(router: Router) {
     router.events.subscribe((url: any) => {
@@ -122,14 +123,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     /* this is to delay setting menu items to display:block to allow the sliding animation to work */
     if (!this.isIn) {
+      this.hideVerticalText = true;
       setTimeout(() => {
         this.block = true;
-        console.log(this.block + " < block status");
       }, 250);
     } else {
+      this.hideVerticalText = false;
       setTimeout(() => {
         this.block = false;
-        console.log(this.block + " < block status");
       }, 250);
     }
   }

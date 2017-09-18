@@ -25,9 +25,10 @@
     line-height: 50px;
     display: block;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     padding: 2px 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: "Droid Sans Mono";
 }
 .menuContainer .brand:hover a {
     text-decoration: none;
@@ -176,6 +177,7 @@ body {
 }
 .panel-title .navTitle {
     margin-left:20px;
+    font-family: "Droid Sans Mono";
 }
 /*.nav-side-menu .brand {
     font-size:26px;
@@ -185,7 +187,7 @@ body {
     border-top: 2px solid #DE795B;
 }*/
 .nav-side-menu .brand a.dashTitle {
-    font-size:24px;
+    font-size:16px;
     color:#5bc0de;
     position: relative;
     top: 2px;
@@ -335,15 +337,19 @@ body {
 }
 .nav-side-menu .dashboardLink .navTitle {
     left:16px;
+    font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle2 {
     left:26px;
+    font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle3 {
     left:28px;
+    font-family: "Droid Sans Mono";
 }
 .nav-side-menu .navTitle4 {
     left:28px;
+    font-family: "Droid Sans Mono";
 }
 .fa.fa-user.fa-lg,.fa.fa-users.fa-lg {
     position:relative;
@@ -570,4 +576,13 @@ body {
 
 .menu-list .panel-group {
     margin-bottom:0;
+}
+
+.verticalText {
+    color:#5bc0de;
+    font-size:16px;
+    position: absolute;
+    top:20%;
+    left:39%;
+    font-family: "Droid Sans Mono";
 }
