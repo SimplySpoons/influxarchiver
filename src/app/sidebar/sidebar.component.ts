@@ -18,6 +18,15 @@ import { Account } from '../_models/account';
       })),
       transition('in => out', animate('200ms ease-in')),
       transition('out => in', animate('100ms ease-out'))
+    ]),
+    trigger('enterAnimation', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({ opacity: 0 }),
+        animate(400, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(400, style({ opacity: 0 }))
+      ])
     ])
   ]
 })
@@ -79,15 +88,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
   provider: string;
   currentRoute: any;
 
-  constructor(router: Router) { 
-    router.events.subscribe((url:any) => {
+  constructor(router: Router) {
+    router.events.subscribe((url: any) => {
       this.currentRoute = url.url;
-      if(this.currentRoute.includes('/influx/')) {
+      if (this.currentRoute.includes('/influx/')) {
         this.toggleState();
       }
-    })       
+    })
   }
-  
+
   getAccountChange(data) {
     console.log(data);
   }

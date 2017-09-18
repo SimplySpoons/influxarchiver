@@ -1,7 +1,7 @@
 <div class="menuContainer navbar-collapse nav-side-menu" [ngClass]="{ 'in': isIn, 'out': !isIn }">
     <div class="collapse navbar itemContainer" [ngClass]="{ 'block': block, 'notBlock': !block }">
-        <div class="brand hvr-underline-reveal">
-            <a class="dashTitle" href="/">Influx Archiver 2.0</a>
+        <div *ngIf="block" class="brand hvr-underline-reveal">
+            <a [@enterAnimation] class="dashTitle" href="/">Influx Archiver 2.0</a>
         </div>
         <!--<div id="nav-icon1" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
             <span></span>
@@ -16,7 +16,7 @@
             <span></span>
             <span></span>
         </div>
-        <div *ngIf="block" class="menu-list">
+        <div *ngIf="block" [@enterAnimation] class="menu-list">
             <accordion>
                 <a panelClass="navPanelItem" href="/">
                     <div class="dashboardLink panel-title">
