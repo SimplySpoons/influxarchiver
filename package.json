@@ -46,6 +46,7 @@
     "ng2-filter-pipe": "^0.1.10",
     "ngx-bootstrap": "1.9.1",
     "ngx-dropdown": "0.0.22",
+    "primeng": "^4.2.1",
     "rxjs": "^5.4.3",
     "tinymce": "^4.6.6",
     "underscore": "^1.8.3",

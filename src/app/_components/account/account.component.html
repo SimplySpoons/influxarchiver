@@ -1,8 +1,7 @@
 <div class="row dealersearch">
   <h2> Search for Dealer by Account ID or Dealership Name </h2>
-  <h2 class="searchtip">Example: "roimotors" or "ROI Motors"</h2>
   <hr>
-  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
+  <input type="text" pTooltip="Example: 'roimotors' or 'ROI Motors'" tooltipPosition="bottom" tooltipEvent="hover" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="searchTerm$.next($event.target.value); loadingInit();">
 </div>
 
 <div class="accountList" style="margin: 20px 0;" *ngIf="value">

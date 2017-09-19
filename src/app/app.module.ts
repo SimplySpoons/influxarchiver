@@ -38,7 +38,7 @@ import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carouse
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 import { DataTablesModule } from 'angular-datatables';
-// import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { TooltipModule, DataTableModule, SharedModule } from 'primeng/primeng';
 
 // const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true
@@ -90,7 +90,10 @@ export function initializeCurrentUser(config: AppConfig) {
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
-    DataTablesModule
+    DataTablesModule,
+    TooltipModule,
+    DataTableModule,
+    SharedModule
   ],
   exports: [FilterPipe, SearchPipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
