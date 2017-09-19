@@ -93,7 +93,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(router: Router) {
     router.events.subscribe((url: any) => {
       this.currentRoute = url.url;
-      if (this.currentRoute.includes('/influx/')) {
+      if (this.currentRoute.includes('/influx/') && !this.isIn) {
         this.toggleState();
       }
     })
@@ -112,7 +112,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   @Output()
   public collapseSideBar = new EventEmitter();
   public NotHotDog = new EventEmitter();
-
 
   // Slider menu
   isIn = false;   // store state

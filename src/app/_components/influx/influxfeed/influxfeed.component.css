@@ -1,4 +1,4 @@
-@import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+/* @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"); */
 @import url("//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css");
 @import url("//cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css");
 
@@ -8,3 +8,4 @@ td { white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1p
 table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
     background-color: #f9f9f9;
 }
+.table>tbody>tr>td { padding:0; }

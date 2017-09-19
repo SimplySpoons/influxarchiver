@@ -38,11 +38,15 @@ import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carouse
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 import { DataTablesModule } from 'angular-datatables';
+// import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+// const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+//   suppressScrollX: true
+// };
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
 }
-
 
 @NgModule({
   declarations: [

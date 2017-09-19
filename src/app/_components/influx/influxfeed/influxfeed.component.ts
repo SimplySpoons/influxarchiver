@@ -25,17 +25,8 @@ export class InfluxfeedComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   showStyle: false;
-  
-  // loadTime: any = "0";
-  // subs: Subscription;
-  // ticks = 0;
-  // minutesDisplay: number = 0;
-  // hoursDisplay: number = 0;
-  // secondsDisplay: number = 0;
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
-    // this.feedLoading = true;
-    
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {    
     this.sub = this.route.params.subscribe(params => {
       console.log(params);
       this.accountId = params['id'];
@@ -48,6 +39,7 @@ export class InfluxfeedComponent implements OnInit {
 
         if (this.influxHeaders != null) {
           this.makeTheTable();
+          
         }
       }),
         err => {
@@ -67,7 +59,7 @@ export class InfluxfeedComponent implements OnInit {
         pagingType: 'simple_numbers',
         pageLength: 250,
         responsive: true,
-        scrollY: 1000,
+        scrollY: 500,
         deferRender: true,
         scroller: true,
         "initComplete": function(settings, json) {
@@ -78,34 +70,6 @@ export class InfluxfeedComponent implements OnInit {
     });
     this.showTable = true;
   }
-
-  // private startTimer() {
-  //   let timer = Observable.timer(1, 1000);
-  //   this.subs = timer.subscribe(
-  //     t => {
-  //       this.ticks = t;
-  //       this.secondsDisplay = this.getSeconds(this.ticks);
-  //       this.minutesDisplay = this.getMinutes(this.ticks);
-  //       this.hoursDisplay = this.getHours(this.ticks);
-  //     }
-  //   );
-  // }
-
-  // private getSeconds(ticks: number) {
-  //   return this.pad(ticks % 60);
-  // }
-
-  // private getMinutes(ticks: number) {
-  //   return this.pad((Math.floor(ticks / 60)) % 60);
-  // }
-
-  // private getHours(ticks: number) {
-  //   return this.pad(Math.floor((ticks / 60) / 60));
-  // }
-
-  // private pad(digit: any) {
-  //   return digit <= 9 ? '0' + digit : digit;
-  // }
 
   ngOnInit(): void {
     // this.startTimer();

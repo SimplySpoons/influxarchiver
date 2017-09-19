@@ -48,10 +48,10 @@
         <div class="col-md-1">
           <a [href]="account.internalUrl" target="_blank"> <b> Internal Url </b> </a>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           {{account.address1}} <span [ngClass]="{ 'noaddresspipe': account.city==null || account.state==null || account.zip==null }">|</span> {{account.address2}} {{account.city}}<span [ngClass]="{ 'noaddresscomma': account.city==null || account.state==null || account.zip==null }">,</span> {{account.state}} {{account.zip}} {{account.country}}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div class="col-md-6" style="padding: 3px;">
             <a class="btn btn-small btn-primary" style="padding: 3px; font-size: 12px; display: block; width: 100%;" [routerLink]="[account.accountId]"> Influx Configs </a>
           </div>
