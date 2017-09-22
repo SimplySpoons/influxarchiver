@@ -22,6 +22,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   influxVehicles: any = [];
   showFeed: boolean = false;
   feedLoading: boolean = false;
+  hideFilters: boolean = true;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.sub = this.route.parent.params.subscribe(params => {
@@ -44,7 +45,12 @@ export class InfluxComponent implements OnInit, OnDestroy {
     this.accountService.getFilters(this.account.accountId, parser).subscribe(filters => {
         this.filters = filters; 
         console.log(this.filters);
+        this.hideFilters = false;
     });
+  }
+
+  hideFilterToggle() {
+    this.hideFilters = true;
   }
 
   showConfigsAsString(data: any) {
@@ -64,6 +70,8 @@ export class InfluxComponent implements OnInit, OnDestroy {
   getColumnData(vehicle,column) { 
     return vehicle[column]; 
   }
+
+  
 
   ngOnInit() {
 

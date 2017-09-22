@@ -2,55 +2,56 @@
   <h4 class="pull-left">Account: <span class="accountName">{{this.accountId}}</span></h4>
   <h4 class="pull-right">Feed: <span class="feedName">{{this.provider}}</span></h4>
 </div>
-
-<div *ngIf="feedLoading" class="loadingIndicator">
-  <div class="row" style="clear: both;">
-    <sk-folding-cube></sk-folding-cube>
-  </div>
-</div>
 <div>
   <div class="search" style="margin-bottom: 20px;">
-  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" >
-</div>
-<!-- [limit]="50"  -->
-<div id="archivedTable" #archivedTable> 
-<div *ngIf="showTable" (window:resize)="onResize($event)" [style.height.px]="windowHeight - 200" class="dataTable"> 
-    <style [innerHTML]="getStyles()"></style>
-      <ngx-datatable
-        #table
-        class="material striped"
-        [style.height.px]="windowHeight - 225"
-        [rows]="influxVehicles |  search_archived: value"
-        [columns]="influxHeaders"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [scrollbarH]="true"
-        [loadingIndicator]="loadingIndicator"
-        [scrollbarV]="true"
-        [reorderable]="reorderable"
-        [selected]="selected"
-        [selectionType]="'multiClick'"
-        (activate)="onActivate($event)"
-        (select)='onSelect($event)'
-        >
-      </ngx-datatable>
-
-      <div class='selected-column'>
-        <h4>Selections</h4>
-        <ul>
-          <li *ngFor='let sel of selected'>
-            
-            <div class='card'>
-              <h5>{{sel.title}}</h5>
-              <li>Stock Number: {{sel.stocknumber}}</li>
-            </div>
-          </li>
-          <li *ngIf="!selected.length">No Selections</li>
-        </ul>
+    <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value">
+  </div>
+  <div id="archivedTable" #archivedTable>
+    <div class="search clearfix" style="margin-bottom: 20px;">
+      <form name="form" (ngSubmit)="getArchivedFile()">
+        <div class="row">
+          <b> Select Archived File </b>
+          <div class="col-md-11">
+            <select name="filename" class="form-control" [(ngModel)]="archivedFile" (ngModelChange)="onValueChange($event,archivedFile)">
+            <option *ngFor="let file of files" [selected]="files[0]" [value]="file.filename">  
+                {{file.time}}  -  {{file.filename}}
+            </option>
+        </select>
+          </div>
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-info btn-fill" style="display: block; width: 100%;">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="feedLoading" class="loadingIndicator">
+      <div class="row" style="clear: both;">
+        <sk-folding-cube></sk-folding-cube>
       </div>
     </div>
+    <!-- [limit]="50"        [style.height.px]="windowHeight - 225"         [scrollbarV]="true" -->
+    <div id="archivedTable" #archivedTable>
+      <div *ngIf="showTable" (window:resize)="onResize($event)" [style.height.px]="windowHeight - 200" class="dataTable">
 
-    
-    
+        <ngx-datatable #table class="material striped expandable" [rows]="influxVehicles |  search_archived: value" [columns]="influxHeaders"
+          [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true" [loadingIndicator]="loadingIndicator"
+          [reorderable]="reorderable" [selected]="selected" [selectionType]="'multiClick'" (activate)="onActivate($event)"
+          (select)='onSelect($event)' [limit]="50" (page)="onPage($event)">
+        </ngx-datatable>
+
+
+        <div class='selected-column card'>
+          <h4>You Selected (VIN):</h4>
+          <ul>
+            <li *ngFor='let sel of selected'>
+
+              <div class='card'>
+                <li>{{sel.vin}}</li>
+              </div>
+            </li>
+            <li *ngIf="!selected.length">No Selections</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div>

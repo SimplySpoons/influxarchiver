@@ -41,30 +41,35 @@
           <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
         </div>
       </div>
-      <hr>
-      <div class="influxFeed">
-        <!-- <a class="btn btn-info" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Archived Feed</a> -->
 
-        <a class="btn btn-info influxFeed" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Feed</a>
-      </div>
+
       <hr>
       <div class="alert alert-warning" *ngIf="filters.length == 0">
         <strong>Warning!</strong> Filter(s) may be present!
       </div>
-      <div class="filterToggleButton" *ngIf="filters.length == 0">
-        <a class="btn btn-success" (click)="showFilters(config.provider)">Show Filters</a>
-      </div>
-      <div *ngIf="filters.length > 0">
-      <div class="filterDisplay" *ngFor="let filter of filters; let i = index">
-        <div *ngIf="filter.parser == config.provider">
-          <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
-          <div>
-            <p><b>{{filter.task}}</b></p>
-            <p style="white-space: pre-wrap;">{{filter.filter}}</p>
-            <hr>
-          </div>
+
+      <div class="row">
+        <div class="influxFilterButtons">
+          <a class="btn btn-info influxFeed" [routerLink]="[config.provider]">Show Feed</a>
+          <!-- <div class="filterToggleButton" *ngIf="config.hasFilter"> -->
+          <!-- <a class="btn btn-success" *ngIf="(!showFilter && config.hasFilter)" (click)="toggleFilterDisplay()">Show Filters</a>
+               <a class="btn btn-danger" *ngIf="(showFilter && config.hasFilter)" (click)="toggleFilterDisplay()">Hide Filters</a> -->
+          <!-- <div class="filterToggleButton" *ngIf="filters.length == 0"> -->
+            <a *ngIf="hideFilters" class="btn btn-success" (click)="showFilters(config.provider)">Show Filters</a>
+            <a *ngIf="!hideFilters" class="btn btn-danger" (click)="hideFilterToggle()">Hide Filters</a>
+          <!-- </div> -->
         </div>
       </div>
+      <div *ngIf="(filters.length > 0 && !hideFilters)">
+        <div class="filterDisplay" *ngFor="let filter of filters; let i = index">
+          <div *ngIf="filter.parser == config.provider">
+            <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
+            <div>
+              <p><b>{{filter.task}}</b></p>
+              <p style="white-space: pre-wrap;">{{filter.filter}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

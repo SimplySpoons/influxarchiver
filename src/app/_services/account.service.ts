@@ -29,18 +29,27 @@ export class AccountService {
         return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
             (response: Response) => response.json());
     }
-    getInfluxFeed(accountId: string, parser: string, timestamp: string, filename: string, providerid: string ) {
+    getInfluxFeed(accountId: string, parser: string, timestamp: string, filename: string, providerid: string) {
         return this.http.post('http://localhost:6969/influx.php', { request: "getInfluxFeed", accountId: accountId, parser: parser, timestamp: timestamp, filename: filename, providerid: providerid }
         ).map(
             (response: Response) => response.json());
     }
+    getUpdatedFeed(parser: string, filename: string) {
+        return this.http.post('http://localhost:6969/influx.php', { request: "getUpdatedFeed", parser: parser, filename: filename }
+        ).map((response: Response) => response.json());
+    }
     getHeaders(parser: string) {
-        return this.http.post('http://localhost:6969/influx.php', { request: "getHeaders", parser: parser}
+        return this.http.post('http://localhost:6969/influx.php', { request: "getHeaders", parser: parser }
+        ).map(
+            (response: Response) => response.json());
+    }
+    getFileList(accountId: string, parser: string) {
+        return this.http.post('http://localhost:6969/influx.php', { request: "getFileList", accountId: accountId, parser: parser }
         ).map(
             (response: Response) => response.json());
     }
     getFilters(accountId: string, parser: string) {
-         return this.http.post('http://localhost:6969/influx.php', { request: "getFilters", accountId: accountId, parser: parser}).map((response: Response) => response.json()); 
+        return this.http.post('http://localhost:6969/influx.php', { request: "getFilters", accountId: accountId, parser: parser }).map((response: Response) => response.json());
     }
     getInvCounts(accountId: string) {
         console.log('hitting service');

@@ -68,3 +68,4 @@ font-size: 1.1em;}
 .main-panel#main-container[_ngcontent-c0] {overflow-x: scroll !important;}
 
 .ngx-datatable.material {position: relative;}
+.ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group { background-color: #5bc0de; }

@@ -32,19 +32,14 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   headers: any = [];
   windowHeight = window.innerHeight;
   loadingIndicator: boolean = true;
-
+  timeout: any;
   selected = [];
- 
-
   testing: any = '';
   dtTrigger: Subject<any> = new Subject();
-
   el: any;
 
-  @ViewChild(DatatableComponent) table: DatatableComponent;
-
-  @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
-  @ViewChild('hdrTpl') hdrTpl: TemplateRef<any>;
+  files: any = [];
+  archivedFile: string;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private element: ElementRef) {
     // this.feedLoading = true;
@@ -65,6 +60,11 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
         this.headers = headers;
         //this.el.innerHeight = this.windowHeight;
       });
+      this.accountService.getFileList(this.accountId, this.provider).subscribe(files => {
+        this.files = files;
+        this.archivedFile = this.files[0].filename;
+        console.log(this.files);
+      });
       this.accountService.getInfluxFeed(this.accountId, this.provider, this.timestamp, this.filename, this.providerid).subscribe(feed => {
         this.influxVehicles = feed.vehicles;
         this.feedLoading = false;
@@ -78,6 +78,18 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
+  getArchivedFile() { 
+    this.influxVehicles = []; 
+    this.accountService.getUpdatedFeed(this.provider,this.archivedFile).subscribe(vehicles =>
+      {
+        this.influxVehicles = vehicles.vehicles; 
+      });
+  }
+
+  onValueChange(data:any,file: any) {
+    console.log('file selected changed --> ', JSON.stringify(file));  
+  }
+  
   addClass(vehicle: any) {
     if (vehicle.hightlight === 0 || !vehicle.highlight) {
       vehicle.highlight = 1;
@@ -109,18 +121,19 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log('Activate Event', event);
   }
 
-
   getStyles() {
     return '.ngx-datatable.scroll-horz .datatable-body {max-height: 500px;}';
   }
 
+  onPage(event) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      console.log('paged!', event);
+    }, 100);
+  }
 
   ngOnInit(): void {
-    this.influxHeaders = [{
-      cellTemplate: this.editTmpl,
-      headerTemplate: this.hdrTpl,
-      name: 'Vin'
-    }];
+    
     console.log(this.influxHeaders);
   };
 
