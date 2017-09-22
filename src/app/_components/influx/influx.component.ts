@@ -40,16 +40,11 @@ export class InfluxComponent implements OnInit, OnDestroy {
     return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;
   }
 
-  showArchivedFile(parser: any) {
-    this.accountService.getInfluxFeed(this.accountId, parser).subscribe(feed => {
-      this.influxHeaders = feed.headers;
-      this.influxVehicles = feed.vehicles;
-      console.log(this.influxVehicles);
-    },
-      err => {
-        // Log errors if any
-        console.log(err);
-      })
+  showFilters(parser:string){
+    this.accountService.getFilters(this.account.accountId, parser).subscribe(filters => {
+        this.filters = filters; 
+        console.log(this.filters);
+    });
   }
 
   showConfigsAsString(data: any) {

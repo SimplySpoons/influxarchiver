@@ -12,12 +12,29 @@ export class VehicleItemComponent implements OnInit {
 
   @Input() item: Item;
   @Input() account: Account;
+  // @Input() customButtons: any; 
   @Output() sendItem = new EventEmitter();
 
   loading = false;
 
   constructor() {
 
+  }
+
+  showCustomButton(item: any, buttonConditions: any) {
+    if (buttonConditions.type == 3 && buttonConditions.classification == 0) {
+      return true;
+    }
+    else if (item.certified == true && buttonConditions.certified == true) {
+      return true;
+    }
+    else if (item.vehicleType == buttonConditions.type && buttonConditions.classification == 0) {
+      return true;
+    }
+    else if (item.vehicleType == buttonConditions.type && item.classification == buttonConditions.classification) {
+      return true;
+    }
+    return false;
   }
 
   getImageSrc(data: any, accountId: string) {
@@ -41,7 +58,7 @@ export class VehicleItemComponent implements OnInit {
   }
 
   getAuditTrail(vin: string) {
-    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + this.item.vin + '&history&quickFilter=all';
+    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
     return audit_link;
   }
 

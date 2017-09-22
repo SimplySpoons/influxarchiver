@@ -1,6 +1,6 @@
 <div class="card">
-  <h4>Account: <span class="accountName">{{this.accountId}}</span></h4>
-  <h4>Feed: <span class="feedName">{{this.provider}}</span></h4>
+  <h4 class="pull-left">Account: <span class="accountName">{{this.accountId}}</span></h4>
+  <h4 class="pull-right">Feed: <span class="feedName">{{this.provider}}</span></h4>
 </div>
 
 <div *ngIf="feedLoading" class="loadingIndicator">
@@ -8,22 +8,49 @@
     <sk-folding-cube></sk-folding-cube>
   </div>
 </div>
-<!-- <h1 *ngIf="feedLoading">
-    {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
-</h1> -->
-<div *ngIf="showTable">
-  <p class="help">*Click column headers to sort</p>
-  <!-- {{loadTime}} -->
-  <table datatable id="dt" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered dt-responsive responsive nowrap hover table-sm compact">
-    <thead>
-      <tr>
-        <th *ngFor="let column of influxHeaders">{{column}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vehicle of influxVehicles">
-        <td *ngFor="let col of influxHeaders" [innerHTML]="getColumnData(vehicle,col)">{{col}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div>
+  <div class="search" style="margin-bottom: 20px;">
+  <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" >
+</div>
+<!-- [limit]="50"  -->
+<div id="archivedTable" #archivedTable> 
+<div *ngIf="showTable" (window:resize)="onResize($event)" [style.height.px]="windowHeight - 200" class="dataTable"> 
+    <style [innerHTML]="getStyles()"></style>
+      <ngx-datatable
+        #table
+        class="material striped"
+        [style.height.px]="windowHeight - 225"
+        [rows]="influxVehicles |  search_archived: value"
+        [columns]="influxHeaders"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [loadingIndicator]="loadingIndicator"
+        [scrollbarV]="true"
+        [reorderable]="reorderable"
+        [selected]="selected"
+        [selectionType]="'multiClick'"
+        (activate)="onActivate($event)"
+        (select)='onSelect($event)'
+        >
+      </ngx-datatable>
+
+      <div class='selected-column'>
+        <h4>Selections</h4>
+        <ul>
+          <li *ngFor='let sel of selected'>
+            
+            <div class='card'>
+              <h5>{{sel.title}}</h5>
+              <li>Stock Number: {{sel.stocknumber}}</li>
+            </div>
+          </li>
+          <li *ngIf="!selected.length">No Selections</li>
+        </ul>
+      </div>
+    </div>
+
+    
+    
+  </div>
 </div>

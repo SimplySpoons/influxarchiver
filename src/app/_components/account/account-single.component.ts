@@ -3,6 +3,7 @@ import { AccountService } from '../../_services/account.service';
 import { Account } from '../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-account-single',
   templateUrl: './account-single.component.html',
@@ -20,6 +21,8 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   invCounts: any = [];
 
   apis: any; 
+
+  configData: any;
 
   @Output() callbackReady: EventEmitter<any> = new EventEmitter();
 
@@ -46,7 +49,6 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     this.callbackReady.emit({type: type, classification: classification});
     return '/account/' + this.accountId + '/vehicles/' + type + '/' + classification;
   }
-
 
   showConfigsAsString(data: any) {
     return JSON.stringify(this.influxConfigs);
@@ -77,4 +79,3 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   }
 
 }
-

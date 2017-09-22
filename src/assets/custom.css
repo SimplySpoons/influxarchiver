@@ -1,3 +1,7 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
 img {max-width: 100%; height: auto;}
 
 .feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
@@ -60,3 +64,7 @@ font-size: 1.1em;}
     top:58px;
     background: rgba(66,66,66,.66); 
 }
+
+.main-panel#main-container[_ngcontent-c0] {overflow-x: scroll !important;}
+
+.ngx-datatable.material {position: relative;}

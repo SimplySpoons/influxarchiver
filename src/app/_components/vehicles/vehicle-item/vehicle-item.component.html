@@ -7,11 +7,11 @@
             <div class="col-md-2 vehicle-image">
                 <img [src]="getImageSrc(item.image[0],item.accountId)" onerror='this.src="../assets/no_image.jpg"' />
             </div>
-            <div class="col-md-8 vehicle-info">
+            <div class="col-md-6 vehicle-info">
                 <li><span class="accountId">Account Id: {{item.accountId}}</span></li>
                 <li><span class="vin">VIN:</span> {{item.vin}}</li>
                 <li><span class="stock">Stock Number:</span> {{item.stockNumber}}</li>
-                <li><span class="stock">Type:</span> <span class="type">{{item.type}}</span></li>
+                <li><span class="stock">Type:</span> <span class="type">{{item.type}} | {{item.vehicleType}}</span></li>
                 <li><span class="stock">Classification:</span> {{item.className}}</li>
                 <div *ngIf="item.certified>0">
                     <li><span class="stock">Certified:</span> Yes</li>
@@ -22,7 +22,7 @@
                 <li><span class="stock">Trim:</span> {{item.trim}}</li>
             </div>
 
-            <div class="col-md-2 vehicle-pricing">
+            <div class="col-md-2 vehicle-pricing pricing">
                 <div class="vehicle-pricing-heading">
                     <h5>Pricing Data</h5>
                 </div>
@@ -30,12 +30,39 @@
                 <br> wholesalePrice: {{item.wholesalePrice}} <br> internetPrice: {{item.internetPrice}} <br> msrp: {{item.msrp}}
                 <br> salePrice: {{item.salePrice}}
             </div>
-            <div class="buttonSection" *ngIf="item.showPanel == true">
-                <a [href]="getVdpLink(item)" class="btn btn-primary vdp" target="_blank"> VDP Link </a>
-                <a [href]="getVlpLink(item)" class="btn btn-primary vlp" target="_blank"> VLP Link </a>
-                <a [href]="getAuditTrail(item)" class="btn btn-success audit" target="_blank"> Audit Trail </a>
-                <a [routerLink]="['/account', item.accountId]" class="btn btn-success influx"> Influx Feeds </a>
+            <div class="col-md-2 vehicle-pricing pricing">
+                <div class="custom_button" *ngFor="let button of customButtons">
+                     <!-- <b> {{button.name}} </b> => {{button.value}} --> 
+                    <!--	'attributes' => $priceButtonAttr,
+			                'label' => $priceButtonLabel,
+			                'content' => $priceButtonContent,
+			                'href' => $priceButtonHref,
+			                'classes' => $priceButtonClass,
+			                'condition' => $showOn,
+			                'device' => $mobileDesktop,
+			                'pages' => $whichPages,
+			                'customPages' => $customPages,
+			                'colors' => $custonColors,
+			                'bgColor' => $backgroundColor,
+			                'textColor' => $textColor,
+			                'bgHover' => $backgroundColorHover,
+			                'textHover' => $textColorHover
+                    -->
+                    <div class="preview" *ngFor="let atts of button.preview">
+                        <a *ngIf="showCustomButton(item,atts.condition)"[href]="atts.href" [class]="atts.classes" class="ddc-btn ddc-btn-default ddc-btn-block">
+                            <img [src]="atts.content.image" *ngIf="atts.content.isImage"/>
+                            <span *ngIf="!atts.content.isImage">{{atts.content.content}} </span>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+        </div>
+        <div class="buttonSection" *ngIf="item.showPanel == true">
+            <a [href]="getVdpLink(item)" class="btn btn-primary" target="_blank"> VDP Link </a>
+            <a [href]="getVlpLink(item)" class="btn btn-primary" target="_blank"> VLP Link </a>
+            <a [href]="getAuditTrail(item)" class="btn btn-success" target="_blank"> Audit Trail </a>
+            <a [routerLink]="['/account', item.accountId]" class="btn btn-success"> Influx Feeds </a>
         </div>
     </div>
 </div>

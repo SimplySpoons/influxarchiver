@@ -15,7 +15,7 @@ import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
-import { FilterPipe, SearchPipe } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe, SearchArchived } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -37,16 +37,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
-import { DataTablesModule } from 'angular-datatables';
-import { TooltipModule, DataTableModule, SharedModule } from 'primeng/primeng';
-
-// const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-//   suppressScrollX: true
-// };
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
 }
+
 
 @NgModule({
   declarations: [
@@ -63,6 +59,7 @@ export function initializeCurrentUser(config: AppConfig) {
     QuicklinksComponent,
     FilterPipe,
     SearchPipe,
+    SearchArchived,
     InfluxComponent,
     SearchComponent,
     IssuetrackerComponent,
@@ -90,12 +87,9 @@ export function initializeCurrentUser(config: AppConfig) {
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
-    DataTablesModule,
-    TooltipModule,
-    DataTableModule,
-    SharedModule
+    NgxDatatableModule
   ],
-  exports: [FilterPipe, SearchPipe],
+  exports: [FilterPipe, SearchPipe, SearchArchived],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,4 @@
 .panel-heading h4 { font-weight: bold; }
 .vehicle-pricing-heading h5 { text-decoration: underline; }
 .buttonSection .btn { margin-top: 10px; }
-.vehicle-info .type { text-transform: capitalize; }
-/*.vehicle-pricing { margin-bottom: 10px; }*/
-.buttonSection { display: inline-block; margin-top: 10px; }
+.vehicle-info .type { text-transform: capitalize; } 

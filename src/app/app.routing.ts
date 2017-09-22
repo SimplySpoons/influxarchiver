@@ -28,6 +28,8 @@ export const APP_ROUTES: Routes = [
         ],
     },
     { path: 'account/:id/influx/:provider', component: InfluxfeedComponent },
+    { path: 'account/:id/influx/:provider/:timestamp', component: InfluxfeedComponent },
+    { path: 'account/:id/influx/:provider/:timestamp/:filename/:providerid', component: InfluxfeedComponent },
     { path: 'feeds', component: FeedsComponent }
 ];
 

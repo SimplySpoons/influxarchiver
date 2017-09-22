@@ -4,7 +4,17 @@
     <div class="panel-heading clearfix">
       <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}} - <small> Feed Last Ran {{config.lastRan}} </small></h3>
       <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
+      <div class="provider-info" style="clear: both">
+        <h4 *ngIf="config.providerid != false">
+          Provider ID: <b> {{config.providerid}} </b>
+        </h4>
+        <h4 *ngIf="config.filename != false">
+          File Name: <b> {{config.filename}} </b>
+        </h4>
+      </div>
     </div>
+
+
     <div class="panel-subheading">
       <a class="btn btn-primary" *ngFor="let type of config.inventory_types">
         <div (click)="routeToVehicles(type.type,type.classification)"> {{type.name}} ({{type.count}}) </div>
@@ -32,32 +42,29 @@
         </div>
       </div>
       <hr>
-      <div class="alert alert-warning" *ngIf="config.hasFilter">
-        <strong>Warning!</strong> Filter(s) present!
-      </div>
-      <div class="alert alert-success" *ngIf="!config.hasFilter">
-        This feed has<strong> NO active filters.</strong>
+      <div class="influxFeed">
+        <!-- <a class="btn btn-info" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Archived Feed</a> -->
+
+        <a class="btn btn-info influxFeed" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Feed</a>
       </div>
       <hr>
-      <div class="row">
-        <div class="influxFilterButtons">
-          <a class="btn btn-info influxFeed" [routerLink]="[config.provider]">Show Feed</a>
-          <!-- <div class="filterToggleButton" *ngIf="config.hasFilter"> -->
-          <a class="btn btn-success" *ngIf="(!showFilter && config.hasFilter)" (click)="toggleFilterDisplay()">Show Filters</a>
-          <a class="btn btn-danger" *ngIf="(showFilter && config.hasFilter)" (click)="toggleFilterDisplay()">Hide Filters</a>
+      <div class="alert alert-warning" *ngIf="filters.length == 0">
+        <strong>Warning!</strong> Filter(s) may be present!
+      </div>
+      <div class="filterToggleButton" *ngIf="filters.length == 0">
+        <a class="btn btn-success" (click)="showFilters(config.provider)">Show Filters</a>
+      </div>
+      <div *ngIf="filters.length > 0">
+      <div class="filterDisplay" *ngFor="let filter of filters; let i = index">
+        <div *ngIf="filter.parser == config.provider">
+          <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
+          <div>
+            <p><b>{{filter.task}}</b></p>
+            <p style="white-space: pre-wrap;">{{filter.filter}}</p>
+            <hr>
+          </div>
         </div>
       </div>
-      <div class="filterDisplay" *ngIf="showFilter && config.hasFilter">
-        <h3> Filters </h3>
-        <ul class="test">
-          <li *ngFor="let filter of config.hasFilter">
-            <div>
-              <p><b>{{filter.task}}</b></p>
-              <p style="white-space: pre-wrap;">{{filter.filter}}</p>
-              <hr>
-            </div>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
