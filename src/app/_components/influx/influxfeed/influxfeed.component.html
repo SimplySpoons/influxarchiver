@@ -13,10 +13,10 @@
           <b> Select Archived File </b>
           <div class="col-md-11">
             <select name="filename" class="form-control" [(ngModel)]="archivedFile" (ngModelChange)="onValueChange($event,archivedFile)">
-            <option *ngFor="let file of files" [selected]="files[0]" [value]="file.filename">  
-                {{file.time}}  -  {{file.filename}}
-            </option>
-        </select>
+              <option *ngFor="let file of files" [selected]="files[0]" [value]="file.filename">
+                  {{file.time}}  -  {{file.filename}}
+              </option>
+          </select>
           </div>
           <div class="col-md-1">
             <button type="submit" class="btn btn-info btn-fill" style="display: block; width: 100%;">Submit</button>
@@ -32,8 +32,8 @@
     <!-- [limit]="50"        [style.height.px]="windowHeight - 225"         [scrollbarV]="true" -->
     <div id="archivedTable" #archivedTable>
       <div *ngIf="showTable" (window:resize)="onResize($event)" [style.height.px]="windowHeight - 200" class="dataTable">
-
-        <ngx-datatable #table class="material striped expandable" [rows]="influxVehicles |  search_archived: value" [columns]="influxHeaders"
+        <button type="button" class="compareVehiclesButton" href="#" *ngIf="showCompare == true" (click)="onCompareClick()">{{compareButtonText}}</button>
+        <ngx-datatable #table class="material striped expandable" [rows]="selectedInfluxVehicles |  search_archived: value" [columns]="influxHeaders"
           [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true" [loadingIndicator]="loadingIndicator"
           [reorderable]="reorderable" [selected]="selected" [selectionType]="'multiClick'" (activate)="onActivate($event)"
           (select)='onSelect($event)' [limit]="50" (page)="onPage($event)">

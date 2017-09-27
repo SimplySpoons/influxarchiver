@@ -10,6 +10,9 @@ declare var $;
 
 import 'rxjs/add/operator/map';
 
+const COMPARE_TEXT = "Compare Vehicles";
+const COMPARE_BACK_TEXT = "View All Vehicles";
+
 @Component({
   selector: 'app-influxfeed',
   templateUrl: './influxfeed.component.html',
@@ -18,6 +21,7 @@ import 'rxjs/add/operator/map';
 export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   influxHeaders: any = [];
   influxVehicles: any = [];
+  selectedInfluxVehicles: any = [];
   temp = [];
   tmp = [];
   feedLoading: boolean = true;
@@ -37,9 +41,13 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   testing: any = '';
   dtTrigger: Subject<any> = new Subject();
   el: any;
+  showCompare: boolean = false;
+  compareButtonText: string = COMPARE_TEXT;
 
   files: any = [];
   archivedFile: string;
+
+
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private element: ElementRef) {
     // this.feedLoading = true;
@@ -69,6 +77,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
         this.influxVehicles = feed.vehicles;
         this.feedLoading = false;
         this.showTable = true;
+        this.selectedInfluxVehicles = this.influxVehicles;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
       }),
         err => {
@@ -78,18 +87,19 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
-  getArchivedFile() { 
-    this.influxVehicles = []; 
+  getArchivedFile() {
+    this.influxVehicles = [];
     this.accountService.getUpdatedFeed(this.provider,this.archivedFile).subscribe(vehicles =>
       {
-        this.influxVehicles = vehicles.vehicles; 
+        this.influxVehicles = vehicles.vehicles;
+        this.selectedInfluxVehicles = this.influxVehicles
       });
   }
 
   onValueChange(data:any,file: any) {
-    console.log('file selected changed --> ', JSON.stringify(file));  
+    console.log('file selected changed --> ', JSON.stringify(file));
   }
-  
+
   addClass(vehicle: any) {
     if (vehicle.hightlight === 0 || !vehicle.highlight) {
       vehicle.highlight = 1;
@@ -100,8 +110,8 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     else {
       console.log(vehicle.highlight);
     }
-    /*let index = this.influxVehicles.indexOf(vehicle); 
-    this.influxVehicles[index] = vehicle; 
+    /*let index = this.influxVehicles.indexOf(vehicle);
+    this.influxVehicles[index] = vehicle;
     return this.influxVehicles; */
   }
 
@@ -109,11 +119,32 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     return vehicle[column];
   }
 
+  onCompareClick() {
+    if(!this.selected.length) {
+      this.compareButtonText = COMPARE_TEXT;
+      this.selectedInfluxVehicles = this.influxVehicles;
+      this.showCompare = false;
+      return;
+    }
+    this.selectedInfluxVehicles = this.selected;
+    this.selected = [];
+    this.compareButtonText = COMPARE_BACK_TEXT;
+  }
+
   onSelect({ selected, vehicle }) {
     console.log('Select Event', selected, this.selected);
-
+    this.showCompare = true;
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+    if(!this.selected.length && this.selectedInfluxVehicles.length != this.influxVehicles.length) {
+      this.compareButtonText = COMPARE_BACK_TEXT;
+    } else {
+      this.compareButtonText = COMPARE_TEXT;
+    }
+    if(!this.selected.length && this.selectedInfluxVehicles.length == this.influxVehicles.length) {
+      this.showCompare = false;
+    }
+
     console.log('You selected ' + this.selected);
   }
 
@@ -133,7 +164,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
+
     console.log(this.influxHeaders);
   };
 
