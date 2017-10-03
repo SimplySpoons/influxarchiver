@@ -28,7 +28,8 @@
     font-size: 12px;
     padding: 2px 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .menuContainer .brand:hover a {
     text-decoration: none;
@@ -140,7 +141,8 @@ body {
 }
 .accordianUnderText a.accordionLink {
     color:#000;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .accordianUnderText li a {
     font-size:12px;
@@ -182,7 +184,8 @@ body {
 }
 .panel-title .navTitle {
     margin-left:20px;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 /*.nav-side-menu .brand {
     font-size:26px;
@@ -196,6 +199,7 @@ body {
     color:#5bc0de;
     position: relative;
     top: 2px;
+    font-weight: bold;
 }
 .nav-side-menu .brand a.dashTitle:hover {
     text-decoration: none;
@@ -342,19 +346,23 @@ body {
 }
 .nav-side-menu .dashboardLink .navTitle {
     left:0px;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .nav-side-menu .navTitle2 {
     left:8px;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .nav-side-menu .navTitle3 {
     left:12px;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .nav-side-menu .navTitle4 {
     left:12px;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 .fa.fa-user.fa-lg,.fa.fa-users.fa-lg {
     position:relative;
@@ -590,7 +598,8 @@ body {
     position: absolute;
     top:20%;
     left:33%;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
 }
 
 .versionNumber2 {
@@ -600,7 +609,8 @@ body {
     color:#5bc0de;
     font-weight:bold;
     left: 44%;
-    font-family: "Droid Sans Mono";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
     font-size:22px;
 }
 

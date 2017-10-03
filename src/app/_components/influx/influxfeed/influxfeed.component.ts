@@ -89,15 +89,22 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getArchivedFile() {
     this.influxVehicles = [];
-    this.accountService.getUpdatedFeed(this.provider,this.archivedFile).subscribe(vehicles =>
-      {
-        this.influxVehicles = vehicles.vehicles;
-        this.selectedInfluxVehicles = this.influxVehicles
-      });
+    this.selectedInfluxVehicles = [];
+    this.accountService.getUpdatedFeed(this.provider, this.archivedFile).subscribe(vehicles => {
+      this.influxVehicles = vehicles.vehicles;
+      this.selectedInfluxVehicles = this.influxVehicles
+    });
   }
 
-  onValueChange(data:any,file: any) {
+  onValueChange(data: any, file: any) {
+    
     console.log('file selected changed --> ', JSON.stringify(file));
+    
+  }
+
+  triggerLoadingAnimation() {
+    this.loadingIndicator = true;
+    setTimeout(() => { this.loadingIndicator = false; }, 8500);
   }
 
   addClass(vehicle: any) {
@@ -120,7 +127,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCompareClick() {
-    if(!this.selected.length) {
+    if (!this.selected.length) {
       this.compareButtonText = COMPARE_TEXT;
       this.selectedInfluxVehicles = this.influxVehicles;
       this.showCompare = false;
@@ -136,12 +143,12 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showCompare = true;
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
-    if(!this.selected.length && this.selectedInfluxVehicles.length != this.influxVehicles.length) {
+    if (!this.selected.length && this.selectedInfluxVehicles.length != this.influxVehicles.length) {
       this.compareButtonText = COMPARE_BACK_TEXT;
     } else {
       this.compareButtonText = COMPARE_TEXT;
     }
-    if(!this.selected.length && this.selectedInfluxVehicles.length == this.influxVehicles.length) {
+    if (!this.selected.length && this.selectedInfluxVehicles.length == this.influxVehicles.length) {
       this.showCompare = false;
     }
 
@@ -164,7 +171,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-
     console.log(this.influxHeaders);
   };
 
