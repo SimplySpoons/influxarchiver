@@ -15,7 +15,7 @@ import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { DropdownModule } from "ngx-dropdown";
-import { FilterPipe, SearchPipe, SearchArchived } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -37,7 +37,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { 
+  NgxDatatableModule, 
+  DataTableColumnHeaderDirective, 
+  DataTableColumnCellDirective, 
+  DataTableColumnDirective, 
+  ScrollerComponent, 
+  DataTableBodyComponent,
+  DataTableBodyCellComponent,
+  DataTableBodyRowComponent,
+  ProgressBarComponent,
+  DataTableRowWrapperComponent,
+  DataTableSelectionComponent,
+  DatatableGroupHeaderTemplateDirective,
+  DatatableGroupHeaderDirective,
+  DatatableRowDetailTemplateDirective,
+  DatatableRowDetailDirective,
+  DataTableFooterComponent,
+  DataTablePagerComponent,
+  DataTableFooterTemplateDirective,
+  DatatableFooterDirective,
+  DatatableComponent
+} from '@swimlane/ngx-datatable';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -59,6 +80,7 @@ export function initializeCurrentUser(config: AppConfig) {
     QuicklinksComponent,
     FilterPipe,
     SearchPipe,
+    DuplicatePipe,
     SearchArchived,
     InfluxComponent,
     SearchComponent,
@@ -72,6 +94,25 @@ export function initializeCurrentUser(config: AppConfig) {
     VehicleCarouselComponent,
     InfluxfeedComponent,
     feedSearch
+    // // NGX-DATATABLE STUFF
+    // DataTableColumnCellDirective,
+    // DataTableColumnDirective,
+    // ScrollerComponent,
+    // DataTableBodyComponent,
+    // DataTableBodyCellComponent,
+    // DataTableBodyRowComponent,
+    // ProgressBarComponent,
+    // DataTableRowWrapperComponent,
+    // DataTableSelectionComponent,
+    // DatatableGroupHeaderTemplateDirective,
+    // DatatableGroupHeaderDirective,
+    // DatatableRowDetailTemplateDirective,
+    // DatatableRowDetailDirective,
+    // DataTableFooterComponent,
+    // DataTablePagerComponent,
+    // DataTableFooterTemplateDirective,
+    // DatatableFooterDirective,
+    // DatatableComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +130,7 @@ export function initializeCurrentUser(config: AppConfig) {
     CarouselModule.forRoot(),
     NgxDatatableModule
   ],
-  exports: [FilterPipe, SearchPipe, SearchArchived],
+  exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe],
   providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
   bootstrap: [AppComponent]
 })

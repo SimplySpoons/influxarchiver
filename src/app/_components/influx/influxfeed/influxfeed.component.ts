@@ -92,14 +92,12 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.selectedInfluxVehicles = [];
     this.accountService.getUpdatedFeed(this.provider, this.archivedFile).subscribe(vehicles => {
       this.influxVehicles = vehicles.vehicles;
-      this.selectedInfluxVehicles = this.influxVehicles
+      this.selectedInfluxVehicles = this.influxVehicles;
     });
   }
 
   onValueChange(data: any, file: any) {
-    
     console.log('file selected changed --> ', JSON.stringify(file));
-    
   }
 
   triggerLoadingAnimation() {
