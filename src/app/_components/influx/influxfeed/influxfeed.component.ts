@@ -22,6 +22,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   influxHeaders: any = [];
   influxVehicles: any = [];
   selectedInfluxVehicles: any = [];
+  influxHeadersCheckbox: any = [];
   temp = [];
   tmp = [];
   feedLoading: boolean = true;
@@ -63,6 +64,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       this.filename = params['filename'];
       this.accountService.getHeaders(this.provider).subscribe(headers => {
         this.influxHeaders = headers;
+        this.influxHeadersCheckbox = headers;        
         this.showTable = true;
         this.feedLoading = false;
         this.headers = headers;
@@ -179,5 +181,21 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
     alert('destroyed!');
+  }
+
+  toggle(col) {
+    const isChecked = this.isChecked(col);
+    if (isChecked) {
+      this.influxHeadersCheckbox = this.influxHeadersCheckbox.filter(c => {
+        return c.prop !== col.prop;
+      });
+    } else {
+      this.influxHeadersCheckbox = [...this.influxHeadersCheckbox, col];
+    }
+  }
+  isChecked(col) {
+    return this.influxHeadersCheckbox.find(c => {
+      return c.prop === col.prop;
+    });
   }
 }

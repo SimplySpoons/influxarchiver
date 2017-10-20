@@ -44,7 +44,7 @@
           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
             [checkboxable]="true">
           </ngx-datatable-column>
-          <ngx-datatable-column [name]="col.prop" *ngFor="let col of influxHeaders">
+          <ngx-datatable-column [name]="col.prop" *ngFor="let col of influxHeadersCheckbox">
             <ng-template let-value="value" let-rowIndex="rowIndex" let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
               <i [innerHTML]="row[col.prop]"></i>
             </ng-template>
@@ -52,4 +52,13 @@
         </ngx-datatable>
       </div>
     </div>
+  </div>
+  <div class='selectedColumnsContainer'>
+    <h4>Available Columns</h4>
+    <ul>
+      <li *ngFor='let col of influxHeaders'>
+        <input type='checkbox' [id]="col.prop" (click)='toggle(col)' [checked]='isChecked(col)' />
+        <label [attr.for]="col.prop">{{col.prop}}</label>
+      </li>
+    </ul>
   </div>
