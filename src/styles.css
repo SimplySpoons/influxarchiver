@@ -100,3 +100,7 @@ body {
 .vehicle-image .item.active img {
   border: 1px solid #a1a1a1;
 }
+.ngx-datatable.material .datatable-body-row.active:hover,
+.ngx-datatable.material .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row.active:hover,
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row.active:hover .datatable-row-group { background-color: #5bc0de; }

@@ -1,3 +1,121 @@
-.influxFilterButtons .btn {
-    margin-left:15px;
-}
+.datatable-row-odd {
+    background: #ddd;
+  }
+  
+  .dataTable {
+    position: relative;
+  }
+  
+  .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #5bc0de;
+  }
+  
+  .compareButtonsFixedContainer .vehiclesCompareButton {
+    position: fixed;
+    right: 20px;
+    z-index: 10;
+    height: 40px;
+    background-color: #2e353d;
+    border: 2px solid #585252;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    bottom: 20px;
+    padding: auto 8px;
+  }
+  
+  .compareButtonsFixedContainer .compareVehiclesButton {
+    right: 20px;
+  }
+  
+  .compareButtonsFixedContainer .showAllVehiclesButton {
+    right: 185px;
+  }
+  
+  .columnsCheckboxContainer ul {
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .columnsCheckboxContainer.collapsed {
+    display:none;
+  }
+  
+  .columnsCheckboxContainer.expanded {
+    display: block;
+    position:absolute;
+    background-color: #fff;
+    list-style: none;
+    right:0;
+    top:30px;
+    z-index:5;
+    max-height: calc(65vh - 65px);
+    overflow-y: scroll;
+    border-left:1px solid #e0e0e0;
+  }
+  
+  .filterColumnsContainer button {
+    float:right;
+  }
+  
+  .ngx-datatable.scroll-vertical {
+    height: 65vh;
+    clear:both;
+  }
+  
+  .compareButtonsFixedContainer .selected-column.collapsed ul {
+    display: none;
+  }
+  
+  .compareButtonsFixedContainer .selected-column ul {
+    list-style: none;
+  }
+  
+  .compareButtonsFixedContainer .selected-column.collapsed {
+    height: 40px;
+  }
+  
+  .compareButtonsFixedContainer .selected-column {
+    height: auto;
+    width: 300px;
+    max-height: 350px;
+    right: 345px;
+    overflow-y: auto;
+  }
+  
+  .compareButtonsFixedContainer .selected-column .selectedVehiclesButton {
+    background-color: #2e353d;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    top: 0;
+    position: sticky;
+    height: 35px;
+  }
+  
+  .compareButtonsFixedContainer .compareButtonsInnerContainer {
+    position: relative;
+    height: 100%;
+  }
+  
+  .hvr-icon-hang:before {
+    content: "\f078";
+    position: absolute;
+    left: .5em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .hvr-icon-bob:before {
+    content: "\f077";
+    position: absolute;
+    left: .5em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
