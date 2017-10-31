@@ -37,28 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carousel/vehicle-carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
-import { 
-  NgxDatatableModule, 
-  DataTableColumnHeaderDirective, 
-  DataTableColumnCellDirective, 
-  DataTableColumnDirective, 
-  ScrollerComponent, 
-  DataTableBodyComponent,
-  DataTableBodyCellComponent,
-  DataTableBodyRowComponent,
-  ProgressBarComponent,
-  DataTableRowWrapperComponent,
-  DataTableSelectionComponent,
-  DatatableGroupHeaderTemplateDirective,
-  DatatableGroupHeaderDirective,
-  DatatableRowDetailTemplateDirective,
-  DatatableRowDetailDirective,
-  DataTableFooterComponent,
-  DataTablePagerComponent,
-  DataTableFooterTemplateDirective,
-  DatatableFooterDirective,
-  DatatableComponent
-} from '@swimlane/ngx-datatable';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable/src';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -94,25 +73,6 @@ export function initializeCurrentUser(config: AppConfig) {
     VehicleCarouselComponent,
     InfluxfeedComponent,
     feedSearch
-    // // NGX-DATATABLE STUFF
-    // DataTableColumnCellDirective,
-    // DataTableColumnDirective,
-    // ScrollerComponent,
-    // DataTableBodyComponent,
-    // DataTableBodyCellComponent,
-    // DataTableBodyRowComponent,
-    // ProgressBarComponent,
-    // DataTableRowWrapperComponent,
-    // DataTableSelectionComponent,
-    // DatatableGroupHeaderTemplateDirective,
-    // DatatableGroupHeaderDirective,
-    // DatatableRowDetailTemplateDirective,
-    // DatatableRowDetailDirective,
-    // DataTableFooterComponent,
-    // DataTablePagerComponent,
-    // DataTableFooterTemplateDirective,
-    // DatatableFooterDirective,
-    // DatatableComponent
   ],
   imports: [
     BrowserModule,

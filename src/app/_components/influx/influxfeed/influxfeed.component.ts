@@ -46,6 +46,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   archivedFile: string;
   vehiclesSelectedExpand: boolean = false;
   columnFiltersExpand: boolean = false;
+  value;
 
 
 

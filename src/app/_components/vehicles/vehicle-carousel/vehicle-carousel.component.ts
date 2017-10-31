@@ -45,7 +45,7 @@ export class VehicleCarouselComponent implements OnInit {
   ngOnChanges() {
     this.imgIndex = 0;
   }
-  getImageSrc(data: any, accountId: string) {
+  getImageSrc(data: any, accountId: any) {
     console.log("get image " + accountId + " data " + data);
     let firstLetter = accountId.charAt(0);
     let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;

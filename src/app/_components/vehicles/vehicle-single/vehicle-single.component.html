@@ -1,12 +1,13 @@
-<div id="vehicleDetailsModal" [config]="{ show: true, backdrop: false }" [@dialog]="state" (onHidden)="closeVehicleInfo()" bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="vehicleDetailsModal" [config]="{ show: true, backdrop: false }" [@dialog]="state" (onHidden)="closeVehicleInfo(item)"
+  bsModal #autoShownModal="bs-modal" class="modal custom-fade-in-left" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-container">
       <div class="closeModalContainer">
-      <button type="button" class="btn-danger modal-close-btn close" (click)="closeVehicleInfo()" aria-label="Close">
-        <span class="icon modal-close-icon ">&times;</span>
-        <span class="modal-close-text">Close</span>
-      </button>
-    </div>
+        <button type="button" class="btn-danger modal-close-btn close" (click)="closeVehicleInfo(item)" aria-label="Close">
+          <span class="icon modal-close-icon ">&times;</span>
+          <span class="modal-close-text">Close</span>
+        </button>
+      </div>
       <div class="modal-header">
         <h3 class="modal-title pull-left">{{item.year}} {{item.make}} {{item.model}} {{item.trim}}</h3>
       </div>
@@ -17,7 +18,7 @@
             <h4>Vehicle Images</h4>
           </div>
           <div class="vehicle-images outer">
-            <app-vehicle-carousel [vehicleImages]="item.image" [account]="item.accountId" ></app-vehicle-carousel>
+            <app-vehicle-carousel [vehicleImages]="item.image" [account]="item.accountId"></app-vehicle-carousel>
 
           </div>
 
@@ -30,13 +31,34 @@
             </div>
             <div>
               <ul>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">MSRP:</span><span class="vehicle-overview-value">{{item.msrp}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Internet Price:</span><span class="vehicle-overview-value">{{item.internetPrice}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Asking Price:</span><span class="vehicle-overview-value">{{item.askingPrice}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Sale Price:</span><span class="vehicle-overview-value">{{item.salePrice}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Invoice Price:</span><span class="vehicle-overview-value">{{item.invoicePrice}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Retail Price:</span><span class="vehicle-overview-value">{{item.retailValue}}</span></li>
-                <li><span class="vehicle-overview-label vehicle-overview-pricing">Wholesale Price:</span><span class="vehicle-overview-value">{{item.wholesalePrice}}</span></li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">MSRP:</span>
+                  <span class="vehicle-overview-value">{{item.msrp}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Internet Price:</span>
+                  <span class="vehicle-overview-value">{{item.internetPrice}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Asking Price:</span>
+                  <span class="vehicle-overview-value">{{item.askingPrice}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Sale Price:</span>
+                  <span class="vehicle-overview-value">{{item.salePrice}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Invoice Price:</span>
+                  <span class="vehicle-overview-value">{{item.invoicePrice}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Retail Price:</span>
+                  <span class="vehicle-overview-value">{{item.retailValue}}</span>
+                </li>
+                <li>
+                  <span class="vehicle-overview-label vehicle-overview-pricing">Wholesale Price:</span>
+                  <span class="vehicle-overview-value">{{item.wholesalePrice}}</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -47,12 +69,30 @@
           </div>
           <div class="single-vehicle-overview">
             <ul>
-              <li><span class="vehicle-overview-label">Location:</span><span class="vehicle-overview-value">{{item.accountId}}</span></li>
-              <li><span class="vehicle-overview-label">Stock #:</span><span class="vehicle-overview-value">{{item.stockNumber}}</span></li>
-              <li><span class="vehicle-overview-label">Status:</span><span class="vehicle-overview-value">{{item.status}}</span></li>
-              <li><span class="vehicle-overview-label">Classification:</span><span class="vehicle-overview-value">{{item.className}}</span></li>
-              <li><span class="vehicle-overview-label">Condition:</span><span class="vehicle-overview-value condition">{{item.type}}</span></li>
-              <li *ngIf="item.certified>0"><span class="vehicle-overview-label">Certified:</span><span class="vehicle-overview-value">Yes</span></li>
+              <li>
+                <span class="vehicle-overview-label">Location:</span>
+                <span class="vehicle-overview-value">{{item.accountId}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Stock #:</span>
+                <span class="vehicle-overview-value">{{item.stockNumber}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Status:</span>
+                <span class="vehicle-overview-value">{{item.status}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Classification:</span>
+                <span class="vehicle-overview-value">{{item.className}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Condition:</span>
+                <span class="vehicle-overview-value condition">{{item.type}}</span>
+              </li>
+              <li *ngIf="item.certified">
+                <span class="vehicle-overview-label">Certified:</span>
+                <span class="vehicle-overview-value">Yes</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -62,19 +102,58 @@
           </div>
           <div class="single-vehicle-info">
             <ul>
-              <li><span class="vehicle-overview-label">VIN:</span><span class="vehicle-overview-value"> {{item.vin}}</span></li>
-              <li><span class="vehicle-overview-label">Year:</span><span class="vehicle-overview-value"> {{item.year}}</span></li>
-              <li><span class="vehicle-overview-label">Make:</span><span class="vehicle-overview-value"> {{item.make}}</span></li>
-              <li><span class="vehicle-overview-label">Model:</span><span class="vehicle-overview-value"> {{item.model}}</span></li>
-              <li><span class="vehicle-overview-label">Trim:</span><span class="vehicle-overview-value"> {{item.trim}}</span></li>
-              <li><span class="vehicle-overview-label">Odometer:</span><span class="vehicle-overview-value"> {{item.mileage}}</span></li>
-              <li><span class="vehicle-overview-label">Transmission:</span><span class="vehicle-overview-value"> {{item.transmission}}</span></li>
-              <li><span class="vehicle-overview-label">Driveline:</span><span class="vehicle-overview-value"> {{item.driveline}}</span></li>
-              <li><span class="vehicle-overview-label">Engine:</span><span class="vehicle-overview-value"> {{item.engine}}</span></li>
-              <li><span class="vehicle-overview-label">Engine Size:</span><span class="vehicle-overview-value"> {{item.engineSize}}</span></li>
-              <li><span class="vehicle-overview-label">Fuel Type:</span><span class="vehicle-overview-value"> {{item.fuel}}</span></li>
-              <li><span class="vehicle-overview-label">City MPG:</span><span class="vehicle-overview-value"> {{item.city_mpg}}</span></li>
-              <li><span class="vehicle-overview-label">Highway MPG:</span><span class="vehicle-overview-value"> {{item.highway_mpg}}</span></li>
+              <li>
+                <span class="vehicle-overview-label">VIN:</span>
+                <span class="vehicle-overview-value"> {{item.vin}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Year:</span>
+                <span class="vehicle-overview-value"> {{item.year}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Make:</span>
+                <span class="vehicle-overview-value"> {{item.make}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Model:</span>
+                <span class="vehicle-overview-value"> {{item.model}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Trim:</span>
+                <span class="vehicle-overview-value"> {{item.trim}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Odometer:</span>
+                <span class="vehicle-overview-value"> {{item.mileage}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Transmission:</span>
+                <span class="vehicle-overview-value"> {{item.transmission}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Driveline:</span>
+                <span class="vehicle-overview-value"> {{item.driveline}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Engine:</span>
+                <span class="vehicle-overview-value"> {{item.engine}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Engine Size:</span>
+                <span class="vehicle-overview-value"> {{item.engineSize}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Fuel Type:</span>
+                <span class="vehicle-overview-value"> {{item.fuel}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">City MPG:</span>
+                <span class="vehicle-overview-value"> {{item.city_mpg}}</span>
+              </li>
+              <li>
+                <span class="vehicle-overview-label">Highway MPG:</span>
+                <span class="vehicle-overview-value"> {{item.highway_mpg}}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -82,7 +161,9 @@
           <div class="modal-section-header single-vehicle-details-heading">
             <h4>Comments</h4>
           </div>
-          <div class="comments"><span class="vehicle-overview-value"> {{item.comments}}</span></div>
+          <div class="comments">
+            <span class="vehicle-overview-value"> {{item.comments}}</span>
+          </div>
         </div>
       </div>
     </div>

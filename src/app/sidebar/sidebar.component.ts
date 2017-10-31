@@ -32,11 +32,11 @@ import { Account } from '../_models/account';
   ]
 })
 
-@Component({
-  selector: 'nothotdog',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
-})
+// @Component({
+//   selector: 'nothotdog',
+//   templateUrl: './sidebar.component.html',
+//   styleUrls: ['./sidebar.component.css'],
+// })
 export class SidebarComponent implements OnInit, OnDestroy {
   links: any[] = [
     { name: 'Feed Queuer', href: 'http://influxtools.dealer.com/feed-queuer/index.html' },

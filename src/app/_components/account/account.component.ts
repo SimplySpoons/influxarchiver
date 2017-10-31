@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   accounts: Array<Account> = [];
   loading = false;
   pasted = false;
+  value;
   
   constructor(private accountService: AccountService) {
     this.searchForUser();

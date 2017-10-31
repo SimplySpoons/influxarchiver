@@ -3,7 +3,7 @@
         <div *ngIf="block" class="brand hvr-underline-reveal">
             <a [@enterAnimation] class="dashTitle" href="/">Influx Archiver</a>
         </div>
-        <div id="nav-icon2" [ngClass]="{ 'closed': IsIn, 'open': !isIn }" (click)="toggleState()">
+        <div id="nav-icon2" [ngClass]="{ 'closed': isIn, 'open': !isIn }" (click)="toggleState()">
             <span></span>
             <span></span>
             <span></span>

@@ -37,7 +37,7 @@
   <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
 </div>
 <app-vehicle-single *ngIf="selected" (closeBox)="closeSingle($event)"  [item]="selectedItem" [account]="account"></app-vehicle-single>
-<div (callbackReady)="initScroller($event)" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
+<div appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
   class="vehicle-list clearfix">
   <div class="vehicle" *ngFor="let item of items | search: value">
     <app-vehicle-item (sendItem)="getItem($event)"  [item]="item" [account]="account"></app-vehicle-item>

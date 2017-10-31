@@ -1,5 +1,6 @@
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { fadeInAnimation } from './_animations/index';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -43,9 +44,12 @@ export class AppComponent {
     console.log('called from search', data);
   }
 
+  getAccountChange(data: any) {
+    console.log(data);
+  }
 
   isIn = false;   // store state
-  toggleState() { // click handler
+  toggleState(data: any) { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
     this.mainSlide == 'menuOut' ? this.mainSlide = 'menuIn' : this.mainSlide = 'menuOut';
