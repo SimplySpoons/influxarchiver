@@ -1,6 +1,7 @@
-import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes, APP_INITIALIZER } from '@angular/core';
 import { fadeInAnimation } from './_animations/index';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AppConfig } from './app.config';
 
 @Component({
   selector: 'app-root',
