@@ -690,6 +690,8 @@ body {
 
 .menuContainer.navbar-collapse.nav-side-menu.in {
   overflow-y: hidden;
+  overflow-x: visible;
+  width: 70px;
 }
 
 .hvr-icon-hang:before,
@@ -921,8 +923,4 @@ body {
 .navPanelItem.oemLinks .hvr-icon-bob:before,
 .navPanelItem.oemLinks .hvr-icon-hang:before {
   right: 10px;
-}
-
-.menuContainer.navbar-collapse.nav-side-menu.in {
-  overflow-x: visible;
 }
