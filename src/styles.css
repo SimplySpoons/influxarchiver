@@ -82,11 +82,11 @@ body {
 }
 
 #vehicleDetailsModal .carouselVehicleImageContainer .carousel-control span {
-  visibility: hidden;
+  opacity:.7;
 }
 
 #vehicleDetailsModal .carouselVehicleImageContainer:hover .carousel-control span {
-  visibility: visible;
+  opacity:1;
 }
 
 #vehicleDetailsModal .carousel-control .icon-next {

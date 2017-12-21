@@ -22,8 +22,10 @@ newBug: Bug = new Bug();
   profile: Profile;
   attachments: Array<string> = [];
 
+
   constructor(private user: AppConfig, private userService: UserService, private modalService: ModalService) {
-    // this.profile = this.user.getCurrentUser();
+    this.profile = this.user.getCurrentUser();
+    console.log('PROFILE = ', this.profile);
     // this.newBug.submittedBy = this.profile.email;
   }
 
@@ -38,6 +40,7 @@ newBug: Bug = new Bug();
 
   submitBug() {
     this.loading = true;
+    this.newBug.submittedBy = this.profile.email;
     this.userService.addBugNow(this.newBug).subscribe(data => {
       this.newBug = data;
       this.bugSubmitted = true;
