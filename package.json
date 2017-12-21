@@ -1,6 +1,6 @@
 {
   "name": "influx-archiver2",
-  "version": "0.0.15",
+  "version": "0.0.16-SNAPSHOT",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
