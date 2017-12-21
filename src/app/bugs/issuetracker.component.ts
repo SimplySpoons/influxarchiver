@@ -35,8 +35,7 @@ export class IssuetrackerComponent implements OnInit {
     this.userService.getAllBugs(status).subscribe(
       bugs => {
         this.bugs = bugs,
-          console.log(JSON.stringify(this.bugs));
-        this.bugsLoading = false;
+          this.bugsLoading = false;
       });
   }
 

@@ -42,11 +42,9 @@ export class AppComponent {
   };
 
   removeSearchResults(data: any) {
-    console.log('called from search', data);
   }
 
   getAccountChange(data: any) {
-    console.log(data);
   }
 
   isIn = false;   // store state

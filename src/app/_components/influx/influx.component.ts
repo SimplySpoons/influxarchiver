@@ -27,7 +27,6 @@ export class InfluxComponent implements OnInit, OnDestroy {
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
-      console.log(this.accountId);
     });
     this.loading = true;
     this.account = this.accountService.getCurrentAccount();
@@ -41,11 +40,10 @@ export class InfluxComponent implements OnInit, OnDestroy {
     return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;
   }
 
-  showFilters(parser:string){
+  showFilters(parser: string) {
     this.accountService.getFilters(this.account.accountId, parser).subscribe(filters => {
-        this.filters = filters; 
-        console.log(this.filters);
-        this.hideFilters = false;
+      this.filters = filters;
+      this.hideFilters = false;
     });
   }
 
@@ -67,11 +65,11 @@ export class InfluxComponent implements OnInit, OnDestroy {
     this.showFilter = !this.showFilter;
   }
 
-  getColumnData(vehicle,column) { 
-    return vehicle[column]; 
+  getColumnData(vehicle, column) {
+    return vehicle[column];
   }
 
-  
+
 
   ngOnInit() {
 

@@ -15,7 +15,6 @@ export class UserService {
         this.API_URL = this.conf.API_CONFIG();
     }
 
-    // NONE OF THESE PHP FILES EXIST YET, WE NEED TO CREATE A DATABASE TO HOUSE ALL THE BUGS, AND CREATE ALL OF THESE FILES. BEFORE NOW WE WERE JUST USING THE TICKETRATER DATABASE BUT WE NEED A SEPARATE ONE FOR INFLUXARCHIVER2
     getAllBugs(status: number) {
         return this.http.post(this.API_URL + 'bugfunctions.php', { request: "getAllBugs", status: status }).map(
             (response: Response) => response.json());

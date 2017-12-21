@@ -46,7 +46,6 @@ export class VehicleCarouselComponent implements OnInit {
     this.imgIndex = 0;
   }
   getImageSrc(data: any, accountId: any) {
-    console.log("get image " + accountId + " data " + data);
     let firstLetter = accountId.charAt(0);
     let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;
     return url;

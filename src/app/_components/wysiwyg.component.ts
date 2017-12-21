@@ -41,13 +41,13 @@ declare var tinymce: any;
 })
 export class TextEditorComponent implements AfterViewInit, OnDestroy {
     @Input() elementId: String;
-    @Input() currentValue: string; 
+    @Input() currentValue: string;
     @Output() onEditorKeyup = new EventEmitter<any>();
     loading: boolean = false;
     currentPage: number = 0;
     attachments: any;
     constructor(private modalService: ModalService) {
-           
+
     }
 
     img_src: string;
@@ -56,20 +56,17 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
     editor;
     showlib: boolean = false;
     attachment: any;
-    featured: any; 
+    featured: any;
     postAttachment: string = "postAttachment";
 
     insertContent() {
-        if(this.currentValue != '') {
-            console.log(this.currentValue);
-            this.editor.insertContent(this.currentValue); 
-         } else {
-             console.log('this.currentValue is undefined, yo');
-         }
+        if (this.currentValue != '') {
+            this.editor.insertContent(this.currentValue);
+        } else {
+        }
     }
 
     getAttachments(data: any) {
-        console.log(data);
         this.attachments = JSON.parse(data);
         this.img_src = this.attachments.filePath;
         this.id = this.id.concat(this.attachments.id);
@@ -79,7 +76,6 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
     }
 
     getMedia(data: any) {
-        console.log(data);
         this.attachments = JSON.parse(data);
         for (let i = 0; i < this.attachments.length; i++) {
             this.attachment = this.attachments[i];
@@ -130,7 +126,6 @@ export class TextEditorComponent implements AfterViewInit, OnDestroy {
                 editor.on('keyup', () => {
                     const content = editor.getContent();
                     this.onEditorKeyup.emit(content);
-                    //console.log('content');
                 });
             },
         });

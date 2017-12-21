@@ -25,18 +25,9 @@ import { Account } from '../_models/account';
         animate(400, style({ opacity: 1 }))
       ]),
     ])
-      // ]),
-      // transition(':leave', [   // :leave is alias to '* => void'
-      //   animate(1, style({ opacity: 0 }))
-      // ])
   ]
 })
 
-// @Component({
-//   selector: 'nothotdog',
-//   templateUrl: './sidebar.component.html',
-//   styleUrls: ['./sidebar.component.css'],
-// })
 export class SidebarComponent implements OnInit, OnDestroy {
   links: any[] = [
     { name: 'Feed Queuer', href: 'http://influxtools.dealer.com/feed-queuer/index.html' },
@@ -99,9 +90,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     })
   }
 
-  getAccountChange(data) {
-    console.log(data);
-  }
+  getAccountChange(data) { }
 
   public status: any = {
     isFirstOpen: true,
@@ -144,11 +133,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.NotHotDogSlide == 'out' ? this.NotHotDogSlide = 'in' : this.NotHotDogSlide = 'out';
   }
 
-
-  ngOnInit() {
-
-
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

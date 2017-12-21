@@ -11,7 +11,7 @@ import { Profile } from '../auth/profile';
   styleUrls: ['./submitbug.component.css']
 })
 export class SubmitbugComponent {
-newBug: Bug = new Bug();
+  newBug: Bug = new Bug();
   types: any[] = [
     { value: 'Bug', display: 'Bug' },
     { value: 'Feature Request', display: 'Feature Request' },
@@ -25,8 +25,6 @@ newBug: Bug = new Bug();
 
   constructor(private user: AppConfig, private userService: UserService, private modalService: ModalService) {
     this.profile = this.user.getCurrentUser();
-    console.log('PROFILE = ', this.profile);
-    // this.newBug.submittedBy = this.profile.email;
   }
 
   keyupHandlerFunction(data: any) {

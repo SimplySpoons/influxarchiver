@@ -48,15 +48,8 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   columnFiltersExpand: boolean = false;
   value;
 
-
-
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private element: ElementRef) {
-    // this.feedLoading = true;
-    //Object.assign(this, { influxVehicles });
-    //this.temp = this.influxVehicles;
-    //console.log(this.influxVehicles);
     this.sub = this.route.params.subscribe(params => {
-      console.log(params);
       this.accountId = params['id'];
       this.provider = params['provider'];
       this.providerid = params['providerid'];
@@ -64,15 +57,13 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       this.filename = params['filename'];
       this.accountService.getHeaders(this.provider).subscribe(headers => {
         this.influxHeaders = headers;
-        this.influxHeadersCheckbox =   this.influxHeaders;
+        this.influxHeadersCheckbox = this.influxHeaders;
         this.showTable = true;
         this.feedLoading = false;
-        //this.el.innerHeight = this.windowHeight;
       });
       this.accountService.getFileList(this.accountId, this.provider).subscribe(files => {
         this.files = files;
         this.archivedFile = this.files[0].filename;
-        console.log(this.files);
       });
       this.accountService.getInfluxFeed(this.accountId, this.provider, this.timestamp, this.filename, this.providerid).subscribe(feed => {
         this.influxVehicles = feed.vehicles;
@@ -89,22 +80,17 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   toggleVehiclesSelectedExpand() { // click handler
-    console.log("test");
     let bool = this.vehiclesSelectedExpand;
     this.vehiclesSelectedExpand = bool === false ? true : false;
-
   }
 
   toggleFiltersDropDown() { // click handler
-    console.log("test");
     let bool = this.columnFiltersExpand;
     this.columnFiltersExpand = bool === false ? true : false;
-
   }
 
-  openVehicleSingle(vehicle: any) {
-    console.log("TEST: " + vehicle.account);
-  }
+  openVehicleSingle(vehicle: any) { }
+
   getArchivedFile() {
     this.influxVehicles = [];
     this.selectedInfluxVehicles = [];
@@ -114,9 +100,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  onValueChange(data: any, file: any) {
-    console.log('file selected changed --> ', JSON.stringify(file));
-  }
+  onValueChange(data: any, file: any) { }
 
   addClass(vehicle: any) {
     if (vehicle.hightlight === 0 || !vehicle.highlight) {
@@ -126,11 +110,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       vehicle.highlight = 0;
     }
     else {
-      console.log(vehicle.highlight);
     }
-    /*let index = this.influxVehicles.indexOf(vehicle);
-    this.influxVehicles[index] = vehicle;
-    return this.influxVehicles; */
   }
 
   getColumnData(vehicle, column) {
@@ -138,14 +118,11 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSelect({ selected, vehicle }) {
-    console.log('Select Event', selected, this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
-    console.log('You selected ' + this.selected);
   }
 
   onActivate(event) {
-    console.log('Activate Event', event);
   }
 
   getStyles() {
@@ -155,14 +132,13 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   onPage(event) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      console.log('paged!', event);
     }, 100);
   }
 
   toggle(col) {
     const isChecked = this.isChecked(col);
 
-    if(isChecked) {
+    if (isChecked) {
       this.influxHeaders = this.influxHeaders.filter(c => {
         return c.prop !== col.prop;
       });
@@ -178,8 +154,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-    console.log(this.influxHeaders);
   };
 
   ngAfterViewInit() {

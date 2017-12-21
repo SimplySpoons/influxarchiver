@@ -14,14 +14,12 @@ export class AccountService {
     sendAccountChange = new EventEmitter<any>();
     constructor(private conf: AppConfig, private http: Http) {
         this.API_URL = this.conf.API_CONFIG();
-        console.log('this is the API_URL ' + this.API_URL);
     }
     getAccountData(accountId: string) {
         return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
             (response: Response) => response.json());
     }
     getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
-        console.log('hitting');
         return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset }).map(
             (response: Response) => response);
     }
@@ -52,7 +50,6 @@ export class AccountService {
         return this.http.post(this.API_URL + 'influx.php', { request: "getFilters", accountId: accountId, parser: parser }).map((response: Response) => response.json());
     }
     getInvCounts(accountId: string) {
-        console.log('hitting service');
         return this.http.post(this.API_URL + 'vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
             (response: Response) => response.json());
     }

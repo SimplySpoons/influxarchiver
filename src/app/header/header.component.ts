@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private api: AppConfig) {
     this.sub = api.getCurrentUser();
     this.title = api.getTitle();
-    console.log('currentUser', this.sub);
   }
 
   ngOnInit() {
@@ -29,7 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.routeSub.unsubscribe();
-    console.log('destroyed');
   }
 
 }

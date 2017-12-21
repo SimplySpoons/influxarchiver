@@ -123,7 +123,6 @@ export class DuplicatePipe implements PipeTransform {
         resultArray.push(item);
       }
       else {
-        //console.log('item was not pushed',item); 
       }
       i++;
     }
