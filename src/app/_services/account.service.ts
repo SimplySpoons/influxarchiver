@@ -14,7 +14,7 @@ export class AccountService {
     sendAccountChange = new EventEmitter<any>();
     constructor(private conf: AppConfig, private http: Http) {
         this.API_URL = this.conf.API_CONFIG();
-        //this.API_URL = 'http://localhost:6969/hotdog/php/';
+        console.log('this is the API_URL ' + this.API_URL);
     }
     getAccountData(accountId: string) {
         return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
