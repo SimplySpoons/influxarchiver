@@ -13,23 +13,24 @@ export class UserService {
         // this.single = new Average();
     }
 
+    // NONE OF THESE PHP FILES EXIST YET, WE NEED TO CREATE A DATABASE TO HOUSE ALL THE BUGS, AND CREATE ALL OF THESE FILES. BEFORE NOW WE WERE JUST USING THE TICKETRATER DATABASE BUT WE NEED A SEPARATE ONE FOR INFLUXARCHIVER2
     getAllBugs(status: number) {
-        return this.http.post('http://localhost:6969/userdata.php', { request: "getAllBugs", status: status }).map(
+        return this.http.post('https://supporttoolbox.dealerdotcom.corp/var/www/html/staging/hotdog/php/userdata.php', { request: "getAllBugs", status: status }).map(
             (response: Response) => response.json());
     }
 
     addBugNow(newBug: any) {
-        return this.http.post('http://localhost:6969/userdata.php', { request: "addBug", newBug: newBug }).map(
+        return this.http.post('https://supporttoolbox.dealerdotcom.corp/var/www/html/staging/hotdog/php/userdata.php', { request: "addBug", newBug: newBug }).map(
             (response: Response) => response.json());
     }
 
     markBugComplete(id: string) {
-        return this.http.post('http://localhost:6969/userdata.php', { request: "markBugComplete", id: id }).map(
+        return this.http.post('https://supporttoolbox.dealerdotcom.corp/var/www/html/staging/hotdog/php/userdata.php', { request: "markBugComplete", id: id }).map(
             (response: Response) => response.json());
     }
 
     deleteBug(id: string) {
-        return this.http.post('http://localhost:6969/userdata.php', { request: "deleteBug", id: id }).map(
+        return this.http.post('https://supporttoolbox.dealerdotcom.corp/var/www/html/staging/hotdog/php/userdata.php', { request: "deleteBug", id: id }).map(
             (response: Response) => response.json());
     }
 
