@@ -1,0 +1,88 @@
+<!doctype html><html lang="en"><head><!--<script src="//cox-spauth-js.spar.dealer.com/cox-spauth.js"></script>--><meta charset="utf-8"><title>Influx Archiver 2.0</title><script src="//cox-spauth-js.spar.dealer.com/cox-spauth.js"></script><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script><!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> --><!-- <script src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> --><script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono"/><!-- <script src="angular-datatables/dist/angular-datatables.min.js"></script>    --><!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> --><!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> --><!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.css"> --><link href="styles.2e668a9f6d0bb1b710b5.bundle.css" rel="stylesheet"/></head><script>(function (window) {
+    if (window.location !== window.top.location) {
+      window.top.location = window.location;
+    }
+  })(this);</script><style>app-root>.background {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2B303B;
+  }
+
+  app-root>.background>.wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  }
+
+  @-webkit-keyframes ball-scale-multiple {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes ball-scale-multiple {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  .ball-scale-multiple {
+    position: relative;
+    -webkit-transform: translateY(-30px);
+    transform: translateY(350px);
+  }
+
+  .ball-scale-multiple>div:nth-child(2) {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+  }
+
+  .ball-scale-multiple>div:nth-child(3) {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+  }
+
+  .ball-scale-multiple>div {
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    left: -30px;
+    top: 0px;
+    opacity: 0;
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+    animation: ball-scale-multiple 1s 0s linear infinite;
+  }</style><body><!-- <div class="wrapper"> --><app-root><div class="background"><div class="wrapper"><div class="ball-scale-multiple"><div></div><div></div><div></div></div></div></div></app-root><script type="text/javascript" src="inline.dee2f3cca12540ef21a7.bundle.js"></script><script type="text/javascript" src="polyfills.6e8e6b89fb509f258e96.bundle.js"></script><script type="text/javascript" src="vendor.96b9c3d158bebc304357.bundle.js"></script><script type="text/javascript" src="main.8321e933d6e9e6d2514e.bundle.js"></script></body></html>
