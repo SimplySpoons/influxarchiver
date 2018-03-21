@@ -59,6 +59,7 @@
 
 .filterColumnsContainer button {
   float: right;
+  padding: 7.4px 10px;
 }
 
 .ngx-datatable.scroll-vertical {
@@ -156,4 +157,8 @@ img {
 hr {
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+.accountName, .feedName { 
+    font-style: italic;
 }
