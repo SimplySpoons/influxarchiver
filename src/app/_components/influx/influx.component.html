@@ -2,7 +2,7 @@
 <div class="panel clearfix" *ngFor="let config of influxConfigs">
   <div class="card">
     <div class="panel-heading clearfix">
-      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}} -
+      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}}
         <small> Feed Last Ran {{config.lastRan}} </small>
       </h3>
       <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
