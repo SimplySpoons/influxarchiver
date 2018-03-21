@@ -2,7 +2,7 @@
 <div class="panel clearfix" *ngFor="let config of influxConfigs">
   <div class="card">
     <div class="panel-heading clearfix">
-      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}} -
+      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}}
         <small> Feed Last Ran {{config.lastRan}} </small>
       </h3>
       <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
@@ -37,7 +37,7 @@
           <h4 class="pull-left">
             <b>Feed Wins </b> | </h4>
           <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
-            <b style="color: green;">Green Items </b> Indicate Feed Overrides on Inventory Data</h5>
+            <b style="color: green;">Green Items </b> indicate feed overrides on Inventory Data</h5>
         </div>
         <div class="feedWins-item" *ngFor="let wins of config.feedWins">
           <small class="col-md-2" [class.active]="wins.value">{{wins.key}} </small>
@@ -47,9 +47,9 @@
       <div class="scrubAtts clearfix">
         <div class="title clearfix" style="margin-bottom: 30px">
           <h4 class="pull-left">
-            <b>Vin Decoding </b> | </h4>
+            <b>VIN Decoding </b> | </h4>
           <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
-            <b style="color: green;">Green Items </b> Indicate Fields Being Vin Decoded</h5>
+            <b style="color: green;">Green Items </b> indicate fields being VIN Decoded</h5>
         </div>
         <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
           <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
