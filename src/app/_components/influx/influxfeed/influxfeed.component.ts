@@ -27,6 +27,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   influxHeadersCheckbox: any = [];
   requestUrl: string;
   influxVehicles: any = [];
+  loadingAll = false;
   selectedInfluxVehicles: any = [];
   fileCache: any = []
   temp = [];
@@ -152,12 +153,14 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       filename = this.filename;
     }
     if (filename !== null) {
+      this.loadingAll = true;
       this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex, true)
         .subscribe(vehicles => {
           console.log(vehicles);
           const items = [...this.influxVehicles];
           items.splice(50, 0, ...vehicles.data.vehicles);
           this.influxVehicles = items;
+          this.loadingAll = false;
           console.log(this.influxVehicles);
         });
     }

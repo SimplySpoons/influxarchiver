@@ -120,6 +120,17 @@
   transform: translateZ(0);
 }
 
+h4 img {
+  opacity: 0;
+}
+h4 img.visible {
+  opacity: 1;
+}
+
+img {
+  transition: all ease-in-out .75s;
+}
+
 .noShadow {
   box-shadow: none !important;
   clear: both;
@@ -133,4 +144,13 @@
   top: -15px;
   left: -15px;
   color: #000;
+}
+
+.search {
+      width: calc(100% - 100px);
+}
+
+hr {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
