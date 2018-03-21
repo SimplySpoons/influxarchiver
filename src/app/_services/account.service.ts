@@ -32,8 +32,16 @@ export class AccountService {
     ).map(
       (response: Response) => response.json());
   }
-  getUpdatedFeed(parser: string, filename: string, accountId = null, providerId = null, offset = 0, fileIndex = 0) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getUpdatedFeed", parser: parser, filename: filename, accountId: accountId, providerId: providerId, offset: offset, fileIndex: fileIndex }
+  getUpdatedFeed(parser: string, filename: string, accountId = null, providerId = null, offset = 0, fileIndex = 0, full = false) {
+    return this.http.post(this.API_URL + 'influx.php',
+    { request: "getUpdatedFeed",
+      parser: parser,
+      filename: filename,
+      accountId: accountId,
+      providerId: providerId,
+      offset: offset,
+      fileIndex: fileIndex,
+      full: full }
     ).map((response: Response) => response.json());
   }
   getHeaders(parser: string) {

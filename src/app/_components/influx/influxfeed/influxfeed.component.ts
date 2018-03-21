@@ -81,6 +81,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       this.providerid = params['providerid'];
       this.timestamp = params['timestamp'];
       this.filename = params['filename'];
+      console.log(this.filename);
       this.parent_sub = this.route.parent.parent.params.subscribe(parentParam => {
         this.accountId = parentParam['id'];
         this.accountService.getHeaders(this.provider).subscribe(headers => {
@@ -88,6 +89,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
           this.influxHeadersCheckbox = this.influxHeaders;
           this.showTable = true;
           this.feedLoading = false;
+          this.getArchivedFile();
         });
       })
     })
@@ -107,7 +109,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   setRows() {
     if (this.files && this.files.length > 0) {
       this.archivedFile = this.files[0];
-      this.getArchivedFile();
     }
   }
 
@@ -127,21 +128,38 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.feedLoading = true;
     this.selectedInfluxVehicles = [];
     let filename = null;
-    if (!this.archivedFile && this.filename) {
+    if (this.filename) {
       filename = this.filename;
-    } else if (this.archivedFile.filename) {
-      filename = this.archivedFile.filename;
     }
     if (filename !== null) {
-      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex).subscribe(vehicles => {
-        this.filesize = Number(vehicles.filesize);
-        this.offset = Number(vehicles.offset);
-        this.requestUrl = vehicles.url;
-        this.influxVehicles = this.influxVehicles.concat(vehicles.data.vehicles);
-        this.selectedInfluxVehicles = this.influxVehicles;
-        this.feedLoading = false;
-        this.callOnce = false;
-      });
+      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex)
+        .subscribe(vehicles => {
+          this.filesize = Number(vehicles.filesize);
+          this.offset = Number(vehicles.offset);
+          this.requestUrl = vehicles.url;
+          this.influxVehicles = [...vehicles.data.vehicles];
+          this.selectedInfluxVehicles = this.influxVehicles;
+          this.feedLoading = false;
+          this.callOnce = false;
+          this.getFullFile();
+        });
+    }
+  }
+
+  getFullFile() {
+    let filename = null;
+    if (this.filename) {
+      filename = this.filename;
+    }
+    if (filename !== null) {
+      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex, true)
+        .subscribe(vehicles => {
+          console.log(vehicles);
+          const items = [...this.influxVehicles];
+          items.splice(50, 0, ...vehicles.data.vehicles);
+          this.influxVehicles = items;
+          console.log(this.influxVehicles);
+        });
     }
   }
 
@@ -149,7 +167,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fileIndex = data;
     this.archivedFile = this.files[data];
     this.offset = 0;
-    this.getArchivedFile();
+    this.router.navigate([this.provider,this.archivedFile.filename,this.providerid], {relativeTo: this.route.parent});
   }
 
   addClass(vehicle: any) {

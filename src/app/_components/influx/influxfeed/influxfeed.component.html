@@ -45,7 +45,7 @@
               </ul>
             </div>
           </div>
-          <ngx-datatable #table class="material striped noShadow expandable scroll-vertical" [rows]="selectedInfluxVehicles |  search_archived: value"
+          <ngx-datatable #table class="material striped noShadow expandable scroll-vertical" [rows]="influxVehicles |  search_archived: value"
             [columnMode]="'force'" [rowHeight]="50" [limit]="50" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true" [loadingIndicator]="feedLoading"
             [reorderable]="reorderable" [columns]="influxHeaders" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
             (select)='onSelect($event)' (page)="onPage($event)">
