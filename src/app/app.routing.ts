@@ -24,12 +24,12 @@ export const APP_ROUTES: Routes = [
             { path: 'vehicles', component: VehicleListComponent },
             { path: 'vehicles/:type', component: VehicleListComponent },
             { path: 'vehicles/:type/:classification', component: VehicleListComponent },
-            { path: 'influx', component: InfluxComponent, }
+            { path: 'influx', component: InfluxComponent, children: [
+              { path: ':provider', component: InfluxfeedComponent },
+              { path: ':provider/:filename/:providerid', component: InfluxfeedComponent },
+            ]}
         ],
     },
-    { path: 'account/:id/influx/:provider', component: InfluxfeedComponent },
-    { path: 'account/:id/influx/:provider/:timestamp', component: InfluxfeedComponent },
-    { path: 'account/:id/influx/:provider/:timestamp/:filename/:providerid', component: InfluxfeedComponent },
     { path: 'feeds', component: FeedsComponent }
 ];
 

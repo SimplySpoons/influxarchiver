@@ -1,3 +1,5 @@
+import { InfluxService } from './../influx-service';
+import { slideInOutAnimation } from './../../../_animations/slide-in.animation';
 import { Component, OnInit, OnDestroy, TemplateRef, Output, Input, AfterViewInit, ElementRef, ViewChild, EventEmitter } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable/src/components/datatable.component';
 import { AccountService } from '../../../_services/account.service';
@@ -13,19 +15,23 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-influxfeed',
   templateUrl: './influxfeed.component.html',
-  styleUrls: ['./influxfeed.component.css']
+  styleUrls: ['./influxfeed.component.css'],
+  animations: [slideInOutAnimation],
+  // tslint:disable-next-line:use-host-property-decorator
+  host: { '[@slideInOutAnimation]': '' }
 })
 export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() sendItem = new EventEmitter();
 
   influxHeaders: any = [];
   influxHeadersCheckbox: any = [];
-
+  requestUrl: string;
   influxVehicles: any = [];
   selectedInfluxVehicles: any = [];
+  fileCache: any = []
   temp = [];
   tmp = [];
-  feedLoading: boolean = true;
+  feedLoading: boolean = false;
   provider = '';
   timestamp = '';
   filename = '';
@@ -41,42 +47,68 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   selected = [];
   testing: any = '';
   dtTrigger: Subject<any> = new Subject();
-  el: any;
   files: any = [];
-  archivedFile: string;
+  archivedFile: any;
   vehiclesSelectedExpand: boolean = false;
   columnFiltersExpand: boolean = false;
   value;
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private element: ElementRef) {
+  fileIndex = 0;
+
+  callOnce = false;
+
+  filesize = 0;
+
+  offset = 0;
+
+  parent_sub: any;
+  file_sub: any;
+
+  el: any;
+
+
+  ARCHIVED_FILE_SUB: Subject<string> = new Subject<string>();
+  archived_sub: any;
+
+  constructor(private accountService: AccountService,
+    private route: ActivatedRoute, private router: Router,
+    private element: ElementRef, private influx: InfluxService) {
+    this.el = this.element.nativeElement;
+    this.el.classList = "addShadow";
     this.sub = this.route.params.subscribe(params => {
       this.accountId = params['id'];
       this.provider = params['provider'];
       this.providerid = params['providerid'];
       this.timestamp = params['timestamp'];
       this.filename = params['filename'];
-      this.accountService.getHeaders(this.provider).subscribe(headers => {
-        this.influxHeaders = headers;
-        this.influxHeadersCheckbox = this.influxHeaders;
-        this.showTable = true;
-        this.feedLoading = false;
-      });
-      this.accountService.getFileList(this.accountId, this.provider).subscribe(files => {
-        this.files = files;
-        this.archivedFile = this.files[0].filename;
-      });
-      this.accountService.getInfluxFeed(this.accountId, this.provider, this.timestamp, this.filename, this.providerid).subscribe(feed => {
-        this.influxVehicles = feed.vehicles;
-        this.feedLoading = false;
-        this.showTable = true;
-        this.selectedInfluxVehicles = this.influxVehicles;
-        setTimeout(() => { this.loadingIndicator = false; }, 1500);
-      }),
-        err => {
-          // Log errors if any
-          console.log(err);
-        };
+      this.parent_sub = this.route.parent.parent.params.subscribe(parentParam => {
+        this.accountId = parentParam['id'];
+        this.accountService.getHeaders(this.provider).subscribe(headers => {
+          this.influxHeaders = headers;
+          this.influxHeadersCheckbox = this.influxHeaders;
+          this.showTable = true;
+          this.feedLoading = false;
+        });
+      })
     })
+    this.files = this.influx.files;
+    this.file_sub = this.influx.fileListSubject.subscribe(fileList => {
+      this.files = fileList;
+      if (this.influxVehicles.length === 0) {
+        this.setRows();
+      }
+    });
+  }
+
+  routeBack() {
+    this.router.navigate(['/account', this.accountId, 'influx'], { relativeTo: this.route.parent });
+  }
+
+  setRows() {
+    if (this.files && this.files.length > 0) {
+      this.archivedFile = this.files[0];
+      this.getArchivedFile();
+    }
   }
 
   toggleVehiclesSelectedExpand() { // click handler
@@ -92,15 +124,33 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   openVehicleSingle(vehicle: any) { }
 
   getArchivedFile() {
-    this.influxVehicles = [];
+    this.feedLoading = true;
     this.selectedInfluxVehicles = [];
-    this.accountService.getUpdatedFeed(this.provider, this.archivedFile).subscribe(vehicles => {
-      this.influxVehicles = vehicles.vehicles;
-      this.selectedInfluxVehicles = this.influxVehicles
-    });
+    let filename = null;
+    if (!this.archivedFile && this.filename) {
+      filename = this.filename;
+    } else if (this.archivedFile.filename) {
+      filename = this.archivedFile.filename;
+    }
+    if (filename !== null) {
+      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex).subscribe(vehicles => {
+        this.filesize = Number(vehicles.filesize);
+        this.offset = Number(vehicles.offset);
+        this.requestUrl = vehicles.url;
+        this.influxVehicles = this.influxVehicles.concat(vehicles.data.vehicles);
+        this.selectedInfluxVehicles = this.influxVehicles;
+        this.feedLoading = false;
+        this.callOnce = false;
+      });
+    }
   }
 
-  onValueChange(data: any, file: any) { }
+  onValueChange(data: any) {
+    this.fileIndex = data;
+    this.archivedFile = this.files[data];
+    this.offset = 0;
+    this.getArchivedFile();
+  }
 
   addClass(vehicle: any) {
     if (vehicle.hightlight === 0 || !vehicle.highlight) {
@@ -154,6 +204,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.setRows();
   };
 
   ngAfterViewInit() {
@@ -162,6 +213,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    alert('destroyed!');
+    this.file_sub.unsubscribe();
   }
 }

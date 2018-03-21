@@ -5,7 +5,7 @@
 </div>
 
 <div class="accountList" style="margin: 20px 0;" *ngIf="value">
-  <div class="panel" *ngIf="accounts[0].name != 'No results found'">
+  <div class="panel" *ngIf="accounts.length > 0 && accounts[0].name != 'No results found'">
     <div class="panel-body clearfix">
       <div class="col-md-2">
         <b> Account Name </b>

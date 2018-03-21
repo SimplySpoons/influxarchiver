@@ -1,14 +1,14 @@
 <!-- Account Model -->
-<!-- 
+<!--
     accountId: string;
     name: string;
     publicUrl: string;
-    internalUrl: string; 
-    address1: string; 
-    address2: string; 
-    city: string; 
-    state: string; 
-    zip: string; 
+    internalUrl: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zip: string;
     country: string;
 -->
 <div class="row name accountName" *ngIf="!loading">
@@ -17,7 +17,7 @@
     <small> {{account.accountId}} | <a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
           | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
     <br>
-    <div class="api col-md-12"> 
+    <div class="api col-md-12" *ngIf="apis">
       <small *ngIf="apis.type==1"> vAuto API: <b> Yes </b></small>
       <small *ngIf="apis.type==0"> vAuto API: <b> No </b></small>
       <a class="btn btn-success pull-right" [routerLink]="['buttons']"> Show Custom Buttons </a>
@@ -31,7 +31,7 @@
   <a [href]="getDnaLink()" class="btn btn-success" target="_blank">DNA</a>
   <a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
   <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
-  <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>  
+  <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>
 </div>
 <div class="row">
   <div *ngIf="!loading" class="vehicleSection">

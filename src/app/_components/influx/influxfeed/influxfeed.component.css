@@ -119,3 +119,18 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+
+.noShadow {
+  box-shadow: none !important;
+  clear: both;
+}
+.shadow {
+  position: relative;
+}
+.close {
+  position: absolute;
+  font-size: 1.4em;
+  top: -15px;
+  left: -15px;
+  color: #000;
+}

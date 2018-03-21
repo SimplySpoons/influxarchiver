@@ -80,17 +80,13 @@ export class SearchArchived implements PipeTransform {
     let found: any = [];
     let val = value.trim();
     return items.filter(function (item) {
-      let match = false;
-      if (item.search.prop.toLowerCase().includes(val.toLowerCase())) {
-        count = count + 1;
-        match = true;
-      }
-      else {
-        match = false;
-      }
-      if (match) {
-        return item;
-      }
+      const keys = Object.keys(item);
+      let keyString = " ";
+      keys.forEach((key) => {
+        keyString += item[key] + " ";
+      });
+      const bool = keyString.toLowerCase().includes(value.toLowerCase());
+      return bool;
     });
   }
 }

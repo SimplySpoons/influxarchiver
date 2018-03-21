@@ -14,7 +14,6 @@ import { AccountSingleComponent } from './_components/account/account-single.com
 import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
-import { DropdownModule } from "ngx-dropdown";
 import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
@@ -38,6 +37,7 @@ import { VehicleCarouselComponent } from './_components/vehicles/vehicle-carouse
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable/src';
+import { InfluxService } from './_components/influx/influx-service';
 
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
@@ -79,7 +79,6 @@ export function initializeCurrentUser(config: AppConfig) {
     routing,
     HttpModule,
     JsonpModule,
-    DropdownModule,
     FormsModule,
     ReactiveFormsModule,
     NgSpinKitModule,
@@ -91,7 +90,8 @@ export function initializeCurrentUser(config: AppConfig) {
     NgxDatatableModule
   ],
   exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe],
-  providers: [AccountService, ModalService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig, { provide: APP_INITIALIZER, useFactory: initializeCurrentUser, deps: [AppConfig], multi: true }],
+  // tslint:disable-next-line:max-line-length
+  providers: [AccountService, ModalService, InfluxService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

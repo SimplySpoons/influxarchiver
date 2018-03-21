@@ -5,8 +5,8 @@
 img {max-width: 100%; height: auto;}
 
 .feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
-    color: green; 
-    font-weight: bold; 
+    color: green;
+    font-weight: bold;
     font-size: 1.1em;
 }
 
@@ -22,8 +22,8 @@ img {max-width: 100%; height: auto;}
 
 .panel-subheading a {
 
-    margin: 5px; 
-   
+    margin: 5px;
+
 }
 .panel-subheading span a {
     color: #fff;
@@ -44,10 +44,15 @@ img {max-width: 100%; height: auto;}
     border-color:#3F869B;
 }
 
-.api {background: #eee; padding: 5px; border: 1px solid #ccc; margin: 5px 0; font-style: normal; 
+.api {background: #eee; padding: 5px; border: 1px solid #ccc; margin: 5px 0; font-style: normal;
 font-size: 1.1em;}
 
-
+.success {
+  color: green;
+}
+.warning {
+  color: maroon;
+}
 
 
 #main-container > .container {padding-top: 65px;}
@@ -62,10 +67,17 @@ font-size: 1.1em;}
     left: 0;
     z-index: 999;
     top:58px;
-    background: rgba(66,66,66,.66); 
+    background: rgba(66,66,66,.66);
 }
 
 .main-panel#main-container[_ngcontent-c0] {overflow-x: scroll !important;}
 
 .ngx-datatable.material {position: relative;}
 .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group { background-color: #5bc0de; }
+
+.addShadow {
+  padding: 20px;
+  box-shadow: -5px -5px 25px rgba(0, 0, 0, .5);
+  border-left: 1px solid #999;
+}
+

@@ -2,19 +2,29 @@
 <div class="panel clearfix" *ngFor="let config of influxConfigs">
   <div class="card">
     <div class="panel-heading clearfix">
-      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}} - <small> Feed Last Ran {{config.lastRan}} </small></h3>
+      <h3 class="pull-left" style="margin: 5px 0;"> {{config.provider}} -
+        <small> Feed Last Ran {{config.lastRan}} </small>
+      </h3>
       <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
       <div class="provider-info" style="clear: both">
         <h4 *ngIf="config.providerid != false">
-          Provider ID: <b> {{config.providerid}} </b>
+          Provider ID:
+          <b> {{config.providerid}} </b>
         </h4>
         <h4 *ngIf="config.filename != false">
-          File Name: <b> {{config.filename}} </b>
+          File Name:
+          <b> {{config.filename}} </b>
         </h4>
       </div>
+      <div>
+        <span>Inserts:
+          <b [ngClass]="getClassName(config.inserts)"> {{config.inserts}}</b>
+        </span>
+        <span>Deletes:
+          <b [ngClass]="getClassName(config.deletes)"> {{config.deletes}}</b>
+        </span>
+      </div>
     </div>
-
-
     <div class="panel-subheading">
       <a class="btn btn-primary" *ngFor="let type of config.inventory_types">
         <div (click)="routeToVehicles(type.type,type.classification)"> {{type.name}} ({{type.count}}) </div>
@@ -24,8 +34,10 @@
     <div class="panel-body">
       <div class="feedWins clearfix">
         <div class="title clearfix" style="margin-bottom: 30px">
-          <h4 class="pull-left"> <b>Feed Wins </b> | </h4>
-          <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;"><b style="color: green;">Green Items </b> Indicate Feed Overrides on Inventory Data</h5>
+          <h4 class="pull-left">
+            <b>Feed Wins </b> | </h4>
+          <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
+            <b style="color: green;">Green Items </b> Indicate Feed Overrides on Inventory Data</h5>
         </div>
         <div class="feedWins-item" *ngFor="let wins of config.feedWins">
           <small class="col-md-2" [class.active]="wins.value">{{wins.key}} </small>
@@ -34,8 +46,10 @@
       <hr>
       <div class="scrubAtts clearfix">
         <div class="title clearfix" style="margin-bottom: 30px">
-          <h4 class="pull-left"> <b>Vin Decoding </b> | </h4>
-          <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;"><b style="color: green;">Green Items </b> Indicate Fields Being Vin Decoded</h5>
+          <h4 class="pull-left">
+            <b>Vin Decoding </b> | </h4>
+          <h5 class="pull-left" style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
+            <b style="color: green;">Green Items </b> Indicate Fields Being Vin Decoded</h5>
         </div>
         <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
           <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
@@ -45,27 +59,50 @@
       <div class="influxFeed">
         <!-- <a class="btn btn-info" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Archived Feed</a> -->
 
-        <a class="btn btn-info influxFeed" [routerLink]="[config.provider,config.lastRan,config.filename,config.providerid]">Show Feed</a>
+        <a class="btn btn-info influxFeed" (click)="viewFeedData(config)">Show Feed</a>
+        <span class="filterToggleButton" *ngIf="filters[config.provider].length > 0" (click)="toggleFilter(config)">
+          <a class="btn btn-success">{{config.message}} - [{{filters[config.provider].length}}]</a>
+        </span>
       </div>
       <hr>
-      <div class="alert alert-warning" *ngIf="filters.length == 0">
-        <strong>Warning!</strong> Filter(s) may be present!
-      </div>
-      <div class="filterToggleButton" *ngIf="filters.length == 0">
-        <a class="btn btn-success" (click)="showFilters(config.provider)">Show Filters</a>
-      </div>
-      <div *ngIf="filters.length > 0">
-      <div class="filterDisplay" *ngFor="let filter of filters; let i = index">
-        <div *ngIf="filter.parser == config.provider">
-          <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
+      <div *ngIf="config.showFilters">
+        <div class="filterDisplay" *ngFor="let filter of filters[config.provider]; let i = index">
           <div>
-            <p><b>{{filter.task}}</b></p>
-            <p style="white-space: pre-wrap;">{{filter.filter}}</p>
-            <hr>
+            <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
+            <div>
+              <p>
+                <b>{{filter.task}}</b>
+              </p>
+              <p style="white-space: pre-wrap;">{{filter.filter}}</p>
+              <hr>
+            </div>
           </div>
         </div>
       </div>
-      </div>
+      <ul>
+        <li *ngFor="let file of config.files">
+          <a class="btn btn-small btn-primary">
+            View Feed
+          </a>
+          - Ran: {{file.time | date: "short"}}
+          - Parsed: {{ file.ind.PARSED | date: "short" }}
+          <span *ngFor="let num of file.ind.DATA; let i = index">
+            <span *ngIf="num > 0 && ( i === 0 || i === 1 )">
+              Pre:
+              <b>
+                {{num}}
+              </b>
+            </span>
+            <span *ngIf="i > 1">
+              Post:
+              <b>
+                {{num}}
+              </b>
+            </span>
+          </span>
+        </li>
+      </ul>
+
     </div>
   </div>
 </div>
@@ -74,3 +111,4 @@
     <sk-folding-cube></sk-folding-cube>
   </div>
 </div>
+<router-outlet></router-outlet>

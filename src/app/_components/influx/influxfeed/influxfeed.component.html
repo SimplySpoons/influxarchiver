@@ -1,79 +1,84 @@
-<div class="card">
-  <h4 class="pull-left">Account: <span class="accountName">{{this.accountId}}</span></h4>
-  <h4 class="pull-right">Feed: <span class="feedName">{{this.provider}}</span></h4>
-</div>
-<div>
-  <div class="search" style="margin-bottom: 20px;">
-    <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value">
+<div class="shadow">
+  <a class="close" (click)="routeBack()"><i class="fa fa-close"></i></a>
+  <div class="card">
+    <h4 class="pull-left">Account:
+      <span class="accountName">{{this.accountId}}</span>
+    </h4>
+    <h4 class="pull-right">Feed:
+      <span class="feedName">{{this.provider}}</span>
+    </h4>
   </div>
-  <div id="archivedTable" #archivedTable>
-    <div class="search clearfix" style="margin-bottom: 20px;">
-      <form name="form" (ngSubmit)="getArchivedFile()">
-        <div class="row">
-          <b> Select Archived File </b>
-          <div class="col-md-11">
-            <select name="filename" class="form-control" [(ngModel)]="archivedFile" (ngModelChange)="onValueChange($event,archivedFile)">
-            <option *ngFor="let file of files" [selected]="files[0]" [value]="file.filename">
-                {{file.time}}  -  {{file.filename}}
-            </option>
-        </select>
-          </div>
-          <div class="col-md-1">
-            <button type="submit" class="btn btn-info btn-fill" style="display: block; width: 100%;">Submit</button>
-          </div>
-        </div>
-      </form>
+  <div>
+    <div class="search" style="margin-bottom: 20px;">
+      <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value">
     </div>
-    <div *ngIf="feedLoading" class="loadingIndicator">
-      <div class="row" style="clear: both;">
-        <sk-folding-cube></sk-folding-cube>
-      </div>
-    </div>
-    <!-- [limit]="50"        [style.height.px]="windowHeight - 225"         [scrollbarV]="true" -->
     <div id="archivedTable" #archivedTable>
-      <div *ngIf="showTable"  class="dataTable">
-        <div class="filterColumnsContainer">
-          <button type="button" class="btn btn-default btn-sm" (click)="toggleFiltersDropDown()">
-            <span class="glyphicon glyphicon-th"></span> Columns
-          </button>
-          <div class='columnsCheckboxContainer' [ngClass]="{ 'expanded': columnFiltersExpand, 'collapsed': !columnFiltersExpand }" >
-            <ul>
-              <li *ngFor='let col of influxHeadersCheckbox'>
-                <input type='checkbox' [id]="col.prop" (click)='toggle(col)' [checked]='isChecked(col)' />
-                <label [attr.for]="col.prop">{{col.prop}}</label>
+      <div class="search clearfix" style="margin-bottom: 20px;">
+        <form name="form" (ngSubmit)="getArchivedFile(archivedFile.filename)">
+          <div class="row">
+            <b> Select Archived File </b>
+            <div class="col-md-12">
+              <select name="filename" class="form-control" [(ngModel)]="fileIndex" (ngModelChange)="onValueChange($event)">
+                <option *ngFor="let file of files; let i = index" [selected]="file === archivedFile" [value]="i">
+                  {{file.time}} - {{file.filename}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- [limit]="50"        [style.height.px]="windowHeight - 225"         [scrollbarV]="true" -->
+      <a href="{{requestUrl}}" target="_blank">{{requestUrl}}</a>
+      <a class="btn btn-primary" (click)="getArchivedFile()">Load More</a>
+      <div id="archivedTable" #archivedTable>
+        <div *ngIf="showTable" class="dataTable">
+          <div class="filterColumnsContainer">
+            <button type="button" class="btn btn-default btn-sm" (click)="toggleFiltersDropDown()">
+              <span class="glyphicon glyphicon-th"></span> Columns
+            </button>
+            <div class='columnsCheckboxContainer' [ngClass]="{ 'expanded': columnFiltersExpand, 'collapsed': !columnFiltersExpand }">
+              <ul>
+                <li *ngFor='let col of influxHeadersCheckbox'>
+                  <input type='checkbox' [id]="col.prop" (click)='toggle(col)' [checked]='isChecked(col)' />
+                  <label [attr.for]="col.prop">{{col.prop}}</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <ngx-datatable #table class="material striped noShadow expandable scroll-vertical" [rows]="selectedInfluxVehicles |  search_archived: value"
+            [columnMode]="'force'" [rowHeight]="50" [limit]="50" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true" [loadingIndicator]="feedLoading"
+            [reorderable]="reorderable" [columns]="influxHeaders" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
+            (select)='onSelect($event)' (page)="onPage($event)">
+            <ngx-datatable-column [width]="30" [sortable]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+              [checkboxable]="true">
+            </ngx-datatable-column>
+            <div *ngFor="let col of influxHeadersCheckbox">
+              <ngx-datatable-column [name]="col.name" [prop]="col.prop" *ngIf="isChecked(col)">
+                <ng-template let-value="value" let-rowIndex="rowIndex" let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+                  <i (click)="openVehicleSingle(selectedInfluxVehicles[rowIndex])" [innerHTML]="row[col.prop]"></i>
+                </ng-template>
+              </ngx-datatable-column>
+            </div>
+
+          </ngx-datatable>
+        </div>
+      </div>
+      <div class="compareButtonsFixedContainer" *ngIf="selected.length > 0">
+        <button type="button" class="compareVehiclesButton vehiclesCompareButton" href="#" (click)="selectedInfluxVehicles = selected">Compare Selected</button>
+        <button type="button" class="showAllVehiclesButton vehiclesCompareButton" href="#" (click)="selectedInfluxVehicles = influxVehicles">Show All Vehicles</button>
+        <div *ngIf="selected.length > 0" class="selectedColumnList vehiclesCompareButton selected-column" [ngClass]="{ 'expanded': vehiclesSelectedExpand, 'collapsed': !vehiclesSelectedExpand }">
+          <div class="compareButtonsInnerContainer">
+            <button class='card selectedVehiclesButton' [ngClass]="{ 'hvr-icon-hang': vehiclesSelectedExpand, 'hvr-icon-bob': !vehiclesSelectedExpand }"
+              (click)="toggleVehiclesSelectedExpand()">{{selected.length}} Vehicles Selected</button>
+            <ul *ngIf="vehiclesSelectedExpand">
+              <li *ngFor='let sel of selected'>
+                <div class='card'>
+                  <li>{{sel.vin}}</li>
+                </div>
               </li>
+              <li *ngIf="!selected.length">No Selections</li>
             </ul>
           </div>
-        </div>
-        <ngx-datatable #table class="material striped expandable scroll-vertical" [rows]="selectedInfluxVehicles |  search_archived: value" [columnMode]="'force'" [rowHeight]="50" [headerHeight]="50" [footerHeight]="50" [scrollbarV]="true" [scrollbarH]="true"
-          [loadingIndicator]="loadingIndicator" [reorderable]="reorderable" [columns]="influxHeaders" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)" (select)='onSelect($event)' [limit]="50" (page)="onPage($event)">
-          <ngx-datatable-column [width]="30" [sortable]="false"  [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
-          </ngx-datatable-column>
-          <div *ngFor="let col of influxHeadersCheckbox">
-          <ngx-datatable-column [name]="col.prop" *ngIf="isChecked(col)">
-            <ng-template let-value="value" let-rowIndex="rowIndex" let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-              <i (click)="openVehicleSingle(selectedInfluxVehicles[rowIndex])" [innerHTML]="row[col.prop]"></i>
-            </ng-template>
-          </ngx-datatable-column>
-        </div>
-
-        </ngx-datatable>
-      </div>
-    </div>
-    <div class="compareButtonsFixedContainer" *ngIf="selected.length > 0">
-      <button type="button" class="compareVehiclesButton vehiclesCompareButton" href="#"  (click)="selectedInfluxVehicles = selected">Compare Selected</button>
-      <button type="button" class="showAllVehiclesButton vehiclesCompareButton" href="#"  (click)="selectedInfluxVehicles = influxVehicles">Show All Vehicles</button>
-      <div *ngIf="selected.length > 0" class="selectedColumnList vehiclesCompareButton selected-column" [ngClass]="{ 'expanded': vehiclesSelectedExpand, 'collapsed': !vehiclesSelectedExpand }">
-        <div class="compareButtonsInnerContainer">
-          <button  class='card selectedVehiclesButton' [ngClass]="{ 'hvr-icon-hang': vehiclesSelectedExpand, 'hvr-icon-bob': !vehiclesSelectedExpand }" (click)="toggleVehiclesSelectedExpand()">{{selected.length}} Vehicles Selected</button>
-          <ul *ngIf="vehiclesSelectedExpand">
-            <li *ngFor='let sel of selected'>
-              <div class='card'>
-                <li>{{sel.vin}}</li>
-              </div>
-            </li>
-            <li *ngIf="!selected.length">No Selections</li>
-          </ul>
         </div>
       </div>
     </div>
