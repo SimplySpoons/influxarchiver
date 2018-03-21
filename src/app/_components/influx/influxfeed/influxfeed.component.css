@@ -47,11 +47,14 @@
   background-color: #fff;
   list-style: none;
   right: 0;
-  top: 30px;
+  top: 103px;
   z-index: 5;
   max-height: calc(65vh - 65px);
   overflow-y: scroll;
-  border-left: 1px solid #e0e0e0;
+  border-left: 2px solid #000;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-radius: 6px;
 }
 
 .filterColumnsContainer button {
