@@ -11,7 +11,7 @@ export const slideInOutAnimation =
       right: 0,
       width: '80%',
       height: 'calc(100% - 60px)',
-      overflowY: 'scroll',
+      overflow: 'scroll',
       bottom: 0,
       zIndex: 0,
       backgroundColor: '#fff'

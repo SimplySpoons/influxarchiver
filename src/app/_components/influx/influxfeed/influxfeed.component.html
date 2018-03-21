@@ -25,7 +25,7 @@
               <b>Select Archived File </b>
             </div>
             <select name="filename" class="form-control" [(ngModel)]="fileIndex" (ngModelChange)="onValueChange($event)">
-              <option *ngFor="let file of files; let i = index" [selected]="file === archivedFile" [value]="i">
+              <option *ngFor="let file of files; let i = index" [selected]="file === archivedFile || file.filename === filename" [value]="i">
                 {{file.time}} - {{file.filename}}
               </option>
             </select>
@@ -35,7 +35,7 @@
       <!-- [limit]="50"        [style.height.px]="windowHeight - 225"         [scrollbarV]="true" -->
       <div id="archivedTable" #archivedTable>
         <div *ngIf="showTable" class="dataTable">
-          <div class="filterColumnsContainer">
+          <div class="clearfix filterColumnsContainer">
             <div class="search pull-left" style="margin-bottom: 20px;">
               <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value">
             </div>
@@ -50,6 +50,9 @@
                 </li>
               </ul>
             </div>
+          </div>
+          <div class="clearfix">
+                    <hr style="margin-bottom: 0">
           </div>
           <ngx-datatable #table class="material striped noShadow expandable scroll-vertical" [rows]="influxVehicles |  search_archived: value"
             [columnMode]="'force'" [rowHeight]="50" [limit]="50" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true"

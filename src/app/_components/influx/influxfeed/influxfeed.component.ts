@@ -127,6 +127,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getArchivedFile() {
     this.feedLoading = true;
+    this.loadingAll = true;
     this.selectedInfluxVehicles = [];
     let filename = null;
     if (this.filename) {
@@ -153,7 +154,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
       filename = this.filename;
     }
     if (filename !== null) {
-      this.loadingAll = true;
       this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex, true)
         .subscribe(vehicles => {
           console.log(vehicles);
