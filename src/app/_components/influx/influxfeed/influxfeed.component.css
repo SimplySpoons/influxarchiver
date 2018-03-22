@@ -34,28 +34,47 @@
 
 .columnsCheckboxContainer ul {
   list-style: none;
-  padding: 10px;
+  padding: 0;
+  margin: 0;
 }
 
-.columnsCheckboxContainer.collapsed {
-  display: none;
+.columnsCheckboxContainer ul li>* {
+  cursor: pointer;
 }
+
+.columnsCheckboxContainer {
+  transition: top .35s;
+  background: #f5f5f5;
+  display: block;
+  list-style: none;
+  left: 0px;
+  z-index: 5;
+  text-align: left;
+  width: 100%;
+  padding: 10px 0;
+  position: absolute;
+  top: -100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, .2);
+  border-bottom: 1px solid #aaa;
+}
+
+.columnsCheckboxContainer.collapsed {}
 
 .columnsCheckboxContainer.expanded {
-  display: block;
-  position: absolute;
-  background-color: #fff;
-  list-style: none;
-  right: 0;
-  top: 103px;
-  z-index: 5;
-  max-height: calc(65vh - 65px);
-  overflow-y: scroll;
-  border-left: 2px solid #000;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-  border-radius: 6px;
+  height: auto;
 }
+
+.inline {
+  display: inline-block;
+  margin: 3px;
+  padding: 3px 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.overflow {}
 
 .filterColumnsContainer button {
   float: right;
@@ -124,10 +143,13 @@
   transform: translateZ(0);
 }
 
-h4 img {
+img.loading {
   opacity: 0;
+  display: block;
+  float: right;
 }
-h4 img.visible {
+
+img.visible.loading {
   opacity: 1;
 }
 
@@ -139,19 +161,22 @@ img {
   box-shadow: none !important;
   clear: both;
 }
+
 .shadow {
   position: relative;
 }
-.close {
+
+.close-window {
   position: absolute;
   font-size: 1.4em;
-  top: -15px;
-  left: -15px;
-  color: #000;
+  line-height: 1em;
+  bottom: 5px;
+  left: 5px;
+  color: #fff;
 }
 
 .search {
-      width: calc(100% - 100px);
+  width: 100%;
 }
 
 hr {
@@ -159,6 +184,35 @@ hr {
   margin-bottom: 10px;
 }
 
-.accountName, .feedName { 
-    font-style: italic;
+.accountName,
+.feedName {
+  font-style: italic;
+}
+
+.account {
+  margin-left: 25px;
+}
+
+.padding {
+  padding: 10px 20px 7px;
+  background: #2D353D;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+}
+
+.paddingBottom {
+  padding: 10px 20px 10px;
+  background: #fff;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+}
+
+.table-info {
+  position: relative;
+}
+
+.table-info.expand {
+  overflow: visible;
 }

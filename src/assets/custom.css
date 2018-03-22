@@ -76,8 +76,15 @@ font-size: 1.1em;}
 .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group { background-color: #5bc0de; }
 
 .addShadow {
-  padding: 20px;
   box-shadow: -5px -5px 25px rgba(0, 0, 0, .5);
-  border-left: 1px solid #999;
+}
+
+.noShadow.material .datatable-checkbox {
+    padding: 0;
+}
+.noShadow.material .datatable-checkbox input[type='checkbox']:after,
+.noShadow.material .datatable-checkbox input[type='checkbox']:before {
+  background: transparent;
+  border: 0;
 }
 

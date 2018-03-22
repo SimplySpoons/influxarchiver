@@ -92,6 +92,31 @@ export class SearchArchived implements PipeTransform {
 }
 
 @Pipe({
+  name: 'format',
+  pure: false
+})
+
+@Injectable()
+export class FormatPipe implements PipeTransform {
+  vehicles: any;
+  transform(items: any, headers: any): any {
+    if(items.length === 0 || items === undefined) return items;
+    if (headers === undefined || headers.length === 0) return items;
+    const vehices = [];
+    items.forEach(item => {
+      let tmp = {};
+      for(let i = 0; i< headers.length; i++){
+        const col = headers[i];
+        const val = item[i];
+        tmp[col] = val;
+      }
+      vehices.push(tmp);
+    });
+    return vehices;
+  }
+}
+
+@Pipe({
   name: 'dupfilter',
   pure: false
 })

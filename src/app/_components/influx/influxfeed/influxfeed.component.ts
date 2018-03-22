@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { InfluxService } from './../influx-service';
 import { slideInOutAnimation } from './../../../_animations/slide-in.animation';
 import { Component, OnInit, OnDestroy, TemplateRef, Output, Input, AfterViewInit, ElementRef, ViewChild, EventEmitter } from '@angular/core';
@@ -22,10 +23,12 @@ import 'rxjs/add/operator/map';
 })
 export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() sendItem = new EventEmitter();
-
+  @ViewChild('tableInfo') tableInfo: any;
+  tableHeight = 0;
   influxHeaders: any = [];
   influxHeadersCheckbox: any = [];
   requestUrl: string;
+  pageSize = 0;
   influxVehicles: any = [];
   loadingAll = false;
   selectedInfluxVehicles: any = [];
@@ -42,7 +45,6 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   accountId: string;
   showTable: boolean = false;
   headers: any = [];
-  windowHeight = window.innerHeight;
   loadingIndicator: boolean = true;
   timeout: any;
   selected = [];
@@ -66,6 +68,8 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   file_sub: any;
 
   el: any;
+
+  windowHeight = 0;
 
 
   ARCHIVED_FILE_SUB: Subject<string> = new Subject<string>();
@@ -113,6 +117,12 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  getHeight() {
+    return {
+      height: this.tableHeight + 'px'
+    };
+  }
+
   toggleVehiclesSelectedExpand() { // click handler
     let bool = this.vehiclesSelectedExpand;
     this.vehiclesSelectedExpand = bool === false ? true : false;
@@ -124,6 +134,20 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   openVehicleSingle(vehicle: any) { }
+
+  getStyle(checkbox: any) {
+    const top = checkbox.clientHeight;
+    let style = '';
+    if (this.columnFiltersExpand) {
+      style = '100%';
+    } else {
+      style = -top + 'px';
+    }
+    return {
+      top: style,
+      height: top
+    };
+  }
 
   getArchivedFile() {
     this.feedLoading = true;
@@ -139,11 +163,14 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
           this.filesize = Number(vehicles.filesize);
           this.offset = Number(vehicles.offset);
           this.requestUrl = vehicles.url;
-          this.influxVehicles = [...vehicles.data.vehicles];
+          this.headers = vehicles.headers;
+          this.influxVehicles = [...vehicles.vehicles];
           this.selectedInfluxVehicles = this.influxVehicles;
-          this.feedLoading = false;
-          this.callOnce = false;
-          this.getFullFile();
+          if(this.influxVehicles.length >= 50){
+            this.getFullFile();
+            } else {
+            this.loadingAll = false;
+          }
         });
     }
   }
@@ -158,8 +185,9 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
         .subscribe(vehicles => {
           console.log(vehicles);
           const items = [...this.influxVehicles];
-          items.splice(50, 0, ...vehicles.data.vehicles);
+          items.splice(50, 0, ...vehicles.vehicles);
           this.influxVehicles = items;
+          this.selectedInfluxVehicles = this.influxVehicles;
           this.loadingAll = false;
           console.log(this.influxVehicles);
         });
@@ -170,7 +198,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fileIndex = data;
     this.archivedFile = this.files[data];
     this.offset = 0;
-    this.router.navigate([this.provider,this.archivedFile.filename,this.providerid], {relativeTo: this.route.parent});
+    this.router.navigate([this.provider, this.archivedFile.filename, this.providerid], { relativeTo: this.route.parent });
   }
 
   addClass(vehicle: any) {
@@ -206,6 +234,12 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     }, 100);
   }
 
+  checkAll(boolean = false) {
+    this.influxHeadersCheckbox.forEach(box => {
+      this.toggle(box);
+    });
+  }
+
   toggle(col) {
     const isChecked = this.isChecked(col);
 
@@ -229,7 +263,11 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   ngAfterViewInit() {
+    this.adjustTableSize();
+  }
 
+  adjustTableSize() {
+    this.tableHeight = window.innerHeight - this.tableInfo.nativeElement.clientHeight;
   }
 
   ngOnDestroy() {

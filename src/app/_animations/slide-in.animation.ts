@@ -7,13 +7,13 @@ export const slideInOutAnimation =
     state('*', style({
       // the view covers the whole screen with a semi tranparent background
       position: 'fixed',
-      top: '55px',
+      top: '0',
       right: 0,
       width: '80%',
-      height: 'calc(100% - 60px)',
-      overflow: 'scroll',
+      height: '100%',
+      overflow: 'hidden',
       bottom: 0,
-      zIndex: 0,
+      zIndex: 99999,
       backgroundColor: '#fff'
     })),
 
