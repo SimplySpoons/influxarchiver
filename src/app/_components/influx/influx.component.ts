@@ -184,6 +184,5 @@ export class InfluxComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
     this.filter_sub.unsubscribe();
     this.file_sub.unsubscribe();
-    this.child_sub.unsubscribe();
   }
 }

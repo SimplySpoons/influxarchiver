@@ -1,3 +1,4 @@
+import { ArchivedFile } from './../../../_models/feed';
 import { element } from 'protractor';
 import { InfluxService } from './../influx-service';
 import { slideInOutAnimation } from './../../../_animations/slide-in.animation';
@@ -21,7 +22,7 @@ import 'rxjs/add/operator/map';
   // tslint:disable-next-line:use-host-property-decorator
   host: { '[@slideInOutAnimation]': '' }
 })
-export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
+export class InfluxfeedComponent implements OnInit, OnDestroy {
   @Output() sendItem = new EventEmitter();
   @ViewChild('tableInfo') tableInfo: any;
   tableHeight = 0;
@@ -30,7 +31,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   requestUrl: string;
   pageSize = 0;
   influxVehicles: any = [];
-  loadingAll = false;
+  isLoading = false;
   selectedInfluxVehicles: any = [];
   fileCache: any = []
   temp = [];
@@ -55,14 +56,12 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   vehiclesSelectedExpand: boolean = false;
   columnFiltersExpand: boolean = false;
   value;
+  delimiter;
+  colLengths: any;
 
   fileIndex = 0;
 
   callOnce = false;
-
-  filesize = 0;
-
-  offset = 0;
 
   parent_sub: any;
   file_sub: any;
@@ -71,6 +70,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   windowHeight = 0;
 
+  fileRequest: ArchivedFile = new ArchivedFile();
 
   ARCHIVED_FILE_SUB: Subject<string> = new Subject<string>();
   archived_sub: any;
@@ -80,41 +80,56 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     private element: ElementRef, private influx: InfluxService) {
     this.el = this.element.nativeElement;
     this.el.classList = "addShadow";
-    this.sub = this.route.params.subscribe(params => {
-      this.accountId = params['id'];
-      this.provider = params['provider'];
-      this.providerid = params['providerid'];
-      this.timestamp = params['timestamp'];
-      this.filename = params['filename'];
-      console.log(this.filename);
-      this.parent_sub = this.route.parent.parent.params.subscribe(parentParam => {
-        this.accountId = parentParam['id'];
-        this.accountService.getHeaders(this.provider).subscribe(headers => {
-          this.influxHeaders = headers;
-          this.influxHeadersCheckbox = this.influxHeaders;
-          this.showTable = true;
-          this.feedLoading = false;
-          this.getArchivedFile();
-        });
-      })
-    })
-    this.files = this.influx.files;
-    this.file_sub = this.influx.fileListSubject.subscribe(fileList => {
-      this.files = fileList;
-      if (this.influxVehicles.length === 0) {
-        this.setRows();
-      }
-    });
   }
 
   routeBack() {
-    this.router.navigate(['/account', this.accountId, 'influx'], { relativeTo: this.route.parent });
+    this.router.navigate(['/account', this.fileRequest.accountId, 'influx'], { relativeTo: this.route.parent });
   }
 
   setRows() {
     if (this.files && this.files.length > 0) {
       this.archivedFile = this.files[0];
+      if (this.archivedFile.ind !== undefined) {
+        this.getLargest(this.archivedFile.ind.DATA);
+      }
     }
+  }
+
+  getLargest(data: any) {
+    data.sort((a: any, b: any) => {
+      if (a < b) {
+        return 1;
+      } else if (a > b) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    return data;
+  }
+
+  getColLength(data: any) {
+    const total = [];
+    data.forEach((a: any) => {
+      const keys = Object.keys(a);
+      const lengths = [];
+      keys.forEach(key => {
+        const tmp = a[key].length;
+        lengths.push(tmp);
+      });
+      total.push(lengths);
+    });
+    const cols = [];
+    for (let j = 0; j < this.influxHeaders.length; j++) {
+      cols[j] = [];
+      for(let i = 0; i < total.length; i++) {
+          cols[j].push(total[i][j]);
+      }
+      console.log(cols[j]);
+     // cols[j] = this.getLargest(cols[j])[0];
+    }
+    console.log(cols);
+    return total;
   }
 
   getHeight() {
@@ -149,56 +164,60 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
     };
   }
 
+  logEvent(event){
+    console.log(event);
+  }
+
   getArchivedFile() {
-    this.feedLoading = true;
-    this.loadingAll = true;
-    this.selectedInfluxVehicles = [];
-    let filename = null;
-    if (this.filename) {
-      filename = this.filename;
-    }
-    if (filename !== null) {
-      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex)
-        .subscribe(vehicles => {
-          this.filesize = Number(vehicles.filesize);
-          this.offset = Number(vehicles.offset);
-          this.requestUrl = vehicles.url;
-          this.headers = vehicles.headers;
-          this.influxVehicles = [...vehicles.vehicles];
-          this.selectedInfluxVehicles = this.influxVehicles;
-          if(this.influxVehicles.length >= 50){
-            this.getFullFile();
-            } else {
-            this.loadingAll = false;
-          }
-        });
-    }
+    this.fileRequest.isLoading = true;
+    this.isLoading = true;
+    this.accountService.getUpdatedFeed(this.fileRequest)
+      .subscribe(vehicles => {
+        this.fileRequest.fileSize = Number(vehicles.filesize);
+        this.fileRequest.offset = Number(vehicles.offset);
+        this.fileRequest.delimiter = vehicles.delimiter;
+        this.fileRequest.full = true;
+        this.requestUrl = vehicles.vehicles;
+        this.headers = vehicles.headers;
+        this.fileRequest.start += 50;
+        this.fileRequest.end += 50;
+        this.influxVehicles = vehicles.vehicles;
+        this.selectedInfluxVehicles = this.influxVehicles;
+        this.fileRequest.totalElements = vehicles.vehicles.length;
+        this.isLoading = false;
+     //   this.colLengths = this.getColLength(this.selectedInfluxVehicles);
+     //   console.log(this.colLengths);
+        if (this.influxVehicles.length >= 50 && !this.fileRequest.filename.includes(this.fileRequest.accountId)) {
+          this.getFullFile();
+        }
+        else {
+          this.fileRequest.isLoading = false;
+        }
+      });
   }
 
   getFullFile() {
-    let filename = null;
-    if (this.filename) {
-      filename = this.filename;
-    }
-    if (filename !== null) {
-      this.accountService.getUpdatedFeed(this.provider, filename, this.accountId, this.providerid, this.offset, this.fileIndex, true)
-        .subscribe(vehicles => {
-          console.log(vehicles);
-          const items = [...this.influxVehicles];
-          items.splice(50, 0, ...vehicles.vehicles);
-          this.influxVehicles = items;
-          this.selectedInfluxVehicles = this.influxVehicles;
-          this.loadingAll = false;
-          console.log(this.influxVehicles);
-        });
-    }
+    this.accountService.getUpdatedFeed(this.fileRequest)
+      .subscribe(vehicles => {
+        this.fileRequest.offset = vehicles.offset;
+        this.influxVehicles = vehicles.vehicles;
+        this.fileRequest.totalElements = this.influxVehicles.length;
+        this.selectedInfluxVehicles = this.influxVehicles;
+        this.fileRequest.isLoading = false;
+      });
   }
 
   onValueChange(data: any) {
     this.fileIndex = data;
     this.archivedFile = this.files[data];
-    this.offset = 0;
-    this.router.navigate([this.provider, this.archivedFile.filename, this.providerid], { relativeTo: this.route.parent });
+    this.getLargest(this.archivedFile.ind.DATA);
+    this.router.navigate([
+      this.fileRequest.provider,
+      this.archivedFile.filename,
+      this.fileRequest.providerId],
+      {
+        relativeTo: this.route.parent
+      });
   }
 
   addClass(vehicle: any) {
@@ -229,9 +248,9 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPage(event) {
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-    }, 100);
+    const length = this.influxVehicles.length;
+    const rowPosition = event.offset * event.limit;
+    const position = (rowPosition / length) * 100;
   }
 
   checkAll(boolean = false) {
@@ -259,15 +278,41 @@ export class InfluxfeedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.setRows();
-  };
-
-  ngAfterViewInit() {
+    this.fileRequest.pageSize = 0;
+    this.sub = this.route.params.subscribe(params => {
+      this.fileRequest.accountId = params['id'];
+      this.fileRequest.provider = params['provider'];
+      this.fileRequest.providerId = params['providerid'];
+      this.fileRequest.filename = params['filename'];
+      this.fileRequest.offset = 0;
+      this.fileRequest.fileSize = 0;
+      this.fileRequest.pageNumber = 0;
+      this.fileRequest.totalElements = 0;
+      this.fileRequest.start = 0;
+      this.fileRequest.end = 50;
+      this.fileRequest.full = false;
+      this.selectedInfluxVehicles = [];
+      this.parent_sub = this.route.parent.parent.params.subscribe(parentParam => {
+        this.fileRequest.accountId = parentParam['id'];
+        this.accountService.getHeaders(this.fileRequest.provider).subscribe(headers => {
+          this.influxHeaders = headers;
+          this.influxHeadersCheckbox = this.influxHeaders;
+          this.fileRequest.headerMap = headers;
+          this.getArchivedFile();
+        });
+      })
+    })
+    this.files = this.influx.files;
+    this.file_sub = this.influx.fileListSubject.subscribe(fileList => {
+      this.files = fileList;
+      this.setRows();
+    });
     this.adjustTableSize();
-  }
+  };
 
   adjustTableSize() {
     this.tableHeight = window.innerHeight - this.tableInfo.nativeElement.clientHeight;
+    this.fileRequest.pageSize = Math.floor(this.tableHeight / 50);
   }
 
   ngOnDestroy() {

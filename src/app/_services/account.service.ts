@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, RequestOptions, Response, ResponseType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -14,6 +14,9 @@ export class AccountService {
   sendAccountChange = new EventEmitter<any>();
   constructor(private conf: AppConfig, private http: Http) {
     this.API_URL = this.conf.API_CONFIG();
+    this.testPost().subscribe(message => {
+      console.log(message);
+    })
   }
   getAccountData(accountId: string) {
     return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
@@ -27,23 +30,41 @@ export class AccountService {
     return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
       (response: Response) => response.json());
   }
-  getInfluxFeed(accountId: string, parser: string, timestamp: string, filename: string, providerid: string) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxFeed", accountId: accountId, parser: parser, timestamp: timestamp, filename: filename, providerid: providerid }
+  getInfluxFeed(fileRequest: any) {
+    return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxFeed", fileRequest: fileRequest }
     ).map(
       (response: Response) => response.json());
   }
-  getUpdatedFeed(parser: string, filename: string, accountId = null, providerId = null, offset = 0, fileIndex = 0, full = false) {
-    return this.http.post(this.API_URL + 'influx.php',
-    { request: "getUpdatedFeed",
-      parser: parser,
-      filename: filename,
-      accountId: accountId,
-      providerId: providerId,
-      offset: offset,
-      fileIndex: fileIndex,
-      full: full }
+  getUpdatedFeed(fileRequest: any) {
+    return this.http.post(this.API_URL + 'api/archives/getfeed',
+      {
+        request: "getUpdatedFeed",
+        fileRequest: fileRequest
+      }
     ).map((response: Response) => response.json());
   }
+
+  testGet() {
+    return this.http.get(this.API_URL + 'api/nexus/get/10/friends').map(
+      res => {
+        res.json();
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  testPost() {
+    return this.http.post(this.API_URL + 'api/nexus', { testing: 'true' }).map(
+      res => {
+        res.json()
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
   getHeaders(parser: string) {
     return this.http.post(this.API_URL + 'influx.php', { request: "getHeaders", parser: parser }
     ).map(
@@ -75,10 +96,17 @@ export class AccountService {
   search(names: Observable<string>) {
     return names.debounceTime(400)
       .distinctUntilChanged()
-      .switchMap(name => this.searchForAccount(name));
+      .switchMap(name => 
+        this.searchForAcct(name)
+      );
   }
   searchForAccount(name) {
+    this.searchForAcct(name);
     return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
+      (response: Response) => response.json());
+  }
+  searchForAcct(name) {
+    return this.http.post(this.API_URL + 'api/nexus/search', { term: name }).map(
       (response: Response) => response.json());
   }
   searchVehicle(term: Observable<string>, accountId: any) {
@@ -103,5 +131,21 @@ export class AccountService {
   getApiConfigs(accountId: any) {
     return this.http.post(this.API_URL + 'account.php', { request: "getApiConfigs", accountId: accountId }).map(
       (response: Response) => response.json());
+  }
+
+  call(): Observable<any> {
+    const username = 'ddchenryl';
+    const password = 'Dumptruck69!';
+    const headers: Headers = new Headers();
+    headers.append("Authorization", "Basic " + btoa(username + ":" + password));
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+    // tslint:disable-next-line:max-line-length
+    return this.http.get('http://influxtools.dealer.com/archiver_test/test.php?provider=devventure&filename=1521743477__longotoyota__zzInventory.txt&providerId=false&accountId=longotoyota&offset=226461&full=', { headers: headers }).map(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      })
   }
 }

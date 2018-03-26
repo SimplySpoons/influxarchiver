@@ -15,7 +15,7 @@ export class AccountComponent implements OnInit {
   loading = false;
   pasted = false;
   value;
-  
+
   constructor(private accountService: AccountService) {
     this.searchForUser();
   }
@@ -24,9 +24,8 @@ export class AccountComponent implements OnInit {
   }
 
   onValueChange(data: any) {
-    if (this.pasted === true) {
-      this.searchTerm$.next(data);
-    }
+    console.log(data);
+    this.searchTerm$.next(data);
   }
 
   formatRequest(data: any) {
@@ -40,9 +39,9 @@ export class AccountComponent implements OnInit {
 
   searchForUser() {
     this.accountService.search(this.searchTerm$).subscribe(name => {
-      this.accounts = name;
+      this.accounts = name.data;
       this.loading = false;
     });
   }
-  
+
 }

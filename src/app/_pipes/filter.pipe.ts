@@ -20,35 +20,9 @@ export class FilterPipe implements PipeTransform {
   }
   transform(accounts: any, value: any): any {
     if (value === undefined) return accounts;
-    let resultStart = accounts.filter(function (account) {
-      if (account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
-        if (account.accountId == 'no results found') {
-          account.name = "No results found"
-          account.address1 = "No results found"
-        }
-        return account.accountId.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
-      }
-      else if (account.name.toLowerCase().startsWith(value.toLowerCase()) &&
-        !account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
-        if (account.accountId == 'no results found') {
-          account.name = "No results found"
-          account.address1 = "No results found"
-        }
-        return account.name.toLowerCase().startsWith(value.toLowerCase()) || account.accountId == 'no results found';
-      }
+    return accounts.filter(function (account) {
+      return account;
     });
-    let resultEnd = accounts.filter(function (account) {
-      if (!account.name.toLowerCase().startsWith(value.toLowerCase()) &&
-        !account.accountId.toLowerCase().startsWith(value.toLowerCase())) {
-        if (account.accountId == 'no results found') {
-          account.name = "No results found"
-          account.address1 = "No results found"
-        }
-        return account.name.toLowerCase().includes(value.toLowerCase()) || account.accountId == 'no results found';
-      }
-    });
-    let results = this.returnNewAccountArray(resultStart, resultEnd);
-    return results;
   }
 }
 @Pipe({

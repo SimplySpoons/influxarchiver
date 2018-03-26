@@ -1,3 +1,5 @@
+
+
 <!-- Account Model -->
 <!--
     accountId: string;
@@ -11,20 +13,17 @@
     zip: string;
     country: string;
 -->
-<div class="row name accountName" *ngIf="!loading">
-  <h2 style="margin: 0 0 5px"> {{account.name}} </h2>
-  <div class="panel-sub" style="margin-bottom: 25px;">
-    <small> {{account.accountId}} | <a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
-          | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small>
-    <br>
-    <div class="api col-md-12" *ngIf="apis">
-      <small *ngIf="apis.type==1"> vAuto API: <b> Yes </b></small>
+<mat-card-title class="title">
+    {{account.name}}
+  </mat-card-title>
+  <mat-card-subtitle class="sub-title">
+     <small><a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
+          | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small> | 
+          <span *ngIf="apis">
+          <small *ngIf="apis.type==1"> vAuto API: <b> Yes </b></small>
       <small *ngIf="apis.type==0"> vAuto API: <b> No </b></small>
-      <a class="btn btn-success pull-right" [routerLink]="['buttons']"> Show Custom Buttons </a>
-    </div>
-  </div>
-</div>
-<div class="row cc-btns"  *ngIf="!loading">
+          </span>
+      <div class="cc-btns"  *ngIf="!loading">
   <p>Quick Links for {{account.name}}:</p>
   <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">Inventory Manager</a>
   <a [href]="getComposerLink()" class="btn btn-success" target="_blank">Composer</a>
@@ -33,8 +32,19 @@
   <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
   <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>
 </div>
+  </mat-card-subtitle>
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+<router-outlet></router-outlet>
 <div class="row">
   <div *ngIf="!loading" class="vehicleSection">
-    <router-outlet (callbackReady)="getCallback($event)"></router-outlet>
   </div>
 </div>

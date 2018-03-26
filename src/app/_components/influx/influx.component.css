@@ -120,3 +120,21 @@
     transform: translateZ(0);
   }
   
+  .config {
+    margin-top: 30px;
+  }
+
+  .active {
+    color: green !important;
+    font-weight: bold;
+  }
+
+  .attr {
+    color: #999;
+  }
+ .demo-tab-content {
+   padding-top: 20px;
+ }
+  .demo-tab-content h4 {
+       text-align: center;
+  }

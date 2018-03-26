@@ -21,6 +21,22 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   invCounts: any = [];
 
   apis: any; 
+  /*
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link.label}}
+  </a>
+
+  */
+
+  navLinks = [
+    {path: 'influx', label: 'Influx Configs'},
+    {path: 'vehicles', label: 'Vehicles'}
+  ];
+
 
   configData: any;
 

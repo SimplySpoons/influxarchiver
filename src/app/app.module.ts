@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { MatModule} from './shared/mat.module'
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -78,6 +79,7 @@ export function initializeCurrentUser(config: AppConfig) {
   imports: [
     BrowserModule,
     routing,
+    MatModule,
     HttpModule,
     JsonpModule,
     FormsModule,
