@@ -1,5 +1,3 @@
-
-
 <!-- Account Model -->
 <!--
     accountId: string;
@@ -13,38 +11,14 @@
     zip: string;
     country: string;
 -->
-<mat-card-title class="title">
-    {{account.name}}
-  </mat-card-title>
-  <mat-card-subtitle class="sub-title">
-     <small><a [href]="account.publicUrl">{{account.publicUrl}}</a> | <a [href]="account.internalUrl">{{account.internalUrl}}</a> | {{account.address1}}
-          | {{account.address2}} {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </small> | 
-          <span *ngIf="apis">
-          <small *ngIf="apis.type==1"> vAuto API: <b> Yes </b></small>
-      <small *ngIf="apis.type==0"> vAuto API: <b> No </b></small>
-          </span>
-      <div class="cc-btns"  *ngIf="!loading">
-  <p>Quick Links for {{account.name}}:</p>
-  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">Inventory Manager</a>
-  <a [href]="getComposerLink()" class="btn btn-success" target="_blank">Composer</a>
-  <a [href]="getDnaLink()" class="btn btn-success" target="_blank">DNA</a>
-  <a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
-  <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
-  <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>
-</div>
-  </mat-card-subtitle>
-
-<nav mat-tab-nav-bar>
-  <a mat-tab-link
-     *ngFor="let link of navLinks"
-     [routerLink]="link.path"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">
-    {{link.label}}
+<nav mat-tab-nav-bar class="header-nav" [class.toggle]="toggle">
+  <a mat-tab-link *ngFor="let link of navLinks; let i = index" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" [class.active]="rla.isActive">
+    <i class="fa {{link.class}}"></i>{{link.label}} <span class="count">{{link.count}}</span>
   </a>
 </nav>
-<router-outlet></router-outlet>
-<div class="row">
-  <div *ngIf="!loading" class="vehicleSection">
+
+<div class="pos-relative" [style.height.px]="height">
+  <div class="pageWrapper">
+    <router-outlet></router-outlet>
   </div>
 </div>

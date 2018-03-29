@@ -15,7 +15,7 @@ import { AccountSingleComponent } from './_components/account/account-single.com
 import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
-import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe, countFilter, FeedPipe } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -39,7 +39,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable/src';
 import { InfluxService } from './_components/influx/influx-service';
-
+import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { SearchPageComponent } from './search/search-page/search-page.component';
+import 'hammerjs';
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
 }
@@ -60,7 +62,9 @@ export function initializeCurrentUser(config: AppConfig) {
     QuicklinksComponent,
     FilterPipe,
     SearchPipe,
+    countFilter,
     FormatPipe,
+    FeedPipe,
     DuplicatePipe,
     SearchArchived,
     InfluxComponent,
@@ -74,7 +78,9 @@ export function initializeCurrentUser(config: AppConfig) {
     CurrentfeedsComponent,
     VehicleCarouselComponent,
     InfluxfeedComponent,
-    feedSearch
+    feedSearch,
+    SearchResultsComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +98,7 @@ export function initializeCurrentUser(config: AppConfig) {
     CarouselModule.forRoot(),
     NgxDatatableModule
   ],
-  exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe],
+  exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe,countFilter],
   // tslint:disable-next-line:max-line-length
   providers: [AccountService, ModalService, InfluxService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig],
   bootstrap: [AppComponent]

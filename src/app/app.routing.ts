@@ -1,5 +1,7 @@
-import { Routes, RouterModule, provideRoutes, PreloadAllModules } from "@angular/router";
-import { ModuleWithProviders, Input } from "@angular/core";
+import { SearchPageComponent } from './search/search-page/search-page.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { Routes, RouterModule, provideRoutes, PreloadAllModules } from '@angular/router';
+import { ModuleWithProviders, Input } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { AccountComponent } from './_components/account/account.component';
 import { AccountSingleComponent } from './_components/account/account-single.component';
@@ -12,25 +14,47 @@ import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 
 export const APP_ROUTES: Routes = [
-    { path: '', redirectTo: 'account', pathMatch: 'full' },
-    { path: 'account', component: AccountComponent },
-    { path: 'submitbug', component: SubmitbugComponent },
-    { path: 'issuetracker', component: IssuetrackerComponent },
-    { path: 'currentfeeds', component: CurrentfeedsComponent },
-    {
+  {
+    path: '', component: AccountComponent, children: [
+      {
         path: 'account/:id', component: AccountSingleComponent,
         children: [
-            { path: '', redirectTo: 'influx', pathMatch: 'full' },
-            { path: 'vehicles', component: VehicleListComponent },
-            { path: 'vehicles/:type', component: VehicleListComponent },
-            { path: 'vehicles/:type/:classification', component: VehicleListComponent },
-            { path: 'influx', component: InfluxComponent, children: [
+          { path: '', redirectTo: 'influx', pathMatch: 'full' },
+          { path: 'vehicles', component: VehicleListComponent },
+          { path: 'vehicles/:type', component: VehicleListComponent },
+          { path: 'vehicles/:type/:classification', component: VehicleListComponent },
+          {
+            path: 'influx', component: InfluxComponent, children: [
               { path: ':provider', component: InfluxfeedComponent },
-              { path: ':provider/:filename/:providerid', component: InfluxfeedComponent },
-            ]}
+              { path: ':provider/:filename/:providerId', component: InfluxfeedComponent },
+              { path: 'search', component: SearchPageComponent, children: [
+                  { path: ':term', component: SearchResultsComponent},
+                ]
+              }
+            ]
+          },
+          {
+            path: 'search', component: SearchPageComponent, children: [
+              {
+                path: ':term', component: SearchResultsComponent
+              },
+            ]
+          },
         ],
-    },
-    { path: 'feeds', component: FeedsComponent }
+      },
+      {
+        path: 'search', component: SearchPageComponent, children: [
+          {
+            path: ':term', component: SearchResultsComponent
+          },
+        ]
+      }
+    ]
+  },
+  { path: 'submitbug', component: SubmitbugComponent },
+  { path: 'issuetracker', component: IssuetrackerComponent },
+  { path: 'currentfeeds', component: CurrentfeedsComponent },
+  { path: 'feeds', component: FeedsComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES, { preloadingStrategy: PreloadAllModules });

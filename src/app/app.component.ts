@@ -1,3 +1,4 @@
+import { Router, NavigationEnd } from '@angular/router';
 import { Component, trigger, state, style, transition, animate, keyframes, APP_INITIALIZER } from '@angular/core';
 import { fadeInAnimation } from './_animations/index';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -14,7 +15,7 @@ import { AppConfig } from './app.config';
         width: '255px'
       })),
       state('menuIn', style({
-        width: '70px'
+        width: '85px'
       })),
       transition('menuIn <=> menuOut', animate(250))
     ]),
@@ -23,7 +24,7 @@ import { AppConfig } from './app.config';
         paddingLeft: '255px'
       })),
       state('mainIn', style({
-        paddingLeft: '70px'
+        paddingLeft: '85px'
       })),
       transition('mainOut <=> mainIn', animate(250))
     ]),
@@ -32,14 +33,24 @@ import { AppConfig } from './app.config';
 })
 export class AppComponent {
   title = 'Influx Archiver 2.0';
-  mainSlide = 'menuOut';
-  otherSlide = 'mainOut';
+  mainSlide = 'menuIn';
+  otherSlide = 'mainIn';
+  withPadding = false;
+
   // loading = true;
 
   public status: any = {
     isFirstOpen: true,
     isFirstDisabled: false
   };
+
+  constructor(private router: Router){
+    router.events.subscribe((route) => {
+      if (route instanceof NavigationEnd) {
+        this.withPadding = router.url.includes('account');
+      }
+    });
+  }
 
   removeSearchResults(data: any) {
   }
@@ -53,6 +64,11 @@ export class AppComponent {
     this.isIn = bool === false ? true : false;
     this.mainSlide == 'menuOut' ? this.mainSlide = 'menuIn' : this.mainSlide = 'menuOut';
     this.otherSlide == 'mainOut' ? this.otherSlide = 'mainIn' : this.otherSlide = 'mainOut';
+  }
+
+  checkAccount(bool){
+    console.log(bool);
+    this.withPadding = bool;
   }
 
 }

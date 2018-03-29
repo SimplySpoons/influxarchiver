@@ -1,0 +1,29 @@
+<div class="results" class="white">
+   Search term:
+  <a (click)="closeSearch()">
+    <span class="white btn btn-sm">{{search}}
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </a>
+    <div *ngIf="!loading" class="white">
+
+  <mat-card *ngFor="let account of accounts" class="clearfix noShadow">
+    <mat-card-title class="inline title"><b>{{account.name}} </b> / {{account.accountId}}</mat-card-title>
+    <mat-card-actions>
+     <button mat-icon-button class="button" [routerLink]="['/account', account.accountId]">
+        <span><i class="fa fa-cogs"></i> Influx Configs ({{account.config_count}})</span>
+     </button>
+     <button mat-icon-button class="button" [routerLink]="['/account', account.accountId, 'vehicles']">
+        <span><i class="fa fa-car"></i> Vehicles ({{account.vehicle_count}})</span>
+     </button>
+     <button mat-icon-button class="button">
+       <a href="http://{{account.accountId}}.cms.dealer.com" target="_blank"><span class="white"><i class="fa fa-laptop"></i> CMS Link </span></a>
+     </button>
+    </mat-card-actions>
+</mat-card>
+  <span class="white"> {{message}} </span>
+    </div>
+  <div *ngIf="loading" class="loadingIndicator clearfix">
+    <sk-folding-cube></sk-folding-cube>
+  </div>
+</div>

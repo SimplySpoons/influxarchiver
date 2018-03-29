@@ -1,6 +1,6 @@
 .feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
-    color: green; 
-    font-weight: bold; 
+    color: green;
+    font-weight: bold;
     font-size: 1.1em;
 }
 
@@ -15,10 +15,10 @@
 }
 
 .panel-subheading span {
-    background: #337ab7; 
+    background: #337ab7;
     color: #fff;
-    margin: 5px; 
-    padding: 5px; 
+    margin: 5px;
+    padding: 5px;
     border-radius: 5px;
     font-size: 12px;
 }
@@ -46,4 +46,50 @@
 
 .title {
     margin-bottom: 0;
+}
+.pageWrapper {
+  background: #fafafa;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  overflow:hidden;
+  bottom: 0;
+  overflow-x: hidden;
+  width: 100%;
+  padding: 30px;
+}
+
+.header-nav {
+  background: #E1E6EF;
+  z-index: 9;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  overflow: visible;
+}
+
+.header-nav i {
+  margin-right: 10px;
+}
+
+.header-nav .count {
+  margin-left: 10px;
+}
+
+.pos-relative {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.active,
+.active:focus, .active:hover {
+  background: #fafafa !important;
+}
+
+.active {
+    border: 1px solid rgba(0, 0, 0, .12);
+    border-bottom: 0;
+    /* opacity: 1;
+    height: 50px;
+    top: 1px;
+    */
 }

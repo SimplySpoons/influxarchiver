@@ -69,7 +69,7 @@
         <ngx-datatable-column [width]="30" [sortable]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
           [checkboxable]="true">
         </ngx-datatable-column>
-          <ngx-datatable-column  *ngFor="let col of influxHeadersCheckbox" [name]="col.name" [prop]="col.prop">
+          <ngx-datatable-column  *ngFor="let col of influxHeadersCheckbox; let i = index" name="{{i}}-{{col.name}}" [prop]="col.prop">
             <ng-template let-value="value" let-rowIndex="rowIndex" let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
               <i (click)="openVehicleSingle(selectedInfluxVehicles[rowIndex])" [innerHTML]="row[col.prop]"></i>
             </ng-template>

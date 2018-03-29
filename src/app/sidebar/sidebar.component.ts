@@ -1,8 +1,9 @@
 import { Component, OnInit, ElementRef, EventEmitter, Output, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
-import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule, NavigationEnd } from '@angular/router';
 import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { AccountService } from '../_services/account.service';
 import { Account } from '../_models/account';
+import { AppConfig } from '../app.config';
 
 @Component({
   selector: 'app-sidebar',
@@ -72,42 +73,45 @@ export class SidebarComponent implements OnInit, OnDestroy {
   invCounts: any;
   sub: any;
   account: any;
-  state = 'menuOut';
+  state = 'menuIn';
   block = true;
-  hamburgerSlide = 'out';
-  NotHotDogSlide = 'in';
+  hamburgerSlide = 'in';
+  NotHotDogSlide = 'out';
   accountId: string;
   provider: string;
+  width = 0;
   currentRoute: any;
-  hideVerticalText: boolean = true;
-
-  constructor(router: Router) {
-    router.events.subscribe((url: any) => {
-      this.currentRoute = url.url;
-      if (this.currentRoute.includes('/influx/') && !this.isIn) {
-        this.toggleState();
-      }
-    })
-  }
-
-  getAccountChange(data) { }
-
+  hideVerticalText = true;
+  height = 0 + window.innerHeight;
+  public customClass = 'customClass';
   public status: any = {
     isFirstOpen: true,
     isFirstDisabled: false
   };
-  public customClass: string = 'customClass';
-
   @Output()
   public collapseSideBar = new EventEmitter();
+  public isAccount = new EventEmitter();
   public NotHotDog = new EventEmitter();
+  isIn = false;
 
-  // Slider menu
-  isIn = false;   // store state
+  constructor(router: Router, private appConfig: AppConfig) {
+    this.toggleState();
+  }
+
+
+  getAccountChange(data) { }
+
   toggleState() { // click handler
     let bool = this.isIn;
+    if(!bool){
+      this.width = 85;
+      this.block = false;
+    } else {
+      this.width = 255;
+    }
     this.isIn = bool === false ? true : false;
     this.collapseSideBar.emit(bool);
+    this.appConfig.toggleState.next(bool);
     this.hamburgerSlide == 'out' ? this.hamburgerSlide = 'in' : this.hamburgerSlide = 'out';
 
     /* this is to delay setting menu items to display:block to allow the sliding animation to work */

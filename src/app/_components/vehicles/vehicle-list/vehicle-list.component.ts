@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnDestroy, EventEmitter, Output, OnChanges, AfterViewInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, Input, OnDestroy, EventEmitter, Output, OnChanges, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { AccountService } from '../../../_services/account.service';
 import { Item } from '../../../_models/item';
 import { Account } from '../../../_models/account';
@@ -12,6 +13,7 @@ import { DropdownModule } from "ngx-dropdown";
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+  @ViewChild('vehicleWrapper') wrapper;
   itemSearchTerm$ = new Subject<string>();
   account: Account = new Account();
   accountId: string;
@@ -31,9 +33,24 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   selected = false;
   pasted = false;
   value: string = '';
+  element;
+  classes = '';
+  observe: any;
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
+  width = 0;
+
+  constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router, private el: ElementRef) {
     this.scrollCallback = this.loadVehicles.bind(this);
+    this.element = document.getElementById('main-container');
+    this.width += this.element.offsetWidth
+    const padding = Number(this.element.style.paddingLeft.replace('px',''));
+    this.width -= padding;
+    const tmp = this.element.className;
+    this.classes = tmp;
+    this.element.className = tmp + ' hide_account_info';
+    this.observe = Observable.fromEvent(this.element,'scroll').subscribe(event => {
+        this.setFixed(event,this.wrapper);
+    });
   }
   getItem(data: any) {
     this.selectedItem = data;
@@ -103,6 +120,20 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   ngOnChanges() {
   }
 
+  setFixed(event,wrapper){
+    console.log('EVENT',event);
+    console.log('WRAPPER', wrapper);
+    if(wrapper){
+      const top = wrapper.nativeElement.offsetTop;
+      const scrollTop = event.target.scrollTop;
+      console.log(top);
+      if(top - scrollTop <= 60){
+        wrapper.nativeElement.className = "wrap fixed";
+        this.element = this.wrapper.nativeElement;
+      }
+    }
+  }
+
   ngOnInit() {
     this.loading = true;
     this.sub = this.route.parent.params.subscribe(params => {
@@ -121,5 +152,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.routersub.unsubscribe();
+    this.element.className = this.classes;
+    console.log(this.element);
   }
 }

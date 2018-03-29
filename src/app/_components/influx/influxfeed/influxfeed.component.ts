@@ -279,11 +279,9 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.fileRequest.pageSize = 0;
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe((params: ArchivedFile) => {
+      this.fileRequest = {...params};
       this.fileRequest.accountId = params['id'];
-      this.fileRequest.provider = params['provider'];
-      this.fileRequest.providerId = params['providerid'];
-      this.fileRequest.filename = params['filename'];
       this.fileRequest.offset = 0;
       this.fileRequest.fileSize = 0;
       this.fileRequest.pageNumber = 0;
@@ -294,7 +292,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
       this.selectedInfluxVehicles = [];
       this.parent_sub = this.route.parent.parent.params.subscribe(parentParam => {
         this.fileRequest.accountId = parentParam['id'];
-        this.accountService.getHeaders(this.fileRequest.provider).subscribe(headers => {
+        this.accountService.getHeaders(this.fileRequest).subscribe(headers => {
           this.influxHeaders = headers;
           this.influxHeadersCheckbox = this.influxHeaders;
           this.fileRequest.headerMap = headers;

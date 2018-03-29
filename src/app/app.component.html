@@ -1,11 +1,8 @@
 <div class="nav-side-menu" [@mainSlide]="mainSlide">
-  <app-sidebar (sendAccountChange)="getAccountChange($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
+  <app-sidebar (sendAccountChange)="getAccountChange($event)" (isAccount)="checkAccount($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
 </div>
 <div class="main-panel" id="main-container" [@otherSlide]="otherSlide">
-  <div class="header-container navbar-fixed-top">
-    <app-header></app-header>
-  </div>
-  <div class="container">
+  <div class="container" [class.withPadding]="!withPadding">
     <router-outlet></router-outlet>
   </div>
 </div>

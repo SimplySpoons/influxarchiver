@@ -1,102 +1,116 @@
-<div *ngFor="let config of influxConfigs" class="config">
-<mat-card>
-    <div class="clearfix">
-      <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
-       <h3 style="margin: 5px 0;">Provider: <b>{{config.provider}}</b> </h3>
-        <h4 *ngIf="config.providerid != false">
-         Provider ID:
-          <b> {{config.providerid}} </b> | 
-          <small> Feed Last Ran {{config.lastRan}} </small>
-        </h4>
-        <h4 *ngIf="config.filename != false">
-          File Name:
-          <b> {{config.filename}} </b> | 
-            <small> Feed Last Ran {{config.lastRan}} </small>
-        </h4>
+<div class="row">
+  <div class="feed-selector pull-left">
+    <mat-list class="feeds">
+      <mat-list-item *ngFor="let config of influxConfigs | feed; let i = index" class="feed">
+        <h3 class="title" matLine> {{config.name}} </h3>
+        <span class="types" matLine *ngFor="let type of config.types">
+          {{type.name}}
+        </span>
+      </mat-list-item>
+    </mat-list>
   </div>
-    <mat-tab-group class="demo-tab-group">
-      <mat-tab label="Feed Wins">
-        <div class="demo-tab-content">
-          <div class="clearfix">
-        <div class="feedWins-item" *ngFor="let wins of config.feedWins">
-          <small class="col-md-2 attr" [class.active]="wins.value">{{wins.key}} </small>
-        </div>
-      </div>
-      <h4>
-             <span>Inserts:
-          <b [ngClass]="getClassName(config.inserts)"> {{config.inserts}}</b>
-        </span>
-        <span>Deletes:
-          <b [ngClass]="getClassName(config.deletes)"> {{config.deletes}}</b>
-        </span>
-            <b>Feed Wins </b> | 
-          <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
-            <b style="color: green;">Green Items </b> indicate feed overrides on Inventory Data</small>
+  <div class="configs">
+    <div *ngFor="let config of influxConfigs" class="config">
+      <mat-card>
+        <div class="clearfix border-bottom">
+          <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
+          <h3 style="margin: 0;">Provider:
+            <b>{{config.provider}}</b> |
+            <a class="pointer" (click)="viewFeedData(config)"> Feed Last Ran {{config.lastRan}} </a>
+          </h3>
+          <h4 *ngIf="config.providerid != false" style="margin: 0 0 15px;">
+            Provider ID:
+            <b> {{config.providerid}} </b>
           </h4>
+          <h4 style="margin: 0 0 15px;" *ngIf="config.filename != false">
+            File Name:
+            <b> {{config.filename}} </b>
+          </h4>
+        </div>
+        <mat-tab-group class="demo-tab-group">
+          <mat-tab label="Feed Wins">
+            <div class="demo-tab-content">
+              <div class="clearfix">
+                <div class="feedWins-item" *ngFor="let wins of config.feedWins">
+                  <small class="col-md-2 attr" [class.active]="wins.value">{{wins.key}} </small>
+                </div>
+              </div>
+              <h4>
+                <span>Inserts:
+                  <b [ngClass]="getClassName(config.inserts)"> {{config.inserts}}</b>
+                </span>
+                <span>Deletes:
+                  <b [ngClass]="getClassName(config.deletes)"> {{config.deletes}}</b>
+                </span>
+                <b>Feed Wins </b> |
+                <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
+                  <b style="color: green;">Green Items </b> indicate feed overrides on Inventory Data</small>
+              </h4>
             </div>
-      </mat-tab>
-      <mat-tab label="Vin Decoding">
-        <div class="demo-tab-content">
-          <h4>
-            <b>Vin Decoding </b> | 
-          <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
-            <b style="color: green;">Green Items </b> indicate fields being Vin Decoded</small>
-          </h4>
-        <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
-          <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
-        </div>
-      </div>
-      </mat-tab>
-      <mat-tab label="Recent Files">
-        <ul>
-        <li *ngFor="let file of config.files">
-          <a class="btn btn-small btn-primary">
-            View Feed
-          </a>
-          - Ran: {{file.time | date: "short"}}
-          - Parsed: {{ file.ind.PARSED | date: "short" }}
-          <span *ngFor="let num of file.ind.DATA; let i = index">
-            <span *ngIf="num > 0 && ( i === 0 || i === 1 )">
-              Pre:
-              <b>
-                {{num}}
-              </b>
-            </span>
-            <span *ngIf="i > 1">
-              Post:
-              <b>
-                {{num}}
-              </b>
-            </span>
-          </span>
-        </li>
-      </ul>
-      </mat-tab>
-      <mat-tab label="{{config.message}} - {{filters[config.provider].length}}" [disabled]="filters[config.provider].length === 0">
-        <div class="demo-tab-content">
-          <div class="filterDisplay" *ngFor="let filter of filters[config.provider]; let i = index">
-            <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
-            <div>
-              <p>
-                <b>{{filter.task}}</b>
-              </p>
-              <p style="white-space: pre-wrap;">{{filter.filter}}</p>
-              <hr>
-          </div>
-      </div>
+          </mat-tab>
+          <mat-tab label="Vin Decoding">
+            <div class="demo-tab-content">
+              <h4>
+                <b>Vin Decoding </b> |
+                <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
+                  <b style="color: green;">Green Items </b> indicate fields being Vin Decoded</small>
+              </h4>
+              <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
+                <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Recent Files">
+            <ul>
+              <li *ngFor="let file of config.files">
+                <a class="btn btn-small btn-primary">
+                  View Feed
+                </a>
+                - Ran: {{file.time | date: "short"}} - Parsed: {{ file.ind.PARSED | date: "short" }}
+                <span *ngFor="let num of file.ind.DATA; let i = index">
+                  <span *ngIf="num > 0 && ( i === 0 || i === 1 )">
+                    Pre:
+                    <b>
+                      {{num}}
+                    </b>
+                  </span>
+                  <span *ngIf="i > 1">
+                    Post:
+                    <b>
+                      {{num}}
+                    </b>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </mat-tab>
+          <mat-tab label="Filters - {{filters[config.provider].length}}" [disabled]="filters[config.provider].length === 0">
+            <div class="demo-tab-content">
+              <div class="filterDisplay" *ngFor="let filter of filters[config.provider]; let i = index">
+                <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
+                <div>
+                  <p>
+                    <b>{{filter.task}}</b>
+                  </p>
+                  <p style="white-space: pre-wrap;">{{filter.filter}}</p>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+        <hr>
+        <mat-card-actions>
+          Inventory Types:
+          <button mat-button *ngFor="let type of config.inventory_types" (click)="routeToVehicles(type.type,type.classification)">{{type.name}} - ({{counts | countFilter: type}})
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </div>
-      </mat-tab>
-    </mat-tab-group>
-    <hr>
-    <mat-card-actions>
-    <button mat-button *ngFor="let type of config.inventory_types" (click)="routeToVehicles(type.type,type.classification)">{{type.name}} ({{type.count}})
-    </button>
-  </mat-card-actions>
-</mat-card>
-</div>
-<div *ngIf="loading" class="loadingIndicator">
-  <div class="row" style="clear: both;">
-    <sk-folding-cube></sk-folding-cube>
+  </div>
+  <div *ngIf="loading" class="loadingIndicator">
+    <div class="row" style="clear: both;">
+      <sk-folding-cube></sk-folding-cube>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { AccountService } from '../_services/account.service';
 import { Account } from '../_models/account';
@@ -19,6 +19,8 @@ export class SearchComponent implements OnInit {
   vehicles: Array<Item> = [];
   firstRun = false;
   tmpRoute: any = [];
+
+  @Output() valueChange = new EventEmitter();
 
   constructor(private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.searchForUser();
@@ -64,23 +66,7 @@ export class SearchComponent implements OnInit {
   }
 
   onValueChange(data: any) {
-    if (data.length < 1) {
-      this.accounts = [];
-      this.vehicles = [];
-    }
-    else if (data.length == 17) {
-      this.updateVehicleStash(data);
-    }
-    else if (data.includes('http')) {
-      let uuid = data.match(/.*([0-9a-f]{32})\.htm$/);
-      if (uuid) {
-        data = uuid[1];
-        this.updateVehicleStash(data);
-      }
-    }
-    else if (data.length == 32) {
-      this.updateVehicleStash(data);
-    }
+    this.valueChange.emit(data);
   }
 
   searchForUser() {

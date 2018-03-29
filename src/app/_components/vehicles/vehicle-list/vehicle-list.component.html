@@ -1,31 +1,20 @@
+
+
 <!--Dropdown inventory buttons-->
-<div class="row invbuttons">
-  <p>Inventory:</p>
-  <div class="invdropdown btn-group" dropdown>
-    <div class="dropdown col-md-6" dropdown *ngFor="let count of invCounts">
-      <button dropdownToggle type="button" id="invbutton" class="btn btn-primary" dropdown-open>{{count.type}} ({{count.total}}) <span class="caret"></span></button>
-      <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li roll="menuitem" [ngClass]="{ 'disabled': class.count==0 }" *ngFor="let class of count.data">
-          <a class="dropdown-item" (click)="loadCorrectVehicles(class.type,class.classification)">{{class.className}} <span style="text-align: right;"> ({{class.count}}) </span></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 <!--Row inventory buttons-->
 <!--<div class="nav clearfix goodBad" style="margin-top: 40px; margin-bottom: 20px;" >
     <div style="background: transparent; padding: 0" class="col-md-6" *ngFor="let count of invCounts">
       <div class="clearfix">
         <div class="col-md-2" style="padding:3px;" *ngFor="let class of count.data">
-          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': class.count==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(class.type,class.classification)"> 
-            <span style="text-align: left;">{{class.className}}</span> 
+          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': class.count==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(class.type,class.classification)">
+            <span style="text-align: left;">{{class.className}}</span>
             <span style="text-align: right;"> ({{class.count}}) </span>
           </a>
         </div>
         <div class="col-md-2" style="padding:3px;">
-          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': count.total==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(count.data[0].type,0)"> 
-            <span style="text-align: left;">{{count.type}}</span> 
+          <a class="btn btn-primary col-md-12 {{count.type}}" [ngClass]="{ 'disabled': count.total==0 }" style="display: block; padding: 5px;" (click)="loadCorrectVehicles(count.data[0].type,0)">
+            <span style="text-align: left;">{{count.type}}</span>
             <span style="text-align: right;"> ({{count.total}}) </span>
           </a>
         </div>
@@ -33,12 +22,26 @@
     </div>
     (ngModelChange)="onValueChange($event)" (paste)="formatContent($event)"
   </div> -->
-<div class="search" style="margin-bottom: 20px;">
+<div class="search row">
+  <div class="col-md-10">
   <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)" (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
+  </div>
+  <div class="col-md-2">
+      <button dropdownToggle dropdown *ngFor="let count of invCounts" type="button" id="invbutton" class="btn btn-primary col-md-6" dropdown-open>{{count.name}} ({{count.count}})
+        <span class="caret"></span>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li roll="menuitem" [ngClass]="{ 'disabled': class.count==0 }" *ngFor="let class of count.data">
+          <a class="dropdown-item" (click)="loadCorrectVehicles(class.type,class.classification)">{{class.className}}
+            <span style="text-align: right;"> ({{class.count}}) </span>
+          </a>
+        </li>
+      </ul>
+         </button>
+  </div>
 </div>
-<app-vehicle-single *ngIf="selected" (closeBox)="closeSingle($event)"  [item]="selectedItem" [account]="account"></app-vehicle-single>
-<div appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
-  class="vehicle-list clearfix">
+<app-vehicle-single *ngIf="selected" (closeBox)="closeSingle($event)" class="pull-forward" [item]="selectedItem" [account]="account"></app-vehicle-single>
+<div class="wrap fixed" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback" #vehicleWrapper [style.width.px]="width">
+<div class="vehicle-list clearfix">
   <div class="vehicle" *ngFor="let item of items | search: value">
     <app-vehicle-item (sendItem)="getItem($event)"  [item]="item" [account]="account"></app-vehicle-item>
   </div>
@@ -47,4 +50,5 @@
   <div class="row" style="clear: both;">
     <sk-folding-cube></sk-folding-cube>
   </div>
+</div>
 </div>

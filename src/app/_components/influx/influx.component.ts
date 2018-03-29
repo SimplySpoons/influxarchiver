@@ -1,9 +1,11 @@
+import { AppConfig } from './../../app.config';
 import { InfluxService } from './influx-service';
 import { Subject } from 'rxjs/Rx';
 import { Component, OnInit, OnDestroy, Output, OnChanges } from '@angular/core';
 import { AccountService } from '../../_services/account.service';
 import { Account } from '../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Provider } from '../../_models/provider';
 
 @Component({
   selector: 'app-influx-configs',
@@ -15,7 +17,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   account: Account;
   acct: any;
   accountId: string = '';
-  loading: boolean = false;
+  loading = false;
   influxLoading = false;
   influxString = '';
   influxConfigs: any = [];
@@ -32,44 +34,17 @@ export class InfluxComponent implements OnInit, OnDestroy {
   fileMap: any = [];
   filter_sub: any;
   file_sub: any;
-  child_sub: any;
+  config_sub: any;
   provider: string;
+  count_sub: any;
+  counts: any;
+
+  params: Provider = new Provider();
 
   constructor(private accountService: AccountService,
     private route: ActivatedRoute, private router: Router,
-    private influx: InfluxService) {
-    this.sub = this.route.parent.params.subscribe(params => {
-      console.log(params);
-      this.accountId = params.id;
-      this.accountService.getInfluxConfigs(params.id).subscribe(configs => {
-        const providers = [];
-        configs.forEach(config => {
-          const parser = config.provider;
-          if (providers.indexOf(parser) < 0) {
-            providers.push(parser);
-            this.showFilters(parser, config);
-            this.getRecentFiles(config);
-          } else {
-            config.hasFilters = true;
-            config.message = 'Show Filters';
-          }
-          config.files = [];
-          this.loading = false;
-        });
-        this.DoneLoading.next(false);
-        this.influxConfigs = configs;
-        this.influxString = this.showConfigsAsString(this.influxConfigs);
-        this.influxLoading = false;
-      });
-      if (this.route.firstChild) {
-        this.child_sub = this.route.firstChild.params.subscribe(params => {
-          if (params !== null) {
-            this.provider = params.provider;
-          }
-        });
-      }
-    });
-    this.loading = true;
+    private influx: InfluxService, private appConfig: AppConfig) {
+    this.account = this.appConfig.account;
   }
   getDnaLink() {
     return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.accountId;
@@ -82,22 +57,40 @@ export class InfluxComponent implements OnInit, OnDestroy {
     }
   }
 
+  getInvCounts() {
+    this.count_sub = this.accountService.getInvCounts(this.accountId).subscribe(
+      success => {
+        this.counts = success;
+        let count = 0;
+        success.forEach(c => {
+          count += c.count;
+        });
+        const counts = { ...this.account, ...{num_vehicles: count, num_configs: this.appConfig.account.num_configs }};
+        this.appConfig.setCurrentAccount(counts);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
   showFilters(parser: string, config: any) {
-    const provider = config.provider;
+    this.params.providerId = config.providerid;
+    this.params.accountId = config.accountId;
+    this.params.provider = config.provider;
+    this.params.filename = config.filename;
     config.hasFilters = false;
-    if (!this.filters[provider]) {
-      this.filters[provider] = [];
-      this.filter_sub = this.accountService.getFilters(this.accountId, parser).subscribe(filters => {
-        if (filters[config.provider]) {
-          this.filters[provider] = this.filters[provider].concat(filters[config.provider]);
-          this.influx.setFilters(this.filters[provider]);
-          config.message = 'Show Filters';
+    if (!this.filters[config.provider]) {
+      this.filters[config.provider] = [];
+      this.fileMap[config.provider] = [];
+      this.filter_sub = this.accountService.getFilters(this.params).subscribe(meta => {
+        if (meta.filters[config.provider]) {
+          this.filters[config.provider] = this.filters[config.provider].concat(meta.filters[config.provider]);
+          this.influx.setFilters(this.filters[config.provider]);
           config.hasFilters = true;
         }
+        this.fileMap[config.provider] = [...meta.files];
+        this.DoneLoading.next(true);
       });
-    } else {
-      config.hasFilters = true;
-      config.message = 'Show Filters';
     }
   }
 
@@ -175,14 +168,42 @@ export class InfluxComponent implements OnInit, OnDestroy {
     }
   }
 
+  getConfigs(){
+    this.loading = true;
+    this.config_sub = this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
+      const providers = [];
+      configs.data.forEach(config => {
+        const parser = config.provider;
+        if (providers.indexOf(parser) < 0) {
+          providers.push(parser);
+          this.showFilters(parser, config);
+        } else {
+          config.hasFilters = true;
+          config.message = 'Show Filters';
+        }
+        config.files = [];
+      });
+      this.DoneLoading.next(false);
+      this.influxConfigs = configs.data;
+      this.loading = false;
+    });
+  }
+
   ngOnInit() {
     this.loading_sub = this.DoneLoading.subscribe(bool => {
       this.mergeFileList(bool);
     });
+    this.sub = this.route.parent.params.subscribe(params => {
+      this.accountId = params.id;
+      this.getInvCounts();
+      this.getConfigs();
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.filter_sub.unsubscribe();
-    this.file_sub.unsubscribe();
+    this.config_sub.unsubscribe();
+    if (this.filter_sub) {
+      this.filter_sub.unsubscribe();
+    }
   }
 }

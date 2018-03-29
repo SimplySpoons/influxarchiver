@@ -1,0 +1,37 @@
+.button {
+    height: auto;
+    width: auto;
+    margin: 0 10px;
+    border: 1px solid rgba(100,100,100,.15);
+    border-radius: 0;
+    padding: 0 15px;
+}
+
+.inline {
+    display: inline-block;
+}
+.title {
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.clearfix .buttons{
+    text-align: center;
+}
+
+.clearfix.noShadow, .clearfix.noShadow .inline {
+    box-shadow: none !important;
+    background: transparent;
+    color: #ddd;
+}
+
+.clearfix.noShadow {
+    background: #4a4a4a;
+    color: #fff;
+    border: 1px solid rgba(100,100,100,.15);
+    margin: 15px 0;
+}
+
+.white {
+    color: white;
+}

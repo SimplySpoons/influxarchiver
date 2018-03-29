@@ -42,8 +42,9 @@ export class InfiniteScroller implements AfterViewInit {
 
   element: Element;
 
-  constructor(private elm: ElementRef, @Inject(DOCUMENT) private document: Document) {
-    this.element = this.document.getElementById('main-container');
+
+  constructor(@Inject(DOCUMENT) private document: Document, private el: ElementRef) {
+      this.element = el.nativeElement;
   }
 
   ngAfterViewInit() {

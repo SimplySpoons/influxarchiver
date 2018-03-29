@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { AppConfig } from '../app.config';
 import { Account } from '../_models/account';
+import { Provider } from '../_models/provider';
 @Injectable()
 export class AccountService {
   API_URL: string;
@@ -18,18 +19,36 @@ export class AccountService {
       console.log(message);
     })
   }
+
+  /*
   getAccountData(accountId: string) {
+    this.getAcctData(accountId);
     return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
       (response: Response) => response.json());
   }
+  */
+
+
+  getAccountData(accountId: string) {
+    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/account_info').map(
+      (response: Response) => response.json());
+  }
+
+  getApiConfigs(accountId: string) {
+    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/api_configs').map(
+      (response: Response) => response.json());
+  }
+
   getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
     return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset }).map(
       (response: Response) => response);
   }
-  getInfluxConfigs(accountId: string) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxConfigs", accountId: accountId }).map(
+
+  getInfluxConfigs(accountId: string){
+    return this.http.get(this.API_URL + 'api/influx/' + accountId + '/influx_configs').map(
       (response: Response) => response.json());
   }
+
   getInfluxFeed(fileRequest: any) {
     return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxFeed", fileRequest: fileRequest }
     ).map(
@@ -65,10 +84,11 @@ export class AccountService {
       });
   }
 
-  getHeaders(parser: string) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getHeaders", parser: parser }
-    ).map(
-      (response: Response) => response.json());
+  getHeaders(params) {
+    return this.http.get(this.API_URL + 'api/archives/'
+      + params.accountId + '/' + params.provider + '/' + params.filename + '/' + params.providerId + '/header_map')
+      .map(
+        res => res.json());
   }
   getFileList(accountId: string, parser: string, providerId: string = null) {
     // tslint:disable-next-line:max-line-length
@@ -76,12 +96,17 @@ export class AccountService {
     ).map(
       (response: Response) => response.json());
   }
-  getFilters(accountId: string, parser: string) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getFilters", accountId: accountId, parser: parser }).map((response: Response) => response.json());
+
+  getFilters(params) {
+    return this.http.get(this.API_URL + 'api/archives/'
+    + params.accountId + '/' + params.provider + '/' + params.filename + '/' + params.providerId + '/get_config_data')
+    .map(
+      res => res.json());
   }
+
   getInvCounts(accountId: string) {
-    return this.http.post(this.API_URL + 'vehicle.php', { request: "getInvCounts", accountId: accountId }).map(
-      (response: Response) => response.json());
+    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/inventory_counts').map(
+      (response: Response) => response.json().data);
   }
   setCurrentAccount(account: any) {
     this.account = account;
@@ -96,7 +121,7 @@ export class AccountService {
   search(names: Observable<string>) {
     return names.debounceTime(400)
       .distinctUntilChanged()
-      .switchMap(name => 
+      .switchMap(name =>
         this.searchForAcct(name)
       );
   }
@@ -106,7 +131,7 @@ export class AccountService {
       (response: Response) => response.json());
   }
   searchForAcct(name) {
-    return this.http.post(this.API_URL + 'api/nexus/search', { term: name }).map(
+    return this.http.get(this.API_URL + 'api/nexus/search?term=' + name).map(
       (response: Response) => response.json());
   }
   searchVehicle(term: Observable<string>, accountId: any) {
@@ -126,10 +151,6 @@ export class AccountService {
   }
   searchByVin(term: any) {
     return this.http.post(this.API_URL + 'vehicle.php', { request: "searchByVin", search: term }).map(
-      (response: Response) => response.json());
-  }
-  getApiConfigs(accountId: any) {
-    return this.http.post(this.API_URL + 'account.php', { request: "getApiConfigs", accountId: accountId }).map(
       (response: Response) => response.json());
   }
 

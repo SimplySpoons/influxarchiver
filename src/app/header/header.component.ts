@@ -14,11 +14,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
   routeSub: any;
   currentPage: any;
   title: any;
-  @Output() routeChange = new EventEmitter();
+  acct: any;
+  toggle = false;
   childRoutes: any;
+
+  navLinks = [
+    { path: 'influx', label: 'Influx Configs' },
+    { path: 'vehicles', label: 'Vehicles' }
+  ];
+
+  @Output() routeChange = new EventEmitter();
   constructor(private api: AppConfig) {
     this.sub = api.getCurrentUser();
     this.title = api.getTitle();
+    this.acct = this.api.account;
+    this.sub = this.api.currentAcouunt.subscribe(account => {
+      this.acct = {...this.acct, ...account};
+    });
+    this.routeSub = this.api.toggleState.subscribe(toggle => {
+      this.toggle = toggle;
+    });
+  }
+
+  onValueChange(data) {
+    this.routeChange.emit(data);
   }
 
   ngOnInit() {

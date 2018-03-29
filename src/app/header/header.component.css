@@ -1,7 +1,5 @@
 
 .navbar.navbar-default {
-    background-color:#2e353d;
-    border-color:#2e353d;
     border-radius:0;
 }
 .nav.navbar-nav.navbar-right {
@@ -30,12 +28,63 @@
     font-family:verdana;
 }
 
-#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0; 
+#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0;
 padding: 5px 30px; padding-left: 320px; overflow-x: hidden;  }
 
-.header {
+.header, .header-nav {
     display:block;
-    background: #2E353D;
+    background: #4B88C8;
     position:static;
+    padding-left: 85px;
+    transition: padding ease .25s;
 }
 
+.header {
+  height: 60px;
+  min-height: 60px;
+}
+
+.header.fullHeight {
+  height: 92px;
+}
+
+.header-nav {
+  height: 48px;
+}
+
+span {
+  color: #fff;
+}
+
+.header.toggle, .header-nav.toggle {
+  padding-left: 280px;
+}
+
+.header-nav {
+  background: #EDF2F8;
+}
+
+.primary-row {
+  height: 60px;
+}
+.header .secondary-row {
+  height: 32px;
+  background: #eee;
+  font-size: 16px;
+  color: #636879;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+.header .secondary-row span, .header .secondary-row a {
+    color: #636879;
+    margin: 0 5px;
+}
+.header .secondary-row a {
+  padding: 0 10px;
+}
+.header .secondary-row span:not(:last-child):after {
+  content: "/";
+  margin-left: 10px;
+}
+.header .secondary-row i {
+  margin-right: 10px;
+}

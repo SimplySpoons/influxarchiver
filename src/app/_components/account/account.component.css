@@ -1,6 +1,6 @@
 .feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
-    color: green; 
-    font-weight: bold; 
+    color: green;
+    font-weight: bold;
     font-size: 1.1em;
 }
 
@@ -15,10 +15,10 @@
 }
 
 .panel-subheading span {
-    background: #337ab7; 
+    background: #337ab7;
     color: #fff;
-    margin: 5px; 
-    padding: 5px; 
+    margin: 5px;
+    padding: 5px;
     border-radius: 5px;
     font-size: 12px;
 }
@@ -46,4 +46,20 @@
 
 .title {
     margin-bottom: 0;
+}
+
+.dealersearch {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.active {
+  background: #e7e3f5;
 }

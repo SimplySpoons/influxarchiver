@@ -124,6 +124,10 @@
     margin-top: 30px;
   }
 
+    .config:first-child {
+      margin-top: 10px;
+    }
+
   .active {
     color: green !important;
     font-weight: bold;
@@ -133,8 +137,29 @@
     color: #999;
   }
  .demo-tab-content {
-   padding-top: 20px;
+   padding: 20px 0;
  }
   .demo-tab-content h4 {
        text-align: center;
   }
+
+  hr {
+    margin: 3px -20px;
+  }
+  .full-width {
+    margin: 0 -20px;
+  }
+
+  .pointer {
+    color: green;
+    cursor: pointer;
+  }
+  .mat-card>.mat-card-actions:last-child .mat-button {
+    border: 1px solid #eee;
+    padding: 0 10px;
+  }
+
+  .mat-card>.mat-card-actions:last-child { 
+    text-align: center;
+  }
+

@@ -163,7 +163,10 @@ img {
 }
 
 .shadow {
-  position: relative;
+  position: absolute;
+  background: #fff;
+  width: calc(80%);
+  right: 0;
 }
 
 .close-window {
@@ -194,8 +197,8 @@ hr {
 }
 
 .padding {
-  padding: 10px 20px 7px;
-  background: #2D353D;
+  padding: 10px 20px 10px;
+  background: #2B72A6;
   color: #fff;
   position: relative;
   z-index: 10;

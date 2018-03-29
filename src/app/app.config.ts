@@ -1,7 +1,9 @@
+import { Subject } from 'rxjs/Subject';
 import { Inject, Injectable } from '@angular/core';
 import { Http, Jsonp } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Account } from './_models/account';
 
 declare var SPAUTH: any;
 
@@ -15,9 +17,17 @@ export function _CurrentUser() {
 export class AppConfig {
 
   private currentUser: any = [];
+  currentAcouunt: Subject<Account> = new Subject<Account>();
+  toggleState: Subject<boolean> = new Subject<boolean>();
+  closeSearch: Subject<boolean> = new Subject<boolean>();
+  account: any = new Account();
+  copy: any;
   title: any;
   constructor(private jsonp: Jsonp) {
+    console.log(this.account);
+    this.currentAcouunt.next(this.account);
   }
+
 
   public getUserData() {
     SPAUTH.appId('influx-archiver2')
@@ -57,6 +67,12 @@ export class AppConfig {
   }
   setDefaultTitle() {
     this.title = this.currentUser.fullName;
+  }
+
+  setCurrentAccount(data: any) {
+    this.account = {...this.account, ...data};
+    this.currentAcouunt.next(this.account);
+    // this.currentAcouunt.next(acct);
   }
 
   getTitle() {

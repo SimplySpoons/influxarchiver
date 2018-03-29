@@ -1,5 +1,5 @@
 .container {
-    width: 95%;
+    width: 100%;
     padding: 0;
 }
 @media (min-width: 767px) {
@@ -9,7 +9,7 @@
         float: right;
         width: calc(100% - 300px);
         min-height: 100%;
-    
+
     }
 
 
@@ -17,28 +17,9 @@
 
 .main-panel#main-container {
     width:100%;
-    overflow-x: hidden;
-}
-.nav-side-menu {
-  overflow: auto;
-  overflow-x: hidden;
-  font-size: 12px;
-  font-weight: 200;
-  position: fixed;
-  top: 0px;
-  height: 100%;
-  z-index:9999;
-  background:#2E353D;
+    overflow: hidden !important;
 }
 
-.nav-side-menu .brand {
-  line-height: 50px;
-  display: block;
-  text-align: center;
-  font-size: 14px;
-  padding: 2px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
 
 .nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {display: none;}
 
@@ -51,7 +32,7 @@
 .nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {
     display: none;
 }
-.nav-side-menu .navbar-collapse.collapse.in { 
+.nav-side-menu .navbar-collapse.collapse.in {
     width:auto;
 }
 
@@ -76,4 +57,13 @@
 
 .menuContainer.out .nav.menu-list {
     width:100%;
+}
+
+.menuContainer {
+  background: #262D3E;
+}
+
+
+.container.withPadding {
+  padding: 30px;
 }

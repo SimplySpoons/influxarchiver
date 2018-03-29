@@ -6,7 +6,6 @@
   position: fixed;
   top: 0px;
   height: 100%;
-  background: #2E353D;
 }
 
 
@@ -83,7 +82,7 @@
 
 .nav-side-menu ul .active,
 .nav-side-menu li .active {
-  background-color: #4f5b69;
+  background-color: transparent;
 }
 
 .nav-side-menu ul .sub-menu li.active,
@@ -98,16 +97,11 @@
 
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
-  background-color: #181c20;
+  background-color: transparent;
   border: none;
   line-height: 28px;
   border-bottom: 1px solid #23282e;
   margin-left: 0px;
-}
-
-.nav-side-menu ul .sub-menu li:hover,
-.nav-side-menu li .sub-menu li:hover {
-  background-color: #020203;
 }
 
 .nav-side-menu ul .sub-menu li:before,
@@ -169,7 +163,6 @@ body {
 .accordianUnderText a.accordionLink {
   color: #000;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 .accordianUnderText li a {
@@ -184,9 +177,8 @@ body {
 .issueTracker,
 .dashboardLink {
   color: #333;
-  background-color: #2e353d;
+  background-color: transparent;
   border-color: #ddd;
-  padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -197,7 +189,7 @@ body {
 .nav-side-menu .panel:hover,
 .bugSubmitLink:hover,
 .issueTracker:hover {
-  background-color: #31708f;
+  background-color: transparent;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -206,13 +198,13 @@ body {
 }
 
 .nav-side-menu .panel {
-  background-color: #2e353d;
+  background-color: transparent;
 }
 
 .card.navPanelItem,
 .card.navPanelItem .card-header,
 .panel.navPanelItem {
-  background-color: #5bc0de;
+  background-color: transparent;
   color: #fff;
 }
 
@@ -220,10 +212,9 @@ body {
   background-color: #337aa7;
 }
 
-.panel-title .navTitle {
+.out .panel-title .navTitle {
   margin-left: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 
@@ -415,36 +406,21 @@ body {
 .nav-side-menu .dashboardLink .navTitle {
   left: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 .nav-side-menu .navTitle2 {
   left: 8px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 .nav-side-menu .navTitle3 {
   left: 12px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 .nav-side-menu .navTitle4 {
   left: 12px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-}
-
-.fa.fa-user.fa-lg,
-.fa.fa-users.fa-lg {
-  position: relative;
-  left: 1px;
-}
-
-.fa.fa-dashboard.fa-lg {
-  position: relative;
-  left: 2px;
 }
 
 .nav-side-menu .panel:hover,
@@ -455,12 +431,6 @@ body {
 .bugSubmitLink .navTitle {
   position: relative;
   left: 0px;
-}
-
-.fa.fa-bug.fa-lg,
-.fa.fa-list-alt.fa-lg {
-  position: relative;
-  left: 3px;
 }
 
 .navTitle.navTitle1 {
@@ -492,7 +462,6 @@ body {
     text-align: center;
   }
   .nav-side-menu .navbar-collapse.collapse.in {
-    padding-right: 10px;
   }
   .nav-side-menu .navbar-collapse.collapse.in .brand {
     display: inline-block;
@@ -516,10 +485,6 @@ body {
   }
 }
 
-.fa.fa-link.fa-lg {
-  position: relative;
-  left: 2px;
-}
 
 .nav-side-menu li a {
   display: block;
@@ -553,7 +518,6 @@ body {
     text-align: center;
   }
   .menuContainer .navbar.collapse.in {
-    padding-right: 10px;
   }
   .menuContainer .navbar.collapse.in .brand {
     display: block;
@@ -640,7 +604,6 @@ body {
 .menuContainer.in .collapse.navbar.itemContainer #nav-icon2 {
   top: 17px;
   left: 0;
-  width: 40px;
 }
 
 .menuContainer.in .collapse.navbar.itemContainer .nav.menu-list .versionNumber {
@@ -691,7 +654,7 @@ body {
 .menuContainer.navbar-collapse.nav-side-menu.in {
   overflow-y: hidden;
   overflow-x: visible;
-  width: 70px;
+  width: 85px;
 }
 
 .hvr-icon-hang:before,
@@ -924,4 +887,70 @@ body {
 .navPanelItem.oemLinks .hvr-icon-bob:before,
 .navPanelItem.oemLinks .hvr-icon-hang:before {
   right: 10px;
+}
+
+.collapsed {
+      width: 85px;
+      text-align: center;
+}
+
+.collapsed i {
+  font-size: 36px;
+  display: block !important;
+  clear: both;
+}
+
+#nav-icon2 i {
+  font-size: 36px;
+}
+
+body .nav-side-menu {
+  background: transparent;
+}
+
+.title,
+.nav_wrap {
+  transition: width ease .25s;
+}
+
+.title .inline {
+     font-size: 15px;
+     text-align: left;
+     padding: 5px;
+     border: 1px solid #4E86C8;
+     height: 40px;
+     float: right;
+     text-transform: uppercase;
+     line-height: 27px;
+     margin-right: 16px;
+}
+
+.title #nav-icon2 {
+  width: 85px;
+  position: absolute;
+  height: 60px;
+  border: 0px !important;
+  top: 11px;
+  left:0;
+}
+
+.title-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 60px;
+}
+
+.brand.inline {
+  position: absolute;
+  left: 85px;
+  width: 150px;
+}
+
+.title i {
+  display: block;
+}
+
+.collapsed {
+  margin-top: 15px;
 }
