@@ -150,6 +150,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
     this.showFilter = !this.showFilter;
   }
 
+
   getColumnData(vehicle, column) {
     return vehicle[column];
   }
@@ -165,6 +166,14 @@ export class InfluxComponent implements OnInit, OnDestroy {
     }
     if (this.provider) {
       this.influx.setFileList(this.fileMap[this.provider]);
+    }
+  }
+
+  onScroll(event) {
+    if(event.target.scrollTop > 0){
+      this.appConfig.collapseHeader(true);
+    } else {
+      this.appConfig.collapseHeader(false);
     }
   }
 

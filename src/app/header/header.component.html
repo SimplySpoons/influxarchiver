@@ -1,26 +1,13 @@
 <mat-toolbar color="primary" class="header" [class.fullHeight]="acct.accountId" [class.toggle]="toggle">
   <mat-toolbar-row class="primary-row">
     <span>{{acct.name}}</span>
-    <span><app-search (valueChange)="onValueChange($event)"></app-search></span>
-  </mat-toolbar-row>
-  <mat-toolbar-row class="secondary-row" *ngIf="acct.accountId">
     <span>
-      <i class="fa fa-id-card"></i><b>{{acct.accountId}}</b>
-    </span>
-    <span>
-       {{acct.name}}
-    </span>
-    <span><i class="fa fa-map-marker"></i> {{acct.address1}} {{acct.address2}}, {{acct.city}}, {{acct.state}} {{acct.zip}} {{acct.country}} </span>
-    <span>
-      <a  class="btn btn-sm" href="{{acct.publicUrl}}" target="_blank"><i class="fa fa-laptop"></i>Website</a>
-    </span>
-    <span *ngIf="apis">
-      <small *ngIf="apis.type==1"> vAuto API:
-        <b> Yes </b>
-      </small>
-      <small *ngIf="apis.type==0"> vAuto API:
-        <b> No </b>
-      </small>
+      <div id="navbarSarchBarContainer">
+        <div class="topSearch">
+          <input type="text" class="form-control input-md" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value"
+            [value]="value" (ngModelChange)="onValueChange($event)">
+        </div>
+      </div>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

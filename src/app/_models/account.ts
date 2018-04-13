@@ -11,4 +11,6 @@ export class Account {
     country: string;
     num_configs: number;
     num_vehicles: number;
+    inventory_counts: any;
+    api: boolean;
 }

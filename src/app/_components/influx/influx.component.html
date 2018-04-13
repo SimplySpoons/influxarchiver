@@ -9,7 +9,7 @@
       </mat-list-item>
     </mat-list>
   </div>
-  <div class="configs">
+  <div class="configs" (scroll)="onScroll($event)">
     <div *ngFor="let config of influxConfigs" class="config">
       <mat-card>
         <div class="clearfix border-bottom">

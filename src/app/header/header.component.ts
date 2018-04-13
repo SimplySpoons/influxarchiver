@@ -1,10 +1,13 @@
-import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { AppConfig } from '../app.config';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  animations: [
+
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -13,10 +16,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   sub: any;
   routeSub: any;
   currentPage: any;
+  search: any;
   title: any;
   acct: any;
   toggle = false;
   childRoutes: any;
+  value = '';
+  @Input() clearSearch;
+  @Input() restoreString;
+  @Input() showHeader;
 
   navLinks = [
     { path: 'influx', label: 'Influx Configs' },

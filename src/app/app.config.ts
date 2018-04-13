@@ -20,7 +20,11 @@ export class AppConfig {
   currentAcouunt: Subject<Account> = new Subject<Account>();
   toggleState: Subject<boolean> = new Subject<boolean>();
   closeSearch: Subject<boolean> = new Subject<boolean>();
+  collapsed: Subject<boolean> = new Subject<boolean>();
+  searchTerm: Subject<string> = new Subject<string>();
+  search: string;
   account: any = new Account();
+  accountId = '';
   copy: any;
   title: any;
   constructor(private jsonp: Jsonp) {
@@ -28,6 +32,14 @@ export class AppConfig {
     this.currentAcouunt.next(this.account);
   }
 
+  collapseHeader(bool) {
+    this.collapsed.next(bool);
+  }
+
+  setSearchTerm(string) {
+    this.search = string;
+    this.searchTerm.next(string);
+  }
 
   public getUserData() {
     SPAUTH.appId('influx-archiver2')
@@ -69,10 +81,18 @@ export class AppConfig {
     this.title = this.currentUser.fullName;
   }
 
-  setCurrentAccount(data: any) {
-    this.account = {...this.account, ...data};
+  setCurrentAccount(data: any, reset = false) {
+    this.account = { ...this.account, ...data };
+    reset = false;
+    if (data.accountId && data.accountId !== this.accountId) {
+      this.accountId = data.accountId;
+      reset = true;
+    }
+    if (reset) {
+      this.account = data;
+    }
     this.currentAcouunt.next(this.account);
-    // this.currentAcouunt.next(acct);
+    console.log(this.account);
   }
 
   getTitle() {
@@ -84,7 +104,7 @@ export class AppConfig {
   }
 
   public API_CONFIG() {
-    return 'http://localhost:6969/';
+    return 'http://localhost:6969';
   }
 
 }

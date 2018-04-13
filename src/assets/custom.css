@@ -416,3 +416,25 @@ body .menuContainer.in {
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  body .navbar-fixed-top {
+    position: relative;
+  }
+
+#main-container > .container {
+  padding-top: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.loading {
+  opacity: 0;
+  transition: opacity ease-in-out .75s;
+}
+
+.loading.show {
+  opacity: 1;
+}

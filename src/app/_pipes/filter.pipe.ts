@@ -45,6 +45,29 @@ export class SearchPipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'searchResults',
+  pure: false
+})
+
+@Injectable()
+export class SearchResultsPipe implements PipeTransform {
+  transform(accounts: any, search: any): any {
+    if (search === undefined || accounts.length === 0 || search.length === 0) {
+      return accounts;
+    }
+    return accounts.sort((a: any, b: any) => {
+      if (a.sum < b.sum) {
+        return 1;
+      } else if (a.sum > b.sum) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+}
+
+@Pipe({
   name: 'search_archived',
   pure: false
 })
@@ -77,24 +100,28 @@ export class SearchArchived implements PipeTransform {
 @Injectable()
 export class countFilter implements PipeTransform {
   transform(counts: number, config: any): any {
-    if (config === undefined || counts === undefined || counts === 0) {
+    if (config === undefined || counts === undefined || config.length === 0) {
       return 0;
     }
     let total = 0;
     if (config.type == 1) {
-      const vals = counts[0].data;
-      vals.forEach(val => {
-        if (config.classification == val.classification) {
-          total += Number(val.count);
-        }
-      });
+      if (counts[0].data) {
+        const vals = counts[0].data;
+        vals.forEach(val => {
+          if (config.classification == val.classification) {
+            total += Number(val.count);
+          }
+        });
+      }
     } else {
-      const vals = counts[1].data;
-      vals.forEach(val => {
-        if (config.classification == val.classification) {
-          total += Number(val.count);
-        }
-      });
+      if (counts[1].data) {
+        const vals = counts[1].data;
+        vals.forEach(val => {
+          if (config.classification == val.classification) {
+            total += Number(val.count);
+          }
+        });
+      }
     }
     return total;
   }
@@ -113,7 +140,7 @@ export class FeedPipe implements PipeTransform {
     }
     const arr = [];
     configs.forEach(config => {
-      const tmp = {name: config.provider, types: config.inventory_types};
+      const tmp = { name: config.provider, types: config.inventory_types };
       arr.push(tmp);
     });
     return arr;

@@ -93,3 +93,20 @@
     top: 1px;
     */
 }
+ .secondary-row span {
+   color: #636879;
+   margin: 0 5px;
+ }
+
+ .secondary-row span:not(:last-child):after {
+   content: "/";
+   margin-left: 10px;
+ }
+
+ .secondary-row i {
+   margin-right: 10px;
+ }
+
+.pos-relative {
+  height: 100%;
+}

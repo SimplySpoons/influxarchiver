@@ -44,10 +44,6 @@ padding: 5px 30px; padding-left: 320px; overflow-x: hidden;  }
   min-height: 60px;
 }
 
-.header.fullHeight {
-  height: 92px;
-}
-
 .header-nav {
   height: 48px;
 }
@@ -73,18 +69,4 @@ span {
   font-size: 16px;
   color: #636879;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
-}
-.header .secondary-row span, .header .secondary-row a {
-    color: #636879;
-    margin: 0 5px;
-}
-.header .secondary-row a {
-  padding: 0 10px;
-}
-.header .secondary-row span:not(:last-child):after {
-  content: "/";
-  margin-left: 10px;
-}
-.header .secondary-row i {
-  margin-right: 10px;
 }

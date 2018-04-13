@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Rx';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, ResponseType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -13,6 +14,7 @@ export class AccountService {
   API_URL: string;
   account: Account;
   sendAccountChange = new EventEmitter<any>();
+  isLoading: Subject<boolean> = new Subject<boolean>();
   constructor(private conf: AppConfig, private http: Http) {
     this.API_URL = this.conf.API_CONFIG();
     this.testPost().subscribe(message => {
@@ -30,32 +32,42 @@ export class AccountService {
 
 
   getAccountData(accountId: string) {
-    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/account_info').map(
+    return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/account_info').map(
       (response: Response) => response.json());
   }
 
   getApiConfigs(accountId: string) {
-    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/api_configs').map(
+    return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/api_configs').map(
       (response: Response) => response.json());
   }
 
   getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
-    return this.http.post(this.API_URL + 'vehicle.php', { request: "getAccountVehicles", accountId: accountId, type: type, classification: classification, offset: offset }).map(
+    if (!type) {
+      type = 0;
+    }
+    if (!classification) {
+      classification = 0;
+    }
+    if (!offset) {
+      offset = 0;
+    }
+    const params = `type:${type},classification:${classification},offset:${offset}`;
+    return this.http.get(this.API_URL + `/api/vehicle/${accountId}/getAccountVehicles/${params}`).map(
       (response: Response) => response);
   }
 
-  getInfluxConfigs(accountId: string){
-    return this.http.get(this.API_URL + 'api/influx/' + accountId + '/influx_configs').map(
+  getInfluxConfigs(accountId: string) {
+    return this.http.get(this.API_URL + `/api/influx/${accountId}/influx_configs`).map(
       (response: Response) => response.json());
   }
 
   getInfluxFeed(fileRequest: any) {
-    return this.http.post(this.API_URL + 'influx.php', { request: "getInfluxFeed", fileRequest: fileRequest }
+    return this.http.post(this.API_URL + '/influx.php', { request: "getInfluxFeed", fileRequest: fileRequest }
     ).map(
       (response: Response) => response.json());
   }
   getUpdatedFeed(fileRequest: any) {
-    return this.http.post(this.API_URL + 'api/archives/getfeed',
+    return this.http.post(this.API_URL + '/api/archives/getfeed',
       {
         request: "getUpdatedFeed",
         fileRequest: fileRequest
@@ -64,7 +76,7 @@ export class AccountService {
   }
 
   testGet() {
-    return this.http.get(this.API_URL + 'api/nexus/get/10/friends').map(
+    return this.http.get(this.API_URL + '/api/nexus/get/10/friends').map(
       res => {
         res.json();
         console.log(res);
@@ -75,7 +87,7 @@ export class AccountService {
   }
 
   testPost() {
-    return this.http.post(this.API_URL + 'api/nexus', { testing: 'true' }).map(
+    return this.http.post(this.API_URL + '/api/nexus', { testing: 'true' }).map(
       res => {
         res.json()
       },
@@ -85,27 +97,27 @@ export class AccountService {
   }
 
   getHeaders(params) {
-    return this.http.get(this.API_URL + 'api/archives/'
+    return this.http.get(this.API_URL + '/api/archives/'
       + params.accountId + '/' + params.provider + '/' + params.filename + '/' + params.providerId + '/header_map')
       .map(
         res => res.json());
   }
   getFileList(accountId: string, parser: string, providerId: string = null) {
     // tslint:disable-next-line:max-line-length
-    return this.http.post(this.API_URL + 'influx.php', { request: "getFileList", accountId: accountId, parser: parser, providerId: providerId }
+    return this.http.post(this.API_URL + '/influx.php', { request: "getFileList", accountId: accountId, parser: parser, providerId: providerId }
     ).map(
       (response: Response) => response.json());
   }
 
   getFilters(params) {
-    return this.http.get(this.API_URL + 'api/archives/'
-    + params.accountId + '/' + params.provider + '/' + params.filename + '/' + params.providerId + '/get_config_data')
-    .map(
-      res => res.json());
+    return this.http.get(this.API_URL + '/api/archives/'
+      + params.accountId + '/' + params.provider + '/' + params.filename + '/' + params.providerId + '/get_config_data')
+      .map(
+        res => res.json());
   }
 
   getInvCounts(accountId: string) {
-    return this.http.get(this.API_URL + 'api/nexus/' + accountId + '/inventory_counts').map(
+    return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/inventory_counts').map(
       (response: Response) => response.json().data);
   }
   setCurrentAccount(account: any) {
@@ -131,7 +143,7 @@ export class AccountService {
       (response: Response) => response.json());
   }
   searchForAcct(name) {
-    return this.http.get(this.API_URL + 'api/nexus/search?term=' + name).map(
+    return this.http.get(this.API_URL + '/api/nexus/search?term=' + name).map(
       (response: Response) => response.json());
   }
   searchVehicle(term: Observable<string>, accountId: any) {

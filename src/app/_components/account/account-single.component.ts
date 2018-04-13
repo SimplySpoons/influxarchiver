@@ -28,7 +28,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   apis: any;
 
   navLinks = [
-    { path: 'influx', label: 'Influx Configs', class: 'fa-cogs', count: 0  },
+    { path: 'influx', label: 'Influx Configs', class: 'fa-cogs', count: 0 },
     { path: 'vehicles', label: 'Vehicles', class: 'fa-car', count: 0 }
   ];
 
@@ -42,6 +42,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.sub = this.route.params.subscribe(params => {
       this.accountId = params['id'];
+
       this.getAccountData();
     });
   }
@@ -58,16 +59,16 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     return JSON.stringify(this.influxConfigs);
   }
 
-  setCount(){
-    if (this.account.num_configs){
+  setCount() {
+    if (this.account.num_configs) {
       this.navLinks[0].count = Number(this.account.num_configs);
     }
-    if (this.account.num_vehicles){
+    if (this.account.num_vehicles) {
       this.navLinks[1].count = Number(this.account.num_vehicles);
     }
   }
 
-  getAccountData(){
+  getAccountData() {
     this.accountService.getAccountData(this.accountId).subscribe(account => {
       this.appConfig.setCurrentAccount(account.data);
       this.accountService.getApiConfigs(this.accountId).subscribe(
@@ -82,15 +83,15 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     });
   }
 
-    /*
-  <div class="cc-btns"  *ngIf="!loading">
-  <p>Quick Links for {{account.name}}:</p>
-  <a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">Inventory Manager</a>
-  <a [href]="getComposerLink()" class="btn btn-success" target="_blank">Composer</a>
-  <a [href]="getDnaLink()" class="btn btn-success" target="_blank">DNA</a>
-  <a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
-  <a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
-  <a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>
+  /*
+<div class="cc-btns"  *ngIf="!loading">
+<p>Quick Links for {{account.name}}:</p>
+<a [href]="getInventoryManagerLink()" class="btn btn-success" target="_blank">Inventory Manager</a>
+<a [href]="getComposerLink()" class="btn btn-success" target="_blank">Composer</a>
+<a [href]="getDnaLink()" class="btn btn-success" target="_blank">DNA</a>
+<a [href]="getExportViewLink()" class="btn btn-success" target="_blank">Exported Inventory</a>
+<a [href]="getInboundFeedsLink()" class="btn btn-success" target="_blank">Inbound Feeds</a>
+<a [href]="getSolrLink()" class="btn btn-success" target="_blank">SOLR Refresh</a>
 </div> */
 
   getInventoryManagerLink() {
@@ -110,7 +111,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.meta_sub = this.appConfig.currentAcouunt.subscribe(account=> {
+    this.meta_sub = this.appConfig.currentAcouunt.subscribe(account => {
       this.account = account;
       this.setCount();
     });
@@ -121,4 +122,12 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     this.meta_sub.unsubscribe();
   }
 
+  onScroll(event) {
+      console.log(event);
+      if(event.target.scrollTop > 0){
+
+      }
+  }
+
 }
+

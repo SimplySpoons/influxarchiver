@@ -15,7 +15,7 @@ import { AccountSingleComponent } from './_components/account/account-single.com
 import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
-import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe, countFilter, FeedPipe } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe, countFilter, FeedPipe, SearchResultsPipe } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -23,7 +23,6 @@ import { AccordionModule, AccordionConfig } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppConfig } from './app.config';
 import { InfluxComponent } from './_components/influx/influx.component';
-import { SearchComponent } from './search/search.component';
 import { UserService } from './_services/user.service';
 import { SubmitbugComponent, IssuetrackerComponent } from './bugs/index';
 import { ModalService } from './_services/modal.service';
@@ -42,6 +41,7 @@ import { InfluxService } from './_components/influx/influx-service';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchPageComponent } from './search/search-page/search-page.component';
 import 'hammerjs';
+
 export function initializeCurrentUser(config: AppConfig) {
   return () => config.getUserData();
 }
@@ -62,13 +62,13 @@ export function initializeCurrentUser(config: AppConfig) {
     QuicklinksComponent,
     FilterPipe,
     SearchPipe,
+    SearchResultsPipe,
     countFilter,
     FormatPipe,
     FeedPipe,
     DuplicatePipe,
     SearchArchived,
     InfluxComponent,
-    SearchComponent,
     IssuetrackerComponent,
     SubmitbugComponent,
     TextEditorComponent,

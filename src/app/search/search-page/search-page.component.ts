@@ -12,8 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   // tslint:disable-next-line:use-host-property-decorator
   host: { '[@slideDownAnimation]': '' }
 })
+
+
 export class SearchPageComponent {
-  constructor() { }
+  loading = false;
+  constructor(private accountService: AccountService) {
+    this.accountService.isLoading.subscribe(loading=>{
+      this.loading = loading;
+    })
+  }
 }
 
 
