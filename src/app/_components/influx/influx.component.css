@@ -120,6 +120,10 @@
     top: 15px;
   }
 
+  .feed-last-ran { 
+    font-size: 18px;
+  }
+
   .hvr-icon-bob:before {
     content: "\f077";
     position: absolute;
