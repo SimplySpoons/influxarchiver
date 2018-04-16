@@ -198,6 +198,14 @@ img {
   display: inline-block;
 }
 
+.mat-tab-list .mat-tab-label.mat-ripple {
+  padding-top: 17px;
+}
+
+.mat-tab-label {
+  height: 38px;
+}
+
 .btn-sm {
   border: 1px solid rgba(0, 0, 0, .15);
 }
