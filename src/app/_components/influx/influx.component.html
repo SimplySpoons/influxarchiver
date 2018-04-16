@@ -13,7 +13,7 @@
     <div *ngFor="let config of influxConfigs" class="config">
       <mat-card>
         <div class="clearfix border-bottom">
-          <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
+          <a class="btn editconfig btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
           <h3 style="margin: 0;">Provider:
             <b>{{config.provider}}</b> |
             <a class="pointer feed-last-ran" [routerLink]="[config.lastRun.routerLink]" (click)="viewFeedData(config)"> Feed Last Ran: {{config.lastRun.time}} </a>
@@ -83,7 +83,7 @@
               </li>
             </ul>
           </mat-tab>
-          <mat-tab label="Filters - {{config.filters.length}}" [disabled]="config.filters.length === 0">
+          <mat-tab label="Filters ({{config.filters.length}})" [disabled]="config.filters.length === 0">
             <div class="demo-tab-content">
               <div class="filterDisplay" *ngFor="let filter of config.filters; let i = index">
                 <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
@@ -100,7 +100,7 @@
         <hr>
         <mat-card-actions>
           Inventory Types:
-          <button mat-button *ngFor="let type of config.inventory_types" (click)="routeToVehicles(type.type,type.classification)">{{type.name}} - ({{counts | countFilter: type}})
+          <button mat-button *ngFor="let type of config.inventory_types" (click)="routeToVehicles(type.type,type.classification)">{{type.name}} ({{counts | countFilter: type}})
           </button>
         </mat-card-actions>
       </mat-card>
