@@ -28,8 +28,16 @@
     font-family:verdana;
 }
 
-#navbarSarchBarContainer {width: calc(100% - 8px); z-index: 2; left: 0; top: 0;
-padding: 5px 30px; padding-left: 320px; overflow-x: hidden;  }
+#navbarSarchBarContainer {
+width: calc(165% - 8px);
+z-index: 2;
+left: 0;
+top: 0;
+padding: 5px 30px;
+padding-left: 410px;
+overflow-x: hidden;
+float: right; 
+}
 
 .header, .header-nav {
     display:block;
