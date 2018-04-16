@@ -19,20 +19,20 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   message = '';
   search = '';
   searchSub: any;
-  searchTerm$: Subject<string> = new Subject<string>();
+  foundList: any = [];
+  searchTerm$: Subject<any> = new Subject<any>();
   constructor(private router: Router, private route: ActivatedRoute, private accountService: AccountService, private appConfig: AppConfig) {
     console.log(this.route.parent);
   }
 
   ngOnInit() {
     this.searchForUser();
-    this.sub = this.route.params.subscribe(params => {
-      if (params.term && params.term.length > 0) {
-        this.search = params.term;
+    this.sub = this.route.queryParams.subscribe(params => {
+      if (params.searchTerm && params.searchTerm.length > 0) {
+        this.search = params.searchTerm;
         this.accountService.isLoading.next(true);
-        this.searchTerm$.next(params.term);
-      } else {
-        this.accounts = [];
+        const p = {term: this.search, foundList: this.foundList};
+        this.searchTerm$.next(p);
       }
     })
   }
@@ -76,6 +76,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   setMatches(accounts) {
     for (let j = 0; j < accounts.length; j++) {
       const acct = accounts[j];
+      this.foundList = this.foundList.concat(acct.accountId);
       let search = this.search;
       const push = [];
       if (search.length > 0 && acct.name.length > 0) {
@@ -127,7 +128,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   formatRequest(data: any) {
     console.log(data);
   }
-
 
   ngOnDestroy() {
     this.sub.unsubscribe();

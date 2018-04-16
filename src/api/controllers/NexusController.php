@@ -8,8 +8,11 @@ class NexusController {
 		if (isset($request->parameters['term'])) {
 			$search = $request->parameters['term'];
 			$data['term'] = $search;
-			$acctSearch = new NexusClass();
-			$data['data'] = $acctSearch->findAccount($search);
+      $acctSearch = new NexusClass();
+      $t = $acctSearch->findAccount($search,$request->parameters['ignore']);
+      $data['data'] = $t['data'];
+      $data['query'] = $t['query'];
+      $data['notIn'] = $request->parameters['ignore'];
 			$data['message'] = sizeof($data['data']) . ' Results found';
 		} else if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
@@ -28,17 +31,32 @@ class NexusController {
 		return $data;
 	}
 
+  public function correctParams($params) {
+    $arr = array();
+    foreach ($params as $key => $value) {
+        if($key === "ignore"){
+          $value = str_replace('[','',$value);
+          $value = str_replace(']','',$value);
+        }
+        if($key != "url_elements"){
+          $arr[$key] = $value;
+        }
+    }
+    return $arr;
+  }
+
+  public function optionsAction($request) {
+    return "You made an options request you dunst";
+  }
+
 	public function postAction($request) {
-		$data = $request->parameters;
+    $request->parameters = $this->correctParams($request->parameters);
 		if (isset($request->url_elements[1])) {
 			$r = $request->url_elements[1];
 			switch ($r) {
 			case 'search':
-				if (isset($data['term'])) {
-					$search = $data['term'];
-					$acctSearch = new NexusClass();
-					$data['data'] = $acctSearch->findAccount($search);
-					$data['message'] = sizeof($data['data']) . ' Results found';
+				if (isset($request->parameters['term'])) {
+          return $this->getAction($request);
 				}
 				break;
 			default:
@@ -48,7 +66,7 @@ class NexusController {
 		} else {
 			$data["message"] = "you want a list of users";
 		}
-		return $data;
+		return $request;
 	}
 }
 

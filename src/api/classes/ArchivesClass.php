@@ -5,10 +5,15 @@ class ArchivesClass {
 	var $parser;
 	var $providerId;
 	var $filename;
-	public function __construct($accountId, $parser, $filename, $providerId) {
+	public function __construct($accountId, $parser, $filename, $providerId = 'null') {
 		$this->accountId = $accountId;
-		$this->parser = $parser;
-		$this->providerId = $providerId;
+    $this->parser = $parser;
+    if(isset($providerId) && strlen($providerId) >= 0){
+      $this->providerId = $providerId;
+    }
+    else {
+      $this->providerId = 'false';
+    }
 		$this->filename = $filename;
 	}
 
@@ -31,22 +36,24 @@ class ArchivesClass {
 			$filters = explode('#F', $filters);
 			for ($i = 0; $i < sizeof($filters); $i++) {
 				if (strpos($filters[$i], $this->accountId . ' ')) {
-					$tmp = explode("\nif", $filters[$i], 2);
-					$array['task'] = $tmp[0];
-					$array['parser'] = $this->parser;
-					$array['filter'] = 'if' . $tmp[1];
-					array_push($filter, $array);
-				}
+					  $tmp = explode("\nif", $filters[$i], 2);
+            if(isset($tmp)) {
+              $array['task'] = $tmp[0];
+            }
+            if(isset($tmp[1])) {
+              $array['filter'] = 'if' . $tmp[1];
+            }
+					  $array['parser'] = $this->parser;
+            array_push($filter, $array);
+          }
 			}
 			if (sizeof($filter) > 0) {
 				$return[$this->parser] = $filter;
 				return $return;
-			} else {
-				return false;
 			}
-		}
-		return $parser;
-	}
+    }
+    return array();
+  }
 
 	function file_list() {
 		$url = "http://influxtools.dealer.com/archiver_test/?provider=$this->parser&accountId=$this->accountId&providerId=$this->providerId";
@@ -62,7 +69,14 @@ class ArchivesClass {
 
 		$data = file_get_contents($url, false, $context);
 		$return['url'] = $url;
-		$return['data'] = json_decode($data);
+    $e = json_decode($data);
+    // { path: ':provider/:filename/:providerId',
+    foreach ($e as $key => $value) {
+      $filename = $e[$key]->filename;
+      $t = "/account/$this->accountId/influx/$this->parser/$filename/$this->providerId";
+      $e[$key]->routerLink = $t;
+    }
+    $return['data'] = $e;
 		return $return;
 	}
 

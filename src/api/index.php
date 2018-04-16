@@ -40,12 +40,9 @@ class Request {
 
 	public function parseIncomingParams() {
 		$parameters = array();
-
-		// first of all, pull the GET vars
-		if (isset($_SERVER['QUERY_STRING'])) {
+    if (isset($_SERVER['QUERY_STRING'])) {
 			parse_str($_SERVER['QUERY_STRING'], $parameters);
 		}
-
 		$body = file_get_contents("php://input");
 		$content_type = false;
 		if (isset($_SERVER['CONTENT_TYPE'])) {
@@ -73,7 +70,11 @@ class Request {
 			break;
 		}
 		foreach ($parameters as $key => $value) {
-			$params = array();
+      $params = array();
+      // first of all, pull the GET vars
+		  if (isset($_SERVER['QUERY_STRING'])) {
+			  parse_str($_SERVER['QUERY_STRING'], $params);
+		  }
 			if ($key == 'url_elements') {
 				$val = explode('/', $value);
 				foreach ($val as $k => $v) {

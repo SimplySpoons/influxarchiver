@@ -16,7 +16,7 @@
           <a class="btn btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
           <h3 style="margin: 0;">Provider:
             <b>{{config.provider}}</b> |
-            <a class="pointer" (click)="viewFeedData(config)"> Feed Last Ran {{config.lastRan}} </a>
+            <a class="pointer" [routerLink]="[config.lastRun.routerLink]" (click)="viewFeedData(config)"> Feed Last Ran {{config.lastRun.time}} </a>
           </h3>
           <h4 *ngIf="config.providerid != false" style="margin: 0 0 15px;">
             Provider ID:
@@ -62,7 +62,7 @@
           </mat-tab>
           <mat-tab label="Recent Files">
             <ul>
-              <li *ngFor="let file of config.files">
+              <li *ngFor="let file of config.files.data">
                 <a class="btn btn-small btn-primary">
                   View Feed
                 </a>
@@ -84,9 +84,9 @@
               </li>
             </ul>
           </mat-tab>
-          <mat-tab label="Filters - {{filters[config.provider].length}}" [disabled]="filters[config.provider].length === 0">
+          <mat-tab label="Filters - {{config.filters.length}}" [disabled]="config.filters.length === 0">
             <div class="demo-tab-content">
-              <div class="filterDisplay" *ngFor="let filter of filters[config.provider]; let i = index">
+              <div class="filterDisplay" *ngFor="let filter of config.filters; let i = index">
                 <h3> Filter - {{i + 1}} | {{filter.parser}}</h3>
                 <div>
                   <p>

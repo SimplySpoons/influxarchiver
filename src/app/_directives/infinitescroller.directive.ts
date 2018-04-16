@@ -1,6 +1,5 @@
 import { Directive, AfterViewInit, ElementRef, Input, Inject } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/platform-browser';
 
 import { Observable, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/observable/fromEvent';
@@ -9,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/startWith';
+import { AppConfig } from '../app.config';
 
 interface ScrollPosition {
   sH: number;
@@ -40,11 +40,15 @@ export class InfiniteScroller implements AfterViewInit {
   @Input()
   scrollPercent = 80;
 
+  @Input()
+  totalElements = 0;
+
+
   element: Element;
 
 
-  constructor(@Inject(DOCUMENT) private document: Document, private el: ElementRef) {
-      this.element = el.nativeElement;
+  constructor(private appConfig: AppConfig, private el: ElementRef) {
+    this.element = el.nativeElement;
   }
 
   ngAfterViewInit() {
@@ -55,6 +59,13 @@ export class InfiniteScroller implements AfterViewInit {
 
   private registerScrollEvent() {
     this.scrollEvent$ = Observable.fromEvent(this.element, 'scroll');
+    this.scrollEvent$.subscribe(event => {
+      if (event.target.scrollTop > 0) {
+        this.appConfig.collapseHeader(true);
+      } else {
+        this.appConfig.collapseHeader(false);
+      }
+    });
   }
 
   private streamScrollEvents() {

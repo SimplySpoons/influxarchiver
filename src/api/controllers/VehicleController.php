@@ -7,16 +7,15 @@ class VehicleController {
 
   public function convertParams($params){
     $queryParams = explode(',',$params);
+    $tmp = array();
     foreach ($queryParams as $key => $value) {
         $p = explode(':',$value);
-        $tmp = array();
         if(sizeof($p) > 0){
           $tmp[$p[0]] = $p[1];
         }
-        $queryParams[$key] = $tmp;
     }
-    if(sizeof($queryParams) > 0){
-      return $queryParams;
+    if(sizeof($tmp) > 0){
+      return $tmp;
     }
     return false;
   }
@@ -38,8 +37,9 @@ class VehicleController {
         else {
           $params = false;
         }
-        $data['data'] = $acct->$function($params);
-        $data['params'] = $params;
+        $d = $acct->$function($params);
+        $data['params'] = $d;
+        $data['vehicles'] = $d->returnVehicles();
 			} else {
 				// $data["message"] = "here is the info for user " . $account_id;
 				$acct = new NexusClass($account_id);

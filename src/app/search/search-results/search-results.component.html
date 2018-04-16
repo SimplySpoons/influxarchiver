@@ -9,7 +9,7 @@
 
   <mat-card *ngFor="let account of accounts | searchResults: search" class="clearfix noShadow">
     <mat-card-title class="inline title"><b>{{account.name}} </b> / {{account.accountId}}</mat-card-title>
-    <mat-card-actions (click)="setNewAccount(account)">
+    <mat-card-actions (click)="setNewAccount(account); closeSearch();">
      <button mat-icon-button class="button" [routerLink]="['/account', account.accountId]">
         <span><i class="fa fa-cogs"></i> Influx Configs ({{account.num_configs}})</span>
      </button>

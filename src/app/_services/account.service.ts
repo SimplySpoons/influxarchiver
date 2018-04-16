@@ -17,19 +17,10 @@ export class AccountService {
   isLoading: Subject<boolean> = new Subject<boolean>();
   constructor(private conf: AppConfig, private http: Http) {
     this.API_URL = this.conf.API_CONFIG();
-    this.testPost().subscribe(message => {
-      console.log(message);
-    })
+    this.conf.currentAcouunt.subscribe(account => {
+        this.setCurrentAccount(account);
+    });
   }
-
-  /*
-  getAccountData(accountId: string) {
-    this.getAcctData(accountId);
-    return this.http.post(this.API_URL + 'account.php', { request: "getAccountData", accountId: accountId }).map(
-      (response: Response) => response.json());
-  }
-  */
-
 
   getAccountData(accountId: string) {
     return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/account_info').map(
@@ -130,20 +121,17 @@ export class AccountService {
   // getCurrentProvider() {
   //     return this.provider;
   // }
-  search(names: Observable<string>) {
-    return names.debounceTime(400)
+  search(params: Observable<any>) {
+    return params.debounceTime(400)
       .distinctUntilChanged()
-      .switchMap(name =>
-        this.searchForAcct(name)
+      .switchMap(param =>
+        this.searchForAcct(param.term,param.foundList)
       );
   }
-  searchForAccount(name) {
-    this.searchForAcct(name);
-    return this.http.post(this.API_URL + 'account.php', { request: "searchForAccount", search: name }).map(
-      (response: Response) => response.json());
-  }
-  searchForAcct(name) {
-    return this.http.get(this.API_URL + '/api/nexus/search?term=' + name).map(
+  searchForAcct(name,foundList = []) {
+    const ignore = foundList.toString();
+    console.log(ignore);
+    return this.http.post(this.API_URL + '/api/nexus/search?term=' + name, {ignore: ignore}).map(
       (response: Response) => response.json());
   }
   searchVehicle(term: Observable<string>, accountId: any) {

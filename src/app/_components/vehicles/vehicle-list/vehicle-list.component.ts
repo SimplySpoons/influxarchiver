@@ -36,6 +36,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
   element;
   classes = '';
   observe: any;
+  params: any;
 
   width = 0;
 
@@ -85,7 +86,9 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     this.loading = true;
     this.items = [];
     this.accountService.getAccountVehicles(this.accountId, type, classification, 0).subscribe(items => {
-      this.items = items.json();
+      const data = items.json();
+      this.items = data.vehicles;
+      this.params = data.params;
       this.loading = false;
     });
   }
@@ -98,8 +101,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     if (this.loadDone == false) {
       this.offset = this.items.length;
       return this.accountService.getAccountVehicles(this.accountId, this.type, this.classification, this.offset).do(this.processData);
-    }
-    else {
+    } else {
       this.loading = false;
     }
   }
@@ -109,10 +111,10 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
 
   private processData = (vehicles) => {
     this.tmpData = vehicles.json();
-    if (this.tmpData.length < 20) {
+    if (this.tmpData.vehicles.length < 20) {
       this.loadDone = true;
     }
-    this.items = this.items.concat(this.tmpData);
+    this.items = this.items.concat(this.tmpData.vehicles);
     this.offset = this.items.length;
     this.loading = false;
   }
@@ -140,9 +142,7 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
       this.accountId = params['id'];
       this.searchForVehicle();
       this.account = this.accountService.getCurrentAccount();
-      this.accountService.getInvCounts(this.accountId).subscribe(counts => {
-        this.invCounts = counts;
-      })
+      console.log(this.account);
     });
     this.routersub = this.route.params.subscribe(params => {
       this.type = params['type'];

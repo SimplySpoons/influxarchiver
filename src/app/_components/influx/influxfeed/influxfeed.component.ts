@@ -122,11 +122,11 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
     const cols = [];
     for (let j = 0; j < this.influxHeaders.length; j++) {
       cols[j] = [];
-      for(let i = 0; i < total.length; i++) {
-          cols[j].push(total[i][j]);
+      for (let i = 0; i < total.length; i++) {
+        cols[j].push(total[i][j]);
       }
       console.log(cols[j]);
-     // cols[j] = this.getLargest(cols[j])[0];
+      // cols[j] = this.getLargest(cols[j])[0];
     }
     console.log(cols);
     return total;
@@ -164,7 +164,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
     };
   }
 
-  logEvent(event){
+  logEvent(event) {
     console.log(event);
   }
 
@@ -185,12 +185,11 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
         this.selectedInfluxVehicles = this.influxVehicles;
         this.fileRequest.totalElements = vehicles.vehicles.length;
         this.isLoading = false;
-     //   this.colLengths = this.getColLength(this.selectedInfluxVehicles);
-     //   console.log(this.colLengths);
+        //   this.colLengths = this.getColLength(this.selectedInfluxVehicles);
+        //   console.log(this.colLengths);
         if (this.influxVehicles.length >= 50 && !this.fileRequest.filename.includes(this.fileRequest.accountId)) {
           this.getFullFile();
-        }
-        else {
+        } else {
           this.fileRequest.isLoading = false;
         }
       });
@@ -211,6 +210,9 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
     this.fileIndex = data;
     this.archivedFile = this.files[data];
     this.getLargest(this.archivedFile.ind.DATA);
+    if (!this.fileRequest.providerId) {
+      this.fileRequest.providerId = 'null';
+    }
     this.router.navigate([
       this.fileRequest.provider,
       this.archivedFile.filename,
@@ -280,7 +282,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.fileRequest.pageSize = 0;
     this.sub = this.route.params.subscribe((params: ArchivedFile) => {
-      this.fileRequest = {...params};
+      this.fileRequest = { ...params };
       this.fileRequest.accountId = params['id'];
       this.fileRequest.offset = 0;
       this.fileRequest.fileSize = 0;

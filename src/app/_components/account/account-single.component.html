@@ -11,40 +11,43 @@
     zip: string;
     country: string;
 -->
-<mat-toolbar>
-  <mat-toolbar-row class="secondary-row" *ngIf="account.accountId">
-    <span>
-      <i class="fa fa-id-card"></i>
-      <b>{{account.accountId}}</b>
-    </span>
-    <span>
-      {{account.name}}
-    </span>
-    <span>
-      <i class="fa fa-map-marker"></i> {{account.address1}} {{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}} </span>
-    <span *ngIf="apis">
-      <small *ngIf="apis.type==1"> vAuto API:
-        <b> Yes </b>
-      </small>
-      <small *ngIf="apis.type==0"> vAuto API:
-        <b> No </b>
-      </small>
-    </span>
-    <span>
-      <a class="btn btn-sm" href="{{account.publicUrl}}" target="_blank">
-        <i class="fa fa-laptop"></i>Website</a>
-    </span>
-  </mat-toolbar-row>
-</mat-toolbar>
-<nav mat-tab-nav-bar class="header-nav" [class.toggle]="toggle">
-  <a mat-tab-link *ngFor="let link of navLinks; let i = index" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
-    [active]="rla.isActive" [class.active]="rla.isActive">
-    <i class="fa {{link.class}}"></i>{{link.label}}
-    <span class="count">{{link.count}}</span>
-  </a>
-</nav>
-
-<div class="pos-relative">
+<div #singleHeader>
+  <mat-toolbar class="single-header">
+    <mat-toolbar-row class="secondary-row" *ngIf="account.accountId">
+      <span>
+        <i class="fa fa-id-card"></i>
+        <b>{{account.accountId}}</b>
+      </span>
+      <span>
+        {{account.name}}
+      </span>
+      <span>
+        <i class="fa fa-map-marker"></i> {{account.address1}} {{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
+        </span>
+      <span *ngIf="apis">
+        <small *ngIf="apis.type==1"> vAuto API:
+          <b> Yes </b>
+        </small>
+        <small *ngIf="apis.type==0"> vAuto API:
+          <b> No </b>
+        </small>
+      </span>
+      <span>
+        <a class="btn btn-sm" href="{{account.publicUrl}}" target="_blank">
+          <i class="fa fa-laptop"></i>Website</a>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <nav mat-tab-nav-bar class="header-nav" [class.toggle]="toggle">
+    <a mat-tab-link *ngFor="let link of navLinks; let i = index" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive" [class.active]="rla.isActive">
+      <i class="fa {{link.class}}"></i>{{link.label}}
+      <span class="count">{{link.count}}</span>
+    </a>
+  </nav>
+</div>
+<div class="pos-relative" [style.height.px]="pageHeight">
+  <mat-progress-bar [class.show]="loading" class="loading" mode="indeterminate"></mat-progress-bar>
   <div class="pageWrapper" #page>
     <router-outlet></router-outlet>
   </div>

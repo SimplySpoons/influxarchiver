@@ -40,8 +40,13 @@ class ArchivesController {
 		$fileSize = $params->fileSize;
 		$filename = $params->filename;
 		$offset = $params->offset;
-		$provider = $params->provider;
-		$providerId = $params->providerId;
+    $provider = $params->provider;
+   // === false ? true : false;
+   if(isset($params->providerId)){
+    $providerId = $params->providerId;
+   } else {
+     $providerId = false;
+   }
 		$full = $params->full;
 		$start = $params->start;
 		$end = $params->end;

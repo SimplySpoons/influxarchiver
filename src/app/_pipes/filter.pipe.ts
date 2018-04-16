@@ -100,29 +100,17 @@ export class SearchArchived implements PipeTransform {
 @Injectable()
 export class countFilter implements PipeTransform {
   transform(counts: number, config: any): any {
-    if (config === undefined || counts === undefined || config.length === 0) {
+    if (!config || !counts || config.length === 0) {
       return 0;
     }
     let total = 0;
-    if (config.type == 1) {
-      if (counts[0].data) {
-        const vals = counts[0].data;
-        vals.forEach(val => {
-          if (config.classification == val.classification) {
-            total += Number(val.count);
-          }
-        });
-      }
-    } else {
-      if (counts[1].data) {
-        const vals = counts[1].data;
-        vals.forEach(val => {
-          if (config.classification == val.classification) {
-            total += Number(val.count);
-          }
-        });
-      }
+    const type = config.type - 1;
+    const c = config.classification;
+    if (!counts[type] || !counts[type][c]) {
+      return 0;
     }
+    const test = counts[type][c];
+    total += Number(test);
     return total;
   }
 }

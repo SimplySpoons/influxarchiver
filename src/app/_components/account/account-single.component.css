@@ -56,7 +56,6 @@
   bottom: 0;
   overflow-x: hidden;
   width: 100%;
-  padding: 30px;
 }
 
 .header-nav {
@@ -107,6 +106,25 @@
    margin-right: 10px;
  }
 
+  .single-header {
+    height: 60px;
+    min-height: 60px;
+  }
+
 .pos-relative {
   height: 100%;
+}
+
+.loading {
+      display: block;
+      height: 5px;
+      overflow: hidden;
+      position: absolute;
+      transition: opacity 250ms linear;
+      width: 100%;
+      z-index: 99999999999;
+      top: -3px;
+      right: 0;
+      width: 100%;
+
 }

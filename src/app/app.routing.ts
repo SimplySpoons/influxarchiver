@@ -14,10 +14,11 @@ import { CurrentfeedsComponent } from './feeds/currentfeeds.component';
 import { InfluxfeedComponent } from './_components/influx/influxfeed/influxfeed.component';
 
 export const APP_ROUTES: Routes = [
+  { path: '', redirectTo: 'account', pathMatch: 'full' },
   {
-    path: '', component: AccountComponent, children: [
+    path: 'account', component: AccountComponent, children: [
       {
-        path: 'account/:id', component: AccountSingleComponent,
+        path: ':id', component: AccountSingleComponent,
         children: [
           { path: '', redirectTo: 'influx', pathMatch: 'full' },
           { path: 'vehicles', component: VehicleListComponent },
@@ -25,30 +26,12 @@ export const APP_ROUTES: Routes = [
           { path: 'vehicles/:type/:classification', component: VehicleListComponent },
           {
             path: 'influx', component: InfluxComponent, children: [
-              { path: ':provider', component: InfluxfeedComponent },
+              { path: ':provider/:filename', component: InfluxfeedComponent },
               { path: ':provider/:filename/:providerId', component: InfluxfeedComponent },
-              { path: 'search', component: SearchPageComponent, children: [
-                  { path: ':term', component: SearchResultsComponent},
-                ]
-              }
-            ]
-          },
-          {
-            path: 'search', component: SearchPageComponent, children: [
-              {
-                path: ':term', component: SearchResultsComponent
-              },
             ]
           },
         ],
       },
-      {
-        path: 'search', component: SearchPageComponent, children: [
-          {
-            path: ':term', component: SearchResultsComponent
-          },
-        ]
-      }
     ]
   },
   { path: 'submitbug', component: SubmitbugComponent },

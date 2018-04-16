@@ -1,4 +1,4 @@
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Component, trigger, state, style, transition, animate, keyframes, APP_INITIALIZER, OnInit } from '@angular/core';
 import { fadeInAnimation } from './_animations/index';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -61,19 +61,16 @@ export class AppComponent implements OnInit {
     isFirstDisabled: false
   };
 
-  constructor(private router: Router, private appConfig: AppConfig) {
+  constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute) {
+    const p = this.activeRoute.queryParams.subscribe(params => {
+      if(params.searchTerm){
+        this.onValueChange(params.searchTerm);
+        p.unsubscribe();
+      }
+    });
     this.sub = router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.withPadding = router.url.includes('account');
-        const r = router.url.split('/search');
-        this.currentRoute = r[0];
-        if (r.length > 1) {
-          this.restoreString = r[1];
-          console.log(this.restoreString);
-          this.clearSearch = false;
-        } else {
-          this.clearSearch = true;
-        }
       }
     });
   }
@@ -84,11 +81,11 @@ export class AppComponent implements OnInit {
   onValueChange(data: string) {
     if (data && data.length > 0) {
       this.clearSearch = false;
-      this.router.navigate([this.currentRoute, 'search', data]);
+      this.restoreString = data;
+      this.router.navigate([], { queryParams: { searchTerm: this.restoreString }, relativeTo: this.activeRoute });
     } else {
       this.restoreString = data;
-      this.clearSearch = true;
-      this.router.navigate([this.currentRoute]);
+      this.router.navigate([], { relativeTo: this.activeRoute });
     }
   }
 

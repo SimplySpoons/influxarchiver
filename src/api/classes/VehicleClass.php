@@ -9,28 +9,15 @@ class VehicleClass {
   var $type = 0;
   var $limit = 50;
   var $offset = 0;
-  var $vehicles = array();
+  private $vehicles = array();
   var $term;
-	public function __construct($accountId = null, $params, $term = null) {
+  var $params;
+	public function __construct($accountId = null, $params = null, $term = null) {
 		$influxConnection = new InfluxConnect();
 		$nexusConnection = new NexusConnect();
 		$this->influxConnect = $influxConnection->connect();
 		$this->nexusConnect = $nexusConnection->connect();
     $this->accountId = $accountId;
-    if($params){
-      if($params['type'] >= 0){
-        $this->type = (int) $params['type'];
-      }
-      if($params['classification'] >= 4){
-        $this->classification = (int) $params['classification'];
-      }
-      if(isset($params['offset'])){
-        $this->offset = $params['offset'];
-      }
-      if(isset($params['limit'])){
-        $this->limit = $params['offset'];
-      }
-   }
 	}
 
   function classMap($num){
@@ -60,31 +47,44 @@ class VehicleClass {
 function setData($vehicle) {
 
 }
-
-function getAccountVehicles($uuid = null, $vin = null ){
+function returnVehicles() {
+  return $this->vehicles;
+}
+function getAccountVehicles($params){
         global $nexusConnect;
         $offset = 0;
         $typeQuery = "";
         $classQuery = "";
+        if($params){
+          if(isset($params['type'])){
+            $this->type += (int) $params['type'];
+          }
+          if(isset($params['classification'])){
+            $this->classification += (int) $params['classification'];
+          }
+          if(isset($params['offset'])){
+            $this->offset += (int) $params['offset'];
+          }
+          if(isset($params['limit'])){
+            $this->limit = (int) $params['offset'];
+          }
+        }
+        else {
+          $params = "NOT WORKING";
+        }
         if($this->type > 0){
           $typeQuery .= " AND type = $this->type";
         }
         if($this->classification > 0){
           $classQuery .= " AND classification = $this->classification";
         }
-        if($this->limit === 0) {
-          $limit = 50;
-        }
-        if($this->offset > 0){
-          $offset = $this->offset;
-        }
-        $get_vehicle = mysqli_query( $this->nexusConnect, "SELECT id,parentid,vin,stocknumber,year,make,model,trimlevel,modelcode,bodystyle,transmission,doors,extcolor,extcolorcode,intcolor,intcolorcode,engine,enginesize,mileage,certified,retailvalue,invoiceprice,askingprice,wholesaleprice,internetprice,msrp,saleprice,source,type,status,classification,isremoved,createdby,created,lastmodifiedby,lastmodified,removedby,removed,lotdate,options,optioncodes,comments,image,warranty_description,usestockphoto,isartenabled,carfaxexpiration,contactid,jatoid,edmundsid,globalid,packagecode,video_id,fuel,wheelbase,city_mpg,highway_mpg,driveline,cab,bed,googlebaseid,jato_canada_id,autodata_id,autodata_canada_id FROM vehicle WHERE parentid = '$this->accountId'$typeQuery$classQuery ORDER BY isremoved,parentid,vin" );
+        $get_vehicle = mysqli_query( $this->nexusConnect, "SELECT id,parentid,vin,stocknumber,year,make,model,trimlevel,modelcode,bodystyle,transmission,doors,extcolor,extcolorcode,intcolor,intcolorcode,engine,enginesize,mileage,certified,retailvalue,invoiceprice,askingprice,wholesaleprice,internetprice,msrp,saleprice,source,type,status,classification,isremoved,createdby,created,lastmodifiedby,lastmodified,removedby,removed,lotdate,options,optioncodes,comments,image,warranty_description,usestockphoto,isartenabled,carfaxexpiration,contactid,jatoid,edmundsid,globalid,packagecode,video_id,fuel,wheelbase,city_mpg,highway_mpg,driveline,cab,bed,googlebaseid,jato_canada_id,autodata_id,autodata_canada_id FROM vehicle WHERE parentid = '$this->accountId'$typeQuery$classQuery AND isremoved = 0 LIMIT $this->offset,$this->limit");
         if( mysqli_num_rows( $get_vehicle ) ) {
             while($vehicle = mysqli_fetch_array( $get_vehicle, MYSQLI_ASSOC )){
             $vehicle['className'] = $this->classMap($vehicle['classification'] + 0);
             foreach($vehicle as $key => $value) {
                 if($key !='image') {
-                    $vehicle[$key] = preg_replace("/(?![-,.;])\p{P}/u", "", $value);
+                    $vehicle[$key] = strip_tags($value);
                 }
             }
             $vehicle['title'] = $vehicle['year'] . ' ' . $vehicle['make'] . ' ' . $vehicle['model'] . ' ' . $vehicle['trimlevel'] . ' | ' . $vehicle['vin'] . ' | ' . $vehicle['stocknumber'];
@@ -110,7 +110,7 @@ function getAccountVehicles($uuid = null, $vin = null ){
             ];
              array_push($this->vehicles, $vehicle);
         }
-        return $this->vehicles;
+        return $this;
     }
 
     function getVehicleModel($vehicle){

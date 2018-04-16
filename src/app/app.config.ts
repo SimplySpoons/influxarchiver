@@ -82,6 +82,7 @@ export class AppConfig {
   }
 
   setCurrentAccount(data: any, reset = false) {
+    this.account.loading = data.loading;
     this.account = { ...this.account, ...data };
     reset = false;
     if (data.accountId && data.accountId !== this.accountId) {

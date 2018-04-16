@@ -70,5 +70,9 @@
 
 .header-container {
   background: #4B88C8;
-  transition: margin ease-in-out .5s;
+  transition: margin ease-in-out .25s;
+}
+.navbar-fixed-bottom,
+.navbar-fixed-top {
+  z-index: 9;
 }
