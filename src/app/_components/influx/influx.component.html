@@ -36,28 +36,27 @@
                 </div>
               </div>
               <h4>
-                <span>Inserts:
-                  <b [ngClass]="getClassName(config.inserts)"> {{config.inserts}}</b>
+                <span>Inserts:<b [ngClass]="getClassName(config.inserts)"> {{config.inserts}}</b>
                 </span>
                 <span>Deletes:
                   <b [ngClass]="getClassName(config.deletes)"> {{config.deletes}}</b>
                 </span>
-                <b>Feed Wins </b> |
+                <div class="feed-override-msg">
                 <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
                   <b style="color: green;">Green Items </b> indicate feed overrides on Inventory Data</small>
+                </div>
               </h4>
             </div>
           </mat-tab>
-          <mat-tab label="Vin Decoding">
+          <mat-tab label="VIN Decoding">
             <div class="demo-tab-content">
-              <h4>
-                <b>Vin Decoding </b> |
-                <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
-                  <b style="color: green;">Green Items </b> indicate fields being Vin Decoded</small>
-              </h4>
               <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
                 <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
               </div>
+              <h4 class="vin-decode-msg">
+                <small style="margin-left: 5px; margin-top: 11px; font-size: 16px;">
+                  <b style="color: green;">Green Items </b> indicate fields being VIN Decoded</small>
+              </h4>
             </div>
           </mat-tab>
           <mat-tab label="Recent Files">

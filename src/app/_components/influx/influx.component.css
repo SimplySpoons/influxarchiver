@@ -110,6 +110,16 @@
     transform: translateZ(0);
   }
   
+  .feed-override-msg { 
+    padding-top: 5px;
+  }
+
+  .vin-decode-msg {
+    position: relative;
+    left: -9%;
+    top: 15px;
+  }
+
   .hvr-icon-bob:before {
     content: "\f077";
     position: absolute;
