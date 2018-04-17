@@ -10,18 +10,6 @@
 <div class="main-panel" id="main-container" [@otherSlide]="otherSlide">
   <div class="container" [class.withPadding]="!withPadding">
     <router-outlet></router-outlet>
-    <span>
-
-      <div class="logo">
-        <img class="archiver-logo" src="https://i.imgur.com/HDBBxEV.png" />
-      </div>
-      <div id="indexsearchcontainer" class="indexsearchcontainer">
-        <div class="topSearch">
-          <input type="text" class="form-control input-md" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value"
-            [value]="value" (ngModelChange)="onValueChange($event)">
-        </div>
-
-      </div>
-    </span>
+    
   </div>
 </div>
