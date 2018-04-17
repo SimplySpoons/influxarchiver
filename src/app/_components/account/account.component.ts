@@ -1,6 +1,7 @@
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {AppConfig} from '../../app.config';
+import { AccountService } from '../../_services/account.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -28,40 +29,14 @@ export class AccountComponent implements OnInit {
     isFirstDisabled: false
   };
 
-  constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute) {
-    const p = this.activeRoute.queryParams.subscribe(params => {
-      if(params.searchTerm){
-        this.onValueChange(params.searchTerm);
-        p.unsubscribe();
-      }
-    });
-    this.sub = router.events.subscribe((route) => {
-      if (route instanceof NavigationEnd) {
-        this.withPadding = router.url.includes('account');
-      }
-    });
+  constructor(private appConfig: AppConfig,
+    private accountService: AccountService) {
   }
 
   removeSearchResults(data: any) {
   }
 
-  onValueChange(data: string) {
-    if (data && data.length > 0) {
-      this.clearSearch = false;
-      this.restoreString = data;
-      this.router.navigate([], { queryParams: { searchTerm: this.restoreString }, relativeTo: this.activeRoute });
-    } else {
-      this.restoreString = data;
-      this.router.navigate([], { relativeTo: this.activeRoute });
-    }
-  }
-
   ngOnInit() {
-    this.appSub = this.appConfig.closeSearch.subscribe((bool: boolean) => {
-      if (!bool) {
-        this.onValueChange('');
-      }
-    });
     this.head_sub = this.appConfig.collapsed.subscribe(bool => {
       this.collapsed = bool;
     })

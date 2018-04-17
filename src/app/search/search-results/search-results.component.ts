@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { AccountService } from 'app/_services/account.service';
 import { AppConfig } from '../../app.config';
 
@@ -20,22 +20,44 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   search = '';
   searchSub: any;
   foundList: any = [];
+  route_sub: any;
+  isParam = false;
+  value = '';
   searchTerm$: Subject<any> = new Subject<any>();
+  @Output() searchParam: EventEmitter<string> = new EventEmitter<string>();
   constructor(private router: Router, private route: ActivatedRoute, private accountService: AccountService, private appConfig: AppConfig) {
     console.log(this.route.parent);
   }
 
+
+
   ngOnInit() {
     this.searchForUser();
-    this.sub = this.route.queryParams.subscribe(params => {
+    this.registerSubscriber();
+    this.route_sub = this.route.queryParams.subscribe(params => {
       if (params.searchTerm && params.searchTerm.length > 0) {
-        this.search = params.searchTerm;
-        this.accountService.isLoading.next(true);
-        const p = {term: this.search, foundList: this.foundList};
-        this.searchTerm$.next(p);
+        this.searchParam.emit(params.searchTerm);
+        this.appConfig.closeSearch.next(true);
+        this.isParam = true;
+      } else {
+        this.isParam = false;
+        this.appConfig.closeSearch.next(false);
       }
     })
   }
+
+  registerSubscriber() {
+    this.sub = this.accountService.SearchTerm.subscribe(term => {
+      console.log(term);
+      if (term.length > 0) {
+        this.search = term;
+        const p = { term: this.search, foundList: this.foundList };
+        this.searchTerm$.next(p);
+        this.accountService.isLoading.next(true);
+      }
+    })
+  }
+
 
   setNewAccount(account) {
     this.appConfig.setCurrentAccount(account);
@@ -47,9 +69,15 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.appConfig.setCurrentAccount(account, true);
   }
 
+  closeInstance() {
+    this.accounts = [];
+    this.search = '';
+  }
+
   searchForUser() {
-    this.loading = true;
-    this.accountService.isLoading.next(true);
+    if (this.search.length > 0) {
+      this.loading = true;
+    }
     this.http_sub = this.accountService.search(this.searchTerm$).subscribe(name => {
       let data = [...this.accounts, ...name.data];
       data = this.arrayUnique(data);
@@ -122,7 +150,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
   closeSearch() {
-    this.appConfig.closeSearch.next(false);
+    this.searchParam.emit('');
+    this.accounts = [];
+    this.search = '';
   }
 
   formatRequest(data: any) {
@@ -132,6 +162,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.http_sub.unsubscribe();
+    this.route_sub.unsubscribe();
   }
 
 }

@@ -49,8 +49,10 @@ export class AppComponent implements OnInit {
   appSub: any;
   currentRoute: string;
   restoreString = '';
-  clearSearch = false;
+  searchTerm = '';
   // loading = true;
+
+  showSearch = false;
 
   head_sub: any;
 
@@ -63,14 +65,24 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute) {
     const p = this.activeRoute.queryParams.subscribe(params => {
-      if(params.searchTerm){
-        this.onValueChange(params.searchTerm);
+      console.log(params);
+      if (params.searchTerm) {
+        this.searchTerm = params.searchTerm;
         p.unsubscribe();
+      } else {
+        this.searchTerm = '';
       }
+  //    this.onValueChange(this.searchTerm);
     });
     this.sub = router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.withPadding = router.url.includes('account');
+        console.log(router.url);
+        if(!router.url.includes('/search') && router.url.includes('searchTerm')){
+          this.showSearch = true;
+        } else {
+          this.showSearch = false;
+        }
       }
     });
   }
@@ -79,24 +91,17 @@ export class AppComponent implements OnInit {
   }
 
   onValueChange(data: string) {
+    console.log(data);
     if (data && data.length > 0) {
-      this.clearSearch = false;
-      this.restoreString = data;
-      this.router.navigate([], { queryParams: { searchTerm: this.restoreString }, relativeTo: this.activeRoute });
+      this.router.navigate([], { queryParams: { searchTerm: data }, relativeTo: this.activeRoute });
     } else {
-      this.restoreString = data;
-      this.router.navigate([], { relativeTo: this.activeRoute });
+      this.router.navigate([]);
     }
   }
 
 
 
   ngOnInit() {
-    this.appSub = this.appConfig.closeSearch.subscribe((bool: boolean) => {
-      if (!bool) {
-        this.onValueChange('');
-      }
-    });
     this.head_sub = this.appConfig.collapsed.subscribe(bool => {
       this.collapsed = bool;
     })

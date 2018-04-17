@@ -34,10 +34,12 @@ export const APP_ROUTES: Routes = [
       },
     ]
   },
+ { path: 'search', component: SearchPageComponent},
   { path: 'submitbug', component: SubmitbugComponent },
   { path: 'issuetracker', component: IssuetrackerComponent },
   { path: 'currentfeeds', component: CurrentfeedsComponent },
   { path: 'feeds', component: FeedsComponent }
 ];
+
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES, { preloadingStrategy: PreloadAllModules });

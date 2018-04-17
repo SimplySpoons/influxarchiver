@@ -14,6 +14,10 @@ export class AccountService {
   API_URL: string;
   account: Account;
   sendAccountChange = new EventEmitter<any>();
+
+  SearchTerm: Subject<string> = new Subject<string>();
+
+
   isLoading: Subject<boolean> = new Subject<boolean>();
   constructor(private conf: AppConfig, private http: Http) {
     this.API_URL = this.conf.API_CONFIG();

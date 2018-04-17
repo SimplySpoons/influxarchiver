@@ -15,12 +15,20 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 export class SearchPageComponent {
   loading = false;
+  closeSearch = false;
+  search = '';
   @Input() showResults;
   constructor(private accountService: AccountService) {
     this.accountService.isLoading.subscribe(loading => {
+      console.log(loading);
       this.loading = loading;
     })
   }
+  getValue(term: string){
+    this.search = term;
+    this.emitTerm(this.search);
+  }
+  emitTerm(term: string){
+    this.accountService.SearchTerm.next(term);
+  }
 }
-
-

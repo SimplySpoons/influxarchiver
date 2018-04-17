@@ -9,7 +9,7 @@ export const slideDownAnimation =
       // the view covers the whole screen with a semi tranparent background
       position: 'fixed',
       top: '60px',
-      left: 0,
+      left: '80px',
       right: 0,
       bottom: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.85)',
