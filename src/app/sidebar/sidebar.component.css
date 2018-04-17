@@ -914,15 +914,8 @@ body .nav-side-menu {
 }
 
 .title .inline {
-     font-size: 15px;
-     text-align: left;
      padding: 5px;
-     border: 1px solid #4E86C8;
-     height: 40px;
-     float: right;
-     text-transform: uppercase;
      line-height: 27px;
-     margin-right: 16px;
 }
 
 .title #nav-icon2 {
