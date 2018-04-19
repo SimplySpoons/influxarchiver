@@ -27,6 +27,12 @@
               <i class="fa fa-laptop"></i> CMS Link </span>
           </a>
         </button>
+        <button mat-icon-button class="button">
+            <a href="{{account.publicUrl}}" target="_blank">
+              <span class="white">
+                <i class="fa fa-laptop"></i> Live Site </span>
+            </a>
+          </button>
       </mat-card-actions>
     </mat-card>
     <span class="white" *ngIf="accounts.length > 0"> {{accounts.length}} Results Found </span>
