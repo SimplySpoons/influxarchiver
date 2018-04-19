@@ -18,11 +18,13 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   searchTerm = '';
   message = '';
   search = '';
+  searchRoute: boolean;
   searchSub: any;
   foundList: any = [];
   route_sub: any;
   isParam = false;
   value = '';
+  @Output() isSearchRoute: EventEmitter<boolean> = new EventEmitter<boolean>();
   searchTerm$: Subject<any> = new Subject<any>();
   @Output() searchParam: EventEmitter<string> = new EventEmitter<string>();
   constructor(private router: Router, private route: ActivatedRoute, private accountService: AccountService, private appConfig: AppConfig) {
@@ -34,6 +36,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.searchForUser();
     this.registerSubscriber();
+    this.searchRoute = this.appConfig.searchRoute;
+    this.isSearchRoute.emit(this.searchRoute);
     this.route_sub = this.route.queryParams.subscribe(params => {
       if (params.searchTerm && params.searchTerm.length > 0) {
         this.searchParam.emit(params.searchTerm);
@@ -43,6 +47,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.isParam = false;
         this.appConfig.closeSearch.next(false);
       }
+    })
+    this.appConfig.isSearchRoute.subscribe(searchRoute => {
+      this.isSearchRoute.emit(searchRoute);
     })
   }
 

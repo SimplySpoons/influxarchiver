@@ -16,6 +16,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 export class SearchPageComponent {
   loading = false;
   closeSearch = false;
+  isSearchRoute = false;
   search = '';
   @Input() showResults;
   constructor(private accountService: AccountService) {
@@ -24,6 +25,15 @@ export class SearchPageComponent {
       this.loading = loading;
     })
   }
+
+  setSearchRoute(data: boolean): void{
+    this.isSearchRoute = data;
+  }
+
+  getSearchRoute(): boolean {
+    return this.isSearchRoute;
+  }
+
   getValue(term: string){
     this.search = term;
     this.emitTerm(this.search);

@@ -77,12 +77,14 @@ export class AppComponent implements OnInit {
     this.sub = router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.withPadding = router.url.includes('account');
-        console.log(router.url);
-        if(!router.url.includes('/search') && router.url.includes('searchTerm')){
+        const isSearchRoute = router.url.includes('/search');
+        console.log("THIS IS THE CURRENT ROUTE", router.url);
+        if(!isSearchRoute && router.url.includes('searchTerm')){
           this.showSearch = true;
         } else {
           this.showSearch = false;
         }
+        this.appConfig.setSearchRoute(isSearchRoute);
       }
     });
   }
