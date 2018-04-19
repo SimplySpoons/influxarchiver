@@ -11,7 +11,7 @@
 
     <mat-card *ngFor="let account of accounts | searchResults: search" class="clearfix noShadow">
       <mat-card-title class="inline title">
-        <b>{{account.name}} </b> / {{account.accountId}} / {{account.address1}} {{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}</mat-card-title>
+        <b>{{account.name}} </b> / {{account.accountId}} / {{account.address1}}{{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}</mat-card-title>
       <mat-card-actions (click)="setNewAccount(account); closeSearch();">
         <button mat-icon-button class="button" [routerLink]="['/account', account.accountId]">
           <span>
