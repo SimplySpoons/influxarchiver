@@ -116,7 +116,7 @@
 
   .vin-decode-msg {
     position: relative;
-    left: -9%;
+    left: -12.3%;
     top: 15px;
   }
 
@@ -180,3 +180,8 @@
 .demo-tab-content.feedtab .clearfix, .demo-tab-content.decodetab div {
   margin-left: 8%;
 }
+
+.allfeeds { 
+  border-bottom: 1px solid #ccc; 
+}
+

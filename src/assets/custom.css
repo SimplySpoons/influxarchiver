@@ -447,3 +447,7 @@ body {
 .loading.show {
   opacity: 1;
 }
+
+.allfeeds .mat-list-text { 
+  padding-bottom: 8px !important; 
+}
