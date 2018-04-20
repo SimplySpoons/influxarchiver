@@ -78,3 +78,7 @@ span {
   color: #636879;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
+
+.accountname {
+  margin-bottom: 4px;
+}

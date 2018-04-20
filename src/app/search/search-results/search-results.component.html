@@ -12,27 +12,23 @@
     <mat-card *ngFor="let account of accounts | searchResults: search" class="clearfix noShadow">
       <mat-card-title class="inline title">
         <b>{{account.name}} </b> / {{account.accountId}} / {{account.address1}}{{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}</mat-card-title>
-      <mat-card-actions (click)="setNewAccount(account); closeSearch();">
-        <button mat-icon-button class="button" [routerLink]="['/account', account.accountId]">
+      <mat-card-actions>
+        <button mat-icon-button class="button" [routerLink]="['/account', account.accountId]" (click)="setNewAccount(account);">
           <span>
             <i class="fa fa-cogs"></i> Influx Configs ({{account.num_configs}})</span>
         </button>
-        <button mat-icon-button class="button" [routerLink]="['/account', account.accountId, 'vehicles']">
+        <button mat-icon-button class="button" [routerLink]="['/account', account.accountId, 'vehicles']" (click)="setNewAccount(account);">
           <span>
             <i class="fa fa-car"></i> Vehicles ({{account.num_vehicles}})</span>
         </button>
-        <button mat-icon-button class="button">
-          <a href="http://{{account.accountId}}.cms.dealer.com" target="_blank">
-            <span class="white">
-              <i class="fa fa-laptop"></i> CMS Site </span>
-          </a>
-        </button>
-        <button mat-icon-button class="button">
-            <a href="{{account.publicUrl}}" target="_blank">
-              <span class="white">
-                <i class="fa fa-laptop"></i> Live Site </span>
-            </a>
-          </button>
+        <a mat-icon-button class="button" href="http://{{account.accountId}}.cms.dealer.com"  target="_blank">
+           <span class="white">
+            <i class="fa fa-laptop"></i> CMS Site </span>
+        </a>
+        <a mat-icon-button class="button" href="{{account.publicUrl}}" target="_blank">
+          <span class="white">
+            <i class="fa fa-laptop"></i> Live Site </span>
+        </a>
       </mat-card-actions>
     </mat-card>
     <span class="white" *ngIf="accounts.length > 0"> {{accounts.length}} Results Found </span>
