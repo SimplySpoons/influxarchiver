@@ -29,7 +29,7 @@
         </div>
         <mat-tab-group class="demo-tab-group">
           <mat-tab label="Feed Wins">
-            <div class="demo-tab-content">
+            <div class="demo-tab-content feedtab">
               <div class="clearfix">
                 <div class="feedWins-item" *ngFor="let wins of config.feedWins">
                   <small class="col-md-2 attr" [class.active]="wins.value">{{wins.key}} </small>
@@ -49,7 +49,7 @@
             </div>
           </mat-tab>
           <mat-tab label="VIN Decoding">
-            <div class="demo-tab-content">
+            <div class="demo-tab-content decodetab">
               <div class="scrubAtts-item" *ngFor="let atts of config.scrubAtts">
                 <small class="col-md-2" [class.active]="atts.value">{{atts.key}}</small>
               </div>

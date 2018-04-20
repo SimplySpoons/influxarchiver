@@ -177,3 +177,6 @@
     text-align: center;
   }
 
+.demo-tab-content.feedtab .clearfix, .demo-tab-content.decodetab div {
+  margin-left: 8%;
+}
