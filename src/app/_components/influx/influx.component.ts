@@ -41,7 +41,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   count_sub: any;
   counts: any;
   params: Provider = new Provider();
-
+  showIndex = -1;
 
   constructor(private accountService: AccountService,
     private route: ActivatedRoute, private router: Router,
@@ -57,7 +57,9 @@ export class InfluxComponent implements OnInit, OnDestroy {
       this.influx.setFileList(config.files.data);
     }
   }
-
+  setConfigToShow(index) {
+    this.showIndex = index;
+  }
   toggleFilter(config) {
     if (this.filters[config.provider] && !config.filters) {
       config.filters = this.filters[config.provider];

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="feed-selector pull-left">
     <mat-list class="feeds">
-      <mat-list-item *ngFor="let config of influxConfigs | feed; let i = index" class="feed">
+      <mat-list-item *ngFor="let config of influxConfigs | feed; let i = index" class="feed" (click)="setConfigToShow(i);">
         <h3 class="title" matLine> {{config.name}} </h3>
         <span class="types" matLine *ngFor="let type of config.types">
           {{type.name}}
@@ -9,14 +9,14 @@
       </mat-list-item>
     </mat-list>
     <mat-list class="allfeeds">
-        <mat-list-item class="feed">
+        <mat-list-item class="feed" (click)="setConfigToShow(-1);">
           <h3 class="title" matLine> View All Feeds</h3>
         </mat-list-item>
       </mat-list>
   </div>
   <div class="configs" (scroll)="onScroll($event)">
-    <div *ngFor="let config of influxConfigs" class="config">
-      <mat-card>
+    <div *ngFor="let config of influxConfigs; let i = index" class="config">
+      <mat-card *ngIf="showIndex === i || showIndex === -1">
         <div class="clearfix border-bottom">
           <a class="btn editconfig btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
           <h3 style="margin: 0;">Provider:
