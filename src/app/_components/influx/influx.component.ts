@@ -133,7 +133,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
       this.counts = this.account.inventory_counts;
     }
   }
-
+  
   getInvCounts() {
     this.count_sub = this.accountService.getInvCounts(this.accountId).subscribe(
       success => {

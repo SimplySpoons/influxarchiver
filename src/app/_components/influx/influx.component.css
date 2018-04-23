@@ -185,3 +185,10 @@
   border-bottom: 1px solid #ccc; 
 }
 
+.mat-list-item:hover { 
+  background-color: #C2BFBF; 
+} 
+
+.mat-list-item {
+  cursor: pointer;
+}
