@@ -48,7 +48,7 @@
     </a>
   </nav>
 </div>
-<div class="pos-relative" [style.height.px]="pageHeight">
+<div class="pos-relative" [style.height.px]="pageHeight" (window:resize)="setHeights()">
   <mat-progress-bar [class.show]="loading" class="loading" mode="indeterminate"></mat-progress-bar>
   <div class="pageWrapper" #page>
     <router-outlet></router-outlet>

@@ -93,7 +93,10 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     });
   }
 
-  setHeights() {
+  setHeights(data = null) {
+    if(data !== null){
+      console.log("RESIZE EVENT", data);
+    }
     this.headerHeight = this.singleHeader.nativeElement.clientHeight;
     this.pageHeight = this.windowHeight - this.headerHeight;
     console.log(this.headerHeight);
