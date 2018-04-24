@@ -15,7 +15,7 @@ import { AccountSingleComponent } from './_components/account/account-single.com
 import { AccountService } from './_services/account.service';
 import { VehicleListComponent, VehicleItemComponent, VehicleSingleComponent } from './_components/vehicles/index';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
-import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe, countFilter, FeedPipe, SearchResultsPipe } from './_pipes/filter.pipe';
+import { FilterPipe, SearchPipe, SearchArchived, DuplicatePipe, FormatPipe, countFilter, FeedPipe, SearchResultsPipe, InventoryCounts } from './_pipes/filter.pipe';
 import { feedSearch } from './_pipes/feedsearch.pipe';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -65,6 +65,7 @@ export function initializeCurrentUser(config: AppConfig) {
     SearchResultsPipe,
     countFilter,
     FormatPipe,
+    InventoryCounts,
     FeedPipe,
     DuplicatePipe,
     SearchArchived,
@@ -98,7 +99,7 @@ export function initializeCurrentUser(config: AppConfig) {
     CarouselModule.forRoot(),
     NgxDatatableModule
   ],
-  exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe,countFilter],
+  exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe,countFilter,InventoryCounts],
   // tslint:disable-next-line:max-line-length
   providers: [AccountService, ModalService, InfluxService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig],
   bootstrap: [AppComponent]

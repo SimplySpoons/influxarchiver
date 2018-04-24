@@ -141,8 +141,17 @@ export class VehicleListComponent implements OnInit, OnDestroy, OnChanges, After
     this.sub = this.route.parent.params.subscribe(params => {
       this.accountId = params['id'];
       this.searchForVehicle();
-      this.account = this.accountService.getCurrentAccount();
-      console.log(this.account);
+      const sub = this.accountService.getCurrentAccount().subscribe(account => {
+          this.account = account;
+          if(this.account.inventory_counts.length === 0){
+            this.accountService.getInvCounts(this.accountId).subscribe(counts => {
+                this.invCounts = counts;
+            })
+          } else {
+            this.invCounts = this.account.inventory_counts;
+          }
+          this.sub.unsubscribe();
+      });
     });
     this.routersub = this.route.params.subscribe(params => {
       this.type = params['type'];

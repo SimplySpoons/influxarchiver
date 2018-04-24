@@ -14,7 +14,7 @@ export class InfluxService {
   fileListSubject: Subject<any> = new Subject<any>();
   filtersSubject: Subject<any> = new Subject<any>();
   filters: any;
-  files: any;
+  files: any = [];
   constructor(private conf: AppConfig, private http: Http) {
     this.API_URL = this.conf.API_CONFIG();
   }
@@ -23,6 +23,16 @@ export class InfluxService {
     this.files = files;
     this.fileListSubject.next(files);
   }
+
+
+  getFileList(feedParams: any) {
+    return this.http.get(this.API_URL + 
+      "/api/archives/" + feedParams.accountId + 
+      "/" + feedParams.provider + "/" +
+      feedParams.providerId + "/file_list")
+    .map((res: Response)=> res.json())
+  }
+
   setFilters(filters: any){
     this.filters = filters;
     this.filtersSubject.next(filters);

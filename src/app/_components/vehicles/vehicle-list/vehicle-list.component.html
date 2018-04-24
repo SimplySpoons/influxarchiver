@@ -38,7 +38,8 @@
 </div>
 
   <div class="col-md-2">
-    <button dropdownToggle dropdown *ngFor="let count of invCounts" type="button" id="invbutton" class="btn btn-primary col-md-6"
+    {{invCounts | invCounts | json}}
+    <button dropdownToggle dropdown *ngFor="let count of invCounts | invCounts" type="button" id="invbutton" class="btn btn-primary col-md-6"
       dropdown-open>{{count.name}} ({{count.count}})
       <span class="caret"></span>
       <ul *dropdownMenu class="dropdown-menu" role="menu">

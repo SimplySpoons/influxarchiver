@@ -209,7 +209,8 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
   onValueChange(data: any) {
     this.fileIndex = data;
     this.archivedFile = this.files[data];
-    this.getLargest(this.archivedFile.ind.DATA);
+    console.log(this.archivedFile);
+    // this.getLargest(this.archivedFile.ind.DATA);
     if (!this.fileRequest.providerId) {
       this.fileRequest.providerId = 'null';
     }
@@ -308,6 +309,19 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
       this.setRows();
     });
     this.adjustTableSize();
+    setTimeout(() => {
+      if(this.files.length === 0){
+        this.influx.getFileList(this.fileRequest).subscribe(
+          files => {
+            this.files = files.files;
+          },
+          error => {
+            console.log(error);
+
+          }
+        )
+      }
+    }, 250);
   };
 
   adjustTableSize() {

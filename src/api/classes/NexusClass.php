@@ -68,15 +68,6 @@ class NexusClass {
 		}
   }
 
-  public function fixFormating($obj) {
-    foreach ($obj as $key => $value) {
-        if(!is_array($value)){
-          $obj[$key] = utf8_decode($value);
-        }
-    }
-    return $obj;
-  }
-
 	public function findAccount($name, $foundList = false) {
 		$namelower = strtolower($name);
 		$array = array();

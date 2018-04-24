@@ -67,24 +67,10 @@
           <mat-tab label="Recent Files">
             <ul>
               <li *ngFor="let file of config.files.data">
-                <a class="btn btn-small btn-primary">
+                <a class="btn btn-small btn-primary" [routerLink]="[file.routerLink]" (click)="viewFeedData(config)">
                   View Feed
                 </a>
-                - Ran: {{file.time | date: "short"}} - Parsed: {{ file.ind.PARSED | date: "short" }}
-                <span *ngFor="let num of file.ind.DATA; let i = index">
-                  <span *ngIf="num > 0 && ( i === 0 || i === 1 )">
-                    Pre:
-                    <b>
-                      {{num}}
-                    </b>
-                  </span>
-                  <span *ngIf="i > 1">
-                    Post:
-                    <b>
-                      {{num}}
-                    </b>
-                  </span>
-                </span>
+                - Ran: {{file.time | date: "short"}}
               </li>
             </ul>
           </mat-tab>
@@ -103,6 +89,12 @@
           </mat-tab>
         </mat-tab-group>
         <hr>
+        <pre *ngIf="debug">
+          {{config | json}}
+        </pre>
+        <pre *ngIf="config.comments !== null"> 
+          {{config.comments.replace('null','Change Log')}}
+        </pre>
         <mat-card-actions>
           Inventory Types:
           <button mat-button *ngFor="let type of config.inventory_types" (click)="routeToVehicles(type.type,type.classification)">{{type.name}} ({{counts | countFilter: type}})

@@ -120,7 +120,7 @@ export class AccountService {
     this.sendAccountChange.emit(this.account);
   }
   getCurrentAccount() {
-    return this.account;
+    return this.conf.currentAcouunt;
   }
   // getCurrentProvider() {
   //     return this.provider;

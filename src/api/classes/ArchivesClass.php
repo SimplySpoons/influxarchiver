@@ -70,12 +70,16 @@ class ArchivesClass {
 		$data = file_get_contents($url, false, $context);
 		$return['url'] = $url;
     $e = json_decode($data);
-    // { path: ':provider/:filename/:providerId',
+		// { path: ':provider/:filename/:providerId',
+		if(sizeof($e > 0) && $e !== null){
     foreach ($e as $key => $value) {
-      $filename = $e[$key]->filename;
-      $t = "/account/$this->accountId/influx/$this->parser/$filename/$this->providerId";
-      $e[$key]->routerLink = $t;
-    }
+      	$filename = $e[$key]->filename;
+      	$t = "/account/$this->accountId/influx/$this->parser/$filename/$this->providerId";
+      	$e[$key]->routerLink = $t;
+			}
+		} else {
+			$e = array();
+		}
     $return['data'] = $e;
 		return $return;
 	}

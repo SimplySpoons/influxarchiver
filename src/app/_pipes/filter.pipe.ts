@@ -68,6 +68,32 @@ export class SearchResultsPipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'invCounts',
+  pure: false
+})
+
+@Injectable()
+export class InventoryCounts implements PipeTransform {
+  transform(counts: any): any {
+    if(counts === undefined || counts.length === 0) return counts;
+    let tmp = [];
+    counts.forEach(count=>{
+      let i = counts.indexOf(count);
+      const d = {name: 'all', data: []}; 
+      if(i === 0){
+        d.name = 'Used';
+      }
+      else {
+        d.name = 'New';
+      }
+      d.data = count;
+      tmp.push(count);
+    })
+    return tmp;
+  }
+}
+
+@Pipe({
   name: 'search_archived',
   pure: false
 })
@@ -161,37 +187,20 @@ export class FormatPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'dupfilter',
+  name: 'dateFilter',
   pure: false
 })
 export class DuplicatePipe implements PipeTransform {
-  transform(value: any, args?: any): any {
-
-    if (value.length === null) {
-      return value;
+  transform(value: string): any {
+    if(value.length === 0 || !value){
+      return new Date();
     }
-
-    // Remove the duplicate elements
-    let uniqueArray = value.filter(function (el, index, array) {
-      return array.indexOf(el) == index;
-    });
-
-    // Loop the array with uniq elements
-    let resultArray = [];
-    let i = 0;
-    for (let item of uniqueArray) {
-      // Validate only these elements that starts with the passed string
-      if (i == 0) {
-        resultArray.push(item);
-      }
-      else if (item.fullName != uniqueArray[i - 1].fullName) {
-        resultArray.push(item);
-      }
-      else {
-      }
-      i++;
+    else {
+      const d = value.split('_')[0];
+      const timestamp = Number(d) * 1000;
+      const newDate = new Date(timestamp);
+      return newDate;
     }
-    return resultArray;
   }
 
 }

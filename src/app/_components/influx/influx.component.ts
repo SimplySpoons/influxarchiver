@@ -18,6 +18,8 @@ import { Provider } from '../../_models/provider';
 export class InfluxComponent implements OnInit, OnDestroy {
   account: Account;
   acct: any;
+  sub2: any;
+  debug = false;
   accountId: string = '';
   loading = false;
   influxLoading = false;
@@ -153,11 +155,20 @@ export class InfluxComponent implements OnInit, OnDestroy {
         this.influxConfigs = [];
         this.getConfigs();
     });
+    this.sub2 = this.route.queryParams.subscribe(qp=> {
+        console.log(qp);
+        if(qp._mode === "debug"){
+          this.debug = true;
+        } else {
+          this.debug = false;
+        }
+    })
   }
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+    this.sub2.unsubscribe();
     if (this.config_sub) {
       this.config_sub.unsubscribe();
     }

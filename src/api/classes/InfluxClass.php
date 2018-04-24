@@ -31,7 +31,7 @@ class InfluxClass {
       $new['comments'] = $tmp['comments'];
       if( $tmp['provider'] !== $holder && !isset($archived[$tmp['provider']]) ){
         $archived[$tmp['provider']] = new ArchivesClass($this->accountId, $tmp['provider'], $tmp['filename'], $tmp['providerid']);
-        $a[$tmp['provider']]['filters'] = array(); // $archived[$tmp['provider']]->filters();
+        $a[$tmp['provider']]['filters'] = $archived[$tmp['provider']]->filters();
         $a[$tmp['provider']]['files'] = $archived[$tmp['provider']]->file_list();
         $holder = $tmp['provider'];
       }
