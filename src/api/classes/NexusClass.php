@@ -24,7 +24,7 @@ class NexusClass {
 		if($get_address = mysqli_query($this->nexusConnect, "SELECT contact.ownerid,contact.company,contact.url,address.address1, address.address2, address.city, address.state, address.postalcode, address.country FROM address, contact WHERE  contact.ownerid = '$accountId' AND address.isprimary = '1' AND address.parentid = contact.id GROUP BY ownerid;")){
 		if (mysqli_num_rows($get_address)) {
       $address = mysqli_fetch_array($get_address, MYSQLI_ASSOC);
-      $address = $this->fixFormating($address);
+     // $address = $this->fixFormating($address);
 			$internalUrl = 'http://' . $address['ownerid'] . '.cms.dealer.com';
 			$publicUrl = 'http://' . $address['url'];
 			$account = [
@@ -92,7 +92,7 @@ class NexusClass {
 		$query = "SELECT company_name,account.id,count(*) as vehicle_count from account_metadata,vehicle,account WHERE (account_id LIKE '$namelower%' OR company_name LIKE '$namelower%')$notQuery AND vehicle.parentid = account_id AND account.id = account_id AND vehicle.isremoved = 0 GROUP BY account_id LIMIT 15";
 		if ($results = mysqli_query($this->nexusConnect, $query)) {
 			while ($result = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-        $result = $this->fixFormating($result);
+       // $result = $this->fixFormating($result);
         $accountId = $result['id'];
         $count = $result['vehicle_count'];
 				$account = [

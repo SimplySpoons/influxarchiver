@@ -9,12 +9,16 @@ Class NexusConnect {
 
 	var $nexusConnect;
 	public function __construct() {
-
-		$this->nexusConnect = mysqli_connect($this->sql_host, $this->sql_user, $this->sql_pass, $this->sql_name);
-		if (!$this->nexusConnect) {
-			echo mysqli_connection_error();
-			exit();
-		}
+    $db = mysqli_init();
+    $db = new mysqli($this->sql_host, $this->sql_user, $this->sql_pass, $this->sql_name);
+		if (!$db) {
+      echo mysqli_connection_error($db);
+      $this->nexusConnect = false;
+		  exit();
+		} else {
+      $db->set_charset("utf8");
+		  $this->nexusConnect = $db;
+    }
 	}
 	public function connect() {
 		return $this->nexusConnect;

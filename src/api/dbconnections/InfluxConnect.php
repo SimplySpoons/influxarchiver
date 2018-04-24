@@ -7,7 +7,9 @@ Class InfluxConnect {
 	private $sql_pass = 'next1one'; // SQL USER Pass
 	var $influxConnect;
 	public function __construct() {
-		$this->influxConnect = mysqli_connect($this->sql_host, $this->sql_user, $this->sql_pass, $this->sql_name);
+    $dbConnect = mysqli_connect($this->sql_host, $this->sql_user, $this->sql_pass, $this->sql_name);
+    mysqli_set_charset($dbConnect,"utf8");
+    $this->influxConnect = $dbConnect;
 		if (!$this->influxConnect) {exit();}
 	}
 	public function connect() {
