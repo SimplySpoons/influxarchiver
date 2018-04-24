@@ -20,6 +20,12 @@
     </div>
     (ngModelChange)="onValueChange($event)" (paste)="formatContent($event)"
   </div> -->
+  <div class="search row">
+    <div class="col-md-10">
+      <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)"
+        (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
+    </div>
+  </div>
 
 <app-vehicle-single *ngIf="selected" (closeBox)="closeSingle($event)" class="pull-forward" [item]="selectedItem" [account]="account"></app-vehicle-single>
 <div class="wrap fixed" appInfiniteScroller scrollPerecnt="90" immediateCallback="false" [scrollCallback]="scrollCallback"
@@ -30,11 +36,7 @@
     </div>
   </div>
 </div>
-<div class="search row">
-  <div class="col-md-10">
-    <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value" (paste)="formatRequest($event)"
-      (ngModelChange)="onValueChange($event)" (keypress)="itemSearchTerm$.next($event.target.value);">
-  </div>
+
   <div class="col-md-2">
     <button dropdownToggle dropdown *ngFor="let count of invCounts" type="button" id="invbutton" class="btn btn-primary col-md-6"
       dropdown-open>{{count.name}} ({{count.count}})
@@ -48,7 +50,7 @@
       </ul>
     </button>
   </div>
-</div>
+
 <div *ngIf="loading" class="loadingIndicator">
   <div class="row" style="clear: both;">
     <sk-folding-cube></sk-folding-cube>

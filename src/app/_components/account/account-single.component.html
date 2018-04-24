@@ -22,7 +22,7 @@
         {{account.name}}
       </span>
       <span>
-        <i class="fa fa-map-marker"></i> {{account.address1}} {{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
+        <i class="fa fa-map-marker"></i> {{account.address1}}{{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
         </span>
       <span *ngIf="apis">
         <small *ngIf="apis.type==1"> vAuto API:
@@ -33,8 +33,10 @@
         </small>
       </span>
       <span>
-        <a class="btn btn-sm" href="{{account.publicUrl}}" target="_blank">
-          <i class="fa fa-laptop"></i>Website</a>
+        <a class="btn btn-sm" href="http://{{account.accountId}}.cms.dealer.com" target="_blank">
+          <i class="fa fa-laptop"></i>CMS Site</a>
+          <a class="btn btn-sm" href="{{account.publicUrl}}" target="_blank">
+              <i class="fa fa-laptop"></i>Live Site</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -46,7 +48,7 @@
     </a>
   </nav>
 </div>
-<div class="pos-relative" [style.height.px]="pageHeight">
+<div class="pos-relative" [style.height.px]="pageHeight" (window:resize)="setHeights()">
   <mat-progress-bar [class.show]="loading" class="loading" mode="indeterminate"></mat-progress-bar>
   <div class="pageWrapper" #page>
     <router-outlet></router-outlet>

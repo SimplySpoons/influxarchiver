@@ -20,6 +20,8 @@ export class AppConfig {
   currentAcouunt: Subject<Account> = new Subject<Account>();
   toggleState: Subject<boolean> = new Subject<boolean>();
   closeSearch: Subject<boolean> = new Subject<boolean>();
+  isSearchRoute: Subject<boolean> = new Subject<boolean>();
+  searchRoute = false;
   collapsed: Subject<boolean> = new Subject<boolean>();
   searchTerm: Subject<string> = new Subject<string>();
   search: string;
@@ -34,6 +36,11 @@ export class AppConfig {
 
   collapseHeader(bool) {
     this.collapsed.next(bool);
+  }
+
+  setSearchRoute(bool: boolean) {
+    this.searchRoute = bool;
+    this.isSearchRoute.next(bool);
   }
 
   setSearchTerm(string) {
