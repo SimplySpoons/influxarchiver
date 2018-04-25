@@ -66,17 +66,19 @@
             </div>
           </mat-tab>
           <mat-tab label="Recent Files">
+            <div class="recentFiles">
             <ul>
               <li *ngFor="let file of config.files.data">
                 <a class="btn btn-small btn-primary" [routerLink]="[file.routerLink]" (click)="viewFeedData(config)">
                   View Feed
                 </a>
-                - Ran: {{file.time | date: "short"}}
+                Ran: {{file.time | date: "short"}}
               </li>
             </ul>
+            </div>
           </mat-tab>
           <mat-tab label="Filters ({{config.filters.length}})" [disabled]="config.filters.length === 0">
-            <div class="demo-tab-content">
+            <div class="demo-tab-content filters">
               <div class="filterDisplay" *ngFor="let filter of config.filters; let i = index">
                 <h3> #{{i + 1}}.</h3>
                 <div>
@@ -93,7 +95,7 @@
         <pre *ngIf="debug">
           {{config | json}}
         </pre>
-        <pre *ngIf="config.comments !== null" class="changelog"> 
+        <pre *ngIf="config.comments !== null" class="changeLog"> 
           {{config.comments.replace('null','Change Log')}}
         </pre>
         <mat-card-actions>

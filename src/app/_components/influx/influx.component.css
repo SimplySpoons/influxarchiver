@@ -193,12 +193,32 @@
   cursor: pointer;
 }
 
-.filterDisplay { 
-  border: 2px solid;
-  border-radius: 5px;
-  padding: 10px;
+.changeLog {
+  margin-top: 20px;
 }
 
-.changelog {
-  margin-top: 22px;
+.recentFiles li {
+  display: inline-block;
+  padding: 7px;
+  width: 19%;
+}
+
+.recentFiles {
+  padding: 9.5px;
+  margin: 20px 0 20px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters {
+  padding: 9.5px;
+  margin: 20px 0 20px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
