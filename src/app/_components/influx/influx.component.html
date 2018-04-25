@@ -14,6 +14,7 @@
         </mat-list-item>
       </mat-list>
   </div>
+
   <div class="configs" (scroll)="onScroll($event)">
     <div *ngFor="let config of influxConfigs; let i = index" class="config">
       <mat-card *ngIf="showIndex === i || showIndex === -1">
@@ -92,7 +93,7 @@
         <pre *ngIf="debug">
           {{config | json}}
         </pre>
-        <pre *ngIf="config.comments !== null"> 
+        <pre *ngIf="config.comments !== null" class="changelog"> 
           {{config.comments.replace('null','Change Log')}}
         </pre>
         <mat-card-actions>
