@@ -128,3 +128,9 @@
       width: 100%;
 
 }
+
+
+.mat-tab-link {
+  padding: 0 7px;
+  min-width: 151px;
+}
