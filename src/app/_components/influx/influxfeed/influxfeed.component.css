@@ -219,3 +219,7 @@ hr {
 .table-info.expand {
   overflow: visible;
 }
+
+.feedName a {
+  color: #FFF;
+}
