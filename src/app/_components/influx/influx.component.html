@@ -65,7 +65,7 @@
               </h4>
             </div>
           </mat-tab>
-          <mat-tab label="Recent Files">
+          <mat-tab label="Recent Files ({{config.files.data.length}})" [disabled]="config.files.data == 0">
             <div class="recentFiles">
             <ul>
               <li *ngFor="let file of config.files.data">
@@ -76,7 +76,7 @@
               </li>
             </ul>
             </div>
-          </mat-tab>
+            </mat-tab>
           <mat-tab label="Filters ({{config.filters.length}})" [disabled]="config.filters.length === 0">
             <div class="demo-tab-content filters">
               <div class="filterDisplay" *ngFor="let filter of config.filters; let i = index">
