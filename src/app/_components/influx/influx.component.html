@@ -22,7 +22,7 @@
           <a class="btn editconfig btn-primary pull-right" [href]="getDnaLink()" target="_blank"> Edit Config </a>
           <h3 style="margin: 0;">Provider:
             <b>{{config.provider}}</b> <span class="configPipe" *ngIf="config.lastRun">|</span>
-            <a class="pointer feed-last-ran" *ngIf="config.lastRun" [routerLink]="[config.lastRun.routerLink]" (click)="viewFeedData(config)"> Feed Last Ran: {{config.lastRun.time}} </a>
+            <a class="pointer feed-last-ran" *ngIf="config.lastRun" [routerLink]="[config.lastRun.routerLink]" (click)="viewFeedData(config)"> Feed Last Ran: {{config.lastRun.time}} EST</a>
           </h3>
           <h4 *ngIf="config.providerid != false" style="margin: 4px 0 4px;">
             Provider ID:
