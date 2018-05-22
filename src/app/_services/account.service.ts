@@ -31,7 +31,6 @@ export class AccountService {
       (response: Response) => response.json());
   }
 
-  
   getApiConfigs(accountId: string) {
     return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/api_configs').map(
       (response: Response) => response.json());
