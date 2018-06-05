@@ -4,6 +4,9 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import { AccountService } from 'app/_services/account.service';
 import { AppConfig } from '../../app.config';
 
+import { Account  } from '../../_models/account';
+import { Item  } from '../../_models/item';
+
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
@@ -14,11 +17,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   sub: any;
   http_sub;
   accounts: Account[] = [];
+  vehicles: Item[] = [];
   loading = false;
   searchTerm = '';
+  selected: any = [];
   message = '';
   search = '';
-  searchRoute: boolean;
+  searchRoute: boolean;F
+  selectedItem: Item;
   searchSub: any;
   foundList: any = [];
   route_sub: any;
@@ -52,7 +58,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       this.isSearchRoute.emit(searchRoute);
     })
   }
-
+  getItem(data: any) {
+    this.selectedItem = data;
+    this.selected = true;
+  }
+  closeSingle(data: any) {
+    this.selectedItem = null;
+    this.selected = false;
+  }
   registerSubscriber() {
     this.sub = this.accountService.SearchTerm.subscribe(term => {
       console.log(term);
@@ -81,23 +94,50 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.search = '';
   }
 
+  openVehicleSingle(vehicle: any) { }
+
   searchForUser() {
+    var queryParam = '';
     if (this.search.length > 0) {
       this.loading = true;
     }
     this.http_sub = this.accountService.search(this.searchTerm$).subscribe(name => {
-      let data = [...this.accounts, ...name.data];
+      console.log('tesafas');
+      this.accounts = [];
+      this.vehicles = [];
+      let data = [ ...name.data];
       data = this.arrayUnique(data);
-      this.accounts = data;
+      if(name.resultType === 'account') {
+        this.accounts = data;
+      } else {
+        this.vehicles = data;
+      }
+
+      console.log('type: ');
+      console.log(this.accounts);
       this.searchTerm = name.term;
       this.message = name.message;
       this.loading = false;
       this.accountService.isLoading.next(false);
     });
+
+
+
+    console.log('this.http_sub')
+    console.log(this.http_sub);
   }
 
+  getImageSrc(data: any, accountId: string) {
+    let firstLetter = accountId.charAt(0);
+    let url = 'https://pictures.dealer.com/ddc/resize/320x/quality/70/sharpen/1/ddc/' + firstLetter + '/' + accountId + '/' + data;
+    return url;
+  }
   arrayUnique(array) {
+    console.log('HAarray');
+    console.log(array);
     const a = array.concat();
+    console.log('just a');
+    console.log(array);
     for (let i = 0; i < a.length; ++i) {
       for (let j = i + 1; j < a.length; ++j) {
         if (a[i].accountId === a[j].accountId) {
@@ -105,39 +145,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         }
       }
     }
-    return this.setMatches(a);
+    return a;
   }
 
-  setMatches(accounts) {
-    for (let j = 0; j < accounts.length; j++) {
-      const acct = accounts[j];
-      this.foundList = this.foundList.concat(acct.accountId);
-      let search = this.search;
-      const push = [];
-      if (search.length > 0 && acct.name.length > 0) {
-        let numMatches = 0;
-        const id = acct.accountId;
-        const acctName = acct.name.toLowerCase().replace(' ', '').toString();
-        search = search.toLowerCase().replace(' ', '').toString();
-        if (id.includes(search) || acctName.includes(search)) {
-          acct.isMatch = 1;
-          acct.idIndex = id.indexOf(search) * -1;
-          acct.acctIndex = acctName.indexOf(search) * -1;
-          if (acct.idIndex === 1) {
-            acct.idIndex *= -10;
-          } else if (acct.acctIndex === 1) {
-            acct.acctIndex *= -10;
-          }
-        } else {
-          acct.isMatch = 0;
-          acct.idIndex = -100;
-          acct.acctIndex = -100;
-        }
-        acct.sum = this.sumIndex(acct);
-      }
-    }
-    return accounts;
-  }
+
+
   sumIndex(a) {
     return a.isMatch + a.idIndex + a.acctIndex;
   }

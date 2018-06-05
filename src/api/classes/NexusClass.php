@@ -51,7 +51,7 @@ class NexusClass {
     return $account;
 	}
 
-	function classMapper($num) {
+	private function classMapper($num) {
 		if ($num === 1) {
 			return 'Certified';
 		}
@@ -73,14 +73,9 @@ class NexusClass {
 		$array = array();
 		$accountIds = array();
     $j = 0;
-    if($foundList){
-      $foundList = implode("','", explode(',',$foundList));
-      $notQuery = " AND account.id NOT IN('$foundList')";
-    } else {
-      $notQuery = "";
-    }
+    unset($foundList);
     $start_time = time();
-		$query = "SELECT company_name,account.id,count(*) as vehicle_count from account_metadata,vehicle,account WHERE (account_id LIKE '$namelower%' OR company_name LIKE '$namelower%')$notQuery AND vehicle.parentid = account_id AND account.id = account_id AND vehicle.isremoved = 0 GROUP BY account_id LIMIT 15";
+		$query = "SELECT company_name,account.id,count(*) as vehicle_count from account_metadata,vehicle,account WHERE (account_id LIKE '$namelower%' OR company_name LIKE '$namelower%') AND vehicle.parentid = account_id AND account.id = account_id AND vehicle.isremoved = 0 GROUP BY account_id LIMIT 15";
 		if ($results = mysqli_query($this->nexusConnect, $query)) {
 			while ($result = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
        // $result = $this->fixFormating($result);
@@ -103,6 +98,112 @@ class NexusClass {
     $arr['query'] = $query;
 		return $arr;
   }
+
+   public function findVehicles($vinSearch, $foundList = false) {
+
+    		$array = array();
+    		$vehicles = array();
+        $j = 0;
+
+        $start_time = time();
+        if(strlen($vinSearch) > 20) {
+          $queryColumn = 'id';
+        } else if(strlen($vinSearch) >= 11) {
+          $queryColumn = 'vin';
+        } else {
+          $queryColumn = 'stocknumber';
+        }
+    		$query = "SELECT id,parentid,vin,stocknumber,year,make,model,trimlevel,modelcode,bodystyle,transmission,doors,extcolor,extcolorcode,intcolor,intcolorcode,engine,enginesize,mileage,certified,retailvalue,invoiceprice,askingprice,wholesaleprice,internetprice,msrp,saleprice,source,type,status,classification,isremoved,createdby,created,lastmodifiedby,lastmodified,removedby,removed,lotdate,options,optioncodes,comments,image,warranty_description,usestockphoto,isartenabled,carfaxexpiration,contactid,jatoid,edmundsid,globalid,packagecode,video_id,fuel,wheelbase,city_mpg,highway_mpg,driveline,cab,bed,googlebaseid,jato_canada_id,autodata_id,autodata_canada_id from vehicle WHERE ( $queryColumn LIKE '$vinSearch%' ) AND vehicle.isremoved = 0 ORDER BY isremoved,parentid,vin LIMIT 15";
+
+    		if ($results = mysqli_query($this->nexusConnect, $query)) {
+    			while ($result = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+           // $result = $this->fixFormating($result);
+            $vehicleId = $result['id'];
+            $className = $this->classMapper($result['classification'] + 0);
+            $title = $result['year'] . ' ' . $result['make'] . ' ' . $result['model'] . ' ' . $result['trimlevel'] . ' | ' . $result['vin'] . ' | ' . $result['stocknumber'];
+            $img_array = explode(";",$result['image']);
+            if($result['type'] == 2) {
+                $vehicle_type = 'new';
+            }
+            elseif($result['certified'] == 1) {
+                $vehicle_type = 'certified';
+            }
+            else {
+                $vehicle_type = 'used';
+            }
+    				$vehicle = [
+    					'title' => $title,
+               'uuid' => $result['id'],
+               'accountId' => $result['parentid'],
+               'vin' => $result['vin'],
+               'stockNumber' => $result['stocknumber'],
+               'year' => $result['year'],
+               'make' => $result['make'],
+               'model' => $result['model'],
+               'trim' => $result['trimlevel'],
+               'modelcode' => $result['modelcode'],
+               'bodystyle' => $result['bodystyle'],
+               'transmission' => $result['transmission'],
+               'doors' => $result['doors'],
+               'extcolor' => $result['extcolor'],
+               'extcolorcode' => $result['extcolorcode'],
+               'intcolor' => $result['intcolor'],
+               'intcolorcode' => $result['intcolorcode'],
+               'engine' => $result['engine'],
+               'engineSize' => $result['enginesize'],
+               'mileage' => $result['mileage'],
+               'certified' => $result['certified'],
+               'retailValue' => $result['retailvalue'],
+               'invoicePrice' => $result['invoiceprice'],
+               'askingPrice' => $result['askingprice'],
+               'wholesalePrice' => $result['wholesaleprice'],
+               'internetPrice' => $result['internetprice'],
+               'msrp' => $result['msrp'],
+               'salePrice' => $result['saleprice'],
+               'source' => $result['source'],
+               'type' => $vehicle_type,
+               'vehicleType'=> $result['type'] + 0,
+               'status' => $result['status'],
+               'classification' => $result['classification'],
+               'isRemoved' => $result['isremoved'],
+               'createdBy' => $result['createdby'],
+               'created' => $result['created'],
+               'lastModifiedBy' => $result['lastmodifiedby'],
+               'lastmodified' => $result['lastmodified'],
+               'removedBy' => $result['removedby'],
+               'removed' => $result['removed'],
+               'lotdate' => $result['lotdate'],
+               'options' => $result['options'],
+               'optionCodes' => $result['optioncodes'],
+               'comments' => $result['comments'],
+               'image' => $img_array,
+               'warranty_description' => $result['warranty_description'],
+               'useStockPhoto' => $result['usestockphoto'],
+               'contactId' => $result['contactid'],
+               'globalId' => $result['globalid'],
+               'packageCode' => $result['packagecode'],
+               'video_id' => $result['video_id'],
+               'fuel' => $result['fuel'],
+               'wheelbase' => $result['wheelbase'],
+               'city_mpg' => $result['city_mpg'],
+               'highway_mpg' => $result['highway_mpg'],
+               'driveline' => $result['driveline'],
+               'cab' => $result['cab'],
+               'bed' => $result['bed'],
+               'googlebaseid' => $result['googlebaseid'],
+               'autodata_id' => $result['autodata_id'],
+               'className' => $className,
+               'showPanel'=> true
+            ];
+    				array_push($array, $vehicle);
+    			}
+    		} else {
+    			echo mysqli_error($this->nexusConnect);
+        }
+        $arr['data'] = $array;
+        $arr['query'] = $query;
+    		return $arr;
+      }
 
   function performAddressLookup($account,$count) {
     $start_time = time();

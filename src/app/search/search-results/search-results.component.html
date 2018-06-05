@@ -10,6 +10,7 @@
   <div *ngIf="!loading" class="white">
 
     <mat-card *ngFor="let account of accounts | searchResults: search" class="clearfix noShadow">
+
       <mat-card-title class="inline title">
         <b>{{account.name}} </b> / {{account.accountId}} / {{account.address1}}{{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}</mat-card-title>
       <mat-card-actions>
@@ -31,6 +32,13 @@
         </a>
       </mat-card-actions>
     </mat-card>
+
+    <mat-card *ngFor="let item of vehicles | searchResults: search" class="clearfix noShadow">
+
+      <app-vehicle-item (sendItem)="getItem($event)" [item]="item" [account]="account"></app-vehicle-item>
+
+    </mat-card>
+
     <span class="white" *ngIf="accounts.length > 0"> {{accounts.length}} Results Found </span>
   </div>
   <div *ngIf="loading" class="loadingIndicator clearfix">

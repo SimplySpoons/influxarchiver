@@ -10,6 +10,15 @@ class NexusController {
 			$data['term'] = $search;
       $acctSearch = new NexusClass();
       $t = $acctSearch->findAccount($search,$request->parameters['ignore']);
+      if($t['data']) {
+         $data['resultType'] = "account";
+      } else {
+        $t =  $acctSearch->findVehicles($search,$request->parameters['ignore']);
+        if($t['data']) {
+          $data['resultType'] = "vehicle";
+        }
+      }
+
       $data['data'] = $t['data'];
       $data['query'] = $t['query'];
       $data['notIn'] = $request->parameters['ignore'];

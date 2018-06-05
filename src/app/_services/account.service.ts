@@ -126,16 +126,17 @@ export class AccountService {
   //     return this.provider;
   // }
   search(params: Observable<any>) {
+    console.log('params');
     return params.debounceTime(400)
       .distinctUntilChanged()
       .switchMap(param =>
-        this.searchForAcct(param.term,param.foundList)
+        this.searchForAcct(param,param.foundList)
       );
   }
   searchForAcct(name,foundList = []) {
     const ignore = foundList.toString();
     console.log(ignore);
-    return this.http.post(this.API_URL + '/api/nexus/search?term=' + name, {ignore: ignore}).map(
+    return this.http.post(this.API_URL + '/api/nexus/search?term=' + name.term, {ignore: ignore}).map(
       (response: Response) => response.json());
   }
   searchVehicle(term: Observable<string>, accountId: any) {
