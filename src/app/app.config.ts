@@ -112,7 +112,7 @@ export class AppConfig {
   }
 
   public API_CONFIG() {
-    return 'http://influxtools.dealer.com/two';
+    return 'http://influxtools.dealer.com';
   }
 
 }
