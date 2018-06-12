@@ -112,7 +112,7 @@ export class AppConfig {
   }
 
   public API_CONFIG() {
-    return '';
+    return 'http://localhost:6969';
   }
 
 }
