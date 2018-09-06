@@ -20,8 +20,8 @@ class ArchivesClass {
 	public function filters() {
 
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
-		$username = 'ddchenryl';
-		$password = 'Dumptruck69!';
+		$username = 'ddcluker';
+		$password = 'xoxide91';
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -58,8 +58,8 @@ class ArchivesClass {
 	function file_list() {
 		$url = "http://influxtools.dealer.com/archiver_test/?provider=$this->parser&accountId=$this->accountId&providerId=$this->providerId";
 
-		$username = 'ddchenryl';
-		$password = 'Dumptruck69!';
+		$username = 'ddcluker';
+		$password = 'xoxide91';
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -68,26 +68,16 @@ class ArchivesClass {
 		));
 
 		$data = file_get_contents($url, false, $context);
-		$return['url'] = $url;
-    $e = json_decode($data);
-		// { path: ':provider/:filename/:providerId',
-		if(sizeof($e > 0) && $e !== null){
-    foreach ($e as $key => $value) {
-      	$filename = $e[$key]->filename;
-      	$t = "/account/$this->accountId/influx/$this->parser/$filename/$this->providerId";
-      	$e[$key]->routerLink = $t;
-			}
-		} else {
-			$e = array();
-		}
-    $return['data'] = $e;
-		return $return;
+		$files['data'] = $data;
+		$files['url'] = $url;
+
+		return $files;
 	}
 
 	function header_map() {
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
-		$username = 'ddchenryl';
-		$password = 'Dumptruck69!';
+		$username = 'ddcluker';
+		$password = 'xoxide91';
 
 		$context = stream_context_create(array(
 			'http' => array(

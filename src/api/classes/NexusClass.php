@@ -285,11 +285,11 @@ class NexusClass {
 	}
 
 	public function api_configs() {
-		$get_apis = mysqli_query($this->nexusConnect, "SELECT access type FROM aclentry WHERE accountid = '$this->accountId' and resource='VAuto' and not aclentry.isremoved and access=1");
+		$get_apis = mysqli_query($this->nexusConnect, "SELECT access type FROM aclentry WHERE accountid = '$this->accountId'");
 		if (mysqli_num_rows($get_apis)) {
 			$api = mysqli_fetch_array($get_apis, MYSQLI_ASSOC);
 			$array = [
-				'type' => $api['type'],
+				'type' => $api['type']
 			];
 			return $array;
 		} else {

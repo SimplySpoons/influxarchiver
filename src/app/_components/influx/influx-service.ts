@@ -26,11 +26,13 @@ export class InfluxService {
 
 
   getFileList(feedParams: any) {
-    return this.http.get(this.API_URL + 
-      "/api/archives/" + feedParams.accountId + 
+    return this.http.get(this.API_URL +
+      "/api/archives/" + feedParams.accountId +
       "/" + feedParams.provider + "/" +
       feedParams.providerId + "/file_list")
-    .map((res: Response)=> res.json())
+    .map((res: Response)=> {
+      res.json();
+    })
   }
 
   setFilters(filters: any){

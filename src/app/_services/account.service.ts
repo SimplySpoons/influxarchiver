@@ -32,8 +32,9 @@ export class AccountService {
   }
 
   getApiConfigs(accountId: string) {
+    console.log("// GETTING ACCOUNT CONFIGS //");
     return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/api_configs').map(
-      (response: Response) => response.json());
+      (response: Response) => {response.json()});
   }
 
   getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
@@ -67,7 +68,10 @@ export class AccountService {
         request: "getUpdatedFeed",
         fileRequest: fileRequest
       }
-    ).map((response: Response) => response.json());
+    ).map((response: Response) => {
+      console.log(response);
+      return response.json()
+    });
   }
 
   testGet() {

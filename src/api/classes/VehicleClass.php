@@ -4,20 +4,20 @@ class VehicleClass {
 	private $nexusConnect;
 	private $influxConnect;
 	var $accountId;
-  var $classification = 0;
-  var $uuid;
-  var $type = 0;
-  var $limit = 50;
-  var $offset = 0;
-  private $vehicles = array();
-  var $term;
-  var $params;
+    var $classification = 0;
+    var $uuid;
+    var $type = 0;
+    var $limit = 50;
+    var $offset = 0;
+    private $vehicles = array();
+    var $term;
+    var $params;
 	public function __construct($accountId = null, $params = null, $term = null) {
 		$influxConnection = new InfluxConnect();
 		$nexusConnection = new NexusConnect();
 		$this->influxConnect = $influxConnection->connect();
 		$this->nexusConnect = $nexusConnection->connect();
-    $this->accountId = $accountId;
+        $this->accountId = $accountId;
 	}
 
   function classMap($num){
@@ -47,9 +47,11 @@ class VehicleClass {
 function setData($vehicle) {
 
 }
+
 function returnVehicles() {
   return $this->vehicles;
 }
+
 function getAccountVehicles($params){
         global $nexusConnect;
         $offset = 0;

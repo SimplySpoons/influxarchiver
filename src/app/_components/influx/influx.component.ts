@@ -124,6 +124,12 @@ export class InfluxComponent implements OnInit, OnDestroy {
   getConfigs() {
     this.loading = true;
     this.config_sub = this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
+      console.log(configs);
+      for(let i = 0;i < configs['data'].length;i++){
+        configs['data'][i].files.data = JSON.parse(configs['data'][i].files.data);
+      }
+      console.log(configs);
+
       this.influxConfigs = configs.data;
       const invConfigs = { configs: this.influxConfigs, loading: false };
       this.appConfig.setCurrentAccount(invConfigs);
@@ -135,7 +141,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
       this.counts = this.account.inventory_counts;
     }
   }
-  
+
   getInvCounts() {
     this.count_sub = this.accountService.getInvCounts(this.accountId).subscribe(
       success => {

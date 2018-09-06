@@ -30,7 +30,6 @@ export class AppConfig {
   copy: any;
   title: any;
   constructor(private jsonp: Jsonp) {
-    console.log(this.account);
     this.currentAcouunt.next(this.account);
   }
 
@@ -100,7 +99,6 @@ export class AppConfig {
       this.account = data;
     }
     this.currentAcouunt.next(this.account);
-    console.log(this.account);
   }
 
   getTitle() {
@@ -112,7 +110,7 @@ export class AppConfig {
   }
 
   public API_CONFIG() {
-    return 'http://influxtools.dealer.com/two';
+    return 'http://localhost:6969';
   }
 
 }

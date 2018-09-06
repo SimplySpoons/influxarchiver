@@ -52,13 +52,13 @@ class ArchivesController {
 		$end = $params->end;
 
 		$url = "http://influxtools.dealer.com/archiver_test/test.php?provider=$provider&filename=$filename&providerId=$providerId&accountId=$accountId&offset=$offset&full=$full&start=$start&end=$end";
-		$username = 'ddchenryl';
-		$password = 'Dumptruck69!';
+		$username = 'ddcluker';
+		$password = 'xoxide91!';
 
 		$context = stream_context_create(array(
 			'http' => array(
 				'header' => "Authorization: Basic " . base64_encode("$username:$password"),
-				'method' => "GET",
+				'method' => "GET"
 			),
 		));
 

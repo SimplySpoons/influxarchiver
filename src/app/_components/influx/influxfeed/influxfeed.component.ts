@@ -281,6 +281,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log("// INFLUX FEED INITIALIZED //");
     this.fileRequest.pageSize = 0;
     this.sub = this.route.params.subscribe((params: ArchivedFile) => {
       this.fileRequest = { ...params };

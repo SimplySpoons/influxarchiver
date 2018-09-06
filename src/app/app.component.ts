@@ -65,20 +65,17 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute) {
     const p = this.activeRoute.queryParams.subscribe(params => {
-      console.log(params);
       if (params.searchTerm) {
         this.searchTerm = params.searchTerm;
         p.unsubscribe();
       } else {
         this.searchTerm = '';
       }
-  //    this.onValueChange(this.searchTerm);
     });
     this.sub = router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.withPadding = router.url.includes('account');
         const isSearchRoute = router.url.includes('/search');
-        console.log("THIS IS THE CURRENT ROUTE", router.url);
         if(!isSearchRoute && router.url.includes('searchTerm')){
           this.showSearch = true;
         } else {
@@ -118,7 +115,6 @@ export class AppComponent implements OnInit {
   }
 
   checkAccount(bool) {
-    console.log(bool);
     this.withPadding = bool;
   }
 
