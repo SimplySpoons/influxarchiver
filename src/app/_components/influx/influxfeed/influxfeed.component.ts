@@ -314,7 +314,7 @@ export class InfluxfeedComponent implements OnInit, OnDestroy {
       if(this.files.length === 0){
         this.influx.getFileList(this.fileRequest).subscribe(
           files => {
-            this.files = files.files;
+            console.log(files)
           },
           error => {
             console.log(error);

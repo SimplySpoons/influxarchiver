@@ -79,13 +79,11 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
 
   getAccountData() {
     this.accountService.getAccountData(this.accountId).subscribe(account => {
-      this.account = {...this.account, ...account.data};
-      this.setCount();
-      this.appConfig.setCurrentAccount(this.account);
       this.accountService.getApiConfigs(this.accountId).subscribe(
         success => {
-          console.log("// GOT ACCOUNT CONFIGS //");
-          console.log(success.data);
+          this.account = {...this.account, ...account.data};
+          this.setCount();
+          this.appConfig.setCurrentAccount(this.account);
           this.apis = success.data.type;
         },
         error => {
@@ -134,11 +132,12 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.appConfig.currentAcouunt.subscribe(account=>{
       this.loading = account.loading;
-      console.log(this.loading);
     });
     setTimeout(() => {
       this.setHeights();
     }, 250);
+
+    this.apis = 1;
   }
 
   ngOnDestroy() {
