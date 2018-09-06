@@ -39,12 +39,14 @@ class InfluxClass {
       if(isset( array_values($a[$tmp['provider']]['filters'])[0])) {
         $new['filters'] = array_values($a[$tmp['provider']]['filters'])[0];
       }
-      $new['files'] = (array) $a[$tmp['provider']]['files'];
-      if(isset($new['files']['data'][0])){
-         $new['lastRun'] = $new['files']['data'][0];
-      } else {
-        $new['lastRun'] = false;
-      }
+	  $new['files'] = (array) $a[$tmp['provider']]['files'];
+	  $decoded = json_decode($new['files']['data'],true);
+
+			if(isset($decoded[0]["time"])){
+				$new['lastRun'] = $decoded[0]["time"];
+			} else {
+				$new['lastRun'] = false;
+			}
 			array_push($arr, $new);
 		}
 		return $arr;
