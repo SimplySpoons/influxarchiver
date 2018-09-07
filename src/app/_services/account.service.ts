@@ -32,9 +32,13 @@ export class AccountService {
   }
 
   getApiConfigs(accountId: string) {
-    console.log("// GETTING ACCOUNT CONFIGS //");
     return this.http.get(this.API_URL + '/api/nexus/' + accountId + '/api_configs').map(
-      (response: Response) => response.json());
+      (response: Response) => {
+        let d = response.json();
+        console.log(d);
+        d = d.data;
+        return d;
+      });
   }
 
   getAccountVehicles(accountId: string, type: any, classification: any, offset: any) {
