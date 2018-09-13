@@ -12,7 +12,7 @@ export class VehicleItemComponent implements OnInit {
 
   @Input() item: Item;
   @Input() account: Account;
-  // @Input() customButtons: any; 
+  // @Input() customButtons: any;
   @Output() sendItem = new EventEmitter();
 
   loading = false;
@@ -38,8 +38,10 @@ export class VehicleItemComponent implements OnInit {
   }
 
   getImageSrc(data: any, accountId: string) {
+    console.log(data);
     let firstLetter = accountId.charAt(0);
-    let url = 'https://pictures.dealer.com/ddc/resize/320x/quality/70/sharpen/1/ddc/' + firstLetter + '/' + accountId + '/' + data;
+    let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;
+    console.log(url)
     return url;
   }
 

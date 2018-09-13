@@ -53,7 +53,7 @@ class ArchivesController {
 
 		$url = "http://influxtools.dealer.com/archiver_test/test.php?provider=$provider&filename=$filename&providerId=$providerId&accountId=$accountId&offset=$offset&full=$full&start=$start&end=$end";
 		$username = 'ddcluker';
-		$password = 'xoxide91';
+		$password = 'xoxide10';
 
 		$context = stream_context_create(array(
 			'http' => array(

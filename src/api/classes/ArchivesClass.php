@@ -21,7 +21,7 @@ class ArchivesClass {
 
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
 		$username = 'ddcluker';
-		$password = 'xoxide91';
+		$password = 'xoxide10';
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -59,7 +59,7 @@ class ArchivesClass {
 		$url = "http://influxtools.dealer.com/archiver_test/?provider=$this->parser&accountId=$this->accountId&providerId=$this->providerId";
 
 		$username = 'ddcluker';
-		$password = 'xoxide91';
+		$password = 'xoxide10';
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -77,7 +77,7 @@ class ArchivesClass {
 	function header_map() {
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
 		$username = 'ddcluker';
-		$password = 'xoxide91';
+		$password = 'xoxide10';
 
 		$context = stream_context_create(array(
 			'http' => array(
