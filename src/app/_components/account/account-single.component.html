@@ -25,10 +25,10 @@
         <i class="fa fa-map-marker"></i> {{account.address1}}{{account.address2}}, {{account.city}}, {{account.state}} {{account.zip}} {{account.country}}
         </span>
       <span>
-        <small *ngIf="apis.type==='1'"> vAuto API:
+        <small *ngIf="apis==='1'"> vAuto API:
           <b> Yes </b>
         </small>
-        <small *ngIf="apis.type==='0'"> vAuto API:
+        <small *ngIf="apis==='0'"> vAuto API:
           <b> No </b>
         </small>
       </span>

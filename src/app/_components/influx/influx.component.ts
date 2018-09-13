@@ -124,7 +124,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   getConfigs() {
     this.loading = true;
     this.config_sub = this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
-      console.log(configs)
+
       for(let i = 0;i < configs['data'].length;i++){
         configs['data'][i].files.data = JSON.parse(configs['data'][i].files.data);
       }

@@ -81,10 +81,11 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     this.accountService.getAccountData(this.accountId).subscribe(account => {
       this.accountService.getApiConfigs(this.accountId).subscribe(
         success => {
+          console.log(success);
           this.account = {...this.account, ...account.data};
           this.setCount();
           this.appConfig.setCurrentAccount(this.account);
-          this.apis = success.data.type;
+          this.apis = success.type;
         },
         error => {
           console.log(error);
