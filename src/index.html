@@ -2,13 +2,21 @@
 <html lang="en">
 
 <head>
-  <!--<script src="//cox-spauth-js.spar.dealer.com/cox-spauth.js"></script>-->
+  <script src="//cox-spauth-js.spar.dealer.com/cox-spauth.js"></script>
+  <script>
+    SPAUTH
+      .appId('influx-archiver2')
+      .login()
+      .then(function(user){
+          return user;
+      })
+  </script>
   <meta charset="utf-8">
   <title>Influx Archiver 2.0</title>
   <!--
   <script src="//cox-spauth-js.spar.dealer.com/cox-spauth.js"></script>
   -->
-  
+
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">

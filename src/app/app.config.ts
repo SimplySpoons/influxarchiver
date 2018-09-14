@@ -9,6 +9,7 @@ declare var SPAUTH: any;
 
 export function _CurrentUser() {
   return SPAUTH.user().then(function (user) {
+    console.log(user);
     return user;
   });
 }
@@ -51,6 +52,7 @@ export class AppConfig {
     SPAUTH.appId('influx-archiver2')
       .login()
       .then(function (user) {
+        console.log(user);
         const userName = user.username;
         const firstName = user.firstName;
         const lastName = user.lastName;
@@ -67,6 +69,7 @@ export class AppConfig {
       });
     const promise = new Promise((resolve, reject) => {
       _CurrentUser().then(user => {
+        console.log(user);
         resolve(user);
       });
     });

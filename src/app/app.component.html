@@ -1,15 +1,21 @@
-<div class="header-container navbar-fixed-top" [@showHeader]="!collapsed">
-  <app-header [showHeader]="!collapsed" [value]="searchTerm" (routeChange)="onValueChange($event)"></app-header>
-</div>
-<div class="search-results" *ngIf="showSearch && searchTerm.length > 0">
-  <app-search-page></app-search-page>
-</div>
-<div class="nav-side-menu" [@mainSlide]="mainSlide">
-  <app-sidebar (sendAccountChange)="getAccountChange($event)" (isAccount)="checkAccount($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
-</div>
-<div class="main-panel" id="main-container" [@otherSlide]="otherSlide">
-  <div class="container" [class.withPadding]="!withPadding">
-    <router-outlet></router-outlet>
-
+<div *ngIf="DNALoggedIn">
+  <div class="header-container navbar-fixed-top" [@showHeader]="!collapsed">
+    <app-header [showHeader]="!collapsed" [value]="searchTerm" (routeChange)="onValueChange($event)"></app-header>
   </div>
+  <div class="search-results" *ngIf="showSearch && searchTerm.length > 0">
+    <app-search-page></app-search-page>
+  </div>
+  <div class="nav-side-menu" [@mainSlide]="mainSlide">
+    <app-sidebar (sendAccountChange)="getAccountChange($event)" (isAccount)="checkAccount($event)" (collapseSideBar)="toggleState($event)"></app-sidebar>
+  </div>
+  <div class="main-panel" id="main-container" [@otherSlide]="otherSlide">
+    <div class="container" [class.withPadding]="!withPadding">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<div *ngIf="!DNALoggedIn">
+  <app-dna-login>
+
+  </app-dna-login>
 </div>

@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
   currentRoute: string;
   restoreString = '';
   searchTerm = '';
+  DNALoggedIn = false;
   // loading = true;
 
   showSearch = false;

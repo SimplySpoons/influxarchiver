@@ -40,6 +40,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable/src';
 import { InfluxService } from './_components/influx/influx-service';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchPageComponent } from './search/search-page/search-page.component';
+import { DnaLoginComponent } from '../app/dna-login/dna-login.component'
 import 'hammerjs';
 
 export function initializeCurrentUser(config: AppConfig) {
@@ -81,7 +82,8 @@ export function initializeCurrentUser(config: AppConfig) {
     InfluxfeedComponent,
     feedSearch,
     SearchResultsComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    DnaLoginComponent
   ],
   imports: [
     BrowserModule,
