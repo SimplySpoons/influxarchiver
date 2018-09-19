@@ -21,7 +21,7 @@ class ArchivesClass {
 
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
 		$username = 'ddcluker';
-		$password = 'xoxide10';
+		$password = 'xoxide101';
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -30,29 +30,39 @@ class ArchivesClass {
 			),
 		));
 
-		$filters = file_get_contents($url, false, $context);
-		$filter = array();
-		if ($filters) {
-			$filters = explode('#F', $filters);
-			for ($i = 0; $i < sizeof($filters); $i++) {
-				if (strpos($filters[$i], $this->accountId . ' ')) {
-					  $tmp = explode("\nif", $filters[$i], 2);
-            if(isset($tmp)) {
-              $array['task'] = $tmp[0];
-            }
-            if(isset($tmp[1])) {
-              $array['filter'] = 'if' . $tmp[1];
-            }
-					  $array['parser'] = $this->parser;
-            array_push($filter, $array);
-          }
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+		curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 500);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$filters = curl_exec($ch);
+		$http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		if($http == 200) {
+			$filter = array();
+			if ($filters) {
+				$filters = explode('#F', $filters);
+				for ($i = 0; $i < sizeof($filters); $i++) {
+					if (strpos($filters[$i], $this->accountId . ' ')) {
+						  $tmp = explode("\nif", $filters[$i], 2);
+				if(isset($tmp)) {
+				  $array['task'] = $tmp[0];
+				}
+				if(isset($tmp[1])) {
+				  $array['filter'] = 'if' . $tmp[1];
+				}
+						  $array['parser'] = $this->parser;
+				array_push($filter, $array);
+			  }
+				}
+				if (sizeof($filter) > 0) {
+					$return[$this->parser] = $filter;
+					return $return;
+				}
 			}
-			if (sizeof($filter) > 0) {
-				$return[$this->parser] = $filter;
-				return $return;
-			}
-    }
-    return array();
+			return array();
+		}else{
+			echo "not working";
+		}
   }
 
 	function file_list() {

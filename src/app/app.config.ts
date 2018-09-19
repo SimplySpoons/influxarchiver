@@ -28,8 +28,13 @@ export class AppConfig {
   search: string;
   account: any = new Account();
   accountId = '';
+  testing='working';
   copy: any;
   title: any;
+  //Keep our username and password for the DNA Login Form here.
+  username:string;
+  password:string;
+
   constructor(private jsonp: Jsonp) {
     this.currentAcouunt.next(this.account);
   }

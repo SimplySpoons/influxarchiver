@@ -1,19 +1,32 @@
-<mat-card class="dna-login-form">
+<mat-card class="dna-login-form" *ngIf="!checkingLogin">
   <mat-card-title>
-    DNA Login
+    Update Login Credentials
   </mat-card-title>
   <mat-card-subtitle>
-    Please login using your DNA username and password.
+    Please update the admin credentials.
   </mat-card-subtitle>
   <form>
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username" placeholder="Username" [(ngModel)]="username">
+          <input matInput name="dna_username" placeholder="Username" [(ngModel)]="dna_username">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" placeholder="Password" [(ngModel)]="password">
+          <input matInput name="dna_password" placeholder="Password" [(ngModel)]="dna_password">
       </mat-form-field>
-    <mat-button>
-      Login
-    </mat-button>
+      <br />
+      <div class="center">
+          <button mat-flat-button color="warn" class="">
+              Reset
+          </button>
+          <button mat-flat-button  class="ddc-orange" (click)="CheckLogin()">
+            Login
+          </button>
+        </div>
   </form>
-</mat-card>>
+</mat-card>
+<mat-card *ngIf="showPassword" class="dna-login-error">
+  Please make sure to fill out both the username and password.
+</mat-card>
+<mat-card *ngIf="checkingLogin" class="dna-login-loading">
+    <mat-spinner aria-label="Checking Credentials...">
+    </mat-spinner>
+</mat-card>

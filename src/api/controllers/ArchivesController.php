@@ -6,6 +6,7 @@ class ArchivesController {
 
 	}
 	public function getAction($request) {
+		var_dump($request);
 		if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
 			if (isset($request->url_elements[2])) {

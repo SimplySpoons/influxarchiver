@@ -5,6 +5,7 @@ class NexusController {
 	public function __construct() {
 	}
 	public function getAction($request) {
+		var_dump($request);
 		if (isset($request->parameters['term'])) {
 			$search = $request->parameters['term'];
 			$data['term'] = $search;
@@ -25,6 +26,7 @@ class NexusController {
 			$data['message'] = sizeof($data['data']) . ' Results found';
 		} else if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
+
 			if (isset($request->url_elements[2])) {
 				$function = $request->url_elements[2];
 				$acct = new NexusClass($account_id);

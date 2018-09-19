@@ -1,21 +1,28 @@
 <?php
+	include_once 'classes/AdminClass.php';
 
 class InfluxController {
-	var $testing;
-	public function __construct($dbConnect = false) {
+	private $AdminCheck;
 
+	public function __construct($dbConnect = false) {
+		$this->AdminCheck = new AdminClass();
 	}
+
 	public function getAction($request) {
+		var_dump($request);
 		if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
 			if (isset($request->url_elements[2])) {
 				$function = $request->url_elements[2];
-				$acct = new InfluxClass($account_id);
-				$data['data'] = $acct->$function();
+
+				//Check if the credentials for accessing the configs is valid.
+				if($this->AdminCheck->CheckCredentials()){
+					$acct = new InfluxClass($account_id);
+					$data['data'] = $acct->$function();
+				}
 			} else {
 				// $data["message"] = "here is the info for user " . $account_id;
 				$acct = new NexusClass($account_id);
-				$data['data'] = $acct->getAccountInfo();
 			}
 		} else {
 			$data["message"] = "you want a list of users";

@@ -41,6 +41,7 @@ import { InfluxService } from './_components/influx/influx-service';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchPageComponent } from './search/search-page/search-page.component';
 import { DnaLoginComponent } from '../app/dna-login/dna-login.component'
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import 'hammerjs';
 
 export function initializeCurrentUser(config: AppConfig) {
@@ -99,7 +100,8 @@ export function initializeCurrentUser(config: AppConfig) {
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatButtonModule
   ],
   exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe,countFilter,InventoryCounts],
   // tslint:disable-next-line:max-line-length
