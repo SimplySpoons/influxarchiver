@@ -5,7 +5,6 @@ class NexusController {
 	public function __construct() {
 	}
 	public function getAction($request) {
-		var_dump($request);
 		if (isset($request->parameters['term'])) {
 			$search = $request->parameters['term'];
 			$data['term'] = $search;

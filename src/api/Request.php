@@ -7,7 +7,7 @@ header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 header('Content-type: application/json');
-include_once('../api/classes/AdminClass.php');
+
 include_once 'index.php';
 
 

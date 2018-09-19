@@ -1,12 +1,14 @@
 <?php
+include_once('classes/AdminClass.php');
 
 class ArchivesController {
-	var $testing;
-	public function __construct() {
+	private $AdminCheck;
 
+	public function __construct() {
+		$this->AdminCheck = new AdminClass();
 	}
+
 	public function getAction($request) {
-		var_dump($request);
 		if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
 			if (isset($request->url_elements[2])) {

@@ -23,22 +23,30 @@ class InfluxClass {
 			$influxConfigs[$j]['data'] = $p;
 			$j++;
 		}
-    $arr = array();
-    $holder = "";
+
+
+    	$arr = array();
+		$holder = "";
+
 		foreach ($influxConfigs as $key => $value) {
 			$tmp = $value['data'];
 			$new = $this->getConfig($tmp);
-      $new['comments'] = $tmp['comments'];
-      if( $tmp['provider'] !== $holder && !isset($archived[$tmp['provider']]) ){
-        $archived[$tmp['provider']] = new ArchivesClass($this->accountId, $tmp['provider'], $tmp['filename'], $tmp['providerid']);
-        $a[$tmp['provider']]['filters'] = $archived[$tmp['provider']]->filters();
-        $a[$tmp['provider']]['files'] = $archived[$tmp['provider']]->file_list();
-        $holder = $tmp['provider'];
-      }
-      $new['filters'] = array();
-      if(isset( array_values($a[$tmp['provider']]['filters'])[0])) {
-        $new['filters'] = array_values($a[$tmp['provider']]['filters'])[0];
-      }
+	 		$new['comments'] = $tmp['comments'];
+
+			if( $tmp['provider'] !== $holder && !isset($archived[$tmp['provider']]) ){
+				$archived[$tmp['provider']] = new ArchivesClass($this->accountId, $tmp['provider'], $tmp['filename'], $tmp['providerid']);
+				$a[$tmp['provider']]['filters'] = $archived[$tmp['provider']]->filters();
+				$a[$tmp['provider']]['files'] = $archived[$tmp['provider']]->file_list();
+				$holder = $tmp['provider'];
+			}
+
+			$new['filters'] = array();
+
+			if(isset( array_values($a[$tmp['provider']]['filters'])[0])) {
+				$new['filters'] = array_values($a[$tmp['provider']]['filters'])[0];
+			}
+
+
 	  $new['files'] = (array) $a[$tmp['provider']]['files'];
 	  $decoded = json_decode($new['files']['data'],true);
 

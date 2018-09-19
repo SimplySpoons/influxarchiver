@@ -1,6 +1,10 @@
 <?php
 
+include_once('classes/AdminClass.php');
+
 class ArchivesClass {
+	private $AdminCheck;
+
 	var $accountId;
 	var $parser;
 	var $providerId;
@@ -15,13 +19,15 @@ class ArchivesClass {
       $this->providerId = 'false';
     }
 		$this->filename = $filename;
+
+		$this->AdminCheck = new AdminClass();
 	}
 
 	public function filters() {
 
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
-		$username = 'ddcluker';
-		$password = 'xoxide101';
+		$username = $this->AdminCheck->InfluxUsername;
+		$password = $this->AdminCheck->InfluxPassword;
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -68,8 +74,8 @@ class ArchivesClass {
 	function file_list() {
 		$url = "http://influxtools.dealer.com/archiver_test/?provider=$this->parser&accountId=$this->accountId&providerId=$this->providerId";
 
-		$username = 'ddcluker';
-		$password = 'xoxide10';
+		$username = $this->AdminCheck->InfluxUsername;
+		$password = $this->AdminCheck->InfluxPassword;
 
 		$context = stream_context_create(array(
 			'http' => array(
@@ -86,8 +92,8 @@ class ArchivesClass {
 
 	function header_map() {
 		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
-		$username = 'ddcluker';
-		$password = 'xoxide10';
+		$username = $this->AdminCheck->InfluxUsername;
+		$password = $this->AdminCheck->InfluxPassword;
 
 		$context = stream_context_create(array(
 			'http' => array(

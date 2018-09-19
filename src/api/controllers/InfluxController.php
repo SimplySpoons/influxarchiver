@@ -9,7 +9,6 @@ class InfluxController {
 	}
 
 	public function getAction($request) {
-		var_dump($request);
 		if (isset($request->url_elements[1])) {
 			$account_id = $request->url_elements[1];
 			if (isset($request->url_elements[2])) {
@@ -19,6 +18,8 @@ class InfluxController {
 				if($this->AdminCheck->CheckCredentials()){
 					$acct = new InfluxClass($account_id);
 					$data['data'] = $acct->$function();
+				}else{
+					$data['data'] = "ERROR";
 				}
 			} else {
 				// $data["message"] = "here is the info for user " . $account_id;
