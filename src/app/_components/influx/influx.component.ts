@@ -2,7 +2,7 @@ import { fadeInAnimation } from './../../_animations/fade-in.animation';
 import { AppConfig } from './../../app.config';
 import { InfluxService } from './influx-service';
 import { Subject } from 'rxjs/Rx';
-import { Component, OnInit, OnDestroy, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, OnChanges, EventEmitter } from '@angular/core';
 import { AccountService } from '../../_services/account.service';
 import { Account } from '../../_models/account';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -44,7 +44,6 @@ export class InfluxComponent implements OnInit, OnDestroy {
   counts: any;
   params: Provider = new Provider();
   showIndex = -1;
-
   constructor(private accountService: AccountService,
     private route: ActivatedRoute, private router: Router,
     private influx: InfluxService, private appConfig: AppConfig) {
@@ -75,7 +74,6 @@ export class InfluxComponent implements OnInit, OnDestroy {
       config.showFilters = false;
       config.message = 'Show Filters';
     }
-    console.log(config);
   }
 
   getClassName(bool) {
@@ -124,6 +122,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
   getConfigs() {
     this.loading = true;
     this.config_sub = this.accountService.getInfluxConfigs(this.accountId).subscribe(configs => {
+
 
       for(let i = 0;i < configs['data'].length;i++){
         configs['data'][i].files.data = JSON.parse(configs['data'][i].files.data);

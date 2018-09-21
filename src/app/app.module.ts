@@ -42,6 +42,7 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 import { SearchPageComponent } from './search/search-page/search-page.component';
 import { DnaLoginComponent } from '../app/dna-login/dna-login.component'
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { CredentialService } from './_services/credential.service';
 import 'hammerjs';
 
 export function initializeCurrentUser(config: AppConfig) {
@@ -105,7 +106,7 @@ export function initializeCurrentUser(config: AppConfig) {
   ],
   exports: [FilterPipe, SearchPipe, SearchArchived, DuplicatePipe,countFilter,InventoryCounts],
   // tslint:disable-next-line:max-line-length
-  providers: [AccountService, ModalService, InfluxService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig],
+  providers: [CredentialService, AccountService, ModalService, InfluxService, UserService, AccordionConfig, { provide: LocationStrategy, useClass: HashLocationStrategy }, AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

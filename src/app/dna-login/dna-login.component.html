@@ -1,32 +1,8 @@
 <mat-card class="dna-login-form" *ngIf="!checkingLogin">
   <mat-card-title>
-    Update Login Credentials
+    Update Credentials
   </mat-card-title>
   <mat-card-subtitle>
-    Please update the admin credentials.
+    An automated e-mail has been sent to IST informing them to update the database login information.  Once completed please refresh the page to resume using the Influx Archiver
   </mat-card-subtitle>
-  <form>
-      <mat-form-field class="example-full-width">
-          <input matInput name="dna_username" placeholder="Username" [(ngModel)]="dna_username">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-          <input matInput name="dna_password" placeholder="Password" [(ngModel)]="dna_password">
-      </mat-form-field>
-      <br />
-      <div class="center">
-          <button mat-flat-button color="warn" class="">
-              Reset
-          </button>
-          <button mat-flat-button  class="ddc-orange" (click)="CheckLogin()">
-            Login
-          </button>
-        </div>
-  </form>
-</mat-card>
-<mat-card *ngIf="showPassword" class="dna-login-error">
-  Please make sure to fill out both the username and password.
-</mat-card>
-<mat-card *ngIf="checkingLogin" class="dna-login-loading">
-    <mat-spinner aria-label="Checking Credentials...">
-    </mat-spinner>
 </mat-card>

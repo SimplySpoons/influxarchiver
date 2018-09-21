@@ -8,16 +8,30 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 header('Content-type: application/json');
 
+include_once 'classes/AdminClass.php';
 include_once 'index.php';
 
-
+$checker = new AdminClass();
 $request = new Request();
 $controller_name = ucfirst($request->url_elements[0]) . 'Controller';
 if (class_exists($controller_name)) {
 	$controller = new $controller_name();
-	$action_name = strtolower($request->verb) . 'Action';
-	$result = $controller->$action_name($request);
-	echo json_encode($result, JSON_PRETTY_PRINT);
+
+	if($controller_name == "AdminController"){
+		if($checker->CheckCredentials()){
+			$result = array();
+			$result['TYPE'] = 'SUCCESS';
+			echo json_encode($result, JSON_PRETTY_PRINT);
+		}else{
+			$result = array();
+			$result['TYPE'] = 'FAILURE';
+			echo json_encode($result, JSON_PRETTY_PRINT);
+		}
+	}else{
+		$action_name = strtolower($request->verb) . 'Action';
+		$result = $controller->$action_name($request);
+		echo json_encode($result, JSON_PRETTY_PRINT);
+	}
 }
 
 ?>

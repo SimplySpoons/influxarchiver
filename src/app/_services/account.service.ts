@@ -58,7 +58,9 @@ export class AccountService {
 
   getInfluxConfigs(accountId: string) {
     return this.http.get(this.API_URL + `/api/influx/${accountId}/influx_configs`).map(
-      (response: Response) => response.json());
+      (response: Response) => {
+        let resp = response.json();
+      });
   }
 
   getInfluxFeed(fileRequest: any) {
@@ -134,7 +136,6 @@ export class AccountService {
   //     return this.provider;
   // }
   search(params: Observable<any>) {
-    console.log('params');
     return params.debounceTime(400)
       .distinctUntilChanged()
       .switchMap(param =>

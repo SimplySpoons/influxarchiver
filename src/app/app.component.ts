@@ -3,6 +3,8 @@ import { Component, trigger, state, style, transition, animate, keyframes, APP_I
 import { fadeInAnimation } from './_animations/index';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppConfig } from './app.config';
+import { Http, Headers, RequestOptions, Response, ResponseType } from '@angular/http';
+import { CredentialService } from './_services/credential.service';
 
 @Component({
   selector: 'app-root',
@@ -64,7 +66,16 @@ export class AppComponent implements OnInit {
     isFirstDisabled: false
   };
 
-  constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute) {
+  constructor(private router: Router, private appConfig: AppConfig, private activeRoute: ActivatedRoute, private http:Http,private credentials:CredentialService) {
+    credentials.CheckDNACredentials().subscribe((res:Response) => {
+      let rep = JSON.parse(res.text());
+
+      if(rep.TYPE === "SUCCESS"){
+        this.DNALoggedIn = true;
+      }else{
+        this.DNALoggedIn = false;
+      }
+    });
     const p = this.activeRoute.queryParams.subscribe(params => {
       if (params.searchTerm) {
         this.searchTerm = params.searchTerm;
@@ -91,7 +102,6 @@ export class AppComponent implements OnInit {
   }
 
   onValueChange(data: string) {
-    console.log(data);
     if (data && data.length > 0) {
       this.router.navigate([], { queryParams: { searchTerm: data }, relativeTo: this.activeRoute });
     } else {
@@ -118,5 +128,4 @@ export class AppComponent implements OnInit {
   checkAccount(bool) {
     this.withPadding = bool;
   }
-
 }
