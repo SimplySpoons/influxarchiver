@@ -36,8 +36,8 @@
 
         public function CheckCredentials(){
             $url = "http://influxtools.dealer.com/archiver_test/conf.php";
-            $username = "dafdasf";
-            $password = "dafdasf";
+            $username = $this->InfluxUsername;
+            $password = $this->InfluxPassword;
 
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);

@@ -25,6 +25,10 @@ if (class_exists($controller_name)) {
 		}else{
 			$result = array();
 			$result['TYPE'] = 'FAILURE';
+
+			//SEND AN EMAIL TO IST ASKING TO UPDATE THE DATABASE.
+			mail("CAIinventorysupport@coxautoinc.com","Archiver Password Reset","This is an automated e-mail sent from the Influx Archiver 2.0 requesting the password in the database be updated.");
+
 			echo json_encode($result, JSON_PRETTY_PRINT);
 		}
 	}else{
