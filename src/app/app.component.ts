@@ -53,8 +53,8 @@ export class AppComponent implements OnInit {
   restoreString = '';
   searchTerm = '';
   DNALoggedIn = false;
+  LoadedCheck = false;
   // loading = true;
-
   showSearch = false;
 
   head_sub: any;
@@ -75,6 +75,8 @@ export class AppComponent implements OnInit {
       }else{
         this.DNALoggedIn = false;
       }
+
+      this.LoadedCheck = true;
     });
     const p = this.activeRoute.queryParams.subscribe(params => {
       if (params.searchTerm) {

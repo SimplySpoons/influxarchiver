@@ -1,4 +1,4 @@
-<div *ngIf="DNALoggedIn">
+<div *ngIf="DNALoggedIn && LoadedCheck">
   <div class="header-container navbar-fixed-top" [@showHeader]="!collapsed">
     <app-header [showHeader]="!collapsed" [value]="searchTerm" (routeChange)="onValueChange($event)"></app-header>
   </div>
@@ -14,8 +14,12 @@
     </div>
   </div>
 </div>
-<div *ngIf="!DNALoggedIn">
+<div *ngIf="!DNALoggedIn && LoadedCheck">
   <app-dna-login>
 
   </app-dna-login>
 </div>
+<div *ngIf="!LoadedCheck">
+  Loading...
+</div>
+

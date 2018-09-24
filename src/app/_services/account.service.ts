@@ -59,7 +59,7 @@ export class AccountService {
   getInfluxConfigs(accountId: string) {
     return this.http.get(this.API_URL + `/api/influx/${accountId}/influx_configs`).map(
       (response: Response) => {
-        let resp = response.json();
+        return response.json();
       });
   }
 
