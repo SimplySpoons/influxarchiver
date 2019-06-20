@@ -2,7 +2,7 @@
 
 Class NexusConnect {
 
-	private $sql_host = 'vtse-dbnexus02.dealer.ddc';
+	private $sql_host = 'vtse-dbnexus02.XXXXX.ddc';
 	private $sql_name = 'nexus4'; // DB Name
 	private $sql_user = 'nexus'; // SQL User Name
 	private $sql_pass = 'next1one'; // SQL USER Pass

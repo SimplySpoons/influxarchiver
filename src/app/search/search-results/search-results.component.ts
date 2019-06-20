@@ -129,7 +129,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   getImageSrc(data: any, accountId: string) {
     let firstLetter = accountId.charAt(0);
-    let url = 'https://pictures.dealer.com/ddc/resize/320x/quality/70/sharpen/1/ddc/' + firstLetter + '/' + accountId + '/' + data;
+    let url = 'https://pictures.XXXXX.com/ddc/resize/320x/quality/70/sharpen/1/ddc/' + firstLetter + '/' + accountId + '/' + data;
     return url;
   }
   arrayUnique(array) {

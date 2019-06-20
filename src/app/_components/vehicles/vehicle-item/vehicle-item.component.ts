@@ -40,7 +40,7 @@ export class VehicleItemComponent implements OnInit {
   getImageSrc(data: any, accountId: string) {
     console.log(data);
     let firstLetter = accountId.charAt(0);
-    let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;
+    let url = 'https://pictures.XXXXX.com//' + firstLetter + '/' + accountId + '/' + data;
     console.log(url)
     return url;
   }
@@ -50,17 +50,17 @@ export class VehicleItemComponent implements OnInit {
   }
 
   getVdpLink(item: any) {
-    let vdp_link = 'http://' + item.accountId + '.cms.dealer.com/' + item.type + '/' + item.uuid + '.htm';
+    let vdp_link = 'http://' + item.accountId + '.cms.XXXXX.com/' + item.type + '/' + item.uuid + '.htm';
     return vdp_link;
   }
 
   getVlpLink(item: any) {
-    let vlp_link = 'http://' + this.item.accountId + '.cms.dealer.com/' + item.type + '-inventory/index.htm?search=' + item.vin;
+    let vlp_link = 'http://' + this.item.accountId + '.cms.XXXXX.com/' + item.type + '-inventory/index.htm?search=' + item.vin;
     return vlp_link;
   }
 
   getAuditTrail(vin: string) {
-    let audit_link = '//apps.dealer.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
+    let audit_link = '//apps.XXXXX.com/inventory/as/' + this.item.accountId + '/' + this.item.accountId + '-admin/i/index#/vehicle~summary?vin=' + vin + '&history&quickFilter=all';
     return audit_link;
   }
 

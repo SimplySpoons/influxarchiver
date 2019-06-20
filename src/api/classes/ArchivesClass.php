@@ -25,7 +25,7 @@ class ArchivesClass {
 
 	public function filters() {
 
-		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
+		$url = "XX_002$this->parser.conf";
 		$username = $this->AdminCheck->InfluxUsername;
 		$password = $this->AdminCheck->InfluxPassword;
 
@@ -72,7 +72,7 @@ class ArchivesClass {
   }
 
 	function file_list() {
-		$url = "http://influxtools.dealer.com/archiver_test/?provider=$this->parser&accountId=$this->accountId&providerId=$this->providerId";
+		$url = "XX_003$this->parser&accountId=$this->accountId&providerId=$this->providerId";
 
 		$username = $this->AdminCheck->InfluxUsername;
 		$password = $this->AdminCheck->InfluxPassword;
@@ -91,7 +91,7 @@ class ArchivesClass {
 	}
 
 	function header_map() {
-		$url = "http://influxtools.dealer.com/archiver_test/conf.php?file=parser_$this->parser.conf";
+		$url = "XX_004$this->parser.conf";
 		$username = $this->AdminCheck->InfluxUsername;
 		$password = $this->AdminCheck->InfluxPassword;
 

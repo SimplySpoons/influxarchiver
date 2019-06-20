@@ -19,7 +19,7 @@
     "styles": [
       "styles.css"
     ],
-    "scripts": ["https://cox-spauth-js.spar.dealer.com/cox-spauth.js", "../node_modules/hammerjs/hammer.min.js"],
+    "scripts": ["XX_021", "../node_modules/hammerjs/hammer.min.js"],
     "environments": {
       "source": "environments/environment.ts",
       "dev": "environments/environment.ts",

@@ -25,7 +25,7 @@ class NexusClass {
 		if (mysqli_num_rows($get_address)) {
       $address = mysqli_fetch_array($get_address, MYSQLI_ASSOC);
      // $address = $this->fixFormating($address);
-			$internalUrl = 'http://' . $address['ownerid'] . '.cms.dealer.com';
+			$internalUrl = 'http://' . $address['ownerid'] . '.cms.XXXXX.com';
 			$publicUrl = 'http://' . $address['url'];
 			$account = [
 				'accountId' => $address['ownerid'],

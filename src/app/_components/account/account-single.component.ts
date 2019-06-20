@@ -52,7 +52,7 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
     });
   }
   getDnaLink() {
-    return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.account.accountId;
+    return 'XX_008' + this.account.accountId;
   }
 
   loadCorrectVehicles(type: any, classification: any) {
@@ -115,19 +115,19 @@ export class AccountSingleComponent implements OnInit, OnDestroy {
 </div> */
 
   getInventoryManagerLink() {
-    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index';
+    return '//apps.XXXXX.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/i/index';
   }
   getExportViewLink() {
-    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/market/inventoryexports';
+    return '//apps.XXXXX.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/market/inventoryexports';
   }
   getInboundFeedsLink() {
-    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/publishRules/index';
+    return '//apps.XXXXX.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/publishRules/index';
   }
   getSolrLink() {
-    return '//apps.dealer.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/solrRefresh/index';
+    return '//apps.XXXXX.com/inventory/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/solrRefresh/index';
   }
   getComposerLink() {
-    return '//' + this.account.accountId + '.composer.dealer.com/website/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/composer/index#website';
+    return '//' + this.account.accountId + '.composer.XXXXX.com/website/as/' + this.account.accountId + '/' + this.account.accountId + '-admin/composer/index#website';
   }
 
   ngOnInit() {

@@ -1,9 +1,9 @@
 <?php
     class AdminClass{
-        private $url = "supporttoolbox";
-        private $username = "sdev";
-        private $password = "sdev";
-        private $db = "influx_admin";
+        private $url = "XX_015";
+        private $username = "XX_016";
+        private $password = "XX_017";
+        private $db = "XX_018";
         private $conn;
 
         public $InfluxUsername;
@@ -35,7 +35,7 @@
         }
 
         public function CheckCredentials(){
-            $url = "http://influxtools.dealer.com/archiver_test/conf.php";
+            $url = "XX_001";
             $username = $this->InfluxUsername;
             $password = $this->InfluxPassword;
 

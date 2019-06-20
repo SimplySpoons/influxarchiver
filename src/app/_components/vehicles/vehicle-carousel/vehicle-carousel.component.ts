@@ -47,13 +47,13 @@ export class VehicleCarouselComponent implements OnInit {
   }
   getImageSrc(data: any, accountId: any) {
     let firstLetter = accountId.charAt(0);
-    let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;
+    let url = 'https://pictures.XXXXX.com//' + firstLetter + '/' + accountId + '/' + data;
     return url;
   }
 
   getImageThumbSrc(data: any, accountId: string) {
     let firstLetter = accountId.charAt(0);
-    let url = 'https://pictures.dealer.com//' + firstLetter + '/' + accountId + '/' + data;
+    let url = 'https://pictures.XXXXX.com//' + firstLetter + '/' + accountId + '/' + data;
     var fileName = url.substring(url.lastIndexOf('/') + 1);
     return url.replace(fileName, 'thumb_' + fileName);
   }

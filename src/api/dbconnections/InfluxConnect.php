@@ -1,7 +1,7 @@
 <?php
 
 Class InfluxConnect {
-	private $sql_host = 'influx-services-rw.dealer.ddc';
+	private $sql_host = 'influx-services-rw.XXXXX.ddc';
 	private $sql_name = 'influx4'; // DB Name
 	private $sql_user = 'nexus'; // SQL User Name
 	private $sql_pass = 'next1one'; // SQL USER Pass

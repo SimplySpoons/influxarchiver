@@ -50,7 +50,7 @@ export class InfluxComponent implements OnInit, OnDestroy {
     this.account = this.appConfig.account;
   }
   getDnaLink() {
-    return 'https://dna.dealer.com/views/clients/client-dashboard/client-dashboard?accountId=' + this.accountId;
+    return 'XX_009' + this.accountId;
   }
 
   viewFeedData(config) {

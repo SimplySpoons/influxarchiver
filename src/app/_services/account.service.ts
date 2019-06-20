@@ -169,13 +169,13 @@ export class AccountService {
   }
 
   call(): Observable<any> {
-    const username = 'ddchenryl';
-    const password = 'Dumptruck69!';
+    const username = 'XX_019';
+    const password = 'XX_020';
     const headers: Headers = new Headers();
     headers.append("Authorization", "Basic " + btoa(username + ":" + password));
     headers.append("Content-Type", "application/x-www-form-urlencoded");
     // tslint:disable-next-line:max-line-length
-    return this.http.get('http://influxtools.dealer.com/archiver_test/test.php?provider=devventure&filename=1521743477__longotoyota__zzInventory.txt&providerId=false&accountId=longotoyota&offset=226461&full=', { headers: headers }).map(
+    return this.http.get('XX_014', { headers: headers }).map(
       res => {
         console.log(res);
       },
