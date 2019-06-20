@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="header" [class.fullHeight]="acct.accountId" [class.toggle]="toggle">
+  <mat-toolbar-row class="primary-row">
+    <span class="accountname">{{acct.name}}</span>
+    <span>
+      <div id="navbarSarchBarContainer">
+        <div class="topSearch">
+          <input type="text" class="form-control input-md" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value"
+            [value]="value" (ngModelChange)="onValueChange($event)">
+        </div>
+      </div>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>

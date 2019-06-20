@@ -1,0 +1,112 @@
+<div class="shadow" (window:resize)="adjustTableSize()">
+  <div class="table-info" #tableInfo [class.expand]="columnFiltersExpand">
+    <div class="padding">
+      <div class="clearfix">
+        <h4 class="pull-left">
+          <a class="close-window" (click)="routeBack()">
+            <i class="fa fa-close"></i>
+          </a>
+          <span class="account">
+            Account:
+          </span>
+          <span class="accountName">{{fileRequest.accountId}}</span>
+        </h4>
+        <h4 class="pull-right">
+          Feed:
+          <span class="feedName">
+            {{fileRequest.provider}} - {{fileRequest.delimiter}} <a [href]="'XX_010' + fileRequest.provider + '.conf&pretty=true'" target="_blank">(Config File)</a>
+          </span>
+        </h4>
+      </div>
+    </div>
+    <div class="paddingBottom clearfix filterColumnsContainer">
+      <div class="search pull-left">
+        <div class="row">
+          <div class="col-md-2">
+            <form name="form" (ngSubmit)="getArchivedFile(archivedFile.filename)">
+              <span class="file-select">
+                <select name="filename" class="form-control" [(ngModel)]="fileIndex" (ngModelChange)="onValueChange($event)">
+                  <option *ngFor="let file of files; let i = index" [selected]="file === archivedFile || file.filename === filename" [value]="i">
+                    {{file.time | date: "short"}}
+                  </option>
+                </select>
+              </span>
+            </form>
+          </div>
+          <div class="col-md-8" style="padding-left: 0">
+            <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="value">
+          </div>
+          <div class="col-md-2" style="padding-left: 0">
+            <button type="button" class="btn btn-default btn-block btn-sm" (click)="toggleFiltersDropDown()">
+              <span class="glyphicon glyphicon-th"></span> Columns
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div #checkbox class='columnsCheckboxContainer clearfix' [ngStyle]="getStyle(checkbox)" [ngClass]="{ 'expanded': columnFiltersExpand, 'collapsed': !columnFiltersExpand }">
+      <div class="col-md-1" style="height: 100%">
+        <button type="button" class="btn btn-small" (click)="checkAll()">
+          Toggle All
+        </button>
+      </div>
+      <div class="col-md-11 overflow">
+        <ul>
+          <li *ngFor='let col of influxHeadersCheckbox' class="inline">
+            <input type='checkbox' [id]="col.prop" (click)='toggle(col)' [checked]='isChecked(col)' />
+            <label [attr.for]="col.prop">{{col.prop}}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="archivedTable">
+    <div class="dataTable">
+      <!-- | format: headers  -->
+      <ngx-datatable #table class="material striped noShadow expandable scroll-vertical" [rows]="selectedInfluxVehicles | search_archived: value"
+        [columnMode]="'standard'" [rowHeight]="50" [externalPaging]="true" [count]="fileRequest.totalElements" [limit]="fileRequest.pageSize" [offset]="fileRequest.pageNumber" [scrollbarV]="true" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true" (page)="onPage($event)" [loadingIndicator]="isLoading"
+        [reorderable]="reorderable" [ngStyle]="getHeight()" [columns]="influxHeaders" (scroll)="logEvent($event)" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)" (select)='onSelect($event)'>
+        <ngx-datatable-column [width]="30" [sortable]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+          [checkboxable]="true">
+        </ngx-datatable-column>
+          <ngx-datatable-column  *ngFor="let col of influxHeadersCheckbox; let i = index" name="{{i}}-{{col.name}}" [prop]="col.prop">
+            <ng-template let-value="value" let-rowIndex="rowIndex" let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+              <i (click)="openVehicleSingle(selectedInfluxVehicles[rowIndex])" [innerHTML]="row[col.prop]"></i>
+            </ng-template>
+          </ngx-datatable-column>
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <div class="footer-wrapper" style="padding: 0 20px; width: 100%;">
+              <span class="footer-content">
+                <span class="filename">{{fileRequest.filename}} - </span>
+
+                <span *ngIf="fileRequest.isLoading"> Reading file... </span>
+                <span *ngIf="!fileRequest.isLoading">
+                  <b> {{fileRequest.totalElements}} </b> Vehicles in file </span>
+              </span>
+              <img class="loading pull-right" [class.visible]="fileRequest.isLoading" style="width: 25px; height: 25px" src="assets/loading.gif" />
+            </div>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+    </div>
+  </div>
+  <div class="compareButtonsFixedContainer" *ngIf="selected.length > 0">
+    <button type="button" class="compareVehiclesButton vehiclesCompareButton" href="#" (click)="selectedInfluxVehicles = selected">Compare Selected</button>
+    <button type="button" class="showAllVehiclesButton vehiclesCompareButton" href="#" (click)="selectedInfluxVehicles = influxVehicles">Show All Vehicles</button>
+    <div *ngIf="selected.length > 0" class="selectedColumnList vehiclesCompareButton selected-column" [ngClass]="{ 'expanded': vehiclesSelectedExpand, 'collapsed': !vehiclesSelectedExpand }">
+      <div class="compareButtonsInnerContainer">
+        <button class='card selectedVehiclesButton' [ngClass]="{ 'hvr-icon-hang': vehiclesSelectedExpand, 'hvr-icon-bob': !vehiclesSelectedExpand }"
+          (click)="toggleVehiclesSelectedExpand()">{{selected.length}} Vehicles Selected</button>
+        <ul *ngIf="vehiclesSelectedExpand">
+          <li *ngFor='let sel of selected'>
+            <div class='card'>
+              <li>{{sel.vin}}</li>
+            </div>
+          </li>
+          <li *ngIf="!selected.length">No Selections</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

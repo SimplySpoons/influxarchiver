@@ -1,0 +1,25 @@
+.quicklinks .btn-group {
+    margin-top: 7px;
+}
+/* Dropdown transition */
+.dropdown .dropdown-menu {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+}
+.dropdown.open .dropdown-menu {
+    max-height: 600px;
+    opacity: 1;
+    margin-right:-10px;
+}
+
+#oemPagesNavBarButtonContainer,
+#quickLinksNavBarButtonContainer { float:left; padding-right:0; }
+
+/* End dropdown transition */

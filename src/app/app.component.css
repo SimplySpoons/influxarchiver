@@ -1,0 +1,78 @@
+.container {
+    width: 100%;
+    padding: 0;
+}
+@media (min-width: 767px) {
+    .main-panel {
+        background: rgba(203, 203, 210, 0.15);
+        position: relative;
+        float: right;
+        width: calc(100% - 300px);
+        min-height: 100%;
+
+    }
+
+
+}
+
+.main-panel#main-container {
+    width:100%;
+    overflow: hidden !important;
+}
+
+
+.nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {display: none;}
+
+.navbar-toggle {
+    display: inline-block !important;
+    margin: 0 auto;
+    float: right;
+    padding: 10px;
+}
+.nav-side-menu .navbar-collapse.collapse.in .brand, .nav-side-menu .navbar-collapse.collapse.in .menu-list {
+    display: none;
+}
+.nav-side-menu .navbar-collapse.collapse.in {
+    width:auto;
+}
+
+@media (min-width: 767px) {
+  .nav-side-menu .menu-list .menu-content {
+    display: block;
+  }
+  /*.nav-side-menu .navbar-collapse.collapse { width:300px;}*/
+
+  #main {
+  	width:calc(100% - 300px);
+  	float: right;
+  }
+}
+.nav-side-menu li a {
+    display:block;
+}
+
+.main-panel#main-container {
+    width:100%;
+}
+
+.menuContainer.out .nav.menu-list {
+    width:100%;
+}
+
+.menuContainer {
+  background: #262D3E;
+}
+
+
+.container.withPadding {
+  padding: 30px;
+}
+
+.header-container {
+  background: #4B88C8;
+  transition: margin ease-in-out .25s;
+}
+.navbar-fixed-bottom,
+.navbar-fixed-top {
+  z-index: 9;
+}

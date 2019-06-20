@@ -1,0 +1,65 @@
+.feedWins .col-md-2.active, .scrubAtts .col-md-2.active {
+    color: green;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.feedWins .col-md-2,
+.scrubAtts .col-md-2  {
+     font-size: 1.1em;
+     color: #ccc;
+}
+
+.panel-subheading{
+   padding-left: 10px;
+}
+
+.panel-subheading span {
+    background: #337ab7;
+    color: #fff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.nav .type.heading h3 { font-weight: bold; }
+.row.name h3,.name.accountName { font-style: italic; }
+
+.nav a.btn.New {
+    background-color:#5bc0de;
+    border-color:#5bc0de;
+}
+.nav a.btn.New:hover {
+    background-color:#3F869B;
+    border-color:#3F869B;
+}
+.panel-sub small {
+    font-size:100%;
+}
+.goodBad {
+    margin-top:15px;
+}
+.cc-btns {
+    font-weight:bold;
+}
+
+.title {
+    margin-bottom: 0;
+}
+
+.dealersearch {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.active {
+  background: #e7e3f5;
+}

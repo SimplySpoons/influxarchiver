@@ -1,0 +1,224 @@
+.datatable-row-odd {
+    background: #ddd;
+  }
+  
+  .dataTable {
+    position: relative;
+  }
+  
+  .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #5bc0de;
+  }
+  
+  .compareButtonsFixedContainer .vehiclesCompareButton {
+    position: fixed;
+    right: 20px;
+    z-index: 10;
+    height: 40px;
+    background-color: #2e353d;
+    border: 2px solid #585252;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    bottom: 20px;
+    padding: auto 8px;
+  }
+  
+  .compareButtonsFixedContainer .compareVehiclesButton {
+    right: 20px;
+  }
+  
+  .compareButtonsFixedContainer .showAllVehiclesButton {
+    right: 185px;
+  }
+  
+  .columnsCheckboxContainer ul {
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .columnsCheckboxContainer.collapsed {
+    display:none;
+  }
+  
+  .columnsCheckboxContainer.expanded {
+    display: block;
+    position:absolute;
+    background-color: #fff;
+    list-style: none;
+    right:0;
+    top:30px;
+    z-index:5;
+    max-height: calc(65vh - 65px);
+    overflow-y: scroll;
+    border-left:1px solid #e0e0e0;
+  }
+  
+  .filterColumnsContainer button {
+    float:right;
+  }
+  
+  .ngx-datatable.scroll-vertical {
+    height: 65vh;
+    clear:both;
+  }
+  
+  .compareButtonsFixedContainer .selected-column.collapsed ul {
+    display: none;
+  }
+  
+  .compareButtonsFixedContainer .selected-column ul {
+    list-style: none;
+  }
+  
+  .compareButtonsFixedContainer .selected-column.collapsed {
+    height: 40px;
+  }
+  
+  .compareButtonsFixedContainer .selected-column {
+    height: auto;
+    width: 300px;
+    max-height: 350px;
+    right: 345px;
+    overflow-y: auto;
+  }
+  
+  .compareButtonsFixedContainer .selected-column .selectedVehiclesButton {
+    background-color: #2e353d;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    top: 0;
+    position: sticky;
+    height: 35px;
+  }
+  
+  .compareButtonsFixedContainer .compareButtonsInnerContainer {
+    position: relative;
+    height: 100%;
+  }
+  
+  .hvr-icon-hang:before {
+    content: "\f078";
+    position: absolute;
+    left: .5em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .feed-override-msg { 
+    padding-top: 5px;
+  }
+
+  .vin-decode-msg {
+    position: relative;
+    left: -12.3%;
+    top: 15px;
+  }
+
+  .feed-last-ran { 
+    font-size: 18px;
+  }
+
+  .hvr-icon-bob:before {
+    content: "\f077";
+    position: absolute;
+    left: .5em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .config {
+    margin-top: 30px;
+  }
+
+    .config:first-child {
+      margin-top: 10px;
+    }
+
+  .active {
+    color: green !important;
+    font-weight: bold;
+  }
+
+  .attr {
+    color: #999;
+  }
+ .demo-tab-content {
+   padding: 20px 0;
+ }
+  .demo-tab-content h4 {
+       text-align: center;
+  }
+
+  hr {
+    margin: 3px -20px;
+  }
+  .full-width {
+    margin: 0 -20px;
+  }
+
+  .pointer {
+    color: green;
+    cursor: pointer;
+  }
+  .mat-card>.mat-card-actions:last-child .mat-button {
+    border: 1px solid #eee;
+    padding: 0 10px;
+  }
+
+  .mat-card>.mat-card-actions:last-child { 
+    text-align: center;
+  }
+
+.demo-tab-content.feedtab .clearfix, .demo-tab-content.decodetab div {
+  margin-left: 8%;
+}
+
+.allfeeds { 
+  border-bottom: 1px solid #ccc; 
+}
+
+.mat-list-item:hover { 
+  background-color: #C2BFBF; 
+} 
+
+.mat-list-item {
+  cursor: pointer;
+}
+
+.changeLog {
+  margin-top: 20px;
+}
+
+.recentFiles li {
+  display: inline-block;
+  padding: 7px;
+  width: 19%;
+}
+
+.recentFiles {
+  padding: 9.5px;
+  margin: 20px 0 20px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters {
+  padding: 12px 0 0 12px;
+  margin: 20px 0 20px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

@@ -1,0 +1,62 @@
+.bugDetail .panel-heading.bug-1 {
+  background-color: #d12040;
+}
+
+.bugButton {
+  background-color: #d12040;
+  color: #FFF;
+  font-weight: bold;
+  border-color: #d12040;
+}
+
+.closedBugs {
+  color: #FFF;
+  font-weight: bold;
+  background-color: green;
+}
+
+.bugDetail .panel-heading.bug-2 {
+  background-color: #2098d1;
+}
+
+.panel .panel-heading {
+  color: white;
+}
+
+.featureButton {
+  background-color: #2098d1;
+  color: #FFF;
+  border-color: #2098d1;
+  font-weight: bold;
+}
+
+.bugDetail .panel-heading.bug-3 {
+  background-color: #d1b220;
+}
+
+.questionButton {
+  background-color: #d1b220;
+  color: #FFF;
+  border-color: #d1b220;
+  font-weight: bold;
+}
+
+.legendButtons {
+  margin-bottom: 10px;
+}
+
+.legendButtons button {
+  margin-right: 5px;
+}
+
+h3.title {
+  margin-top: 10px;
+}
+
+.openIssues {
+  font-weight: bold;
+}
+
+.bugDetail button {
+  margin-left: 5px;
+}

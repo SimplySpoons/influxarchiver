@@ -1,0 +1,106 @@
+.nav-side-menu .panel {
+  background-color: #2e353d;
+}
+
+.card.navPanelItem, .card.navPanelItem .card-header, .panel.navPanelItem {
+  background-color: #2e353d;
+  color: #fff;
+}
+
+.panel.navPanelItem .panel-body {
+  background-color: #2e353d;
+}
+
+.nav-side-menu .panel:hover, .card.navPanelItem .card-header:hover {
+  background-color: #31708f;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.panel.navPanelItem .show .panel-body {
+  background-color: #31708f;
+  color: #FFF;
+}
+
+.panel.navPanelItem .show .panel-body .accordianUnderText li a {
+  color: #FFF;
+}
+
+.panel.navPanelItem .show .panel-body a {
+  padding: 0;
+  padding-left: 15px;
+}
+
+.panel.navPanelItem .show .panel-body {
+  padding: 0;
+  border-top: none;
+}
+
+.panel.navPanelItem .show .panel-body li:hover {
+  background-color: #3f8eb5;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.card.navPanelItem .card-header .accordion-toggle span, .dashboardLink.panel-title:not(i) {
+  float: none;
+  margin-left: 5px;
+}
+
+html, body, .wrapper {
+  height: 100%;
+}
+
+.main-panel.out .brand.hvr-underline-reveal a.headerTitle {
+  display: none;
+}
+
+body {
+  background-color: #F7F7F8;
+}
+
+#vehicleDetailsModal .carousel-control .icon-next, .carousel-control .icon-prev {
+  text-shadow: -1px 0 rgba(1, 1, 1, 1), 0 1px rgba(0, 0, 0, 0.6), 1px 0 rgba(0, 0, 0, 0.6), 0 -1px rgba(0, 0, 0, 0.6);
+  top: 45%;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+
+#vehicleDetailsModal .carousel-indicators {
+  display: none;
+}
+
+#vehicleDetailsModal .carousel-control {
+  background-image: none;
+}
+
+#vehicleDetailsModal .carouselVehicleImageContainer .carousel-control span {
+  opacity:.7;
+}
+
+#vehicleDetailsModal .carouselVehicleImageContainer:hover .carousel-control span {
+  opacity:1;
+}
+
+#vehicleDetailsModal .carousel-control .icon-next {
+  right: 0;
+}
+
+#vehicleDetailsModal .carousel-control .icon-prev {
+  left: 0;
+}
+
+.vehicle-image .item.active img {
+  border: 1px solid #a1a1a1;
+}
+.ngx-datatable.material .datatable-body-row.active:hover,
+.ngx-datatable.material .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row.active:hover,
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row.active:hover .datatable-row-group { background-color: #5bc0de; }

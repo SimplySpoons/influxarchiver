@@ -1,0 +1,32 @@
+.dealersearch {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 80%;
+    width: 65%;
+    padding: 20px;
+}
+
+#indexsearchcontainer {
+    position: relative;
+    top: 4px;
+    width: 50%;
+    margin: 10px auto 0 auto;
+    border: 5px solid;
+    border-radius: 8px;
+}
+
+/* .archiver-logo { 
+    width: 45%; 
+    margin-left: 27%; 
+} */
+
+.parentsearch {
+    border-bottom: 3px solid;
+    position: relative;
+    top: 42px;
+}
+

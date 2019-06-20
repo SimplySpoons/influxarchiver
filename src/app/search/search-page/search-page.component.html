@@ -1,0 +1,21 @@
+<div class="parentsearch"></div>
+<div>
+  <mat-progress-bar [class.show]="loading" class="loading" mode="indeterminate"></mat-progress-bar>
+  <span *ngIf="getSearchRoute()">
+
+    <!-- <div class="logo">
+      <img class="archiver-logo" src="https://i.imgur.com/HDBBxEV.png" />
+    </div> -->
+    <div id="indexsearchcontainer" class="indexsearchcontainer">
+      <div class="topSearch">
+        <input type="text" class="form-control input-md" placeholder="Search..." name="srch-term" id="srch-term" [(ngModel)]="search"
+          [value]="search" (ngModelChange)="emitTerm($event)">
+      </div>
+
+    </div>
+  </span>
+
+  <div class="row dealersearch">
+    <app-search-results (isSearchRoute)= "setSearchRoute($event)" (searchParam)="getValue($event)"></app-search-results>
+  </div>
+</div>

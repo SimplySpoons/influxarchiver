@@ -1,0 +1,225 @@
+.datatable-row-odd {
+  background: #ddd;
+}
+
+.dataTable {
+  position: relative;
+}
+
+.ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+  background-color: #5bc0de;
+}
+
+.compareButtonsFixedContainer .vehiclesCompareButton {
+  position: fixed;
+  right: 20px;
+  z-index: 10;
+  height: 40px;
+  background-color: #2e353d;
+  border: 2px solid #585252;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  bottom: 20px;
+  padding: auto 8px;
+}
+
+.compareButtonsFixedContainer .compareVehiclesButton {
+  right: 20px;
+}
+
+.compareButtonsFixedContainer .showAllVehiclesButton {
+  right: 185px;
+}
+
+.columnsCheckboxContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.columnsCheckboxContainer ul li>* {
+  cursor: pointer;
+}
+
+.columnsCheckboxContainer {
+  transition: top .35s;
+  background: #f5f5f5;
+  display: block;
+  list-style: none;
+  left: 0px;
+  z-index: 5;
+  text-align: left;
+  width: 100%;
+  padding: 10px 0;
+  position: absolute;
+  top: -100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, .2);
+  border-bottom: 1px solid #aaa;
+}
+
+.columnsCheckboxContainer.collapsed {}
+
+.columnsCheckboxContainer.expanded {
+  height: auto;
+}
+
+.inline {
+  display: inline-block;
+  margin: 3px;
+  padding: 3px 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.overflow {}
+
+.filterColumnsContainer button {
+  float: right;
+  padding: 7.4px 10px;
+}
+
+.ngx-datatable.scroll-vertical {
+  height: 65vh;
+  clear: both;
+}
+
+.compareButtonsFixedContainer .selected-column.collapsed ul {
+  display: none;
+}
+
+.compareButtonsFixedContainer .selected-column ul {
+  list-style: none;
+}
+
+.compareButtonsFixedContainer .selected-column.collapsed {
+  height: 40px;
+}
+
+.compareButtonsFixedContainer .selected-column {
+  height: auto;
+  width: 300px;
+  max-height: 350px;
+  right: 345px;
+  overflow-y: auto;
+}
+
+.compareButtonsFixedContainer .selected-column .selectedVehiclesButton {
+  background-color: #2e353d;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  top: 0;
+  position: sticky;
+  height: 35px;
+}
+
+.compareButtonsFixedContainer .compareButtonsInnerContainer {
+  position: relative;
+  height: 100%;
+}
+
+.hvr-icon-hang:before {
+  content: "\f078";
+  position: absolute;
+  left: .5em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.hvr-icon-bob:before {
+  content: "\f077";
+  position: absolute;
+  left: .5em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+img.loading {
+  opacity: 0;
+  display: block;
+  float: right;
+}
+
+img.visible.loading {
+  opacity: 1;
+}
+
+img {
+  transition: all ease-in-out .75s;
+}
+
+.noShadow {
+  box-shadow: none !important;
+  clear: both;
+}
+
+.shadow {
+  position: absolute;
+  background: #fff;
+  width: calc(80%);
+  right: 0;
+}
+
+.close-window {
+  position: absolute;
+  font-size: 1.4em;
+  line-height: 1em;
+  bottom: 5px;
+  left: 5px;
+  color: #fff;
+}
+
+.search {
+  width: 100%;
+}
+
+hr {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.accountName,
+.feedName {
+  font-style: italic;
+}
+
+.account {
+  margin-left: 25px;
+}
+
+.padding {
+  padding: 10px 20px 10px;
+  background: #2B72A6;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+}
+
+.paddingBottom {
+  padding: 10px 20px 10px;
+  background: #fff;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+}
+
+.table-info {
+  position: relative;
+}
+
+.table-info.expand {
+  overflow: visible;
+}
+
+.feedName a {
+  color: #FFF;
+}

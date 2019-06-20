@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-10">
+    <div *ngIf="!feedEditHidden">
+      <app-feed-edit></app-feed-edit>
+    </div>
+    <div class="feedHidingButtons">
+      <div *ngIf="!feedEditHidden">
+        <button class="btn btn-danger hideFeed" (click)="hideFeed()">Hide Component</button>
+      </div>
+      <div *ngIf="feedEditHidden">
+        <button class="btn btn-success showFeed" (click)="showFeed()">Show Component</button>
+      </div>
+    </div>
+    <hr>
+    <div *ngIf="!feedListHidden">
+      <ul class="list-group">
+        <a class="list-group-item" style="cursor: pointer" *ngFor="let feed of feeds">{{feed.name}} ({{feed.amount}})</a>
+      </ul>
+    </div>
+    <div class="feedHidingButtons">
+      <div *ngIf="!feedListHidden">
+        <button class="btn btn-danger hideFeed" (click)="hideFeedEdit()">Hide Component</button>
+      </div>
+      <div *ngIf="feedListHidden">
+        <button class="btn btn-success showFeed" (click)="showFeedEdit()">Show Component</button>
+      </div>
+    </div>
+    <div class="loadingIndicatorShower">
+      <div *ngIf="!loadingHidden">
+        <button class="btn btn-danger hideLoading" (click)="hideLoading()">Hide Loading Indicator</button>
+      </div>
+      <div *ngIf="loadingHidden">
+        <button class="btn btn-success showLoading" (click)="showLoading()">Show Loading Indicator</button>
+      </div>
+    </div>
+    <div *ngIf="!loadingHidden" class="loadingIndicator">
+      <div class="row" style="clear: both;">
+        <sk-folding-cube></sk-folding-cube>
+      </div>
+    </div>
+  </div>
+</div>

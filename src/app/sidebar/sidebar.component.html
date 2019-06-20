@@ -1,0 +1,92 @@
+<div class="title" [style.width.px]="width">
+  <div class="title-wrap">
+    <h4 class="brand inline hvr-underline-reveal">
+      <img [@enterAnimation] class="dashTitle" [routerLink]="['']" src="https://i.imgur.com/sZIRaw5.png"/>
+    </h4>
+    <div id="nav-icon2" [ngClass]="{ 'closed': isIn, 'open': !isIn }" (click)="toggleState()">
+      <div class="white">
+        <i class="fa" [ngClass]="{ 'fa-times-circle': !isIn, 'fa-bars': isIn }"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nav_wrap" [style.width.px]="width" [style.height.px]="height"></div>
+<div class="menuContainer navbar-collapse nav-side-menu" [ngClass]="{ 'in': isIn, 'out': !isIn }">
+  <div class="collapse navbar itemContainer" [ngClass]="{ 'block': block, 'notBlock': !block }">
+    <div *ngIf="block" [@enterAnimation] class="menu-list">
+      <accordion>
+        <a panelClass="navPanelItem" [routerLink]="['search']">
+          <div class="panel-title">
+            <i class="fa fa-user fa-lg"></i>
+            <span class="navTitle navTitle1">Dealer Search</span>
+          </div>
+        </a>
+        <accordion-group panelClass="navPanelItem feeds" #group2>
+          <div accordion-heading [ngClass]="{'hvr-icon-bob feeds': group2?.isOpen, 'hvr-icon-hang feeds': !group2?.isOpen}">
+            <i class="fa fa-car fa-lg"></i>
+            <span class="navTitle navTitle2">Feeds</span>
+          </div>
+          <ul class="accordianUnderText">
+            <li>
+              <a class="accordionLink" [routerLink]="['/currentfeeds']">Currently Running</a>
+            </li>
+          </ul>
+        </accordion-group>
+        <accordion-group panelClass="navPanelItem quickLinks" #group3>
+          <div accordion-heading [ngClass]="{'hvr-icon-bob quickLinks': group3?.isOpen, 'hvr-icon-hang quickLinks': !group3?.isOpen}">
+            <i class="fa fa-link fa-lg"></i>
+            <span class="navTitle navTitle3">Quick Links </span>
+          </div>
+          <ul class="accordianUnderText">
+            <li *ngFor="let link of links">
+              <a href="{{link.href}}" target="_blank" class="{{link.name}}">{{link.name}}</a>
+            </li>
+          </ul>
+        </accordion-group>
+        <accordion-group panelClass="navPanelItem oemPages" #group4>
+          <div [ngClass]="{'hvr-icon-bob oemPages': group4?.isOpen, 'hvr-icon-hang oemPages': !group4?.isOpen}" accordion-heading>
+            <i class="fa fa-users fa-lg"></i>
+            <span class="navTitle navTitle4">OEM Pages </span>
+          </div>
+          <ul class="accordianUnderText">
+            <li *ngFor="let oemlink of oemlinks">
+              <a href="{{oemlink.href}}" target="_blank" class="{{oemlink.name}}">{{oemlink.name}}</a>
+            </li>
+          </ul>
+        </accordion-group>
+      </accordion>
+      <a panelClass="navPanelItem" [routerLink]="['/submitbug']">
+        <div class="bugSubmitLink panel-title">
+          <i class="fa fa-bug fa-lg"></i>
+          <span class="navTitle navTitle1">Submit Bug</span>
+        </div>
+      </a>
+      <a panelClass="navPanelItem" [routerLink]="['/issuetracker']">
+        <div class="issueTracker panel-title">
+          <i class="fa fa-list-alt fa-lg"></i>
+          <span class="navTitle navTitle1">Issue Tracker</span>
+        </div>
+      </a>
+    </div>
+      <div *ngIf="!block" class="collapsed" [@enterAnimation]>
+        <a panelClass="navPanelItem" [routerLink]="['search']">
+          <div class="dashboardLink panel-title">
+            <i class="fa fa-user fa-lg"></i>
+            <span class="navTitle navTitle1">Dealer Search</span>
+          </div>
+        </a>
+        <a panelClass="navPanelItem" [routerLink]="['/submitbug']">
+          <div class="bugSubmitLink panel-title">
+            <i class="fa fa-bug fa-lg"></i>
+            <span class="navTitle navTitle1">Submit Bug</span>
+          </div>
+        </a>
+        <a panelClass="navPanelItem" [routerLink]="['/issuetracker']">
+          <div class="issueTracker panel-title">
+            <i class="fa fa-list-alt fa-lg"></i>
+            <span class="navTitle navTitle1">Issue Tracker</span>
+          </div>
+        </a>
+      </div>
+  </div>
+</div>

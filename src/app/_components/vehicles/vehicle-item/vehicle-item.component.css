@@ -1,0 +1,23 @@
+.vin, .stock { font-style: italic; }
+.panel { cursor: pointer; }
+.panel:hover { background-color:#eee; }
+.panel-heading h4 { font-weight: bold; }
+.vehicle-pricing-heading h5 { text-decoration: underline; }
+.buttonSection .btn { margin-top: 10px; }
+.vehicle-info .type { text-transform: capitalize; }
+
+.panel {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border: 1px solid rgba(0, 0, 0, .12);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+      margin: 25px 0;
+      padding: 0 0 20px;
+
+}
+.buttonSection {
+  text-align: center;
+}

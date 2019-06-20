@@ -1,0 +1,183 @@
+#vehicleMediaContainer {
+  width: 100%;
+}
+
+#vehicleDetailsModal li {
+  list-style: none;
+}
+
+#vehicleDetailsModal ul {
+  padding-left: 0;
+}
+
+#vehicleDetailsContainer,
+#vehicleMediaContainer,
+#single-vehicle-expand {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#single-vehicle-expand {
+  margin-bottom: 10px;
+}
+
+#vehicleDetailsModal {
+  position: fixed;
+  right: 0;
+  left: auto;
+  width: 45%;
+}
+
+#vehicleDetailsModal .modal-dialog {
+  width: auto;
+  padding-left: 20px;
+  height: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#vehicleDetailsModal .modal-dialog .modal-container {
+  height: 100%;
+  overflow-y: scroll;
+  border-left: 3px solid #2e353d;
+  border-radius: 0px;
+}
+
+#vehicleDetailsModal .modal-container {
+  background-color: #f7f7f7;
+}
+
+#vehicleDetailsModal .modal-container .modal-body {
+  padding: 25px 15px 30px 35px;
+}
+
+#vehicleDetailsModal .modal-content {
+  padding: 25px;
+}
+
+#vehicleDetailsModal .modal-section {
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 15px;
+  border-width: 1px 1px 2px;
+  border-bottom-color: #2e353d;
+}
+
+#vehicleDetailsModal .modal-close-btn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: fixed;
+  top: 42%;
+  z-index: 5;
+  float: none;
+  padding: 25px 5px;
+  background-color: #df2a25;
+  border: 2px solid #8c1410;
+  border-left: none;
+  opacity: .5;
+}
+
+#vehicleDetailsModal .modal-close-btn:hover {
+  opacity: 1;
+}
+
+#vehicleDetailsModal .modal-close-btn .modal-close-icon {
+  font-size: 30px;
+  position: relative;
+  text-shadow: 0 1px 0 #ff7979;
+  color: #a70000;
+}
+
+#vehicleDetailsModal .modal-close-btn .modal-close-text {
+  display: none;
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+}
+
+#vehicleDetailsModal .closeModalContainer {
+  height: 100%;
+  top: 0;
+  z-index: 2;
+  position: absolute;
+  width: 40px;
+  visibility: visible;
+}
+
+#vehicleDetailsModal .closeModalContainer:hover .modal-close-btn {
+  visibility: visible;
+}
+
+#vehicleDetailsModal .single-vehicle-info .vehicle-overview-value {
+  font-weight: normal;
+}
+
+#vehicleDetailsModal .modal-section .vehicle-overview-label {
+  display: inline-block;
+  width: 50%;
+  font-weight: bold;
+}
+
+#vehicleDetailsModal .modal-section .vehicle-overview-value {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+}
+
+#vehicleDetailsModal .modal-section .comments .vehicle-overview-value {
+  width: 100%;
+  text-align: left;
+}
+
+#vehicleDetailsModal .modal-title {
+  font-size: 21px;
+}
+
+#vehicleDetailsModal .modal-section-header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+
+#vehicleDetailsModal .modal-section-header h4 {
+  font-weight: normal;
+}
+
+.single-vehicle-info,
+.single-vehicle-vehicle-pricing,
+.single-vehicle-details-heading {
+  margin-left: 5px;
+}
+
+.single-vehicle-info,
+.single-vehicle-vehicle-pricing {
+  margin-bottom: 7px;
+}
+
+.vin,
+.stock,
+.comments,
+.pricing,
+.type {
+  font-style: italic;
+}
+
+.single-vehicle-info .type {
+  text-transform: capitalize;
+  font-style: normal;
+}
+
+.vehicle-images.outer {
+  background-color: #FFF;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 15px;
+  border-width: 1px 1px 2px;
+  border-bottom-color: #2e353d;
+}
+
+.vehicle-overview-value.condition {
+  text-transform: capitalize;
+}

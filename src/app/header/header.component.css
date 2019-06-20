@@ -1,0 +1,84 @@
+
+.navbar.navbar-default {
+    border-radius:0;
+}
+.nav.navbar-nav.navbar-right {
+    margin-right:10px;
+}
+@media (max-width: 767px) {
+  .navbar-default.navbar-fixed-top {
+    display:none;
+  }
+}
+
+.navbar-default.navbar-fixed-top {
+    z-index:2;
+}
+
+.brand.hvr-underline-reveal {
+    position: relative;
+    top: 5px;
+}
+.brand.hvr-underline-reveal .headerTitle {
+    text-decoration: none;
+    font-size: 24px;
+    color: #5bc0de;
+    position: relative;
+    top: 2px;
+    font-family:verdana;
+}
+
+#navbarSarchBarContainer {
+width: calc(165% - 8px);
+z-index: 2;
+left: 0;
+top: 0;
+padding: 5px 30px;
+padding-left: 410px;
+overflow-x: hidden;
+float: right; 
+}
+
+.header, .header-nav {
+    display:block;
+    background: #4B88C8;
+    position:static;
+    padding-left: 85px;
+    transition: padding ease .25s;
+}
+
+.header {
+  height: 60px;
+  min-height: 60px;
+}
+
+.header-nav {
+  height: 48px;
+}
+
+span {
+  color: #fff;
+}
+
+.header.toggle, .header-nav.toggle {
+  padding-left: 280px;
+}
+
+.header-nav {
+  background: #EDF2F8;
+}
+
+.primary-row {
+  height: 60px;
+}
+.header .secondary-row {
+  height: 32px;
+  background: #eee;
+  font-size: 16px;
+  color: #636879;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.accountname {
+  margin-bottom: 4px;
+}
